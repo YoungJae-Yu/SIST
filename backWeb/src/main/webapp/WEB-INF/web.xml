@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>backWeb</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>a</display-name>
+    <servlet-name>a</servlet-name>
+    <servlet-class>backWeb.a01_servlet.a</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>a</servlet-name>
+    <url-pattern>/a</url-pattern>
+  </servlet-mapping>
+  
+ <!--
+ 프로젝트명/A02_Servlet2 : urlpattern
+ 클래스를 찾아가는 형식지정.
+ -->
+  
+  <servlet>
+    <description></description>
+    <display-name>A02_Servlet2</display-name>
+    <servlet-name>A02_Servlet2</servlet-name>
+    <servlet-class>backWeb.a01_servlet.A02_Servlet2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>A02_Servlet2</servlet-name>
+    <url-pattern>/A02_Servlet2</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>htmlRendering</display-name>
+    <servlet-name>htmlRendering</servlet-name>
+    <servlet-class>backWeb.a01_servlet.A03_Servlet_hrml</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>htmlRendering</servlet-name>
+    <url-pattern>/htmlRendering</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>A04_Servlet_html</display-name>
+    <servlet-name>A04_Servlet_html</servlet-name>
+    <servlet-class>backWeb.a01_servlet.A04_Servlet_html</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>A04_Servlet_html</servlet-name>
+    <url-pattern>/A04_Servlet_html</url-pattern>
+  </servlet-mapping>
+</web-app>
