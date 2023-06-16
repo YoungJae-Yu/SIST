@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # 
+        */
+        
+    </script>
+</head>
+<body>
+    <h2>타이틀</h2>
+
+</body>
+    <script>
+        /*
+        #  ex) 물건명, 가격, 갯수를 할당하는
+        json 객체를 생성하고, 각 객체의 속성을
+        접근(2가지)해서 alert()으로 출력하고,
+        추가 속성으로 disRatio(할인율)지정하고,
+        출력하세요..
+        # 속성처리형식
+        1. 객체명.속성명 = 속성값
+        2. 객체명['속성명'] = 속성값
+        # 속성의 등록/수정/삭제
+        1. 초기에 등록
+            let p01 = {name:'홍길동'}
+        2. 추가 등록
+            p01.age = 25
+            p01['loc'] = 서울
+        3. 변경
+            p01.age = 27 // 등록된 속성
+        4. 삭제
+            delete p01.age // 해당 속성을 삭제 처리
+
+        */
+        let product = {name:'딸기',price:15000,cnt:5}
+        alert(`물건의 이름:${product.name}\n물건의 가격:${product[price]}\n물건의 갯수:${product.cnt}`)
+        product.disRatio = 0.2
+        alert(`할인률${product.disRatio}`)
+        
+    </script>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # 매개변수 정리 문제
+        아래 문제들을 h2의 타이틀 내용을 클릭시 처리되게 하세요.
+        1. 매개변수의 갯수
+            1) 없는 경우
+                안녕하세요 출력
+                카운트 증가 출력(전역변수 활용)
+            2) 1개인 경우
+                등록한 사원 번호 출력(매개변수-사원번호)
+                클릭시마다 가격 총액계산(매개변수-가격, 전역변수-총액)
+            3) 2개이상인 경우
+                총계계산(가격, 갯수-출력)
+            4) 가변적인 경우
+                arguments 활용
+                    학생의 점수1개~3개를 각각 호출
+                ...변수명 활용
+                    등록된 회원 아이디 1개~3개를 각각 호출.
+        ===================================================
+        2. 매개변수의 유형
+            1) 배열인 경우
+                국어, 영어, 수학 점수 배열로 전달, 평균 출력
+            2) 객체인 경우
+                도서명, 도서출판사, 도서가격 json 객체로 전달
+                전달된 정보 출력
+                let 변수 = {속성:"문자열",속성:숫자}
+                let 변수 = [{},{},{}]
+            3) DOM인 경우
+                h2 타이틀의 변경 및 중앙정렬, 배경색상 변경
+                하단의 h3의 내용 변경 처리..
+        */
+        function obj1(obj){
+            alert("안녕하세요")
+        }
+        let cnt = 1
+        function obj11(obj){
+            alert("카운트업:"+cnt++)
+        }
+        function call03(empno){
+            alert("사원번호:"+empno)
+        }
+        let tot=0
+        function call04(price){
+            tot += price
+            alert("구매가격:"+price+", 총액:"+tot)
+        }
+        function call05(price, cnt){
+            alert("가격:"+price+", 갯수:"+cnt+", 총액:"+(price*cnt))
+        }
+        function call06(){
+            var arry = []
+            for(var idx in arguments){
+                arry.push(arguments[idx])
+            }
+            alert("입력받은 배열 데이터:"+arry)
+        }
+        function call07(...arr){
+            alert("입력받은 배열 데이터:"+arr)
+        }
+        function call08(points){
+            let tot = 0
+            points.forEach(function(pt){
+                tot += pt
+            })
+            alert("총점:"+tot+", 평균:"+(tot/points.length))
+            //에러시 변경된 소스 공백을 넣어서 저장(ctr+s)
+            //화면에러 f5으로 몇번 리플레이시 처리로 결과 확인
+        }
+        function call09(obj){
+            var show = ""
+            for(var pro in obj){
+                show += pro+":"+obj[pro]+"\n"
+            }
+            alert(show)
+            console.log(show)
+        }
+        function call10(obj){
+            obj.align = "center"
+            obj.style.background = "pink"
+            obj.innerText = "DOM 변신!"
+            var h3Ob = document.querySelector("h3")
+            h3Ob.align = "center"
+            h3Ob.style.color = "navy"
+        }
+        // 조별로 현재 여기까지 이해 정도 개인별 %
+        // 가장 이해가 안되는 부분이나 실습 부분 : @@
+    </script>
+</head>
+<body>
+    <h2 onclick="call10(this)">DOM객체 속셩변경</h2>
+    <h3>대상 객체(DOM)</h3>
+    <h2 onclick="call09(this)">DOM객체 Wow!</h2>
+    <h2 onclick="call09({title:'자바기초',punlisher:'아이디서적',price:28000})">도서명, 출판사, 가격</h2>
+    <h2 onclick="call09({name:'홍길동',age:25,loc:'서울'})">이름, 나이, 사는곳</h2>
+    <h2 onclick="call08([70])">점수1</h2>
+    <h2 onclick="call08([70,80])">점수2</h2>
+    <h2 onclick="call08([70,80,90])">점수3</h2>
+    <h2 onclick="call07(1000,2000)">spread형으로 가변인자처리(숫자)</h2>
+    <h2 onclick="call07('사과','바나나','딸기')">spread형으로 가변인자처리(문자)</h2>
+    <h2 onclick="call07('짜장면','짬뽕')">spread형으로 가변인자처리(문자)</h2>
+    <h2 onclick="obj1()">안녕하세요 출력</h2>
+    <h2 onclick="obj11()">카운트 증가</h2>
+    <h2 onclick="call03(7001)">1개 매개변수(사원번호)</h2>
+    <h2 onclick="call04(1000)">사과구매(1000)-총액계산</h2>
+    <h2 onclick="call04(4000)">바나나구매(4000)-총액계산</h2>
+    <h2 onclick="call04(12000)">딸기구매(12000)-총액계산</h2>
+    <h2 onclick="call05(12000,5)">딸기 5박스 구매(12000)-총액계산</h2>
+    <h2 onclick="call05(1000,2)">사과 2개 구매(1000)-총액계산</h2>
+    <h2 onclick="call06(3000,2000)">가변인자 사용(숫자arguments)</h2>
+    <h2 onclick="call06(3000,2000,5000)">가변인자 사용(숫자arguments)</h2>
+    <h2 onclick="call06('himan','goodMan')">가변인자 사용(문자arguments)</h2>
+
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

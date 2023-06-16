@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- 
+//		[1단계:개념] 8. 웹서버와 웹클라이언트는 어떤 프로그램으로 실행되는지?
+					  network환경과 함께 기술해보세요.
+					  
+					  웹은 요청과 응답이라는 간단한 형태로 동작한다.
+					  클라이언트(사용자)가 요청을 하면 서버(제공자)는 서버(제공자)가 이 요청을 받아서 응답하는 것이다. 
+					  도메인프로그램을 통해서 IP주소와 URL주소를 연동시킨다.(파이어폭스,크롬,IE 등)
+					  전 세계는 거미줄같이 network망으로 연결되어있다.
+					  각 IP주소로 웹서버와 클라이언트가 주고받는다.
+					  
+					  강사님 풀이
+					  웹서버 : tomcat
+					  웹클라이언트 : 브라우저
+					  서버와 클라이언트 개념으로 웹서버가 데몬으로 구축되어 실행되고
+					  클라이언트는 ip/port/경로의 자원명으로 접근하여 html코드를
+					  서버로 부터 받아서 랜더링(해석) 한다.
+					 
+//		[1단계:개념] 9. 오늘 eclipse와 vscode를 통해서 설정한 웹환경과 
+					  초기 화면 로딩을 위해 필요한 설정 부분을 기술해보세요.
+					  
+					  (eclipse)
+					  1. Dynamic Web Project 생성 및 HTML File 생성
+					  2. html, css, jps 각각 Encoding설정을 UTF-8로 변경(→Apply)
+					  3. 톰캣 설치 후 서버 환경 설정합니다.
+					  
+					  (vscode)
+					  1. eclipse에서 만든 프로젝트의 폴더 주소를 복사하여 vscode에 추가합니다. (연동됨)
+					  2. 브라우저 기본 설정을 chrome 브라우저로 설정합니다.
+					  3. .html 파일 생성
+					  
+//		[1단계:개념] 10. html을 구성하고 있는 기본 계층구조의 태그들의 내용을 기술하세요. 
+					   
+					   mata : 메타 정보 선언
+					   head : 문서의 머리를 나타내는 태그
+					   body :  HTML 문서의 텍스트, 하이퍼링크, 이미지, 리스트 등과 
+					   			같은 모든 콘텐츠를 포함하는 영역을 정의할 때 사용하는 태그
+					   			
+//		[1단계:개념] 11. html에서 사용하는 3가지 언어의 예제를 통해서 기술하세요.
+					   ex) 타이틀은 "과제" h1에"반갑습니다"를 70pt. 초록색으로 출력하고,
+					   		추가로 클릭 시 배경 노랑, 글씨 검정, 이름을 출력하세요.
+ -->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>과제</title>
+		<style type="text/css">
+			h1{
+				font-size:70pt;color:green;
+			}
+		</style>
+		<script type="text/javascript"> 
+		//script를 활용하여 함수를 호출하고,
+		// 함수로 해당 함수를 호출하는 태그의 배경색상을
+			// 노랑색을 변경해주는 이벤트 핸들러..
+			function chColor(obj){
+				obj.style.backgroundColor="yellow"
+				obj.style.color="black"
+				obj.innerText="유영재입니다."
+			}
+		</script>
+	</head>
+		<body>
+			<h1 align="center" 
+			onclick="chColor(this)">반갑습니다</h1> 
+		</body>
+</html>

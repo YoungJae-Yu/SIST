@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        #  key 이벤트
+        1. 자판에 있는 키를 입력시 발생하는 이벤트를 말한다.
+        2. 자판에 있는 모든 키는 각각의 고유 키코드를 가지고있다.
+        3. 이 키코드를 통해서 어떤 코드가 입력되고 있는지 구분하여
+            처리할 수 있다.
+        4. key이벤트 종류
+            1) keydown : 키를 눌렀을 때
+            2) keyup : 키를 눌렀다가 떼었을 때
+        주로 데이터를 처리할 때는 keyup이벤트 기준으로 
+        할 때가 많다.
+        */
+        window.onload=function(){
+            var tdArr = document.querySelectorAll("td")
+            tdArr.forEach(function(tdOb, idx){
+            tdOb.style.textAlign="center"
+            tdOb.style.fontSize="40pt"
+            tdOb.innerText=idx+1
+            })
+            var h2Obj = document.querySelector("h2")
+            h2Obj.align="center"
+            var idx=0
+            tdArr[4].style.background = "yellow"
+            // 중앙으로
+            // this : window 전체 화면 대상으로 이벤트가
+            // 발생했을 때..
+            // this : window (BOM) Broser Object Model
+            // body에 있는 각각의 태그를 객체 : (DOM) Document Object Model
+            this.onkeyup=function(){
+                h2Obj.innerText = "키코드값 : "+event.keyCode
+                // 화면에서 색상을 초기화 처리
+                tdArr.forEach(function(tdOb, idx){
+                    tdOb.style.background="white"
+                })
+                // 중앙에 배경색상 노랑색으로 처리
+                tdArr[4].style.background = "yellow"
+            }
+           
+            // this.onkeyup=function(){
+            //     var h2Obj = document.querySelector("h2")
+            //     h2Obj.innerText = "키코드값 : "+event.keyCode
+            //     // 키코드를 조건으로 방향이 변하게 처리해보세요
+            //     // tdArr[idx++].style.background = "yellow"
+            // } 
+            // 왼쪽 화살표를 클릭시..
+            this.onkeydown=function(){
+                tdArr[4].style.background = "white"
+                var h2Obj = document.querySelector("h2")
+                h2Obj.innerText = "키코드값 : "+event.keyCode
+                if(event.keyCode==37){
+                    tdArr[6].style.background = "yellow"
+                    tdArr[0].style.background = "yellow"
+                    tdArr[3].style.background = "pink"
+                }else if(event.keyCode==38){
+                    tdArr[0].style.background = "yellow"
+                    tdArr[2].style.background = "yellow"
+                    tdArr[1].style.background = "pink"
+                }else if(event.keyCode==39){
+                    tdArr[2].style.background = "yellow"
+                    tdArr[8].style.background = "yellow"
+                    tdArr[5].style.background = "pink"
+                }else if(event.keyCode==40){
+                    tdArr[8].style.background = "yellow"
+                    tdArr[6].style.background = "yellow"
+                    tdArr[7].style.background = "pink"
+                }
+            } 
+        }
+    </script>
+</head>
+<body>
+    <h2>타이틀</h2>
+    <table align="center" width="300" heigth="300" border>
+        <col width="33%"><col width="33%"><col width="33%">
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+    </table>
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

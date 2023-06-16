@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        #속성 처리
+        1. 기본 형식
+            선택자{속성:속성값;}
+        2. 공통 속성값
+            0) 색상이나 단위 처리 내용은 html 태그의 기본 속성에서도 적용되는 공통적인 속성값이다.
+            1) 색상
+                - 색이름 표현:css3표준으로 140개의 색의 이름을 정하고 있다.
+                    ex) red, green, blue
+                - 16진수 코드로 표현 : #6A2BE2 ==> 2개단위로 색상 비율 조합
+                    Red : 6A(0~255)
+                    Green : 2B(0~255)
+                    Blue : E2(0~255)
+                - 10진수 코드와 rgb()로 표현
+                    rgb(132,22,57) : red, green, blue로 3가지 색상을 조합해서 표현
+                    0~255 RGB 색상 표현 : js에서 색상값을 호출하면 이 형식으로 호출된다.
+            2) 크기
+                - 상대적
+                    상대적 크기라는 것은 해당 선택자(태그)가 가지고있는 고유의 크기를
+                    기준으로 몇 배, 몇 %로 지정하여 처리하는 것을 말한다.
+                    em: 배수 ex) font: size 3em; 현재 기본 폰트의 3배 크기
+                    %: 퍼센트 ex) font: size 500%; 현재 폰트의 500% 크기
+                - 절대적
+                    절대적 크기는 일반적인 길이 측정단위를 기준으로 설정하는 것을 말한다.
+                    1) px: 픽셀수* ex) font-size: 10px; 10픽셀 크기
+                    2) cm: 센티미터 ex) margin-left: 5cm; 왼쪽 여백 5cm
+                    3) mm: 밀리미터 ex) margin-top: 20mm; 상단 여백 20mm
+                    4) in: 인치 1in = 2.54cm = 96px ex) margin-top: 20mm; 상단 여백 20mm
+                    5) pt: 포인터* ex) margin-top: 20mm; 상단 여백 20mm
+                    6) pc: 피카소 ex) margin-top: 20mm; 상단 여백 20mm
+                    7) deg: 각도 시계방향 20도 최전 ex) margin-top: 20mm; 상단 여백 20mm
+        */
+        .cls01{font-size: 1em;}
+        .cls02{font-size: 2em;}
+        .cls03{font-size: 3em;}
+        .cls04{font-size: 100%;}
+        .cls05{font-size: 200%;}
+        .cls06{font-size: 300%;}
+        /* h2{background-color: aliceblue;}
+        h3{background-color: #6A2BE2;}
+        h4{background-color:  rgb(132,22,57);} 
+        
+        ex) table(2x2)의 넓이와 높이 속성으로 지정하여 위에 있는 상대/절대값으로
+            각 셀의 넓이 col 속성, css 높이 속성을 이용해서 상대적
+            크기와 절대적 크기를 확인하세요..
+        */
+
+        
+    </style>
+</head>
+<body>
+    <table align="center" border="20px">
+        <tr><td colspan="3cm">1</td><td colspan="50px">1</td></tr>
+        <tr><td colspan="500mm">1</td><td colspan="10pc">1</td></tr>
+    </table>
+
+
+    <h1>절대적 크기</h1>
+    <h2 style="font-size: 10px;">10px 크기</h2>
+    <h2 style="font-size: 20px;">20px 크기</h2>
+    <h2 style="font-size: 1cm;">1cm 크기</h2>
+    <h2 style="font-size: 5mm;">5mm 크기</h2>
+    <h2 style="font-size: 20pt;">20pt 크기</h2>
+    <h2 style="font-size: 1pc;">1pc 크기</h2>
+
+    <h1>표준크기</h1>
+    <h1 class="cls01">h1상대적크기 1em</h1>
+    <h1 class="cls02">h1상대적크기 2em</h1>
+    <h1 class="cls03">h1상대적크기 3em</h1>
+    <h1 class="cls04">h1상대적크기 100%</h1>
+    <h1 class="cls05">h1상대적크기 200%</h1>
+    <h1 class="cls06">h1상대적크기 300%</h1>
+
+    <h2 class="cls01">h2상대적크기 1em</h2>
+    <h2 class="cls02">h2상대적크기 2em</h2>
+    <h2 class="cls03">h2상대적크기 3em</h2>
+    <h2 class="cls04">h2상대적크기 100%</h2>
+    <h2 class="cls05">h2상대적크기 200%</h2>
+    <h2 class="cls06">h2상대적크기 300%</h2>
+    
+    <!-- <h2>색이름 표현</h2>
+    <h3>16진수코드값</h3>
+    <h4>RGB()형식표현</h4> -->
+
+</body>
+</html>

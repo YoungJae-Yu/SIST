@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+	<!-- 
+	# select 태그
+	1. 콤보모양의 단일 또는 다중 데이터를 선택해서 서버에 전송할 때, 사용된다.
+	2. 기본 형식
+		<select name="서버전송시key">
+			<option value="1000">인사</option>
+			<option value="1001">재무</option>
+			<option value="1002">회계</option>
+			<option value="1003">기획</option>
+		</select>
+		name에 있는 값으로 서버에 전송할 key를 지정하고
+		option에 있는 선택된 value값으로 key=value형식으로 서버에 전송된다.
+	3. 기본적으로 단일데이터를 전송하나, multiple이라는 속성에의해
+		다중 선택도 가능하게 처리할 수 있고,
+	4. option value를 통해 화면에 보이는 label과 실제
+		서버에 전송되는 데이터를 다르게 설정할 수도 있다.
+	 -->
+	 <form>
+	 부서선택1
+	 <select name="dept">
+	 	<option value="1000">인사</option>
+		<option value="1001">재무</option>
+		<option value="1002">회계</option>
+		<option value="1003">기획</option>
+	 </select><br>
+	 부서선택2
+	 <select name="deptStr">
+	 	<!-- 보이는 label과 서버에 실제 전달될
+	 	값이 같을 때, 사용된다.-->
+	 	<option>인사</option>
+		<option>재무</option>
+		<option>회계</option>
+		<option>기획</option>
+	 </select><br>
+	 	<input type="submit">
+	 </form>
+	 <!-- 
+	 dept=1002&deptStr=재무
+	 option에 value속성이 있으면 항목별로 value의 값이 넘어가고,
+	 value속성이 없으면 lablel의 값이 value로 자동설정 되어 전송이 된다.
+	 ex) 사원번호와 이름이 다음과 같이 mapping될 때,
+	 사원명을 선택해서 서버에 empno로 사원번호가 넘어가게 처리하세요
+	 사원번호 사원명
+	 ----------
+	 7001 홍길동
+	 7002 김길동
+	 7003 신길동
+	 7004 오길동
+	  -->
+	  <h2>사원정보선택 및 전송</h2>
+	 <form>
+	 사원선택
+	 <select name="empno">
+	 	<option value="7001">홍길동</option>
+	 	<option value="7002">김길동</option>
+	 	<option value="7003">신길동</option>
+	 	<option value="7004">오길동</option>
+	 </select><br>
+	 <input type="submit">
+	  </form>
+	</body>
+	<!--
+ 
+	# form데이터의 정렬을 위해 table 구조하에 입력
+		-->
+	<form>
+		<table>
+			<caption>로그인</caption>
+			<tr>
+				<th>아이디</th>
+				<td><input type="text" name="id"></td>
+			</tr>
+			<tr>
+				<th>패스워드</th>
+				<td><input type="password" name="pass"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align:center">
+					<input type="submit" value="로그인">
+				</td>
+			</tr>
+		</table>
+	</form> 
+</html>

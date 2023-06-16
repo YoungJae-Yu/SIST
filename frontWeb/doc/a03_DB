@@ -1,0 +1,14 @@
+cmd
+splplus
+system/1111
+
+c:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin\scott.sql
+scott/tiger
+테스트 계정과 비밀번호
+scoott.sql
+
+C:\Users\user>sqlplus (CMD에 나오는 경로 확인 컴퓨터마다 다름)
+
+@scott.sql
+conn scott/tiger;
+select * from emp;

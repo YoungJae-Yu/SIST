@@ -1,0 +1,26 @@
+# 웹프로그램의 환경 설정
+1. 기본 환경설정
+	1) 소스(프로젝트)
+	2) 웹서버
+2. eclise 기준
+	1) dynamic web project
+		File => new ==> other ==> 
+		web ==> dynamic web procjt
+	2) 기본 경로(서버와 mapping 해서 의미)
+		프로젝트명\src\main\webapp
+		파일이나
+			index.html : 초기 서버와
+				연동했을 때, default파일
+			tomcat과 연동했을 때, 브라우저에서 실행되는 내용
+			http://localhost:8080/frontWeb/index.html
+			localhost - 현재 pc (서버/클라이언트 같이 있을 때)
+			8080: 한 pc내에서 여러개 서비스는 지원하고자 할 때 
+		폴드생성
+			a01_begin
+				파일로 접근..
+			frontWeb\src\main\webapp\index.html : 물리적 경우	
+			http://localhost:8080/frontWeb/index.html	
+				웹서버의 실행 경로
+			a01_begin/a04_tag_constExp.html
+				
+				

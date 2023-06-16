@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        /*
+        # 텍스트 그림자 text-shadow
+        1. 텍스트를 아이콘 형식으로 메뉴로 사용하거나, 기본 링크로 처리할 때,
+            주로 쓰이는 부가적인 기능이다.
+        2. 기본 형식
+            text-shadow : 수평그림자 수직그림자 퍼짐정도 색상
+            ex) h1{text-shadow:3px 3px 1px blue;}
+        3. 속성값
+            h-shadow/v-shadow 수평그림자 수직그림자 위치 지정
+                원본 텍스트와 그림자 텍스트 사이의 수평/수직 거리(필수)
+            blur-radius : 흐릿한 그림자를 만드는 효과로 흐릿하게 번지는 길이(선택)
+            color:그림자 색(선택)
+            none:그림자 효과 없음
+            ex) 하단에 파랑과 노랑색으로 여러 옵션을 주어 만드세요.(2개)
+
+        */
+        div.red{text-shadow: 5px 2px 1px blue;}
+        div.red1{text-shadow: 1px 1px 2px blue;}
+        div.red2{text-shadow: 7px 7px 3px rgb(251, 255, 0);}
+
+    </style>
+</head>
+<body>
+    <span id="bnt">버튼</span>
+    <div class="red">Drop shadow</div>
+    <div class="red1">Drop shadow1</div>
+    <div class="red2">Drop shadow2</div>
+    
+</body>
+</html>

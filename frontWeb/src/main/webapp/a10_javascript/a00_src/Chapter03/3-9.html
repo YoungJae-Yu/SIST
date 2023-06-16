@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        /*
+        # 3항연산자
+        1. boolean조건?true일때처리할데이터:false일때, 처리할 데이터
+        
+        */
+        // 변수를 선언합니다.
+        //var input = prompt('숫자를 입력해주세요.', '');
+        //var number = Number(input);
+        // 조건문
+        //(number > 0) ? alert('자연수입니다.') : alert('자연수가 아닙니다.');
+        let age = Number(prompt("나이를 입력하세요"))
+        //let isAdult = age>=18?"성인":"미성년자"
+        // # 3항 연산자를 이용해서 3개이상의 조건을 처리할 때.
+        // 1. 조건1?처리1:처리2
+        //    조건1일 때, 처리1이 되고,
+        // 2. 처리2에서 다시 3항 연산자를 처리
+        //    (조건2:처리2:그외처리3)
+        let isAdult = age>=18?"성인":(age>=0?"미성년자":"숫자로 0이상 입력해야 합니다." )
+        alert("구분:"+isAdult)
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<!-- 
+		# 기타 target 옵션
+		0. <a href="이동할페이지" target="속성">
+			_self : 현재 페이지를 변경처리
+			_blank : 새로운 화면(브라우저의 탭을 추가)에 해당페이지를 로딩처리
+		1. 브라우저의 계층 구조에 대한 이해
+			<a href=changeMenu.html" target="frame02"> 클릭시변경페이지
+			<iframe name="frame01" src="a02_second.html"/> 초기페이지
+		
+				초기최상위 페이지(a01_top.html)
+			
+			frame01		frame02(a02_second.html) 
+								<a href=changeParentPage.html" target="_parent">
+			
+					frame03		frame04(a02_third.html)
+										<a href=changeTopPage.html" target="_top">
+				
+			1) 최상위 윈도우(상위 화면-브라우저)
+				link로 하위에 있는 frame을 포함하고 있는 html화면
+			2) 차상위 윈도우
+				link로 하위에 있는 frame 안에서 또 다시 프레임으로
+				html화면을 호출하면 차상위 윈도우가 된다.
+			3) 가장 하위 윈도우
+				차상위 윈도우에서 호출된 html파일을 말한다.
+			# 상위에서 하위를 바라보면 지정하는 속성 : child윈도우
+				바로 밑	
+			# 하위에서 상위를 바라보면 지정하는 속성 : parent윈도우	
+				바로 위
+			# 모든 하위 윈도우에서 최상위 윈도우를 지정하는 속성 : top윈도우
+		2. a href의 taget 옵션에 따른 내용
+			1) 위 계층 구조를 참고로 하여 target에 할당할 수 있는
+				속성값은 다음과 같다.
+			2) _blank : 새로운 브라우저 윈도우 탭을 생성
+				기본것은 그대로 두고, 다시 새로운 브라우저 창을 로딩하는 것을 말한다.
+			3) _self : 현재 브라우저를 대체해서 새로운 화면을 로딩하는 것을 말한다.
+			4) _parent : 이 페이지를 호출하는 바로 위 부모 페이지를 변경 처리하는 것을 말한다.
+			5) _top : 계층구조상 최상위 페이지를 변경 처리하는 것을 말한다.
+			6) 프레임명/윈도우명 : 해당 프레임이나 윈도우를 변경 하는 것을 말한다.
+			# 이 속성을 a, form, base, area에 target에 적용된다.	
+		 -->
+		 <a href="a09_newPage.html" target="_blank">새로운 브라우저 로딩</a>
+		 <a href="a09_newPage.html" target="_self">현재 페이지 변경</a>
+	</body>
+</html>

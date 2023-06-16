@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        #setTimeout(function(){시간후에 수행될 함수},시간)
+        1. var set01 = setTimeout(function(){
+
+            clearTimeout(set01); // 자원해제..
+            },5000) 
+        ps) setTimeout/setInterval을 수행시, 반드시 특정한
+            시점에서 변수를 선언한 내용을 가지고 자원을
+            clearTimeout(변수명), clearInterval(변수명)
+            으로 자원을 해제하여야 원활하게 브라우저 화면이 작동한다.
+        */
+        var set01 = setTimeout(function(){
+        
+        
+        alert("3초 후에 수행될 내용");
+        // 3초 후에 수행했기에 h2객체 DOM인식
+        var h2Ob = document.querySelector("h2")
+        h2Ob.innerText="변경(3초후)"
+        clearTimeout(set01)
+
+       },3000) 
+       var cnt = 1;
+       var in01 = setInterval(()=>{
+        // 1초마다 수행할 내용을
+        var h3Ob = document.querySelector("h3")
+        h3Ob.innerText="카운트업:"+(cnt++)
+        if(cnt==11){
+            alert("끝~")
+            clearInterval(in01)
+        }
+       },1000)
+       // a10_setInterval.html
+       // h3를 7개 선언하고,
+       // 시작하자 h3첫번째 부터 하나씩
+       // 안녕하세요 표시..
+       // var h3Arr = document.querySelectorAll("h3")
+       // idx 증가 ... h3Arr[idx]
+    </script>
+</head>
+<body>
+    <h2>타이틀</h2>
+    <h3>타이틀</h3>
+
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

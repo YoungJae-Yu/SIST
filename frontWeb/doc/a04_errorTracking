@@ -1,0 +1,17 @@
+# 여러가지 에러 트래킹 방법
+1. 해당 클래스가 수행되지 않으면 호출되는 첫라인
+	및 각 라인별로 코드가 정상 수행되는지 여부를
+	찍어본다.
+	System.out.println("1");
+	System.out.println("2");
+	System.out.println("3");
+	System.out.println("4");
+2. 고급 트래킹 f11 : 디버깅 코드 사용
+	1) 확인할 라인에 왼쪽 add Task로 지점을
+		정한된 실행과정에 데이터 문제가 없는지 확인
+	2) 데이터 문제
+		- 각각의 변수
+		- sql 내용
+3. 에러 유형
+	ORA-XXXX : sql 구문자체에 문제 발생 sql을 반드시 확인
+	ORA-00904 : "ENAME2": invalid idenrifier

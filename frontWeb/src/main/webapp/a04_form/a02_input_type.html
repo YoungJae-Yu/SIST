@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+	<!-- 
+	# input 태그를 여러가지 모양으로 표현하는 type속성
+	1. 형식 : <inut type="속성값"
+		속성값에 따라서 여러가지 입력모양이 변경된다.
+	2. 속성값들
+		1) text : 한줄 텍스트 입력 창
+		2) password : 암호 입력을 위한 한줄 텍스트 입력
+		3) button : 단순 버튼 모양 
+		4) image : 이미지 버튼 모양
+		5) checkbox : 네모모양의 checkbox - 다중선택가능
+			서버에 선택된 데이터를 모두 전달 ==> 배열
+		6) radio : 둥근모양의 radio box - 단일선택
+			서버에 하나를 선택해서 전달 ==> 단일
+		7) hidden : 데이터 전송할 때, 보이지 않게 처리하기
+			위한 설정시 필요함 숨김데이터 처리
+			ex) update/insert/delete
+				동일한 서버의 자원을 호출하지만,
+				실제 처리해야할 내용이 다른 경우
+				<input type="hidden" name="proc"
+					value="update"/> ==> value값이
+					js에 따라서 변경되는 처리
+				
+		8) submit : form태그를 둘러쌓일 때,
+			form태그 하위에 있는 입력 form 데이터 서버에 전송 처리(버튼모양)
+			(버튼모양)
+			<form action="전송할서버자원-jsp/java">
+				form요소태그
+				<input type="submit"/>
+				<input type="reset"/>
+		9) reset : form 태그를 둘러쌓인 범위의 form태그의 입력데이터를 초기화처리.
+	------------------------------------------------------------
+		10) file : 파일을 선택해서 서버에 전송시 사용
+		11) month|week|date|time|datatime-local
+			날짜 관련 데이터를 입력받고, 또는 선택할 때 사용된다.
+		12) color : 색상을 선택할 때, 사용되는 입력 타입
+		13) number|range : 스핀 버튼과 슬라이더바 모양으로 편리하게
+			스크롤을 통해서 데이터 범위를 입력시 사용.
+		14) emial|url|tel|search : 이메일, url입력, 전화번호입력
+			검색키워드 등 형식 감사 기능을 가진 텍스트 입력자.
+			
+	 -->
+	text:<input type="text"/><br>
+	password:<input type="password"/><br>
+	button:<input type="button"/><br>
+	image:<input type="image"src="\frontWeb\a00_img\banana.jpeg"/><br>
+	checkbox:<input type="checkbox"/><br>
+	<!-- 다중선택시 사용 된다. -->
+	<h5>좋아하는 과일 </h5>	
+	<input type="checkbox"name="fruits"value="사과"/>사과,
+	<input type="checkbox"name="fruits"value="바나나"/>바나나,
+	<input type="checkbox"name="fruits"value="딸기"/>딸기,
+	<!-- 
+	name이라는 속성을 통해서 동일한 항목이라는 것을 나타내며,
+	checked가 되었을 때, 전송할 데이터를 value="값"으로 정해주면,
+	서버와 연동되었을 때, 실제 서버단에 배열형식으로 check가된 것만 전달된다.
+	ex) 가고 싶은 여행지를 타이틀로 다중 선택하게 리스트하여
+		선택되게 하세요(다중선택)
+	 -->
+	<h5>가고싶은 여행지</h5>	
+	<input type="checkbox"name="travels"value="제주도"/>제주도,
+	<input type="checkbox"name="travels"value="도쿄"/>도쿄,
+	<input type="checkbox"name="travels"value="세부]"/>세부,
+	<input type="checkbox"name="travels"value="다낭"/>다낭<br>
+	
+	radio:<input type="radio"/><br>
+	<!-- 
+	# type="radio"
+	1. 동일한 name의 속성값 기준으로 단일 선택하게 해주는 요소태그이다.
+	2. 형식
+		<input type="radio" name="이름1" value="연결된값"/>
+	-->
+	<h2>오늘 선택한 저녁식사 메뉴</h2>
+	<input type="radio"name="dinner"value="도시락">도시락
+	<input type="radio"name="dinner"value="짬뽕">짬뽕
+	<input type="radio"name="dinner"value="치킨">치킨
+	<input type="radio"name="dinner"value="바나나">도시락<br>
+	<!-- 
+	ex) 사는 곳을 국내/국외 둘중 하나,
+		지역을 서울/경기, 강원도, 충청도, 경상도, 전라도, 제주도
+		단일 선택하게 처리하세요.
+	 -->
+	<h2>사는 나라는 어디인가요?</h2>
+	<input type="radio"name="ctr"value="국내">국내
+	<input type="radio"name="ctr"value="국외">국외
+	<h2>사는 곳은 어디인가요?</h2>
+	<input type="radio"name="ct"value="서울/경기">서울/경기
+	<input type="radio"name="ct"value="강원도">강원도
+	<input type="radio"name="ct"value="충청도">충청도
+	<input type="radio"name="ct"value="경상도">경상도
+	<input type="radio"name="ct"value="전라도">전라도
+	<input type="radio"name="ct"value="제주도">제주도<br>
+	
+	hidden:<input type="hidden"/><br>
+	submit:<input type="submit"/><br>
+	reset:<input type="reset"/><br>
+	<!-- 
+	submit는 form태그를 포함되어 있는 form요소객체를
+	name과 value으로 서버에 전송할 때, 사용된다.
+	reset form태그 하위에 있는 form요소객체를 입력 전으로
+	초기화 처리한다.
+	
+	type이 submit버튼을 클릭시, form사이에 있는 요소객체
+	name의 속성에 있는 값, 입력한 데이터를 기준으로
+	key=value&key=value형식 서버에 전송이 된다.
+	pname=바나나&price=3000&cnt=3
+	-->
+	<h2>물건 구매</h2>
+	<form>
+		구매할 물건명:<input type="text"name="pname"/><br>
+		가격:<input type="number"name="price"value="0"/><br>
+		갯수:<input type="number"name="cnt"value="0"/><br>
+		<input type="submit"value="구매"/>
+		<input type="reset"value="다시시도"/><br>
+	</form>
+	file:<input type="file"/><br>
+	<!-- 
+	첨부파일시 서버에 파일을 전송시 사용된다.
+	name="전송키" form 속성을 파일이 전송되는 multipart로
+	설정하여야 한다.
+	-->
+	month:<input type="month"/><br>
+	week:<input type="week"/><br>
+	*date:<input type="date"/><br>
+	time:<input type="time"/><br>
+	<!-- 
+	# form하위 요소태그의 입력/선택한 데이터를 서버에
+	전송하기 위해서
+	1) form태그로 해당 태그를 상위로 하여야 하고,
+	2) name="서버전송명" 선언하여야 한다.
+	3) type="submit" 호출하든지/js로 submit버튼을
+		클릭한 것과 동일한 이벤트 처리를 하여야 한다.
+		name="서버전송명" 선언하여야 한다.
+	 -->
+	color:<input type="color"/><br>
+	number:<input type="number"/><br>
+	range:<input type="range"/><br>
+	emial:<input type="emial"/><br>
+	url:<input type="url"/><br>
+	tel:<input type="tel"/><br>
+	search:<input type="search"/><br>
+	
+	</body>
+</html>

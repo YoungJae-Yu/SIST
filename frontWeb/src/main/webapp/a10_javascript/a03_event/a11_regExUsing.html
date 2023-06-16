@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # 실무적 유효성 check 예제
+        1. 이메일 유효성 체크 함수
+        2. 비밀번호 8자 이상 영문 대소문자와 숫자를 포함
+        3. 기타 적용 방법
+            - 기본 메서드와 함수 활용
+            - 유효성 패턴을 확인해서 조건문/반복문에 처리
+        */
+    </script>
+</head>
+<body>
+    <h2>유효성 검증</h2>
+    이메일:<input type="text" name="email" 
+    placeholder="이메일형식입력(XXXXXX@XXX.XXX)"/>
+    <span id="emailValid"></span>
+    <br>
+    비밀번호:<input type="password" name="pass" 
+    placeholder="비밀번호 8자이상 영문 대소문자와 숫자 포함"/>
+    <span id="passValid"></span>
+</body>
+    <script>
+        var emailOb = document.querySelector("[name=email]")
+        var emailValidOb = document.querySelector("#emailValid")
+        emailOb.onkeyup=function(){
+            var ptrn = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/
+            var str = this.value
+            if(ptrn.test(str)){
+                emailValidOb.innerText = "이메일형식 맞습니다."
+            }else{
+                emailValidOb.innerText = "이메일형식 맞지 않습니다."
+            
+            }
+        }
+        var passOb = document.querySelector("[name=pass]")
+        var passValidOb = document.querySelector("#passValid")
+        passOb.onkeyup=function(){
+            var ptrn = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/
+            var str = this.value
+            if(str.length>=8 && ptrn.test(str)){
+                passValidOb.innerText = "비밀번호 형식 맞습니다."
+            }else{
+                passValidOb.innerText = "비밀번호 형식 맞지 않습니다."
+            }
+        }
+    </script>
+</html>

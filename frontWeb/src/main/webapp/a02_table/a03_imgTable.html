@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+	<!-- 
+	# 이미지형 게시판에 사용되는 이미지 테이블
+	1. 표에 이미지를 삽입하여 이미지형 게시판을 만들 때,
+		사용한다.
+	2. 처리 순서
+		1) 원하는 양식의 테이블 생성(행X열)
+		2) 해당 cell에 필요한 이미지 td안에 포함 처리
+			<td><img/></td>
+	 -->
+		<h2 align="center">표 이미지 삽입</h2>
+		<table align="center">
+			<caption>좋아하는 과일</caption>
+			<tr>
+				<td><img src="../a00_img/apple.jpeg" width="100" height="100"/></td>
+				<td><img src="/frontWeb2/a00_img/banana.jpeg" width="100" height="100"/></td>
+				<td><img src="/frontWeb2/a00_img/mango.jpeg" width="100" height="100"/></td>
+			</tr>
+		</table>
+		<!-- 
+		ex) 2X2 테이블에 
+			과일1와 음식3개를 테이블에 포함하여 출력하세요.
+			
+		 -->
+		<h2 align="center">맛난음식과 과일</h2>
+		<table align="center">
+			<tr>
+				<td><img src="/frontWeb2/a00_img/mango.jpeg"  width="100" height="100"/></td>
+				<td><img src="/frontWeb2/a00_img/food01.jpeg"  width="100" height="100"/></td>
+			</tr>
+			<tr>
+				<td><img src="/frontWeb2/a00_img/food02.jpeg"  width="100" height="100"/></td>
+				<td><img src="/frontWeb2/a00_img/food03.jpeg"  width="100" height="100"/></td>
+			</tr>
+
+		</table>
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		/*
+		# 선택자
+		1. 클래스 선택자
+			1) .(점)으로 시작한 이름의 선택자를 선언하여, 속성/속성값을 지정
+			2) 그룹의 css 적용이 필요할 때, 활용된다.
+			3) 태그에서는 class="클래스명1 클래스명2.."
+				상위에 선언된 클래스를 여러가지를 적용할 수 있다.
+				ps) class와 body 회면 적용은 다대다 관계로 설정이
+				하나의 클래스 선언 ==> body에서 여러 곳에 호출
+				body에서 하나의 태그에서 여러개의 클래스 선언
+					class = "클래스1 클래스2 클래스3..."
+				
+		2. 아이디 선택자
+			1) #아이디명으로 시작한 이름으로 선택자를 선언하여
+				속성/속성명을 설정한 부분이다.
+			2) 하나의 페이지에 유익한 식별자로 하나만 적용할 때,
+				활용한다.
+			3) <태그명 id="아이디명">
+		*/
+			#id01{color:red;}
+			#id02{color:blue;}
+			.cls01{color:yellow;}
+			.cls02{background-color:blue;}
+			.cls03{border:1px solid green;}
+			/*border 태두리 옵션 지정 : 굵기 유형 색상 등*/
+			
+			.cls1000{font-size:32px;}
+			.cls2000{border:4px solid green;}
+			.cls3000{text-align:center;}
+		</style>
+	</head>
+	<body>
+		<h3 id="id01">안녕하세요</h3>
+		<h3>안녕하세요</h3>
+		<!-- 2개이상 적용은 되지만 id는 가능한한 한 화면에 하나의 식별자만 사용 -->
+		<h2 class="cls01">안녕하세요1(cls01)</h2>
+		<h2 class="cls02">안녕하세요2(cls02)</h2>
+		<h2 class="cls02">안녕하세요2(cls02)</h2>
+		<h2 class="cls01">안녕하세요3(cls01)</h2>
+		<h2 class="cls02">안녕하세요3(cls02)</h2>
+		<h2 class="cls03">안녕하세요3(cls03)</h2>
+		<h2 class="cls01 cls02 ">안녕하세요4</h2>
+		<h2 class="cls01 cls02 cls03">안녕하세요5</h2>
+
+		<table width="300pt" height="300pt" border>
+		<tr><td class="cls1000">1</td><td class="cls1000">2</td><td class="cls1000">3</td></tr>
+		<tr><td class="cls1000 cls2000">4</td><td class="cls1000 cls2000">5</td><td class="cls1000 cls2000">6</td></tr>
+		<tr><td class="cls1000 cls2000 cls3000">7</td><td class="cls1000 cls2000 cls3000">8</td><td class="cls1000 cls2000 cls3000">9</td></tr>
+
+		</table>
+	</body>
+	<!-- 
+	ex) cls1000 글자크기,cls2000 테두리,cls3000 정렬(text-align)
+		table 3X3 테이블을 만들고,
+			td 위에 클래스가 1씩 또는 여러군데
+	 		td 클래스 2~3가 적용되어 처리되게 하세요.
+	 -->
+</html>

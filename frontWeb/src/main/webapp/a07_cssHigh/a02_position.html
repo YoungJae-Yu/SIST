@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    /*
+    # 요소객체의 위치를 지정 형태를 처리하는 position
+    1. 기본 default 옵션
+        웹페이지에 태그가 나온 순서대로 처리가 된다. static 옵션으로 지정.
+    2. 기본 형식 및 속성에 따른 처리
+        선택자{position:속성값;top:위로부터;left:왼쪽으로부터;}
+        1) position의 속성값들의 기능
+            relative : 상대 배치 - 현재 위치를 기준으로 x/y축으로 이동된다.
+            absolute : 절대 위치배치 
+                - 왼쪽 상단 꼭지점을 기준으로 
+                    x/y으로 이동 처리된다. (top:0px; left:0px;)
+                - 오른쪽 하단 꼭지점을 기준으로 x/y으로 이동처리 위치
+                    (bottom:0px;right:0px;)
+            fixed : 고정 배치로 화면을 스크롤 상관없이 특정 위치를 고수하여
+                처리되는 것을 말한다.
+    */
+        div{border: 1px solid navy; width: 20px; height: 20px;}
+    </style>
+</head>
+<body>
+    <h1>기본 div 처리 옵션</h1>
+    <div></div>
+    <div></div>
+    <div></div>
+    <h1>상대 div 처리 옵션</h1>
+    <div style="position: relative;top: 10px;left: 10px;"></div>
+    <div style="position: relative;top: 20px;left: 20px;"></div>
+    <div style="position: relative;top: 30px;left: 30px;"></div>
+    
+</body>
+</html>

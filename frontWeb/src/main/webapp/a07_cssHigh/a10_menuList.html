@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        # ul과 a 링크를 활용할 메뉴바 처리하기
+        1. nav 태그(시맨틱태그)를 이용하여, ul a를 활용하면 상단에 활용하는 메뉴바를
+        만들어 처리할 수 있다.
+            ps) 시맨틱태그 : 기능적으로 화면을 처리하는 것이 아니라,
+            의미적 요소로 선언하여 처리하는 태그 형식을 말하고 html5이후에
+            주로 적용되고 있다. 
+        2. 주요 속성
+            1) li 선택자에 대한 속성 설정
+                display:inline-block - 넓이/높이는 설정하지만 옆으로 리스트 처리
+                list-style-type : none - 메뉴를 좌우로 나타내야하기에 리스트의
+                  타입을 필요하지 않는다.
+            2) a 링크 선택자에 대한 속성 설정
+                text-decoration:none - 하단에 언더라인 속성은 없앤다.
+            3) :hover  가상클래스 옵션으로 메뉴에 커서를 위치 시켰을
+                때, 선택 색상을 처리가 필요
+            4) border-left - 메뉴 리스트를 구분하기 위하여 오른쪽 테두리
+                옵션 설정..    
+
+        */
+        nav{background-color: olive; float:left;}
+        nav ul{
+            margin:0;
+            padding:0;
+            width:100%;
+        }
+        nav ul li{
+            display: inline-block;
+            list-style-type: none;
+            padding: 5px 15px;
+        }
+        nav ul li a{
+
+            color:white;
+            text-decoration: none;
+            border-left: 1px solid gray;
+        }
+        nav ul li a:hover{
+            color:violet
+        }
+        /*
+        ex) a11_menuList.html g마켓의 메뉴를 리스트 해보세요.
+
+        */
+    </style>
+</head>
+<body>
+    <h2>리스트 메뉴바 구성하기!!</h2>
+    <nav id="menubar01">
+        <ul>
+
+            <li><a href="#">베스트</a></li>
+            <li><a href="#">슈퍼딜</a></li>
+            <li><a href="#">쿠폰/출첵</a></li>
+            <li><a href="#">스마일프레스</a></li>
+            <li><a href="#">스마일배송</a></li>
+            <li><a href="#">스마일클럽</a></li>
+        </ul>
+
+    </nav>
+    
+</body>
+</html>

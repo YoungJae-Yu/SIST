@@ -1,0 +1,16 @@
+# 회원관리 처리 DB연동
+1. 프로세스
+	로그인 (login)
+	회원가입 (insertMember)
+	내정보-개인정보확인 (getMember(String id))
+	- 내정보수정(비밀번호 확인) (updateMember(Member upt))
+	- 회원탈퇴(deleteMember(String id))
+	회원리스트(관리자) (List<Member> getMemList(Member sch))
+
+2. 처리순서
+	1) 회원가입(데이터입력)
+	2) 로그인
+	3) 내정보확인
+	4) 내정보수정
+	5) 회원탈퇴
+	6) 회원리스트

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # 가변적인 매개변수 처리
+        0. 매개변수가 없을 때, 1개 또는 여러개 있을 때
+            동일한 정의 함수를 이용해서 처리하면
+            매개변수는 배열이나 기능 내장 객체를 통해서
+            처리하는 것을 말한다. 
+        1. 단계별 처리 내용
+            1) arguments 내장 객체 사용
+                매개변수의 인자의 갯수만큼 배열로 받아서
+                데이터를 처리한다.
+            2) 매개변수명.. 활용
+            3) 초기값 선언과 매개변수 처리
+        */
+        // function buyPrice(){
+        //     // alert(arguments)
+        //     var arry = []
+        //     for(var idx in arguments){
+        //         // 배열명.push(추가데이터)
+        //         arry.push(arguments[idx])
+        //         // alert(arguments[idx])
+        //     }
+        //     alert("물건가격:"+arry)
+        // }
+        //ex) 구입하는 물건을 동적으로 전달하여
+        //    1~3개 클릭시, 물건명 리스트를 출력하세요.
+        function plist(){
+            var parry = []
+            for(var idx in arguments){
+                parry.push(arguments[idx])
+            }
+            alert("물건명:"+parry)
+        }
+    </script>
+</head>
+<body>
+    <h2 onclick="plist('딸기')">물건1개</h2>
+    <h2 onclick="plist('바나나','딸기')">물건2개</h2>
+    <h2 onclick="plist('바나나','딸기','옥수수')">물건3개</h2>
+
+
+    <!-- <h2 onclick="buyPrice(1000)">한개물건</h2>
+    <h2 onclick="buyPrice(1000,2000)">두개물건</h2>
+    <h2 onclick="buyPrice(1000,2000,3000)">세개물건</h2> -->
+
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		/*
+		# 선택자의 중첩선언 처리시
+		1. 여러 선택자를 동일 속성/속성값으로 지정(두가지 이상의 선택자가 or로 연결)
+			선택1, 선택2, 선택3{속성:속성값;}
+		2. 조합해서 선택자 처리
+			1) 요소에서 속성을 선택자가 있을 때 	
+				 h1태그에서 class가 cls01인경우 속성:속성값
+				 cls01{background-color:yellow;}
+				 h1{border:1px solid blue;}
+				 h1.cls01{ color:red;}
+				 h2#id01{}
+				 <h1>
+				 <h1>
+				 <h1 class="cls01">
+				 <h1>
+				 <h2 class="cls01">
+				 <h3>
+			 2) 계층 구조상 포함된 상위 계층을 가지고 있는 선택자
+				부모>자식
+				조상 후손 : 위 부모>자식관계를 포함하면 계층 레벨 상관없이 적용
+				
+			 	div > p > h1  (3가지 조건이 다 계층 구조로 맞고, 마지막에 선언된 h1에 적용)
+			 	적용 결국 h1적용	상위 바로 위 부모가 div, p
+			 	table.cls01 td 
+			 	테이블중에 class명이 cls01이 계층레벨 상관없이
+			 		td인 태그에 대한 적용 	
+			17:05~ 		
+		*/
+			.cls01{background-color:yellow;}
+			h1{border:1px solid blue;}
+			h1.cls01{ color:red;}					
+		</style>		
+	</head>
+	<body>
+		<h1>안녕하세요1(태그)</h1>
+		<h2 class="cls01" >안녕하세요1(클래스)</h2>
+		<h2 class="cls01" >안녕하세요1(클래스)</h2>
+		<h1>안녕하세요1(태그)</h1>
+		<h1 class="cls01">안녕하세요1(태그+클래스)</h1>
+		<h1>안녕하세요1(태그)</h1>
+		<!-- ex)
+		a13_multiSeletor.html
+			클래스선언 : 글자색상
+			태그선언  : 배경색상
+			아이디선언 : 정렬중앙
+			태그+클래스 : 테두리 굵기설정
+			
+		 -->
+		
+	</body>
+</html>

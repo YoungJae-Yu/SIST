@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		/*
+		# 리스트 모양을 꾸미는 css3 옵션
+		1. ul는 리스트형으로 여러가지 메뉴에서 적용되어 처리를 할 수 
+			있다. css는 이 리스트를 이미지와 여러가지 정렬과
+			비정렬 형식을 옵션을 지원하고 있다.
+            -주로 ul/ol의 list와 a href=""를 중접활용해서
+            메뉴를 만들어 링크 처리할 때, 주로 사용된다. 가지고 있는
+            type의 여백, 크기등의 옵션을 변경할 때가 많다.
+            - 왼쪽 메뉴 리스트(위에서 아래로 이미지를 설정)
+                계층적 메뉴리스트 처리(javascript 기능 이벤트 처리 혼합)
+            - 상단 메뉴 리스트(왼쪽에서 오른쪽으로 메뉴 리스트 처리)
+
+		2. 주요 속성
+			1) list-style-type : 아이템 마커 타입 지정
+				정렬 : decimal, armenian, georgian, cjk-ideographic,
+				       lower-alpha, upper-alpha, lower-roman, upper-roman
+				비정렬 : desc, circle, square	   
+			2) list-style-image : 아이템 마커 이미지 지정
+				ex) list-style-image:url('이미지상대/절대주소')
+			3) list-style-position : 아이템 마커의 출력 위치 지정
+				아이템 영역 내 혹은 영역 바깥
+				outside : default
+				inside : 마커가 안쪽으로 출력
+			4) list-style : 위의 3개의 속성 값을 한 번에 지정하는 단축속성
+		*/
+			ul{
+				background-color: goldenrod; padding: 10px;
+				list-style-position: inside;
+				list-style-type: none;
+				display: inline-block;	
+			}
+		</style>		
+	</head>
+	<body>
+		<h3>커피메뉴</h3>
+		<ul style="list-style-image: url('/a00_img/marker.png');"><li>에스프레소</li><li>카푸치노</li><li>카페라떼</li></ul>
+		<ul style="list-style-type:none;"><li>에스프레소</li><li>카푸치노</li><li>카페라떼</li></ul>
+		<ul style="list-style-type:circle;"><li>에스프레소</li><li>카푸치노</li><li>카페라떼</li></ul>
+		<ul style="list-style-type:armenian;"><li>에스프레소</li><li>카푸치노</li><li>카페라떼</li></ul>
+		<ul style="list-style-type:georgian;"><li>에스프레소</li><li>카푸치노</li><li>카페라떼</li></ul>
+		<ul style="list-style-type:upper-roman;"><li>에스프레소</li><li>카푸치노</li><li>카페라떼</li></ul>
+		<ul style="list-style-type:lower-greek;"><li>에스프레소</li><li>카푸치노</li><li>카페라떼</li></ul>
+		
+	</body>
+</html>

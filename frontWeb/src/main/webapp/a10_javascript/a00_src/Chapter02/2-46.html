@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 변수를 선언합니다.
+        // Math.random() : java와 동일
+        var number = Math.sqrt(4);
+        // 변수를 출력합니다.
+        //alert(number);
+        // parseInt() : 숫자형 문자열을 정수로 변경
+        //      casting(소숫점이할 절삭)까지 해준다.
+        var dice1 = parseInt(Math.random()*6+1)
+        var dice2 = Math.floor(Math.random()*6+1)
+        //alert(dice1+":"+dice2)
+        // ex) 0~100 사이 국어/영어/수학 점수를
+        //     임의로 가져와서..
+        //     총점과 평균을 출력하세요..
+    </script>
+</head>
+<body>
+    <h2></h2>
+    <h2></h2>
+    <h2></h2>
+    <h2></h2>
+</body>
+    <script>
+        var kor = parseInt(Math.random()*101);
+        var math = parseInt(Math.random()*101);
+        var eng = parseInt(Math.random()*101);
+        // document.querySelector("선택자 단일") : 단일객체
+        // document.querySelectorAll("선택자 여러개") : 배열객체
+        var h2Arr = document.querySelectorAll("h2");
+        h2Arr[0].innerText = "국어점수:"+kor
+        h2Arr[1].innerText = "영어점수:"+eng
+        h2Arr[2].innerText = "수학점수:"+math
+        var tot = kor+math+eng
+        var avg = Math.floor(tot/3);// js에서는 나눗셈 default 소숫점이하.
+        h2Arr[3].innerText = "총점:"+tot+", 평균:"+avg
+
+    </script>
+</html>

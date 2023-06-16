@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # js에서 타입 변환 처리
+        1. json이란 Object는 네트워크상으로 객체로는 전달되지 않는다.
+            ajax상 브라우저 <====> 서버
+            실시간 데이터 전달. 회원등록 id 입력 등록 여부를
+            ajax방식으로 처리할 때.. 
+        2. 이때, 사용되는 방법이 문자열 형식을 객체를 선언하여 전달하고,
+            다시 객체로 변환하는 방법을 사용한다.
+        3. 기본 형식
+            1) 네트웍상 전달되는 문자열 json 데이터 형식    
+                {"속성":"문자열","속성":boolean/숫자형}
+                주의) ""를 반드시 사용하여야 한다. ''를
+                사용하면 함수에 의해서 객체로 바뀌지 않는다.
+            2) 서버에서 전달 받은 데이터를 변환 객체로 변환
+                하여야 한다.
+        */
+    </script>
+</head>
+<body>
+    <h2>타이틀</h2>
+
+</body>
+    <script>
+        var p01Str = `{"name":"홍길동","age":25}`
+        var p02 = {"name":"사과",price:2000}
+        //eval함수에 의해서 문자열==> 객체로 변환처리
+        // eval(({"name":"홍길동","age":25}))
+        var p01 = eval("("+p01Str+")")
+        console.log(p01)
+        console.log(p02)
+        var h2Ob = document.querySelector("h2")
+        h2Ob.innerText = p01
+        h2Ob.innerText += typeof(p01)+","
+        h2Ob.innerText += typeof(p02)+","
+        h2Ob.innerText += p01.name+","
+        h2Ob.innerText += p02.name+","
+        /*
+        # ex) {} json 문자열 선언 규칙에 의해서
+        선수명 선수기록을 속성과 속성명으로 문자열 선언하여
+        출력하고, eval에 의해 객체로 변환 후, 객체.속성으로
+        접근하여 출력하세요.. console.log? 또는 innerText로 출력.
+        */
+       var exStr = `{"name":"박지성","info":100}`
+       var ex = eval("("+exStr+")")
+       console.log(ex)
+       h2Ob.innerText = ex+", "+typeof(ex)+", "+ex.name+", "+ex.info
+    </script>
+</html>

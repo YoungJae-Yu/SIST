@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<!-- 
+		# 인라인 프레임
+		1. html 화면에 특정 화면을 영역을 지정해서 표현되는 경우를
+		인라인 프레임 즉 ifame이라고 한다.
+		2. 프레임이라는 개념은 화면을 구역을 나누어서 사용하여
+		활용했는데, 요즘 웹페이지에서는 사용을 하지 않는 경향이 있다.
+		태그상 지원되지 않는 브라우저도 있다.
+		3. a href와 함꼐 사용되는 인라인 프레임
+			1) 포함되어 있는 인라인 프레임이 있다면
+			2) a href="해당i프레임에 출력할 페이지" 
+			   target="프레임명"을 통해서
+			3) 기본적으로 전체페이지가 변경되어서 출력되는 것보다
+			4) 해당 인라인프레임의 내용을 변경 처리하는 경우를 말한다.
+		4. 기본 형식과 속성
+			1) 형식
+				iframe 속성 = "속성값"
+			2) src : iframe으로 표현될 html페이지
+					 포함되는 페이지를 속성값으로 설정
+			3) width : 넓이(상대적 화면 대비 넓이 -%, 절대적 넓이 -pt)
+			4) height : 높이(화면의 높이)				
+			5) srcdoc : 바로 html태그를 통해서 화면에 출력할 때 사용된다.
+			6) name : 각 프레임에 대한 이름을 설정하고, 이 이름은 javascript나 a href="" target="프레임명"
+			으로 호출할 때, 사용된다.
+		 -->
+		 <h2>두개의 인라인 프레임</h2>
+		 <iframe src="a04_frane01.html" width="200" height="200"></iframe>
+		 <iframe src="a04_frane02.html" width="200" height="200"></iframe>
+		 <iframe srcdoc="<html><body>
+		 <h2>코드를 바로 호출</h2></body></html>" width="200" height="200"></iframe>
+		<!-- ex) a05_superFrame.html 포함페이지
+		 		 a05_superFrame1.html 포함되는 페이지1
+		 		 a05_superFrame2.html 포함되는 페이지2 -->
+	</body>
+</html>

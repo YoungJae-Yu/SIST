@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # 가변매개변수 처리
+        1. 기본형식
+            function 함수명(...변수명){
+                변수명이 가변갯수에 따라서 배열로
+                바로 처리해서 출력한다.
+            }         
+        */
+       function call(...nums){
+        let tot = 0
+        for(let num of nums){
+            tot += num
+        }
+        alert(nums+"의 합산값:"+tot)
+       }
+       //ex) 도서의 정보를 출력하되 매개변수에 따라서 출력 형식을 변경해서 처리하세요.
+       // 도서명만 전달, 도서명과 출판사 전달, 도서명, 출판사, 판매가격 전달
+       function bookInfo(...bks){
+            if(bks.length == 1) alert("도서명:"+bks[0])
+            if(bks.length == 2) alert("도서명:"+bks[0]+"\n출판사:"+bks[1])
+            if(bks.length == 3) alert("도서명:"+bks[0]+"\n출판사:"+bks[1]+"\n판매가격:"+bks[2])
+            /*var show = ""
+            bks.forEach(function(data,idx){
+                if(idx==1) show += "도서명:" + data + "\n"
+                if(idx==2) show += "출판사:" + data + "\n"
+                if(idx==3) show += "판매가격:" + data + "\n"
+            })
+            alert(show)*/
+        }
+        
+    </script>
+</head>
+<body>
+    <h2>가변 매개변수처리...</h2>
+    <h3 onclick="call(3,5)">3,5합산</h3>
+    <h3 onclick="call(1,3,5)">1,3,5합산</h3>
+    <h3 onclick="call(1000,2000,3000)">1000,2000,3000합산</h3>
+    <h2>도서정보</h2>
+    <h3 onclick="bookInfo('자바')">자바</h3>
+    <h3 onclick="bookInfo('JSP','아이티서적')">아이티서적</h3>
+    <h3 onclick="bookInfo('sping','혜성출판',32000)">sping,혜성출판,32000</h3>
+
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

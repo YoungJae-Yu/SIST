@@ -1,0 +1,103 @@
+# 웹프로그래밍 지식체계 계열화 내용
+1. network에 대한 이해
+	1) web : world wide web 그물망같이 전세계 네트웍 망을
+		이루고, 통신을 하고있다.
+		고정 ip단위로 서비스를 제공하는 것을 server라 하고,
+		고정 ip(도메인명)으로 접근해서 서버를 제공 받는 것을
+		client라고 한다.
+		- web server : tomcat, apache, iis..
+		- web client : 브라우저(사파리, 크롬, 인터넷 익스프롤러)
+	2) 프로토콜, ip, 도메인, port
+		프로토콜 http/ftp/telnet/smtp/pop...
+		패킷:네트웍크에서 데이터를 전달하는 단위
+		http는 html데이터를 최적으로 전달하는 네트웍상
+			프로토콜 (네트웍상 전달방식)을 선택하여 전달한다.
+		http://www.naver.com
+			==> 225.23.75.45:8080/index.html
+		http://www.naver.com:8080/show.html
+		
+	3) 서버/클라이언트 개념
+		- 웹서버(톰캣, jeus,)
+			web server : html/js/css 전달
+			web application server(WAS) :
+				html + application(jsp,php,asp..)
+				컴파일되어 실행한 내용을 html과 혼합시켜
+				최종적으로 html을 만들어 전달..
+		- 웹클라이언트(크롬,사파리,인터넷익스플러로)
+			url 요청 및 요청값을 통해 서버에 자원으로 호출하여 
+			받은 요청결과인 html을 받아서 화면에 랜더링(해석) 처리한다.
+			
+2. 웹프로그램의 작동 원리
+	1) 서버가 데몬으로 특정한 위치(ip)에서 실행(웹서버 가동)
+		www(world wide web)이라는 네트워크망에서
+		특정 위치(고정ip==>도메인명)으로 mapping된
+		서버를 가동함.
+	2) 브라우저에 url(도메인,ip)로 특정 서버에 접근
+		url : http://www.naver.com:8080/show.html
+		- port, 접근하는 자원에 따라서 브라우저에
+			전달(steam- html를 전달)
+		브라우저(크롬,사파리..)는 html을 전달 받아서 해석(랜더링)
+			<h1>안녕</h1> 안녕이라는 문자를 타이틀 형태로
+			적당하게 크고 진한 문자열로 웹 화면에 표현
+	3) 웹서버/WAS 
+		Web server : html(html,css,js)
+			front단 : html css js jquery, 부트스트랩
+			
+			중간에 js로 back단으로 비동기적으로 호출해서
+				처리하는 js형식을 ajax
+		Web application server (java 컴파일 실행)
+			java(운영체제에 있는 프로그램을 처리,로직,DB처리)
+			java + html ==> html 클라이언트에 전달			
+			back단  : java, DB,
+					java, DB서버(오라클 이용 language sql),
+					java를 통해 DB서버를 접속하는 코드
+					jsp(java+html),
+					springframework 
+				
+# html
+1. 웹 페이지 기본 구성
+	1) html의 계층적 구성
+	2) html에서 오류 찾기(js)
+		f12
+2. 기본 태그
+3. 입력양식(jsp,java와 연동해서 처리)***
+ 	- 기본 코드, css, js, jsp(java)
+ 		기본 코드 : 입력할 수 있는 디자인 안된 코드
+ 		css : 이미지나 웹 디자인 처리한 코드
+ 		js : 이벤트나 여러가지 front단에서 프로그램적으로
+ 			처리할 내용..
+ 		====> 브라우저에서 처리할 수 있는 내용	
+ 		jsp(java) : was서버단에서 입력한 데이터를 
+ 			다시	DB 서버
+4. 기본 레이어 아웃
+# css 
+1. css 기초 : 선언, 선택자, 단위
+2. css 속성들
+3. css를 활용한 레이어 아웃 처리
+4. 고급 css 처리
+
+# javascript(**)
+1. 기본 사용 형태(입력/출력)
+2. 자료형 변수
+3. 조건문/반복문
+4. 함수
+5. 객체
+6. 웹화면에서 사용하는 객체(DOM-document object model)
+	1) tag를 객체화하여 처리하는 개념
+		ex) function chText(obj){
+				obj.style.backgroundColor="yellow";
+				obj.innerText = "글자변경";
+		    }
+7. BOM(browser object model)
+8. jquery
+9. vue
+	1) 최근에 가장 많이 활용되는 js lib중 하나.
+	
+
+
+
+
+			
+			 
+	
+			

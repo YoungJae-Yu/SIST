@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+			/* css의 주석 : 해석되지 않음*/
+			/*
+			태그{속성:속성값;}
+			*/
+			h1{
+				font-size:60pt;color:orange;
+			}
+		</style>
+		<script type="text/javascript">
+			// 함수로 해당 함수를 호출하는 태그의 배경색상을
+			// 노랑색을 변경해주는 이벤트 핸들러..
+			function chColor(obj){
+				obj.style.backgroundColor="yellow"
+				obj.style.color="blue"
+				obj.innerText="클릭하셨네요!!^^"
+				
+			}
+		</script>
+	</head>
+<body>
+<!-- html에서 주석 : 화면에 랜더링이 되지 않는다
+ -->
+<!-- 
+# 웹페이지에서 사용되는 front단 언어
+1. 기본 웹페이지 구조와 내용 : html
+2. 확장된 웹페이지의 색상 모양 설정 : 
+	css(cascading style sheet)
+3. 웹 페이지의 동적인 처리와 front단 범위에서 응용 프로그램을
+	처리 : javascript
+		
+ -->
+	<h1 align="center" 
+		onclick="chColor(this)">안녕하세요(기본태그)</h1> 
+ 	<!-- 
+ 	h1을 onclick(클릭했을 때), 상단에 선언된 이벤트
+ 	핸들러 함수(chColor)를 호출하고, this이름으로 매개변수
+ 	현재 객체를 전달한다.
+ 	 -->
+</body>
+	
+</html>

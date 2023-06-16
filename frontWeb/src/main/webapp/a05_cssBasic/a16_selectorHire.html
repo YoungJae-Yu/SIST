@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+            ex) 클래스1과 클래스2는 조상 자손관계로 설정해서 배경색상을 
+            pink로 처리
+            클래스3과 클래스2는 부모자식관계로 설정해서 글자색상을 blue
+            정렬처리는 중앙으로 처리해서 화면에 출력하세요.
+            a15_selectorHira.html            
+            alt+l+o : 서버호출
+            */        
+        .cls01 .cls02{ background:pink;}
+        .cls03 > .cls02{ color:blue;text-align:center;}
+
+    </style>
+</head>
+<body>
+    <h2 align="center">계층 관계!!</h2>
+    <table  align="center" class="cls01" border="1"
+         width="200" height="200">
+		<tr><td class="cls02" >1</td></tr>
+		<tr><td>2</td></tr>
+		<tr class="cls03"><td class="cls02" >3</td></tr>
+		<tr><td>4</td></tr>
+		<tr><td class="cls02" >5</td></tr>
+	</table>   
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        # 전체 선택자와 속성 선택자
+        1. 전체 선택자(universal selector)
+            1) 지금까지했는 여러 태그의 선택자와 복합해서 해당
+                태그의 하위 전체 요소객체를 선택할 때, 활용된다.
+                ex) *{color:green;} 
+                        body 하위 모든 태그의 글자 색상을 초록색상으로 처리
+                    div p > *{background-color:yellow;}
+                        특정한 선택자 하위에 있는 모든 요소객체
+                        div하위에 p바로에 있는 모든 태그들은 배경색상을
+                        노랑색으로 처리
+        2. 속성 선택자(attribute selector)
+            1) html 태그의 속성에 대해 값이 일치하는 태그를 스타일로
+                적용하는 선택자를 말한다.
+                태그명  속성 = 속성값  class="" id=""
+            2) 유형
+                선택자[속성=속성값] : 해당 선택자의 속성과 속성값인 경우
+                    ex) input[name=himan]{color:red;}
+                    input태그이고 해당 태그의 속성 name이 himan이면
+                    글자 색상을 빨강으로 처리    
+                [속성=속성값] : 태그 상관없이 속성과 속성값인 경우
+                    ex) [align=center]{border:1px solid blue;}
+                    선택자 상관없이 align속성이 center로 설정된 경우에
+                    border의 속성을 지정한다.
+                [속성]
+                    ex) [type]{background-color:blue;}
+                    선택자, 속성값 상관없이 속성이 type이 있으면
+                    배경색상을 파랑색으로 처리한다.
+        */
+        *{color:green;}
+        input[type=text]{background-color: pink;}
+        [type=password]{background-color: orange;}
+        [name=himan]{background-color: blue; color:yellow}
+        [name]{border: 3px double red;}
+        /* ex) a18_selPropExp.html 
+            로그인 화면(아이디/패드워드/로그인버튼)을 만들고, 
+            name으로 아이디가 있으면 배경 노랑색상
+            input에 type이 password이면 글자색상을 파랑색으로
+            처리하고  
+            form 하위에 있는 글자는 크기가 20pt로 처리하세요
+            
+        */
+    </style>
+</head>
+<body>
+    <h2>안녕하세요</h2>
+    이름:<input type="text" value="입력(input[type=text])"/><br>
+    이름2:<input type="text" name="himan" value="입력([name=himan])"><br>
+    패스워드:<input type="password" value="입력([type=password])"><br>
+    <h3>초록 세상이네요!!</h3>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # DOM객체 함수를 통해 매개변수로 전달 
+        */
+        function callDom(obj){
+            console.log(obj)
+            for(var pro in obj){
+                console.log(pro+":"+obj[pro])
+            }
+            obj.innerText = "변신!!"
+            obj.align = "center"
+            obj.style.background = "pink"
+            // 다른 객체 접근
+            var h3Obj = document.querySelector('h3')
+            h3Obj.align = "right"
+        }
+        // h3 무지개 색상 7가지 리스트해서, 클릭시, 글자 색상을 변경하게
+        // 중앙정렬 처리해보세요 DOM전달
+        function colors(obj){
+            obj.style.color = "red"
+            obj.align = "center"
+            var h2Obj = document.querySelector('h2')
+            h2Obj.align = "center"
+            h2Obj.style.color = "orange"
+            var h3Obj = document.querySelector('h3')
+            h3Obj.align = "center"
+            h3Obj.style.color = "yellow"
+            var h4Obj = document.querySelector('h4')
+            h4Obj.align = "center"
+            h4Obj.style.color = "green"
+            var h5Obj = document.querySelector('h5')
+            h5Obj.align = "center"
+            h5Obj.style.color = "blue"
+            var h6Obj = document.querySelector('h6')
+            h6Obj.align = "center"
+            h6Obj.style.color = "purple"
+        }
+    </script>
+</head>
+<body>
+    
+    <h1 onclick="colors(this)">빨</h1>
+    <h2>주</h2>
+    <h3>노</h3>
+    <h4>초</h4>
+    <h5>파</h5>
+    <h6>남</h6>
+    <h2 onclick="callDom(this)">DOM객체 전달</h2>
+    <!--태그를 object화 한것이
+    this : 클릭했을 때, callDom 함수에 매개변수 h2
+    모든 구성요소와 함께 전달.-->
+        <h3 >다른 객체</h3>
+</body>
+    <script>
+        /*
+        #  
+        */
+        // document.querySelector("h2").innerText = "클릭하세요"
+    </script>
+</html>

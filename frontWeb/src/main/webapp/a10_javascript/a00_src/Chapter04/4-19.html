@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 반복문
+        // for (var i = 0; i < 5; i++) {
+        //     // 현재 반복 작업을 중지하고 다음 반복 작업을 수행합니다.
+        //     if(i == 2)
+        //         continue; // continue문은 해당 프로세스 이후
+        //         // 내용을 처리하지 않는다.
+        //     alert(i); // (ㅠㅜ)
+        // }
+        // ex) 구구단의 3단 1~9까지 곱해서 alert 출력하되
+        //    3 x 1 = 3  alert()
+        //    짝수는 출력되지 않게 해보세요..
+        let grade = 3
+        for(let cnt = 1;cnt<=9;cnt++){
+            if(cnt % 2 == 0){ // 짝수일 때,
+                continue; // 아래 프로세스 진행하지 않음. continue
+            }
+            alert(grade + " x "+ cnt +" = "+ grade*cnt);
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       /*
+       # 자바스크립트의 입력과 출력
+       1. 입력 처리
+            1) 자바스크립트의 입력을 크기 DOM객체에 의한 데이터 입력
+                입력 함수를 통한 데이터 입력이 있다.
+            2) DOM객체를 통한 입력은 DOM객체 처리시 진행하고,
+            3) 기본 함수를 통한 입력은 다음과 같다.
+                var isTrue = confirm("1 + 2는 3입니까?")
+                console.log("1. confirm을 통한 boolean값 입력 내용");
+                console.log(isTrue)
+                - 문자열 입력 null/입력된 문자열
+                var name = prompt("이름을 입력하세요:","이름입력안됨")
+                console.log("입력된 데이터:"+name)
+                    확인을 누르면 입력된 데이터를 변수에 할당하고 취소를
+                    누르면 null이 할당된다.
+
+
+
+
+
+       */
+    //   var isTrue = confirm("1 + 2 = 3 ?")
+    //   console.log(" boolean값 입력 받는 confirm 함수")
+    //   console.log(isTrue)
+    // ex) 80점 이상인지를 확인하여 해당 내용을 출력하세요..
+    // 자바와 조건문이 같으므로 true일 때 합격 출력 fales 불합격을 출력
+        var isTrue = confirm("80점 이상인가요?")
+        if (isTrue) {
+            console.log("합격")
+        }else {
+            console.log("불합격")
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

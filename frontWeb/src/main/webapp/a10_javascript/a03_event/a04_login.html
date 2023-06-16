@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # web servar
+            vscode : front단만 해석해서 client에 전달.
+        # web application
+            tomcat(eclipse) : front/backend
+            // ex) a04_login.html
+            // 아이디 패스워드 화면 만들고,
+            // 둘다 입력될 때, 전송되고 그렇지 않으면
+            // 포커스 위치시키고 입력하세요 경고창 뜨게 하세요. 
+        */
+        function ckSendData(){
+            var idOb = document.querySelector("[name=id]")
+            var pwOb = document.querySelector("[name=pw]")
+            if(!idOb.value=="" && !pwOb.value==""){
+                alert("전송!")
+            }else if(idOb.value==""){
+                alert("ID를 입력해주세요")
+                idOb.focus()
+                return false
+            }else if(pwOb.value==""){
+                alert("PW를 입력해주세요")
+                pwOb.focus()
+                return false
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>로그인</h2>
+    <form action="a05_result.jsp" onsubmit="return ckSendData()">
+        ID : <input type="text" name="id" value="id"/><br>
+        PW : <input type="text" name="pw" value="pw"/><br>
+        <input type="submit" value="로그인"/><br>
+    </form>
+
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

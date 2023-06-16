@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+	<!-- 
+	# 여러행에 대한 문자열 입력 textarea
+	1. 웹화면에 여러라인에 걸쳐서 데이터를 입력하는 경우가 많다.
+	2. 이 때, 사용하는 form요소 객체가 textarea 요소이다.
+	3. textareas의 속성과 특징
+		1) 속성
+			cols : 열의 크기 지정
+			rows : 행의 크기 지정
+			주의) cols, rows는 크기는 값이 동일할지라도 크기가 다르다.
+			name : 서버에 전달되는 데이터
+		2) 특징
+			속성으로 화면 구현에는 value 속성이 없으나, 실제 textarea에 
+			입력되는 데이터로 처리가 되어 전달된다.
+			<textarea></textarea>사이에 입력되는 내용이 value로 처리된다.
+			javascript에서는 value로 속성을 가져올 수 있다.			
+			textarea는 코드에 표시되는 대로 바꿈이 처리된다.
+				- \n 활용된다. -->
+		<form>
+		자소서내용:<br>
+		<textarea name="intro" cols="20" rows="10">이곳에 자기소개서 작성
+			이름:
+			나이:
+		
+		</textarea>
+		<input type="submit">
+		</form>
+		<!-- textarea사이의 내용은 html코드가 아닌 데이터 이기에
+		줄바꿈 처리를 br로 처리하지 않는데..
+		intro=%EC%9D%B4%EA%B3%B3%EC%97%90+%EC%9E%90%EA%B8%B0%EC%86%8C%EA%B0%9C%EC%84%9C+%EC%9E%91%EC%84%B1%0D%0A%09%09%09%EC%9D%B4%EB%A6%84%3A%EC%9C%A0%EC%98%81%EC%9E%AC%0D%0A%09%09%09%EB%82%98%EC%9D%B4%3A26%0D%0A%09%09%0D%0A%09%09
+		 -->
+		<!-- 
+		ex) 작성자, 암호, 내용으로 게시물 등록 화면을 간단하게 구현하세요
+		 -->
+	 	<form>
+		암호 및 내용:<br>
+		<textarea name="intro" cols="20" rows="10">이곳에 내용 작성
+			작성자:
+			암호:
+			내용:
+		</textarea>
+		<input type="submit">
+		</form>
+	</body>
+</html>

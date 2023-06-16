@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<!-- 
+	# 메타 데이터
+	1. 데이터를 설명하는 데이터
+		1) 사진 데이터의 메타데이터:사진 찍는 장소, 시간
+		2) 오디오 데이터:재생시간, 채널수
+		3) 이미지데이터:이미지의 폭, 높이, 컬러 해상도
+	2. html 페이지에 대한 메타 데이터를 담기 위한 태그들
+		base, link, script, style, title, meta
+	3. 메타 태그들의 head 태그 안에 작성
+		<base href="http://www.mysite.com/score/>
+		1) script는 body내에도 작성가능
+		2) 웹 페이지들의 기본url과 페이지가 출력된 윈도우 지정 사용예
+		math.html이나 scient.html 웹 페이지 모두
+		http://www.mysite/score에 있는 경우
+		
+		<head>
+			<base href="http://www.mysite/score/"
+			
+			<a href="math.html">수학</a>
+			<a href="http://www.mysite/score/math.html">수학</a>
+		
+		<base href="http://localhost:8080/frontWeb2/a02/">
+		body 부분에서 페이지를 이동하는link의 기본 경로를 
+		설정하는데, default는 현재 웹서버가 기동하여 호출되는
+		물리적 webapp하위 경로와 동일한 경로를 말하고,
+		http://localhost:8080/frontWeb2
+		이것을 따로 외부사이트나 내부에 특정한 위치를 기준으로
+		설정할 때, 사용하는 것이 base href 부분이다.
+		  
+		<a href="a01_test.html"> 외부/내부에 특정한 html
+		페이지로 클릭했을 때, 이동하는 태그..
+		원칙적 : http://localhost:8080/frontWeb2/a02/a01_test.html
+		1. 같은 폴더 해당 파일이 있는 때, 경로를 지정하지 않아도 된다.
+		2. default 경로로 설정된 위치가 있을 때
+			 <base href="경로">
+			 내부/외부든지 특정로 경로를 설정했을 때, 해당 경로의
+			 파일들은 파일명만으로 접근이 가능하다.
+		  -->
+		  
+		  
+		  
+		 <base href="http://localhost:8080/frontWeb2/a03/">
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+	<!-- 
+		<a href="http://localhost:8080/frontWeb2/a02/a01_test.html">
+			연습페이지 이동(기본 이동)
+		</a><br>
+		<a href="a01_test.html">
+			연습페이지 이동(base 이동)
+		</a><br>
+		 -->
+		<!-- 
+		webapp 하위에 a03폴더 생성
+			a03폴더 하위에 a01_show.html 안녕하세요 이동2 출력
+		1. 위와 같이 전체경로로 이동하는 전체 경로 이동
+		2. base 등록 후, 이동하는 파일로 이동
+		처리하여 출력하세요..
+		 -->
+		<a href="http://localhost:8080/frontWeb2/a03/a01_show.html">
+			연습페이지 이동2(기본 이동)
+		</a><br>
+		<a href="a01_show.html">
+			연습페이지 이동2(base 이동)
+		</a>
+	</body>
+</html>

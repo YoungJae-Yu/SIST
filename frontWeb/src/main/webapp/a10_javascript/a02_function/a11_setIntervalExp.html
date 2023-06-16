@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # ex) h2클릭시..
+        table 1X5 테이블이 있고,
+        cell 배경색상이 1~5번까지
+        갔다가 왔다가 하는 처리. 
+        */
+       var int01;
+       function end(){
+        clearInterval(int01)
+       }
+       //  <h2 onclick="end()">종료</h2>
+        function start(){
+            var idx = 0;
+            var tdArr = document.querySelectorAll("td");
+            tdArr[idx].style.background="navy";
+            var isFoward=true;
+            if(int01==1){
+                alert("이미 실행중임당")
+            }else{
+                int01 = setInterval(()=>{
+                // 호출시 마다 전체 td를 배경색상 흰색 변경
+                tdArr.forEach(function(ob){
+                    ob.style.background="white"
+                })
+                if(idx==0){isFoward=true;}
+                if(idx==4){isFoward=false;}
+                if(isFoward){idx++;}else{idx--;}
+                // 왔다갔다 할려면 증감연산자를
+                // index 4,
+                // index 0 일때 변환해줘야 한다.
+                // index로 판별하면 증/감 처리 기준을
+                // 변경하지 못하기에 변수를 정해주어야 한다.
+                // go(증가 조건-true, 감소 조건-false)
+
+               tdArr[idx].style.background="navy";
+            //    if(idx==4){
+            //     clearInterval(int01);
+            //    }
+                    
+                },300);
+            }
+        }
+    //    function start(){
+    //         var tdArr = document.querySelectorAll("td")
+    //         var int01 = setInterval(()=>{
+    //             tdArr.forEach(function(ob,idx){
+    //                 ob.style.background="white"
+    //             })
+    //         },200)
+    //         let idx = 0;
+    //        while(true){
+    //             if(idx=4){
+                    
+    //                 if(idx=0){
+
+    //                 }else{
+    //                     tdArr[idx].style.background="red"
+    //                     idx--
+    //                 }
+    //             }else{
+    //                 tdArr[idx].style.background="blue"
+    //                 idx++
+    //             }
+    //         }
+    //    }
+       
+    </script>
+</head>
+<body>
+    <h2 onclick="start()">시작</h2>
+    <h2 onclick="end()">종료</h2>
+    <table width="300" height="100" border>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

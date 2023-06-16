@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 함수를 선언합니다.
+        function test(a, b, c, d) {
+            alert(`${a}:${b}:${c}:${d}`);
+        }
+        // 배열을 선언합니다.
+        var array = [1, 2];
+        // 앞에 다른 매개변수를 넣고 뒤를 배열로 채우기
+        test(273, 52, ...array);
+        // 배열을 병합해서 매개변수로 전달하기
+        test(...array, ...array);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

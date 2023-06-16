@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+		
+		table{
+			border-collapse:collapse;
+			border:5px solid green;				
+		}
+		th,td{
+			border:5px solid green; text-align:center;
+		}
+		</style>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+	<!-- 
+	2023-04-13
+	[1단계:개념] 1. 링크시 상대위치 지정과 절대위치 지정 차이점을 기술하고, 
+	상대위치 : 현재 폴더에 특정한 파일이 있을 때,이동하여 해당 화면을 확인할 수 있다.(상대적 페이지 이동)
+	절대위치 : 일반적으로 웹서버 경로의 절대적 경로로 해당 자원의 페이지를 호출하거나 이미지를 호출한다.
+	
+	[1단계:개념] 2. 링크시 현재 파일을 기준으로 상위폴드와 하위폴드 이동 처리를 예제를 통해서 설명하세요.
+	<a href="../index.html">상위폴더 이동</a>
+	<a href="./a01_sub/a01_sub.html">하위폴더 이동</a>
+	<a href="\frontWeb\a02_table\a03_imgTable.html">절대적 경로</a>
+	
+	[1단계:개념] 3. iframe의 속성을 예제를 통해서 설명하세요.
+	src:포함되는 페이지를 속성값으로 설정,
+	srcdoc:바로 html태그를 통해서 화면에 출력할 때 사용된다.
+	name:각 프레임에 대한 이름을 설정하고, 이 이름은 javascript나 a href="" target="프레임명"
+			으로 호출할 때, 사용된다.
+	<h1>인라인 프레임 예제</h1> 
+	<iframe src="Z04_htmlpro.html" width="200" height="200"></iframe>
+	<iframe name="exp" srcdoc="<html><body>
+	<h2>코드를 직접 호출</h2></body></html>" width="200" height="200"></iframe>
+	
+	[1단계:확인] 4. 좋아하는 맛집 홈페이지를 맛집의 종류에 따라 링크되게 처리해보세요.
+	-->
+	<h2>맛집 리스트 표</h2>
+	<table width="130pt" height="100pt">
+	<tr><td>한식</td><td>양식</td></tr>
+	<tr><td><a href="http://ihwasoo.com/">육개장</a></td><td><a href="https://www.burgerking.co.kr/#/home">버거킹</a></td></tr>
+	</table>
+	<!-- 	
+	[1단계:개념] 5. target 속성값의 종류를 기술하세요.
+	 _blank : 새로운 브라우저 윈도우 탭을 생성 기본것은 그대로 두고, 다시 새로운 브라우저 창을 로딩하는 것을 말한다.
+	_self : 현재 브라우저를 대체해서 새로운 화면을 로딩하는 것을 말한다.
+	_parent : 이 페이지를 호출하는 바로 위 부모 페이지를 변경 처리하는 것을 말한다.
+	_top : 계층구조상 최상위 페이지를 변경 처리하는 것을 말한다.
+	
+	[1단계:개념] 6. input select textarea의 차이점을 기술하세요.
+	조회/입력기능 : input, textarea
+	선택기능 : select
+	
+	[1단계:확인] 7. 기본 input 객체를 활용하여 아래와 같이 출력(form과 name 속성포함)하세요.
+	                   사람등록
+			      이름   [   ]
+			      나이   [   ]
+			      사는곳  [   ]
+         		  [등록]
+     -->
+    <h2>사람등록</h2>
+	<form>
+		이름:<input type="text"name="name"/><br>
+		나이:<input type="number"name="age"/><br>
+		사는곳:<input type="text"name="live"/><br>
+		<input type="submit"value="등록"/>
+	</form>
+     <!--    		  
+	[1단계:확인] 8. type으로 check와 radio의 차이점을 예제를 기술하세요
+	ex1) to-do 리스트를 만들고 완료한것은 체크하세요. //checkbox:네모모양,다중선택가능 
+	ex2) 성별을 선택하세요. //radio:둥근모양,단일선택
+	-->
+	<h2>to-do 리스트</h2>	
+	<input type="checkbox"name="todo"value="이발"/>이발
+	<input type="checkbox"name="todo"value="운동"/>운동
+	<input type="checkbox"name="todo"value="복습"/>복습
+	<input type="checkbox"name="todo"value="예습"/>예습<br>
+	<h2>본인의 성별은?</h2>
+	<input type="radio"name="sx"value="남자">남
+	<input type="radio"name="sx"value="여자">여<br>
+	<!-- 
+	[1단계:확인] 9. 출근시간대(6:00,7:00,8:00,9:00와 퇴근시간대(17:00,18:00,19:00,20:00)를 단일 선택할 수 있게 처리하세요
+	-->
+	<h2>출근시간</h2>
+	<input type="radio"name="mtime"value="6:00">6:00
+	<input type="radio"name="mtime"value="7:00">7:00
+	<input type="radio"name="mtime"value="8:00">8:00
+	<input type="radio"name="mtime"value="9:00">9:00<br>
+	<h2>퇴근시간</h2>
+	<input type="radio"name="ntime"value="17:00">17:00
+	<input type="radio"name="ntime"value="18:00">18:00
+	<input type="radio"name="ntime"value="19:00">19:00
+	<input type="radio"name="ntime"value="20:00">20:00<br>
+	<!-- 
+	[1단계:개념] 10. form하위에 form요소객체가 서버에 데이터를 전송하는 규칙을 기술하세요.
+	type이 submit버튼을 클릭시, form사이에 있는 요소객체 name의 속성에 있는 값, 입력한 데이터를 기준으로
+	key=value&key=value형식으로 서버에 전송이 된다.
+	
+	[1단계:개념] 11. select form태그에서 option에서 value의 설정이유에 대하여 기술하세요.
+	option에 있는 선택된 value값으로 key=value형식으로 서버에 전송되며, 
+	option value를 통해 화면에 보이는 label과 실제 서버에 전송되는 데이터를 다르게 설정할 수도 있다.
+	
+	[1단계:확인] 12. 주로 사용하는 지역과 우편번호를 검색해서 select로 지역을 선택했을 때, 서버에 우편번호가 전송되게 처리하세요.
+	 -->
+	 <form>
+	주소선택:
+	 <select name="dept">
+	 	<option value="06235">쌍용교육센터</option>
+		<option value="06236">서울집</option>
+		<option value="59760">본가</option>
+	 </select><br>
+	 	<input type="submit">
+	 </form>
+	</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+			/*
+			table{
+				border-collapse:collapse;
+				border:1px solid green;				
+			}
+			th,td{
+				border:1px solid green;				
+			}
+			
+			화면에 있는모드 border를 붕괴시킴
+			border : 굵기 형태 색상;
+			*/
+		</style>
+	
+	
+	</head>
+	<body>
+	<!-- 
+	# 표만들기 table
+	1. 웹화면에 2차원(행/열)이 있는 데이터를 업무 프로그램에서는
+	많이 활용된다. 또한 이미지 게시물형태로 데이터를 리스트해서
+	행/열로 나타나는 경우도 많다. 이와같은 데이터를 효과적으로
+	행/열형식으로 리스트 하는 화면이 많은데 이를 가장 잘 처리해주는
+	태그가 테이블이라고 할 수 있다.
+	2. 기본 테이블 구성요소
+		1) 테이블은 table이라는 태그 하위에 thead(table hrader)
+		tbody(table body), tfoot(table footer)로 바로 밑
+		구성요소와 함께(범위를 지정하는 부분으로 생략이 가능하다.)
+		2) tr(table row로 테이블의 행단위를 처리하고, 그 하위에
+		th(table head) 테이블의 타이틀을 처리하는 항목과
+		td(table data) 테이블의 열단위 데이터를 처리하는 항목으로
+		구성되어 있다.
+	3. 기본구성 형식
+		1) 내용요소인 thead, tbody, tfoot가 포함되어 있는 경우
+			<table>
+				<caption>테이블타이틀</caption>
+				<col width="넓이단위">
+				각 컬럼의 넓이를 지정처리
+				예를들어 5개 열이 있을 때, 열마다 넓이를 지정을 하지
+				않으면 각 열의 데이터의 크기에 따라 일관성 없이
+				지정되는 경우가 있기 떄문에 상단에 col
+				width로 일반적으로 %단위로 지정한다.
+				<col width="20%"><col width="30%>
+				<col width="25%"><col width="25%><col width="25%">
+				no 이름 국어 영어 수학 평균
+				
+				
+				<thead>
+					<tr>
+						<th>번호</th><th>이름</th>
+					</tr>
+				</thead>
+			<tbody>
+				<tr>
+					<td>1</td><td>홍길동</td>
+				</tr>
+				<tr>
+					<td>2</td><td>김길동</td>
+				</tr>
+				<tr>
+					<td>3</td><td>신길동</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>전체인원</th><td>3명</td>
+				</tr>
+			</tfoot>
+		</table>
+		
+		2) 내용요소를 생략한 경우
+		<table align="center" width="80%">
+			전체화면대비 중앙정렬, 전체화면대비 테이블의 비율
+			<col width="30%"><col width="70%">
+			<tr><th>번호</th><th>이름</th></tr>
+			<tr><th>1</th><th>홍길동</th></tr>
+			<tr><th>2</th><th>김길동</th></tr>
+			<tr><th>3</th><th>박길동</th></tr>
+		</table>
+		ps)
+		정렬관련 내용 : 태그마다 기본적으로 정렬을 지원 태그가 있고
+		그렇지 않는 태그가 있다.
+		h1~h6, p 내부에 있는 데이터릐 정렬을 지정 align
+		table 외부화면 전체에서 이 테이블의 위치 정렬 align
+		그 외에 기본 태그로 정렬이 지원하지 않는 것을 css로 설정한다.
+			태그명{text-align:정렬;}
+			css 각 셀(td) 안에 문자열의 중앙정렬 처리시
+			td{text-align:center;}
+		
+	4. 테이블의 속성
+		1) 태이블의 테두리의 두께와 넓이, 폭등 여러가지 속성을
+			지정할 수 있다. 태그 자체 기본 속성
+		2) 주요 속성 내용
+			- border : 테이블 둘러싼 테두리의 border의 굵기를 설정한다.
+				설정하지 않으면 cell 자체가 나타나지 않는다.
+				기본적으로 둘러싼 태두리의 굵기를 지정하고,
+				cell간을 border로 출력이 되게 한다.
+				주의 cell단 border을 굵기는 지정하지 않는다.
+				table borfer="5"
+				
+			- width/height : 테이블의 넓이와 높이를 처리한다.
+				설정단위 - 절대단위:pt, px
+					     상대단위:% - 전체브라우저 대비 테이블
+					     크기
+				width = "80%" 전체 화면에서 table의 넓이를 설정
+				height : 상대단위 내용보다는 절대로 설정을 해준다.
+					상대단위 %는 크기가 일정치 않아서 적용이 되지 않는다.
+				
+			- align : 전체 화면에서 table의 좌우정렬 설정
+			- cellpadding : 보더와 글자사이 간격
+				td(cell)안에 글자와 둘러쌓고 있는 border의 간격을
+				지정할 때, 사용하는 옵션.
+			- cellspacing : 내부 보더의 굵기
+				td(cell)간의 굵기를 지정한다.
+			# 기타 css 설정기능
+			테이블은 일반적으로 border가 2d로 2중 모양이다.
+			이러한 border를 1라인으로 처리할려면 css 속성으로
+			border-collapse옵션을 처리해야한다.
+				- separate : default
+				- collapse - border을 한라인으로 처리하는 옵션
+			
+		ex) 3X3테이블로 위에 기본 속성을 적용해서 테이블을 만들어 보세요...
+	-->
+	 
+		<h2>3X3테이블 속성</h2>
+		<!-- 
+		# css 적용
+		1. css는 fead 부분에 style로 설정하면 전체화면에 적용
+		2. 태그명 style="css속성:속성값" 해당 태그에서만 적용
+		3. 중간에 <style>코드를 삽입해서 지정하면 해당 라인이후에만 적용.
+		4. css 적용의 우선순위는 해당 태그
+			(안에서 style속성으로 선언한css)가 최우선 순위이고,
+			그 다음 하단의 body에서 선언한 태그
+			그 다음 상단에 선언한 css
+			마지막으로 파일단위로 선언한 태그이다.
+			
+			css의 border옵션 : border의 굵기에 관련된 옵션을 설정
+			굵기 모양 색상
+		 -->
+		<table style="border-collapse:collapse;
+				border:1px solid green;"		
+		cellspacing="5pt" cellpadding="17pt" border="7" 
+		align="center" width="60%">
+			<thead>
+				<tr>
+					<th>날짜</th><th>메뉴</th><th>칼로리</th>
+				</tr>
+			</thead>
+			<tbody>
+				<trs>
+					<td>8일</td><td>카레라이스</td><td>870칼로리</td>
+				</tr>
+				<tr>
+					<td>9일</td><td>고등어구이</td><td>760칼로리</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>2일치</th><td>합계</td><td>5000칼로리</td>
+				</tr>
+			</tfoot>
+		</table>	 		
+	 <!-- width="200pt" -->
+			<h2>테이블 계층별 구성요소</h2>
+			<table cellspacing="5pt" cellpadding="25pt" border="10" align="center" width="80%">
+				<thead>
+					<tr>
+						<th>번호</th><th>이름</th>
+					</tr>
+				</thead>
+			<tbody>
+				<tr>
+					<td>1</td><td>홍길동</td>
+				</tr>
+				<tr>
+					<td>2</td><td>김길동</td>
+				</tr>
+				<tr>
+					<td>3</td><td>신길동</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>전체인원</th><td>3명</td>
+				</tr>
+			</tfoot>
+		</table>
+	<!-- 
+	ex) 타이틀로 이름 html(과목명) css(과목명)
+		데이터로 @@@	80			90
+		데이터로 @@@	80			90
+		데이터로 @@@	80			90
+		데이터로 계		80			90
+		데이터로 평균	80			90
+		3명의 이름과 점수를 입력되게 하고
+		마지막하단에 합이란 내용으로 총계가 출력되게 하세요..
+	 -->
+	 <h2>성적표</h2>
+ 		<table border="1">
+ 			<caption>1학기 성적표</caption>
+			<thead>
+				<tr>
+					<th>이름</th><th>html</th><th>css</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>홍길동</td><td><center>70</center></td><td><center>60</center></td>
+				</tr>
+				<tr>
+					<td>박길동</td><td>80</td><td>70</td>
+				</tr>
+				<tr>
+					<td>임길동</td><td>90</td><td>80</td>
+				</tr>
+
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>계</th><th>240</th><th>210</th>
+				</tr>
+				<tr>
+					<th>평균</th><th>80</th><th>70</th>
+				</tr>
+			</tfoot>
+		</table>
+	 <h2>생략되어 바로 테이블을 처리한 내용</h2>
+	 <h3>2X2테이블</h3>
+		 <table border>
+		 	<tr><td>1행1열</td><td>1행2열</td></tr>
+		 	<tr><td>2행1열</td><td>2행2열</td></tr> 
+		 </table>
+		 <h3>3X2테이블</h3>
+		 <table border>
+		 	<tr><td>1행1열</td><td>1행2열</td></tr>
+		 	<tr><td>2행1열</td><td>2행2열</td></tr> 
+		 	<tr><td>3행1열</td><td>3행2열</td></tr> 
+		 </table>
+	 <!-- 
+	 ex) 1X3 과목명리스트
+	 	 4X4 X/O 표시
+	 	 2X5 회원정보
+	 	 를 표시하는 테이블을 만드세요..
+	  -->
+	 <h3>1X3 과목명리스트</h3>
+	 	<table border>
+		 	<tr><td>국어</td><td>영어</td><td>수학</td> 
+	 	</table>
+	 <h3>4X4 X/O 표시</h3>
+	 	<table border>
+		 	<tr><td>O</td><td>X</td><td>O</td><td>X</td><tr>
+		 	<tr><td>X</td><td>O</td><td>X</td><td>O</td><tr>
+		 	<tr><td>O</td><td>X</td><td>O</td><td>X</td><tr>
+		 	<tr><td>X</td><td>O</td><td>X</td><td>O</td><tr>
+		 </table>
+	 <h3>2X5 회원정보</h3>
+	 	<table border>
+		 	<tr><td>회원명</td><td>회원아이디</td><td>회원등급</td><td>나이</td><td>성별</td>
+		 	<tr><td>유영재</td><td>GENIUS</td><td>VIP</td><td>26</td><td>남</td>
+		 	</table>	 
+	</body>
+</html>

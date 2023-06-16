@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+</body>
+<script>
+    // 변수를 선언합니다.
+    /*
+    # javascript의 배열의 특징
+    1. 여러가지 유형의 데이터를 할당할 수 있다.
+    2. 배열을 추가하거나 삭제할 수 있다.
+        array[index추가] = 데이터
+        array.push(추가데이터)
+        delete(array[특정index]) 해당위치 데이터삭제
+        array.remove(삭제index)
+    */
+    var array = [273, 'String', true, function () { }, {}, [273, 103]];
+    // 출력합니다.
+    var body = document.body;
+    body.innerHTML+=array+"<br>";
+    array[array.length]="안녕"; // 배열데이터 index번호를 통해 추가.
+    body.innerHTML+=array+"<br>";
+    array.push(3000) // 기능 메서드로 추가
+    body.innerHTML+=array+"<br>";
+    body.innerHTML+=array.length+"<br>";
+    body.innerHTML+=array.pop()+"<br>"; // 삭제 기능메서드(마지막데이터)
+    body.innerHTML+=array+"<br>";
+    // ex) 회원명단 리스트를 members로 선언하여 기본 3명을 할당한후,
+    //     회원을 추가, 삭제를 처리하고 현재 배열의 데이터를 확인하세요.
+    let members =['himan','higirl','goodman']
+    body.innerHTML=members+"<br>";
+    members[members.length] = "oh! Man"
+    body.innerHTML+=members+"<br>";
+    delete( members[members.length-1] ) // 마지막 index로 삭제
+    // ['himan','higirl',null]
+    body.innerHTML+=members+"<br>";
+    members.pop();members.pop(); // null, oh! Man 삭제 처리..
+    body.innerHTML+=members+"<br>";
+    
+
+
+</script>
+</html>

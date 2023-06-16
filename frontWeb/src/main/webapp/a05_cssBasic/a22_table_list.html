@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        #리스트형 가상클래스 선택자..
+        1. :nth-child(1) : 1부터 시작하여 첫번째해당 라인 선택자
+        2. :nth-child(event|odd) : 홀수/짝수번째 처리
+        3. :nth-child(3n+1) : 반복적인 단위(3)으로 처리할 때, 활용..
+        */
+        h2:nth-child(1){color: aqua;}
+        h2:nth-child(3n+1){background-color: blueviolet;color: bisque;}
+        /*
+        ex) 5X5테이블을 만들어 tr행단위 짝수/홀수 배경색상을 다르게 처리하고,
+        td는3단위로 글자 크기를 다르게 처리하세요.
+        */
+        td{text-align: center;}
+        tr:nth-child(event){background-color: aquamarine;}
+        tr:nth-child(odd){background-color: rgb(173, 9, 233);}
+        td:nth-child(3n+1){font-size: 20px;color: rgb(255, 0, 0);}
+    </style>
+</head>
+<body>
+    <table align="center" border="2px" width="500px" height="500px">
+        <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+    </table>
+    <h2>사과</h2>    
+    <h2>딸기</h2>    
+    <h2>바나나</h2>    
+    <h2>수박</h2>    
+    <h2>오렌지</h2>    
+    <h2>호박</h2>    
+    <h2>귤</h2>    
+    <h2>상추</h2>    
+    <h2>감자</h2>    
+    <h2>김</h2>    
+</body>
+</html>

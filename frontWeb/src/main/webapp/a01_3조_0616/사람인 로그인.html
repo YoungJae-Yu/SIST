@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>로그인</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #b7b7b7;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login {
+            margin-bottom: 15px;
+        }
+
+        .login label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .login input[type="text"],
+        .login input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .login button {
+            width: 100%;
+            padding: 8px;
+            background-color: #4f72fd;
+            border: none;
+            color: #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .login1 button {
+            width: 100%;
+            padding: 8px;
+            background-color: #ffffff;
+            border: solid 1px;
+            color: #5b5b5b;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .login button:hover {
+            background-color: #4f72fd;
+        }
+        .login1 button:hover {
+            background-color: #ffffff;
+        }
+        .login.inline {
+        display: flex;
+        align-items: center;
+        }
+
+        .login.inline label {
+            margin-right: 40px;
+        }
+
+        .login.inline a {
+            margin-left: 40px;
+        }
+
+        .error-message {
+            color: #ff0000;
+            margin-top: 10px;
+        }
+        .radius{
+            border-radius: 50px;
+        }
+    </style>
+    <script>
+        // 로그인 처리 함수
+        function Login() {
+            var id = document.getElementById('id').value;
+            var password = document.getElementById('password').value;
+
+            if (id === 'himan' && password === 'pass') {
+                alert('로그인 성공!');
+            } else {
+                // 로그인 실패 시 에러 메시지 출력
+                var errorMessage = document.getElementById('errorMessage');
+                errorMessage.innerText = '아이디 또는 비밀번호가 올바르지 않습니다.';
+            }
+        }
+            // 비밀번호 재설정 함수
+        function ForgotPassword() {
+        var email = prompt("비밀번호 재설정을 위한 이메일 주소를 입력하세요:");
+        // 콘솔에 출력
+        console.log("비밀번호 재설정 이메일 전송:", email);
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>개인회원 / 기업회원</h2>
+        <br>
+        <br>
+        <div class="login inline">
+            <input type="checkbox" id="rememberMe" name="rememberMe">
+            <label for="rememberMe">로그인 유지</label>
+            <input type="checkbox" id="rememberMe" name="rememberMe">
+            <label for="rememberMe">아이디 저장</label>
+        </div>
+        <form id="loginForm">
+            <div class="login">
+                <input type="text" id="id" name="id" required placeholder="아이디">
+            </div>
+            <div class="login">
+                <input type="password" id="password" name="password" required placeholder="비밀번호">
+            </div>
+            <div class="login">
+                <button type="button" onclick="Login()">로그인</button>
+            </div>
+            <div class="login inline">
+                <a href="#">회원가입</a>
+                <a href="#" onclick="ForgotPassword()">아이디/비밀번호 찾기</a>
+            </div>
+            <div class="login1">
+                <button type="submit">소셜 계정으로 간편 로그인</button>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: center;">
+            <img src="C:\Users\user\Desktop\로고1.png" alt="사람인 로고"></div>
+            <div id="errorMessage" class="error-message"></div>
+        </form>
+        <!-- <div style="display: flex; flex-direction: row; justify-content: center;">
+        <div style="width: 50px; height: 50px; background-color: rgb(33, 251, 0); border: #5b5b5b solid 1px; border-radius: 50px; margin: 0 10px;"></div>
+        <div style="width: 50px; height: 50px; background-color: rgb(251, 255, 0); border: #5b5b5b solid 1px; border-radius: 50px; margin: 0 10px;"></div>
+        <div style="width: 50px; height: 50px; background-color: rgb(255, 255, 255); border: #5b5b5b solid 1px; border-radius: 50px; margin: 0 10px;"></div>
+        <div style="width: 50px; height: 50px; background-color: rgb(46, 122, 255); border: #5b5b5b solid 1px; border-radius: 50px; margin: 0 10px;"></div>
+        <div style="width: 50px; height: 50px; background-color: rgb(44, 42, 42); border: #5b5b5b solid 1px; border-radius: 50px; margin: 0 10px;"></div>
+        </div> -->
+        </div>
+    </div>
+</body>
+</html>

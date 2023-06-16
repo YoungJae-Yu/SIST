@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        /*
+        # javascript의 문자열과 연산자 처리
+        1. 숫자형아닌 문자열도 연산이 된다.
+           단, + 기호만 연결처리가 된다.
+        2. + 이외에 모든 연산을 문자열이라도 처리가 된다.
+           자바스크립트에서는 자동형변환을 처리해준다.
+            '20' - '5' ==> 15
+            '20' * '5' ==> 100
+            '20' / '5' ==> 4
+            '20' % '5' ==> 0
+        */
+        console.log('20' + '5')
+        console.log('20' - '5')
+        console.log('20' * '5')
+        console.log('20' / '5')
+        console.log('20' % '5')
+
+        // 1번
+        //alert('52 + 273');
+        // 2번
+        //alert(52 + 273);// 연산
+        // 3번
+        //alert('52' + 273); // 문자열 ==> 52273 
+        // 4번
+        //alert(52 + '273'); // 문자열 ==> 52273
+        // 5번
+        //alert('52' + '273'); // 문자열 ==> 52273
+        // ex) prompt로 두 수를 입력받아.
+        //     사칙연산의 결과를 출력하세요..
+        window.onload = function(){
+            var num01 = prompt("첫번째 숫자","0")
+            var num02 = prompt("두번째 숫자","0")
+            /*
+            # javascript + 연산자를 위해서 숫자형 문자열을 숫자
+            1. Number(), parseInt(), parseFloat()
+            */
+            var show = typeof(num01)+" + "+typeof(num02)+" <br>"
+            show += num01+" + "+num02+" = "+(Number(num01)+Number(num02))+"<br>"
+            show +=num01+" - "+num02+" = "+(num01-num02)+"<br>" 
+            show +=num01+" * "+num02+" = "+(num01*num02)+"<br>" 
+            show +=num01+" / "+num02+" = "+(num01/num02)+"<br>" 
+            show +=num01+" % "+num02+" = "+(num01%num02)+"<br>" 
+            document.body.innerHTML = show
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

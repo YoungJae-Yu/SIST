@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 변수를 선언합니다.
+        var value = 0;
+        // while 반복문
+        /*
+        while(반복조건){
+            반복할 내용
+        }
+        
+        */
+        // while (value < 5) {
+        //     alert(value + '번째 반복');
+        //     value++;
+        // }
+    </script>
+</head>
+<body>
+
+</body>
+<script>
+    // let menus=[]
+    // while(true){
+    //     let addMenu = prompt("주문할 메뉴 입력하세요\n중지시 Q입력")
+    //     if(addMenu!='Q'){
+    //         menus.push(addMenu) // 메뉴 추가 처리..
+    //     }else{
+    //         alert("메뉴 주문 완료!")
+    //         break; // 중단 처리
+    //     }
+    // }
+    // document.body.innerHTML="<h1>주문 메뉴리스트</h1>"
+    // document.body.innerHTML+="<h2>"+menus+"</h2>"
+    // ex) 학생들의 점수를 입력받아서 입력받은 인원, 총점과 평균을 출력하세요.
+    //     -1 입력시 중단 처리..
+    // 전역변수 : 학생의 수, 총점
+    let stuCnt=0;
+    let tot = 0;
+    while(true){
+        // 지역변수 : 입력받은 데이터
+        let pt = Number(prompt("점수를 입력하세요! 중단할려면 -1입력","0"))
+        // 1) 0이상 숫자로 입력
+        if(pt>=0){
+            // 학생수 증가, 총점 누적처리.
+            stuCnt++
+            tot += pt
+        // 2) -1 반복 종료 처리..    
+        }else if(pt==-1){
+            alert("입력 완료")
+            break;
+        // 3) -1미만 또는 숫자형 데이터가 입력되지 않을 때...    
+        }else{
+            alert("데이터를 숫자형으로 0이상 입력하세요")
+        }
+    }
+    let avg = tot/stuCnt;
+    // `` 는 줄바꿈 처리하지 않더라도 그대 인식 태그는 줄바꿈이 의미가 없음
+    // `` 안에서 변수 사용 가능 ${변수명}
+    document.body.innerHTML=`<h2>입력한 학생수:${stuCnt}</h2>
+                             <h2>총점:${tot}, 평균:${avg}</h2>`
+</script>
+</html>

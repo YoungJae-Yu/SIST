@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        # 박스 모델의 개별적 속성 처리
+        1. border의 위치에 따른 굵기
+            border-위치-width : left, right, top, botton
+            ex) h1{border-top-width:15px}
+        2. border의 유형에 따른 옵션
+            border-style : dotted, solid, double, dashed
+            ex) td{border-bottom-style:dotted}
+        */
+        /*복합 속성 예제 1 :
+            배경색상, border의 굵기, 스타일, 색상 개별적 설정,
+            여백 전체방향,패딩 전체방향*/
+        div.box{
+            background: yellow;
+            border-width: 50px;
+            border-style: double;
+            border-color: rgba(255, 0, 157, 0.593);
+            margin: 40px;
+            padding: 20px;
+        }
+        
+        /*ex) p태그 안에 font태그를 선언하고, border의 굵기, 형태, 색상
+            패딩과 마진을 선언하세요.
+            선택자 연습 p태그의 클래스로 box2, font태그는 id를 ch01로
+            설정하여 결국 font태그에 대한 border 옵션 설정하세요.*/
+        p.box2{
+            border-width: 30px;
+            border-style: dashed;
+            border-color: rgb(255, 0, 0);
+            margin: 40px;
+            padding: 20px;
+        }
+        p.box2>font#ch01{
+            border-width: 15px;
+            border-style: solid;
+            border-color: rgba(0, 255, 247, 0.834);
+            margin: 30px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <p class="box2"><font id="ch01">반갑습니다.</font></p>
+    <div class="box">복합 선택자의 의한 처리</div>
+</body>
+</html>

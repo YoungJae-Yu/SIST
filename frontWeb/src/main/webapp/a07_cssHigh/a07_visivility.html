@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		/*
+		# 화면에 숨기기 옵션
+		1. 화면에 보이지 않게 하거나 다시 보이게 하는 옵션을 웹 화면에서
+		특정한 팝업형식으로 js와 함께 처리할 때 활용할 수 있다.
+		2. 화면 숨기기 옵션
+			visibility:hidden;
+			display:none;
+		*/
+			h2.cls01{
+				visibility:hidden;
+			}
+			h2.cls02{
+				display:none;
+			}
+			/*
+			ex) 이미지 폴드에 이미지를 확인하여,
+			사과, 바나나, 망고를 여러개 출력하되
+			중간에 사과와 망고를 위 옵션에 의해 안 보이게 처리하세요.
+			  
+			*/
+			img{width:200px;height:200px;float:right;}
+			img.ck01{visibility:hidden;}
+			img.ck02{display:none;}
+			
+		</style>		
+	</head>
+	<body>
+		<img src="/frontWeb/a00_img/banana.jpeg"/>
+		<img src="/frontWeb/a00_img/banana.jpeg"/>
+		<img src="/frontWeb/a00_img/apple.jpeg" class="ck01"/>
+		<img src="/frontWeb/a00_img/apple.jpeg"/>
+		<img src="/frontWeb/a00_img/mango.jpeg" class="ck02"/>
+		<img src="/frontWeb/a00_img/mango.jpeg"/>
+		<h2>화면 처리 내용1</h2>
+		<h2 class="cls01">화면 처리 내용2</h2>
+		<h2>화면 처리 내용3</h2>
+		<h2 class="cls02">화면 처리 내용4</h2>
+		<h2>화면 처리 내용5</h2>
+		
+	</body>
+</html>

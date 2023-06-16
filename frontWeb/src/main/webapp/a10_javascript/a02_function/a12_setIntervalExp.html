@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <style>
+        td{width: 20%; height: 70pt; text-align: center;
+        font-size: 30pt;}
+    </style>
+    <script>
+        /*
+        # 3,6,9 게임 시작!! 클릭시,
+        
+        
+        DOM
+        하단에 4x4 테이블에서 순서로
+        1,2,짝,4
+        5,짝,7,8
+        짝,10,11,짝
+
+        # js에서 프로그램 처리시 핵심 개념
+        1. 전역변수/지역변수 구분하여 변수 선언을 할 수 있어야한다.
+            1) for, 함수, 객체 부분에 사용
+            2) 해당 변수가 초기화가 되지 않고, 누적되어
+                데이터를 처리해야할 필요성이 있는 때,
+                선언된 함수/객체/for/조건문 밖에 선언하여야 한다.
+        2. DOM객체에 대한 호출 방벙
+            1) 언제 호출이 안되는가?
+            2) 호출이 되는 시점
+                1단계 js는 메모리가 코드 순서로 로딩이 된다.
+                      h2가 선언되어있고, 그것을 이 후 라인에서 호출한다.
+                2단계 함수가 선언이 되어 있으면, 로딩이후, 이벤트에
+                      의해서 호출되기에 로딩이 가능하다.
+                      function call(){
+                        var h2Ob = document.querySelector("h2")
+                      }
+                      <h2 onclick="call()">
+                3단계 setTimeout, setInverval을 하면 시간 간격이
+                      있기에 상위에 호출하여도 처리가 된다.
+                4단계
+                    // 코드가 상단에 있더라도 BOM 화면이 로딩된 후
+                    // 이벤트에 의해 처리되기에 모든 DOM을 인식할 수 있다.
+                    window.onload=function(){
+
+                    }
+            3) 단일 객체 호출, 다중 객체 호출 시 코드 구분
+                var h2Ob = document.querySelector("h1")
+                var tdArr = document.querySelector("td")
+            4) DOM객체 주요 속성 사용 방법에 대한 이해
+                출력 : innerText, innerHTML
+                기본 속성 : .align .src, .width
+                style속성 : .style.color, .style.background
+            
+
+        3. 이벤트 처리 단계별 이해
+            1) 태그 선언시 코드상 이벤트 핸들러 함수 호출
+                <h2 onclick="call()"
+            2) 코드상
+                h2Ob.onclick=function(){
+
+                }
+        4. 
+        */
+        let int01;
+        function start(){
+            var idx = 0; // DOM객체 변경, count 처리(필수전역변수)
+            var show = ""// 출력할 내용
+            var tdArr = document.querySelectorAll("td");
+            //반복 처리할 내용
+            tdArr[idx].innerText=(idx+1);
+                int01 = setInterval(()=>{
+                if((idx+1)%10!=0&&(idx+1)%10%3==0){
+                    show = "짝"
+                }else{
+                    show = idx+1
+                }
+                tdArr[idx++].innerText=show
+                if(idx==24){
+                    alert("종료")
+                    clearInterval(int01)
+                    tdArr.forEach(function(ob){
+                    ob.style.background="pink"
+                    })
+                }
+                // if((idx+1)%10==3){
+                //     tdArr[idx].innerText="짝!";
+                //     idx++
+                // }else if((idx+1)%10==6){
+                //     tdArr[idx].innerText="짝!";
+                //     idx++
+                // }else if((idx+1)%10==9){
+                //     tdArr[idx].innerText="짝!";
+                //     idx++
+                // }else if(idx==24){
+                //     alert("종료!!")
+                //     clearInterval(int01)
+                //     tdArr.forEach(function(ob){
+                //     ob.style.background="pink"
+                // })
+                // }else{
+                //     tdArr[idx].innerText=(idx+1);
+                //     idx++
+                // }
+                },300);
+            }
+        
+    </script>
+</head>
+<body>
+    <h2 onclick="start()">3,6,9 게임 시작!</h2>
+    <table width="400" height="400" border>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+    </table>
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>&lt;style&gt;속성에 스타일 만들기</title>
+		<style type="text/css">
+		/*
+		# style 속성으로 스타일 시트 만들기
+		1. html태그의 style속성을 이용해서 해당 태그에서 css 속성을 설정할 수 있다.
+		2. 형식
+			태그 style="color:magenta;font-size:30px"
+			특정 태그에 해당 스타일 적용 
+		*/
+			p{color:red;font-size:15px}/*모든 p태그에 적용될 속성*/
+		</style>		
+	</head>
+	<body>
+		<h2>손 흥 민</h2>
+		<hr>
+		<p>오페라를 좋아하고</p>
+		<p>엘비스 프레슬리를 좋아하고</p>
+		<!-- 상위에 선택된 속성을 적용되고, -->
+		<p style="color:blue;">김치부침개를 좋아하고,</p>
+		<p style="color:magenta;font-size:30px;">축구를 좋아합니다.</p>
+		<!--  추가 속성 또는 각 태그에 적용된 속성이 처리된다.
+			동일한 속성인 경우 inline으로 style속성을 지정된 것이 지정된다. -->
+		<!-- 
+			ex) a05_inlineStyleExp.html 
+			상단(head)에 h1 속성으로 글자색상과 배경색상
+			공통 적용되는 h1 2개, 추가/변경되는 h1 2개를 선언하고 출력해보세요.
+			속성 : color, background-color, font-size
+			
+		 -->	
+			
+	</body>
+</html>

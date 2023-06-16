@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*2023-04-27
+        [1단계:개념] 1. 배경이미지관련 속성을 예제와 함께 기술하세요.*/
+        div.cls02{
+				width: 80%; height: 500px;
+				background-color: rgba(196, 30, 30, 0.511);/*배경 색상 지정*/
+				background-size: 100px 100px; /*배경 크기 x,y축*/
+				background-image: url("./media/person01.jpeg");/*상대적 크기*/
+				background-repeat: repeat;/*배경이미지 반복은 default가 x,y축으로 반복되어 진다.*/
+				background-position: center;
+			}
+        /*[1단계:확인] 4. css 글자 그림자 처리 옵션을 지정하여, 화면에 이름, 나이, 사는 곳을 출력하세요. */   
+        div.c1{text-shadow: 4px 3px 3px rgb(17, 78, 46);}
+
+        div{border: 2px solid rgb(0, 128, 21); width: 10px; height: 10px;}
+            
+    </style>
+</head>
+    <body>
+        <div class="cls01">예제</div><!--1번문제-->
+        <!--
+        [1단계:개념] 2. display의 속성 3개 특징을 예제와 함께 기술하세요-->
+        <div style="background-color:pink;">
+			<h1 style="display:inline;width:200px;height:100px;">안녕하세요1</h1>
+            <!--inline(2~3개 나열 처리)-->
+			<h1 style="display:block;width:200px;height:100px;">안녕하세요2</h1>
+			<!--block(넓이와 높이를 지정)-->
+            <h1 style="display:inline-block;width:200px;height:100px;">안녕하세요3</h1>
+            <!--복합처리-->
+        </div>
+        <!--
+        [1단계:개념] 3. 배경이미지관련 속성을 예제와 함께 기술하세요.-->
+        <!--1번 문제와 동일합니다.-->
+        <!--
+        [1단계:확인] 4. css 글자 그림자 처리 옵션을 지정하여, 화면에 이름, 나이, 사는 곳을 출력하세요. -->
+        <div class="c1">유영재/25세/서울</div>
+        <!--
+        [1단계:개념] 5. position 옵션을 예제를 통해 기술하세요.-->
+        <div style="position: relative;top: 5px;left: 5px;"></div>
+       <!--relative : 상대 배치 - 현재 위치를 기준으로 x/y축으로 이동된다-->
+    </body>
+</html>

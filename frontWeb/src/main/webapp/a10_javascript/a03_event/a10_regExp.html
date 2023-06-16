@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        #  정규식 표현 방식을 사용하는 코드
+        1. 정규식 표현 방식을 '/' 사이에 패턴을 작성하는 리터럴
+        표기법을 사용합니다.
+        2. 패턴은 정규식을 정의하는 문자열로 구성되며,
+        3. 특정 규칙에 맞는 문자열을 검색하거나 대체하고자할때 사용합니다.
+
+        # 패턴 매칭
+        1. /pattern/ : 패턴을 직접 작성하여 특정 문자열과 매칭 
+        2. /pattern/i : 대소문자 구분하지 않고 매칭
+        3. /pattern/g : 전역 매칭, 모든 매칭부분을 찾습니다.
+        4. /pattern/m : 여러 줄에 매칭으로, 나타날때 찾는 작업
+        # 문자 클래스
+        1. [abc] : a,b,c 중 하나와 매칭(or)
+        2. [a-z] : a부터 z까지 알파벳 중 하나와 매칭
+        3. [^abc] : a,b,c 이외의 문자와 매칭
+        4. [^0-9] : 숫자 이외의 문자와 매칭
+        # 특수 문자 : 위에 문자 클래스 선언된 내용이 많을 때
+        1. \d : 숫자와 매칭 [0-9]와 동일
+        2. \w : 알파벳, 숫자, 언더스코어(_)와 매칭시
+        3. \s : 공백 문자와 매칭 
+        4. \b : 단어 경계를 나타내며, 단어의 시작과 끝을 매칭
+        # 수량자 : 해당 데이터의 범위(크기) 지정할 때 사용
+        1. * : 0개 이상의 반복에 매칭
+        2. + : 1개 이상의 반복에 매칭
+        3. ? : 0 또는 1개 반복에 매칭
+        4. {n} : n번 반복에 매칭
+        5. {n, m} : 최소 n번부터 최대m번 반복에 매칭
+        #기타
+        1. . : 임의의 문자와 매칭
+        2. | : or 연산자로, 여러 패터 중에 하나와 매칭
+        3. () : 그룹을 지정하고, 그룹화된 부분과 매칭..
+        4. ^ : 시작하는 문자 포함
+        5. $ : 끝  
+        */
+    </script>
+</head>
+<body>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+    <h2>타이틀</h2>
+
+</body>
+    <script>
+        var h2Arr = document.querySelectorAll("h2")
+        var pattern = /a.p/
+        // ap사이에 글자 한자가 들어가는 경우만 매칭
+        var str = "apple"
+        h2Arr[0].innerText = str+":"+pattern.test(str)
+        var str = "ap"
+        h2Arr[1].innerText = str+":"+pattern.test(str)
+        var str = "abp"
+        h2Arr[2].innerText = str+":"+pattern.test(str)
+        var str = "apap"
+        h2Arr[3].innerText = str+":"+pattern.test(str)
+        var idx = 4
+        var pattern = /ca*t/
+        // * : 0이상 매칭
+        var str = "ct"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "cat"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "ckt"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "caaat"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        // + : 1개이상 반복 매칭
+        var pattern = /ca+t/
+        h2Arr[idx++].innerText = "패턴:"+pattern
+        var str = "ct"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "cat"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "catt"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        // ^문자 : 시작하는 문자 포함
+        var pattern = /^a/
+        h2Arr[idx++].innerText = "패턴:"+pattern
+        var str = "apple"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "air"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "banana"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        // \ : 역슬래스 해당 코드값과 구분되어 표시
+        var pattern = /c\.t/ // c.t
+        h2Arr[idx++].innerText = "패턴:"+pattern
+        var str = "c.t"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "cat"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "cut"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        // [] : 문자 클래스 포함되어 있는 문자 있을때..
+        var pattern = /[aeiou]/
+        h2Arr[idx++].innerText = "패턴:"+pattern
+        var str = "apple"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "orange"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "banana"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "u"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "z"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        // {n} : 수량을 표현할 때 맞는 내용
+        var pattern = /\d{3}/
+        h2Arr[idx++].innerText = "패턴:"+pattern
+        var str = "4e5"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "123"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+        var str = "3432"
+        h2Arr[idx++].innerText = str+":"+pattern.test(str)
+               
+        
+    </script>
+</html>

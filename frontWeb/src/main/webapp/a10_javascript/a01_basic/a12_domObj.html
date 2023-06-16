@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        #  
+        */
+        function call01(obj){
+            // obj = {name:'홍길동',age:25}
+            // 객체.속성
+            alert(obj.name+":"+obj.age)
+        }
+        // ex) 클릭시 json 객체로 음식명과 가격을 전달하고,
+        // 해당 내용을 alert()으로 출력하세요..
+        function call02(food){
+            // food = {name:'음식명', price:10000}
+            alert('음식명:'+food.name+", 가격:"+food.price)
+        }
+        // json 객체로 버스의 번호, 구간, 승객수를 속성/속성값으로
+        // 설정해서 클릭시, 해당 속성을 호출하여 출력되게 하세요.
+        // call03 함수는 모든 객체의 구조를 다 받아서 처리할 수 있는
+        // 유연한 코드 처리이다.
+        //for(var pro in obj)
+        function call03(bus){
+            alert(`버스번호:${bus['num']}\n버스노선:${bus.route}\n승객수:${bus.guest}`)
+            var show = ''
+            for(var pro in bus){
+                // pro : 속성, bus['속성'] : 속성값
+                show += pro +":"+bus[pro]+"\n"
+            }
+            alert(show)
+        }
+        function call04(obj){
+            // obj = this ==> h2 ==> 클릭한 h2 지칭
+            alert(obj.innerText) // DOM객체 전송, DOM객체의 출력 속성을 처리
+            obj.innerText = "변경 ^^"//레이블 내용 변경
+            obj.align = "center" // 속성 변경 기본 속성
+            obj.style.background = "yellow" // css속성
+            //<h2>화면에 출력 내용(.innerText)</h2>
+            //<h2>화면에 출력태그적용(.innerHTML)</h2>
+            //<h2 align = 'center'>기본 속성 적용(.align='center')</h2>
+            //<h2 style = 'background:yellow'>css 속성 적용
+            //              (.style = 'background:yellow')</h2>
+        }
+        // ex) h3를 클릭시, 레이블 안녕하세요 변경하고, 정렬을 오른쪽 처리
+        // 배경색상/글자색 navy/yellow로 처리
+        function call05(obj){
+            obj.innerText = "안녕하세요"
+            obj.align = "right"
+            obj.style.background = "navy"
+            obj.style.color = "yellow"
+            obj.style.border = "2px solid red"
+
+        }
+    </script>
+</head>
+<body>
+    <h3 onclick="call05(this)">h3 DOM 객체 변경</h3>
+    <h2 onclick="call04(this)">DOM 객체 호출 처리</h2>
+    <h2 onclick="call03({num:1003,route:'강남<->역삼',guest:15})">버스 정보</h2>
+    <h2 onclick="call02({name:'피자',price:18000})">음식 정보</h2>
+    <h2 onclick="call01({name:'홍길동',age:25})">JSON 객체 호출 처리</h2>
+    <h2>DOM 객체 호출 처리</h2>
+
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

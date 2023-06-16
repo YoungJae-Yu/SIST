@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ex) a18_selPropExp.html 
+            로그인 화면(아이디/패드워드/로그인버튼)을 만들고, 
+            name으로 아이디가 있으면 배경 노랑색상
+            input에 type이 password이면 글자색상을 파랑색으로
+            처리하고  
+            form 하위에 있는 글자는 크기가 20pt로 처리하세요  
+        */
+        form * {font-size:20pt;}
+        [name=id]{background-color: yellow;}
+        input[type=password]{color:blue;}
+    </style>
+</head>
+<body>
+    <h2 align="center">로그인</h2>
+    <form>
+        <table align="center" border="1">
+            <tr><th>아이디</th>
+                <td><input type="text" name="id" size="5"/></td></tr>
+            <tr><th>패스워드</th>
+                <td><input type="password" name="pass" size="5"/></td></tr>
+            <tr><th colspan="2"><input type="submit" value="로그인"/></th></tr>
+        </table>
+    </form>
+    <!-- shift+alt+화살표 아래로 : 줄복사 단축키 -->
+    <h2 align="center">안녕하세요</h2>
+    <h3 align="center">안녕하세요</h3>
+    
+</body>
+</html>

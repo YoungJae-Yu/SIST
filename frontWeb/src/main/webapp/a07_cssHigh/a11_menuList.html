@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+	#menubar{ background:green;}
+	#menubar ul{ /*여백과 패딩 처리*/
+		margin:0;
+		padding:0;
+		width:100%;
+	}
+	#menubar ul li{
+		display:inline-block;
+		list-style-type:none;
+		padding:5px 15px;
+	}
+	#menubar ul li a{
+		color:white;
+		text-decoration:none;
+	}
+	#menubar ul li a:hover{
+		color:violet;
+	}
+
+
+    </style>
+</head>
+<body>
+    <h2>G마켓메뉴 처리하기.</h2>
+    <nav id="menubar">
+        <ul>
+            <li><a href="javascript:alert('home이동');">Home</a>
+            <li><a href="a01_display.html">수퍼딜</a>
+            <li><a href="javascript:alert('쿠폰/출첵');">쿠폰/출첵</a>
+            <li><a href="#">스마일프레시</a>
+            <li><a href="#">로그인</a>
+            <li><a href="#">회원가입</a>
+            <li><a href="#">회원가입</a>
+            <li><a href="#">회원가입</a>
+        </ul>
+    </nav>   
+</body>
+</html>

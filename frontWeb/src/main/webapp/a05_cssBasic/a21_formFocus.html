@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /*
+        ex) a21_formFocus 아래와 같이 구현하되 이름의 성을 글씨크기와 색상을
+        다르게 처리하고, 점수를 입력할 때,배경색과 글자색상을 변경되게 하세요.
+            이름 국어 영어 수학
+            @@@ [   ][   ][   ]
+            @@@ [   ][   ][   ]
+            @@@ [   ][   ][   ]
+        */
+        input{text-align: right;}
+        .name:first-letter{color: aqua;}
+        input:focus{background-color: rgb(27, 74, 184);color: rgb(195, 159, 43);}
+        td{text-align: center;}
+    </style>
+</head>
+    <body>
+    <h2 a>학생성적</h2>
+   <table align="center" width="50%" border>
+        <tr><td>이름</td><td>국어</td><td>영어</td><td>수학</td></tr>
+        <tr><td class="name">홍길동</td><td><input type="text" size="2px"/></td><td><input type="text" size="2px"/></td><td><input type="text" size="2px"/></td></tr>
+        <tr><td class="name">김길동</td><td><input type="text" size="2px"/></td><td><input type="text" size="2px"/></td><td><input type="text" size="2px"/></td></tr>
+        <tr><td class="name">신길동</td><td><input type="text" size="2px"/></td><td><input type="text" size="2px"/></td><td><input type="text" size="2px"/></td></tr>
+
+   </table>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 변수를 선언합니다.
+        /*
+        # 내장 객체 Date() 
+        1. 날짜와 시간을 처리해주는 내장 객체
+        2. 객체 생성
+            let 변수명 = new Date()
+        */
+        /*
+        var date = new Date();
+        alert(date.toLocaleString()) 
+        // 현재 한국 시간을 가져온다.
+        // getHours() : 시간을 가져오는 메서드
+        var hour = date.getHours();
+        // if 조건문
+        if (hour < 12) {
+            // "hour < 12"가 참일 때 실행합니다.
+            alert('오전입니다.');
+        }
+        if (hour >= 12) {
+            // "hour >= 12"가 참일 때 실행합니다.
+            alert('오후입니다.');
+        }
+        ex) prompt 창으로 점수를 입력받아서
+        70이상이면 합격 그외는 불합격이 alert()으로
+        출력되게 하세요. (형변환은 자유롭게)
+        */
+        let point = Number(prompt("점수를 입력하세요:"),"0")
+        if(point>=70){
+            alert(point+"점 합격")
+        }else{
+            alert(point+"점 불합격")    
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		
+		table{
+			border-collapse:collapse;
+			border:7px solid green;				
+		}
+		th,td{
+			border:7px solid green; text-align:center;
+		}
+		</style>
+	</head>
+	<!-- 
+	# span
+	1. 테이블의 구성요소인 td를 보통 cell이라고 하는데,
+		이 td의 속성을 지정하여 td을 병합처리할 때, 사용하는
+		옵션이다.
+	2. 형식
+		1) colspan="병합할 cell의 갯수"
+			열단위로 병합할 cell을 선언하여 병합하는 것을 말한다.
+		2) rowspan="숫자"
+			행단위로 병합할 cell 선언하는 것을 말한다.
+	3. 주의 : cell단위로 병합하면 원래 선언 cell(td)는 행단위
+		열단위로 삭제하여야 한다.
+	4. 효과적인 셀병합처리를 위한 테이블 구조 처리 순서
+		1) 초기 셀병합되기전에 @@x@@ 테이블을 만든다.
+		2) 병합되는 최초 셀(td)에서 rowspan, colspan
+			속성을 선언하고 병합하는 수를 입력한다. 
+			최초 셀 : 위에서 아래, 왼쪽 오른쪽 카운팅 최초셀 선택
+		3) 행열단위로 cell 병합하는 경우, 그 행열의 가장 처음
+			셀(td)에서 rowspan, colspan을 설정하고,
+			그외 셀(td) 즉, 행열 단위 td는 모두 삭제 처리
+			2x2 ==> 1 속성설정이외 2개 모두 삭제
+			3x4 ==> 속성 설정이외 11개 모두 삭제..
+	 -->
+	<body>
+		<h2>span연습1</h2>
+		<table align="center" width="300pt" height="300pt">
+			<tr><td colspan="2"></td><td rowspan="3"></td></tr>
+			<tr><td rowspan="2"></td><td></td></tr>
+			<tr><td></td></tr>
+		</table>
+		<h2>span연습예제1</h2>
+		<table align="center" width="300pt" height="300pt">
+			<tr><td rowspan="3">1</td><td>2</td><td>3</td></tr>
+			<tr><td>4</td><td>5</td></tr>
+			<tr><td colspan="2">6</td></tr>
+		</table>
+		<style>
+			td{height:33%;}
+		</style>
+		<h2>span연습예제2</h2>
+		<table align="center" width="300pt" height="300pt">
+			<tr><td>1</td><td rowspan="3">2</td><td rowspan="2">3</td></tr>
+			<tr><td rowspan="2">4</td></tr>
+			<tr><td>5</td></tr>
+		</table>
+		<h2>span연습예제3</h2>
+		<table align="center" width="300pt" height="300pt">
+			<tr><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+			<tr><td>5</td><td rowspan="2" colspan="2">0</td><td>11</td></tr>
+			<tr><td>5</td><td>12</td></tr>
+			<tr><td>4</td><td>3</td><td>2</td><td>1</td></tr>
+		</table>
+	</body>
+</html>

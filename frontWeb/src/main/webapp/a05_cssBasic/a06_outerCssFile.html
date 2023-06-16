@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>&lt;link&gt;</title>
+		<link type="text/css" rel="stylesheet" href="z01_myStyle.css">
+		<style type="text/css">
+		/*
+		# 외부 스타일 시트 파일 불러오기
+		1. css파일에 스타일 시트 저장하기
+			1) 웹 페이지에서 css스타일 시트 파일을 불러와서 사용
+				- 동일한 스타일 시트를 웹 페이지마다 중복 작성시 활용
+				- 웹 사이트의 전체 웹 페이지 모양의 일관성 확보목적
+		2. css스타일 시트페알을 불러오는 방법 2가지
+			1) link 태그 이용
+				head
+					link href="파일명.css" type="text/css" rel="stylesheet"
+					ex) href위치는 일반적으로 webapp하위를 기준으로
+					서버가 호출되었을 때, default 위치인 context명으로 설정
+					(웹서버단에서 설정,보통 프로젝트 명으로 default설정됨) 하고
+					공통 폴드 com 하위에 지정하는 경우가 많다.
+			2) @import 이용
+				style
+					@import:url(파일명.css)
+					@import '파일명.css'
+		3. 처리 순서
+			1) 공통사용할 css 파일 작성 및 속성 및 속성값 지정
+				mystyle.css
+				선택자{속성:속성값}
+			2) 적용페이지에서
+				link나 @import를 이용해서 호출
+			3) body 부분에 적용여부 확인			
+					
+								
+		*/
+		
+		</style>		
+	</head>
+	<body>
+		<h2>손연재</h2>
+		<hr>
+		<p>저는 체조 선수 손연재입니다. 음악을 들으면서 책읽기를 좋아합니다.
+		김치 찌개와 먹국수 무척 좋아합니다.</p>
+		<!-- 
+		ex) margin-left, margin-right, text-align 속성을 추가하여,
+		z02_style.css 만들고,
+		위키백과사전에  oracle database, java, bootstrap을 검색하여
+		타이틀과 내용으로 해당 css가 적용된 화면을 출력하세요.
+		
+		
+		 -->
+		
+	</body>
+</html>

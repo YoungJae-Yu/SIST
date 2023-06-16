@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		/*
+		# 배경이미지 다루기
+		1. 배경 색상과 이미지는 웹 화면을 구성하는데 중요한 역할을한다.
+		특히 배경이미지는 웹 화면을 꾸밀 때, 많이 사용된다.
+			ex) div{width:100px;height:100px;
+					background-image:url(bck.img);
+					repeat:no-repeat;}
+			div크기가 100px 넓이와 높이인데, 배경이미지와
+			이미지 반복옵션을 no-repeat로 지정처리.
+			배경 이미지의 크기의 크기는 50px(상하/좌우)이고,
+			배경 이미지의 위치는 중앙에 위치시킨다.
+			
+			보통 화면대비 배경이미지가 작기에 반복이 되는데
+			이 옵션이 적용되어야 한다.
+			
+		2. 배경 색상과 이미지의 상대적/절대적 경로와 함께 설정하고,
+			해당 내용을 통해 웹화면을 꾸며보자.
+		3. 기본 속성
+			1) background-color : 배경 색상 지정
+			2) background-image : 배경 이미지 지정
+				ex) background-img:url("해당이미지명(상대/절대주소)")
+				# 절대 주소(webapp하위 웹서버 context명 기준, /경로)
+				  상대 주소(현재 html 파일이 있는 기준, ./, ../,)
+		4. 기타 속성
+			1) 배경 이미지의 위치
+				background-position : center center
+										행/열 위치 지정
+				선택자의 중앙에 위치
+				ex) left/center/right
+				    top/center/bottom
+			2) 배경 이미지 반복 출력 : 선택자의 번위가 이미지보다 큰 경우가 많다
+			이 때, 남은 공간에 대한 처리를 반복이냐 반복하지 않느냐로 처리하고
+			반복의 경우 행/열단위 다 반복하는 경우와 행단위-x, 열단위-y로
+			나누어서 반복 처리하는 경우가 있다.
+				background-repeat:
+					속성값 : no-repeat, repeat, repeat-x, repeat-y
+			3) 배경이미지의 크기
+				background-position : 
+		*/
+			div.cls01{
+				width: 50%; height: 300px;
+				background-color: skyblue;
+				background-size: 200px 200px; /*배경 크기 x,y축*/
+				background-image: url("./media/spongebob.png");/*상대적 크기*/
+				background-repeat: no-repeat;/*배경이미지 반복은 default가 x,y축으로 반복되어 진다.*/
+				background-position: center;
+				/*
+				배경이미지의 위치를 상하 좌우로 옵션을 설정할 수 있다.
+				상하 옵션 : top/center/bottom
+				좌우 옵션 : left/center/right
+
+				좋아하는 노래 가사나 시 복사..
+
+				ex) div로 cls02를 만들어서
+					person01.jpeg를 이용해서 배경 이미지를 처리해보세요..
+				*/
+			}
+			div.cls02{
+				width: 80%; height: 500px;
+				background-color: rgba(196, 30, 30, 0.511);
+				background-size: 100px 100px; /*배경 크기 x,y축*/
+				background-image: url("./media/person01.jpeg");/*상대적 크기*/
+				background-repeat: repeat;/*배경이미지 반복은 default가 x,y축으로 반복되어 진다.*/
+				background-position: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="cls02">d</div>
+		<div class="cls01">
+			<h3>풀꽃</h3>
+			자세히 보아야<br>
+			예쁘다<br>
+			오래 보아야<br>
+			사랑스럽다<br>
+			너도 그렇다. “<br>
+		</div>
+	</body>
+</html>

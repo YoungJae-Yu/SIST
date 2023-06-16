@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        /*
+        1. for(초기값;반복조건;증감연산자)
+        2. setTimeout(함수,1/1000 )
+            ex) 
+            alert("시작!")
+            setTimeout(function(){
+                alert("1초후 수행될 내용"),1000 
+            })
+        3. 화살표 함수
+            var call = ()=>{
+                매개변수와 처리할 블럭만 선언해서 활용
+            }
+            var call =function(){
+
+            }
+
+
+        */
+        
+        for (var i = 0; i < 3; i++) {
+            // 1초(1000밀리 초) * i초 후에 i를 출력
+            setTimeout(() => {
+                alert(i);
+            }, 1000 * i);
+        }
+        
+    </script>
+</head>
+<body>
+
+</body>
+<script>
+    //alert("시작후!! 3 초후 수행");
+    // setTimeout(function(){ 수행될 내용}, 1/1000)
+    //setTimeout( function(){
+    //    call();
+    // }, 3000);
+
+    var call = ()=>{
+        var show = "";
+        for(let cnt=1;cnt<=10;cnt++){
+            show += cnt+"번째 안녕하세요<br>";
+        }
+        document.body.innerHTML = show
+    }
+
+    var call2 = function(){
+        var show = "";
+        for(let cnt=1;cnt<=10;cnt++){
+            show += cnt+"번째 안녕하세요<br>";
+        }
+        document.body.innerHTML = show
+    }
+
+    // 
+
+</script>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</head>
+<body>
+    <h2>입력 및 연산 처리</h2>
+    첫번째 수:<input type="text" name="num01" value="0"/><br>
+    두번째 수:<input type="text" name="num02" value="0"/><br>
+    <!--on이벤트 = "이벤트핸들러함수명()"-->
+    <input type="button" value="합산?" onclick="sum()"/><br>
+    <h3>합산결과출력</h3>
+
+
+</body>
+    <script>
+        // 혹, 내장된 키워드를 호출할 때는 정상적으로 처리가 안되는
+        // 경우가 많으니 변수를 바꾸어서 numbering을 추가해서 처리하세요
+        function sum(){
+            // DOM객체를 그대로 가져와서 선택, 객체 참조변수로 할당
+            var num01Ob = document.querySelector("[name=num01]");
+            var num02Ob = document.querySelector("[name=num02]");
+            var h3Ob = document.querySelector("h3");
+            console.log("객체 확인!"+num01Ob)
+            console.log("객체 확인!"+num02Ob)
+            console.log("객체 확인!"+h3Ob)
+            // <input type, name, value : 모두 다 기본 속성.
+            // 객체의 참조변수.속성 : 호출
+            // 객체의 참조변수.속성 = 데이터 : 속성에 데이터를 할당
+            // Number(), parseInt(), parseFloat() 형변환 함수
+            // Math.floor() : 절삭처리(내림)
+            // + 연산 "010" + "7555" + "9724"
+            // 1. 문자열을 연결하는 기능을 포함하기 떄문에, 자동 형변환을 하지 못한다.
+            var num01 = Number(num01Ob.value) //+ 합산시에 형변환 필요
+            var num02 = Number(num02Ob.value)
+            var tot = num01 + num02
+            // .innerHTML : 포함된 태그를 랜더링(해석 출력)
+            // .innerText : 문자열 그대로 출력
+            h3Ob.innerText = num01 +" + "+num02+" = "+tot 
+        }
+        /*
+        #  
+        */
+        
+    </script>
+</html>

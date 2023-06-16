@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+			table{
+				border-collapse:collapse;
+				border:7px solid green;				
+			}
+			th,td{
+				border:7px solid green; text-align:center;
+			}
+		
+		</style>
+	</head>
+	<body>
+	<!-- 
+	2023-04-11
+	[1단계:개념] 1. ul과 ol의 차이점을 기본예제를 통해서 기술하세요
+	ex) 햄버거 제조에 필요한 준비물과 제조 과정을 html로 작성하세요.
+	-->
+	<h2>햄버거 제조 레시피</h2>
+	<h4>준비물</h4>
+	<ul><!-- ul태그 : 순서가 없는 리스트 -->
+		<li>빵
+		<li>야채
+		<li>고기
+		<li>소스
+	</ul>
+	<h4>제조순서</h4>
+	<ol><!-- ol태그 : 순서가 없는 리스트 -->
+		<li>빵과 고기를 굽는다
+		<li>야채와 소스를 준비한다
+		<li>빵위에 고기와 야채와 소스를 쌓는다
+		<li>먹음직스럽게 포장한다
+	</ol>
+	<!-- 
+	[1단계:개념] 2. 중첩태그 코드란 무엇인지 형식과 예제를 기술하세요.
+	ex) 부동산중계 사이트의 역삼동 매몰 홈페이지 항목을 리스트하세요.
+	 -->
+	<h2>영재 부동산</h2>
+  	<ul><!-- 계층적으로 선언하여 두가지 기능이 다 처리되게 하는것 -->
+		<li><a hreg="">해피원룸텔</a>
+		<li><a hreg="">싸다고시원</a>
+		<li><a hreg="">심플고시텔</a>
+		<li><a hreg="">탑리빙텔</a>
+ 	</ul>
+ 	<!-- 
+ 	[1단계:개념] 3. ul과 ol의 속성을 기술하고, 속성값이 적용된 예제를 만들어 보세요.
+	ol 속성 : type, start
+	ul 속성 : disc, square, circle
+	-->
+	<ol type="i" start="3"> 
+		<li>type속성은 1, A, a, I, i 나열 형식을 표현
+		<li>star속성은 시작 번호를 지정 
+	</ol>
+	<ul type="disc"> 
+		<li>기본 모양
+	</ul>
+	<ul type="square"> 
+		<li>사각형 모양
+	</ul>
+	<ul type="circle"> 
+		<li>원(외곽선) 모양
+	</ul>
+	<!-- 
+	[1단계:확인] 4. ul/ol을 중첩적으로 사용하여, 학년 반별 학생명단을 리스트하세요
+	 -->
+	<ol>
+		<li>학년
+		<ol>
+			<li>반
+				<ul>
+					<li>김길동
+					<li>박길동
+					<li>이길동				
+				</ul>
+			<li>반
+				<ul>
+					<li>김길동
+					<li>박길동
+					<li>이길동				
+				</ul>
+			<li>반
+				<ul>
+					<li>김길동
+					<li>박길동
+					<li>이길동				
+				</ul>
+		</ol>
+		<li>학년..
+		<li>학년..
+	</ol>
+	[1단계:개념] 5. table의 계층별 구성요소의 의미를 기본 예제를 통해서 기술하세요..
+	ex) 0~9의 숫자 키패드 모양을 출력하세요.
+	<table>
+		<tbody>
+		<caption>키패드</caption>
+			<tr><td>7</td><td>8</td><td>9</td></tr>
+			<tr><td>4</td><td>5</td><td>6</td></tr>
+			<tr><td>1</td><td>2</td><td>3</td></tr>
+			<tr><td colspan="2">0</td><td>.</td></tr>
+		</tbody>
+	</table>
+	[1단계:확인] 6. table의 전체 계층 구조로 회원 현황을 만드세요
+	      순차번호, 아이디 회원명 권한 포인트 
+	<table>
+		<thead>
+			<tr>
+				<th>순차번호</th><th>아이디</th><th>회원명</th><th>권한포인트</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr><td>1</td><td>abc123</td><td>홍길동</td><td>5000</td></tr>
+			<tr><td>2</td><td>aaa111</td><td>김길동</td><td>15000</td></tr>
+			<tr><td>3</td><td>bbb222</td><td>안길동</td><td>25000</td></tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>-</th><th>-</th><th>-</th><th>-</th>
+			</tr>
+		</tfoot>
+	</table>   	
+	</body>
+</html>

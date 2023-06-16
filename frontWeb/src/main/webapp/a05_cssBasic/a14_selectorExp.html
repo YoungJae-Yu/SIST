@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            h1{background-color: chartreuse;color: brown;}
+			/*
+			# 계층구조 선택자
+			1. 자식 선택자
+				1) 부모 자식 관계인 두 선택자는 '>' 기호로 조합된다.
+				2) 적용은 해당 부모를 가진 자식 요소객체가 적용된다.
+				3) 기본형식
+					부모 > 자식{속성:속성값;}
+					ex) div > strong{color:dodgerblue;}
+					div의 바로 밑에 strong태그가 있으면 해당
+					strong 태그에는 글자색상이 dodgerblue가 
+					적용된다.
+			2. 자손 선택자
+				1) 계층 레벨이 바로 밑을 포함해서, 여러 계층 레벨이
+					있더라도 적용되는 경우를 말한다.
+				2) 이것을 자손 관계라고 한다.
+				3) 기본형식
+					상위 하위{속성:속성값;}
+					ex) ul strong{background-color:yellow;}
+					ul을 상위로 하위레벨에 레벨 계층과 상관없이 
+					strong이 있으면 배경색상이 노랑색으로 처리된다.
+			*/
+			div > strong{color:dodgerblue;}
+			ul strong{background-color:yellow;}
+            /*
+            ex) 클래스1과 클래스2는 조상 자손관계로 설정해서 배경색상을 
+            pink로 처리
+            클래스3과 클래스2는 부모자식관계로 설정해서 글자색상을 blue
+            정렬처리는 중앙으로 처리해서 화면에 출력하세요.
+            a15_selectorHira.html
+                
+
+
+            */
+        </style>
+		<meta charset="utf-8">
+        <!--
+
+
+        -->
+    </head>
+    <body>
+    	<div>
+    		<strong>안녕하세요(div > strong)</strong>
+    		<ul>
+    			<li>html5</li>
+    			<li><strong>css</strong></li>
+    			<li>javascript</li>
+    			<li>jquery</li>
+    		</ul>
+    	</div>
+    	<!-- 11:05~ -->
+        <h1>안녕하세요</h1>
+        <h2 style="font-size: larger;">반갑습니다.</h2>
+
+
+    </body>
+
+</html>

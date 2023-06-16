@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # object <==> string
+        1. 객체와 문자열은 형변환을 통해서,
+            객체를 만들어서 서버에 보낼 때는 문자열로 변환시키고,
+            서버에서 받은 문자열은 다시 객체로 변환시켜서 활용할 수 있다.
+        2. 이때 사용하는 함수가.
+            JSON.parse("문자열json") ==> 객체로 변환
+            JSON.stringify(객체) ==> 문자열 json데이터로 변환
+            
+        */
+        function chStr(){
+            var p01 = {name:"홍길동",age:25}
+            var h3Arr = document.querySelectorAll("h3")
+            h3Arr[0].innerText = JSON.stringify(p01)
+        }
+        // h4를 클릭시, 물건정보 json 선언하고, 문자열로 바꾸어
+        // h5에 출력하세요
+        function obInfo(){
+            var o01 = {name:"바나나",price:2000}
+            var h5Arr = document.querySelectorAll("h5")
+            h5Arr[0].innerText = JSON.stringify(o01)
+        }
+        function chObj01(){
+            var strObj = '[{"empno":7780, "ename":"홍길동"},{"empno":7890, "ename":"오길동"}]'
+            console.log(strObj+":"+typeof(strObj))
+            var obj = JSON.parse(strObj)
+            var h3Arr = document.querySelectorAll("h3")
+            h3Arr[1].innerText = obj+":"+typeof(obj)+":"+obj[0].empno
+        }
+        function chObj02(){
+            // 좋아하는 영화제목과 관객수 문자열 json 데이터 선언
+            // 객체 변환 후, h6에 출력...
+            var strObj = `[{"mname":"어바웃타임","audience":"3,449,451명"},{"mname":"타이타닉","audience":"1,971,780명"}]`
+            console.log(strObj+":"+typeof(strObj))
+            var obj = JSON.parse(strObj)
+            var h6Arr = document.querySelectorAll("h6")
+            h6Arr[0].innerText = obj+":"+typeof(obj)+":"
+            +obj[0].mname+":"+obj[0].audience
+        }
+    </script>
+</head>
+<body>
+    <h2 onclick="chStr()">문자열로 변환</h2>
+    <h3></h3>
+    <h2 onclick="chObj01()">객체로 변환</h2>
+    <h3></h3>
+    <h4 onclick="obInfo()">물건정보 객체를 문자열로 바꾸어서 출력</h4>
+    <h5></h5>
+    <h4 onclick="chObj02()">객체로 변환</h4>
+    <h6></h6>
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

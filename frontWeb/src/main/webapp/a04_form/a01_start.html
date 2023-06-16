@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+	<!-- 
+	# 웹폼태그
+	1. 웹 페이지에서 데이터를 입력하여, 여러가지 기능 처리하는
+	경우가 많다. 이러한 데이터 입력을 처리하는 요소객체를 form
+	태그라고 한다.
+	2. form 이라는 태그하위에 사용된다는 의미를 가진 form태그는
+	여러가지 데이터를 입력하고, 입력된 데이터를 주로 서버에 전달하는
+	역할을 한다. html/css 단계에 이러한 form태그의 사용은
+	기본적인 코드를 통해 화면을 구성하는 것을 목적으로 하고, 추후에
+	jsp/spring등 backend 프로그램에서 처리될 내용에 대한
+	이해의 시작으로 기본을 잡으면 되겠다.
+	3. 기능
+		1) 조회/입력기능 : input(단일행데이터), textarea(다중행데이터)
+		2) 선택기능 : select, radio/checkbox
+	4. 기본 코드 및 여러가지 속성들
+		1) 기본형식
+			<태그명 속성=속성값 value=""/>
+		2) 태그의 종류
+			<input type="text" name="이름값" id="식별자"
+				value="입력된 데이터"/>
+	 -->
+	  <h2>form태그의 시작(로그인)</h2>
+      아이디:<input type="text"/><br>
+      패스워드:<input type="password"/><br>
+      <input type="button" value="로그인"/>
+      <!-- 
+      1. input이라는 태그를 통해
+      2. 속성 type에 따라 여러가지 입력형식이 나타난다.
+      	text : 기본 입력유형
+      	password : 비밀번호 입력 유형
+      3. type="button"인 경우에는 버튼모양으로 처리가 된다.
+      4. value는 실제 입력되거나 label로 표현한 데이터인 경우를 말한다.
+      
+      ex) 아래의 화면을 form태그를 활용해서 나타내세요
+      	  구매한물건내역
+      	  물건명 : [  ]
+      	  가격 : [  ]
+      	  갯수 : [  ]
+      	 [등록] ==> 버튼
+      	 [조회][수정]
+       -->
+	 <h2>구매한물건내역</h2>
+      물건명:<input type="text"/><br>
+      가격:<input type="text"/><br>
+      갯수:<input type="text"/><br>
+      <input type="button" value="등록"/><br>
+      <input type="button" value="조회"/>
+      <input type="button" value="수정"/>
+	 
+	</body>
+</html>

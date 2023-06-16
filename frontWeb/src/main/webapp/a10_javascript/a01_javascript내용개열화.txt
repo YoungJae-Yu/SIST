@@ -1,0 +1,341 @@
+# 자바스트립트 학습 내용 계열화 
+1. javascript 개요
+	1) 개론
+	2) 에러 트래킹
+		브라우저 화면 콘솔창 확인 : f12
+		각 라인별로 트래킹 처리 : console.log()
+		- 실행하는 코드 중간에 단계별로 nubering 해서, 프로세스가 잘 진행되는지 확인
+		  ex) console.log("1");
+		  ex) console.log("2");
+		  ex) console.log("3");
+		- 해당 데이터나 객체가 호출되는지 확인
+		  ex) console.log("obj:"+h1Obj);
+		  ex) console.log("data:"+num01);
+		# 실행 에러: 변수를 잘못 선언되거나 데이터 초기화 되지 않을 때
+		  null, undefined   
+  		// typeof(변수명), typeof 변수명
+        // 주의)에러 트래킹시에 객체인데 문자열로 되어 있거나
+        //      문자열인데 객체로 되어 있는 경우, 정상적인 처리가 되지 않는다.
+        //      위 함수를 이용해서 반드시 확인
+
+	3) 입력/출력
+		- 입력
+			confirm("메시지") : true/false
+			prompt("메시지","입력초기") : 
+				문자열로 입력, null
+			DOM객체를 입력
+				이벤트나 함수에 의해 호출되어 입력된 내용을 아래와 같이
+				프로그램으로 가져와서 사용할 수 있다.
+				<input type="button" value="아이디값 확인"
+					onclick="checkId()">
+				function checkId(){	
+					var idObj = document.querySelector("input[name=id]")
+					var idVal = idObj.value;
+				}
+		- 출력
+			alert("경고창 출력")
+			console.log("f12 console에서 보이는 문자열")
+				console.log(obj01) : 객체의 변수를 할당했는 때,
+				객체의 속성까지 확인할 수 있기에 활용도가 높다.
+			document.write("태그")
+				화면에 출력할 내용을 javascript로 처리하는 부분.
+			document.body.innerText	
+			document.body.innerHTML = "<h2>안녕</h2>"
+				DOM객체로 전체화면을  출력할 때, 사용된다.
+			
+2. javascript 기본 문법
+	1) 변수 선언과 자료형
+		- 선언 형식
+			let(지역/전역변수 구분), 
+			var(전역변수) 
+			const(상수-할당후 변경 불가)
+			let num01 = 25;
+			var name = "홍길동";
+			const PI = 3.14;
+		null, undefined : 초기화되지 않거나 데이터값 없을 때,
+			나오는 실행에러 코드
+		javascript에서 사용되는 데이터 유형	
+			Number, String, Boolean, Function, Object(Array)
+			typeof 변수명, typeof(변수명) : 데이터 유형 확인
+			자바스크립트는 문자열은 자동 형변환
+				 단, + 연산자를 사용할 때는 반드시 형변환 함수 활용
+				 Number(), parseInt(), parseDouble()
+			자바스크립트의 주요 내장 객체
+				Math.floor(), Math.round(), Math.ceil()
+				Math.random()
+				임의의 수 처리 
+					Math.floor(Math.random()*경우의수+시작수)
+	2) 연산자 : 자바와 유사
+		비교연산자
+			== : 데이터비교(숫자형문자열과 숫자가 같으면 true)
+				 "25" == 25   true
+			=== : 데이터유형과 데이터를 비교
+				 "25" === 25   false
+				 25 === 25   true
+		논리연산자
+			&&, ||, !
+		산술연산자
+			+, -, *, /, %
+			
+	3) 조건문
+		if(비교연산식/논리연산식)
+		if(비교연산식/논리연산식){
+			if(조건){} // 중첩조건문
+			
+		}else{
+		
+		}
+		if(조건1){
+		
+		}else if(조건2){
+		
+		}else if(조건3){
+		
+		}else{
+			그외 조건
+		}
+		switch(데이터){
+			case 데이터1:
+				break;
+			case 데이터2:
+				break;
+			case 데이터3:
+				break;
+			default:
+				기타 처리	
+		}
+		3항조건
+			조건1?처리1:처리2  ==> 조건에 따라 true일 때 처리1
+							    false일 때 처리2
+			조건1?처리1:(조건2?처리2:처리3) ==> 2가지 이상
+				조건 처리시 사용하는 3항 연산자.
+	
+	4) 반복문
+		while(){}
+		do{
+		}while(){}
+		for(초기;반복조건;증감연산자){}
+		for(let idx in 배열){
+			idx : 배열의 index를 문자열 형식
+			배열[idx] : 배열의 값
+		}
+		var obj = {name:"홍길동", age:25, loc:"서울"}
+		for(let pro in 객체){
+			pro : 객체의 속성
+			객체[pro] : 객체의 속성값
+			ex) obj[name] 홍길동
+		}
+		for(let 배열의단위데이터 of 배열){
+			ps) java for(String s:arry){}
+		}
+		##
+		배열.forEach(function(data, idx, arry){
+			data : 단위데이터
+			idx : 숫자형 index
+			arry : 배열 전체 데이터		
+		})
+		
+3. 함수
+
+   	1) 사용자 정의 함수
+      	변수형
+      	var 함수명 = function(매개변수){
+         
+        	프로세스 처리..
+         
+         	return 리턴데이터;
+      	}
+		var 함수명 = (매개변수)=>{ 프로세스처리 return데이터 } 화살표 함수1..
+		var 함수명 = (매개변수)=>리턴값; 화살표 함수2..
+
+      선언적함수
+      function 함수명(매개변수...){
+         return 리턴데이터..
+      }
+      매개변수유형
+         - 데이터유형(number, string, boolean)
+            
+         - 데이터유형(object, function)
+            array(object에 포함)
+            function callArr(array){
+               for(var idx in array){
+                  alert(array[idx])
+               }
+            }
+            <h1 onclick="callArr([1000,2000,3000])">
+               클릭하세요(배열전달)</h1>
+            function callObj(obj){
+               for(var pro in obj){
+                   // pro : 객체의 속성
+                   // obj[pro] : 객체의 값
+                  alert(obj[pro])
+               }
+            }   
+            <h1 onclick="callObj({name:'홍길동',age:25})">
+               클릭하세요(객체전달)</h1>
+            function callDom(obj){
+               obj.align="center"
+               obj.style.color="blue;
+               obj.innerText="내용변경"
+            }   
+            <h1 onclick="callDom(this)">클릭하세요</h1>
+      매개변수의 갯수
+         - 없는 것
+         - 1개
+         - 2개 이상
+         - 가변적 매변변수 처리
+            arguments, 
+            ...매개변수명(스프레스연산자 활용) :
+               매개변수를 배열로 설정해서 활용한다.
+      매개변수의 데이터 유형
+           - 일반 기본 데이터
+           - 배열형 [데이터1,데이터2,데이터3]
+           - 객체형 {속성:속성값}
+           - DOM   this
+           
+   2) 내장 함수   
+      - 시간관련
+      var set01 = setTimeout(function(){
+      //시간 후, 처리할 내용을 코드로 처리..
+       clearTimeout(set01);
+      },1/1000초)
+      반복전인 수행 처리할 때,
+      setInterval(function(){반복수행 내용}, 반복할 시간);
+      - 형변환
+       Number(): 정수/실수 다변환, 하지만 ,숫자형이 아니면 에러 발생(NaN)
+       parseInt(): 시작 문자열이 숫자로 시작해서 끝날때까지 추출해서 정수만 추출 형변환 처리
+			ex) parseInt("2500원"), parseInt("2500$")
+			문자열이 나타나는 것까지 추출해준다.
+			진법변환
+			실수형을 정수형 변환까지
+			parseInt("25.75") ==> 25.75 ==> 25
+       parseFloat(): 시작문자열이 숫자로 시작해서 끝날떄 까지 추출하는데, 실수 추출 형변호나 처리 
+       eval(): 문자열을 실행코드로 변환해서, 실행처리해주는 함수
+        	eval(`
+				var num01 = 25
+				var num02 = 30
+				alret(num01+num02)
+			`)
+			eval(`25+5`) = 30
+        JSON.parse("") : 문자열을 json 객체로 변환 처리
+        JSON.stringfy() : json 객체를 문자열 json으로 변환 처리
+
+4. 객체
+	1) 배열
+		var 배열명 = [데이터1, 데이터2, ...]
+		ex) var arry = [1000, 2000, 3000]
+		alert(arry[0]) //호출
+		arry[1] = 4000 //변경
+		arry[3] = 5000 //추가(js)
+		arry.push(6000) //추가(js) [1000,4000,3000,5000,6000]
+		arry.pop() // 마지막에서 부터 삭제 [1000,4000,3000,5000,(삭제)]
+		
+	2) 객체
+		var 객체명 = {속성:속성값,...}
+		var 객체형배열 = [{속성:속성값},{속성2:속성2값}]
+		ex) class Person{
+			String name,
+			int age
+		}
+		Person p01 = new Person()
+		p01.name = "홍길동"
+		p01.age = 25
+		// 틀을 만들고 호출(js)
+		function Person(){},class Person(){}
+		// 틀도 만들어서 바로 호출(js)
+		var name = "홍길동"
+		var age = 25
+		var loc = "서울"
+		var p01 = {name:"홍길동",age:25,loc:"서울"}
+		alert(p01.name) // 저장된 내용 호출
+		alert(p01[name]) // p01 : 참조변수 name 속성 "홍길동"
+		p01.age = 27 // 속성의 변경.
+		p01.weight = 75 // 속성의 추가
+		p01['height'] = 175 // 속성의 추가
+
+		function 객체명(매개변수){
+			this.속성 = 속성초기값;
+			this.함수명 = function(){
+			
+			}
+		}
+		class 클래스명{
+			constructor(){
+				this.속성=속성값;
+			}
+		}
+	3) 객체의 기능 메서드
+5. DOM 객체 **
+	Document Object Model로 body에 있는 모든 태그를 객체화하여
+	속성을 변경하여 처리할 수 있게 하는 것을 말한다.
+	이벤트에 의해서 해당 태그들이 화면상 동적으로 처리되게 한다.
+	1) var 객체명 = document.querySelecotor("선택자")
+	2) var 배열명 = document.querySelecotorAll("선택자")
+	3) <태그 이벤트="call(this)">
+	   function call(obj){
+		   obj.속성 = 변경될 속성값;...
+	   }
+	4) DOM 객체의 속성
+		- <태그 속성 = "속성값"/>
+		- <태그>출력</태그>
+		obj.속성 = 속성값
+		obj.innerText = "출력"
+		obj.innerHTML = "출력(랜더링)"
+		ex) <h2></h2>
+		var h2Ob = document.queryselector("h2")
+		h2Ob.align = "center" // 중앙정렬
+		h2Ob.style.color = "blue" // 글자색상
+		h2Ob.innerText = "안녕하세요"
+		h2Ob.innerHTML = "<b><i>반가워요(랜더링)</i></b>"
+		
+6. 이벤트 처리**
+	1) <태그 on이벤트명 = "이벤트핸들러함수(전달할매개데이터)">
+		ex) <h1 onclick = "chColor(this)">
+		function chColor(obj){
+			obj.속성 = 속성값
+			obj.innerText = "출력내용"
+		}
+		
+	2) var 객체명 = document.querySelecotor("선택자")
+	   객체명.on이벤트명 = function(매개변수){
+	   
+	   }
+	   ex) 
+	   브라우저가 시작되고 로딩이 다되면 처리할 수 있는
+	   이벤트 핸들러 처리 : 상단에 선언되더라도 하단에
+	   body 코드의 태그를 DOM객체로 접근이 가능
+	   window.onload=function(){
+	   		this : 전체 화면 객체를 지칭
+	   		DOM객체 호출..
+	   }
+	   ex) var h2Obj = document.querySelector("h2");
+	   		// <h2 onclick = "call()"
+	   	   h2Obj.onclick = function(){
+	   	   		// this : 클릭한 h2Obj를 지칭
+	   	   	    this.style.background = "yellow";
+	   	   	    this.innnerText = "클릭했습니다.";
+	   	   	}
+			// 여러 DOM객체에 대한 접근..
+			var h2Arr = document.querySelecotorAll("h2")
+			// forEach로 단위 객체에 대한 서언 및
+			// 익명의 이벤트 핸들러 함수 선언..
+			h2Arr.forEach(function(h2Ob){
+				
+				h2Ob.onclick=function(){
+
+					// this : 이벤트를 클릭한 대상 h2를 지칭
+					this.innerText="클릭되었습니다!!"
+				}
+			})
+
+7. 비동기 통신 처리
+	1) ajax : backend단의 서버 구성요소와 접근해서
+		데이터 처리해주는 형식	   	   
+8. 여러가지 lib
+	<script src="추가라이버러리/프레임워크"></script>
+	1) JQUERY
+		$("선택자").메서드("속성","속성값");
+		ex) $("h2").css("color","navy");
+	2) VUE(framework)
+		컴포넌트 기반 프레임워크
+

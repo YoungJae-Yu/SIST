@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <!--
+        # symbolic 코드 처리
+        1. html에서는 줄바꿈, < 또는 > 통해서 태그를 처리 
+        하여야 하기에 특수문자를 통해 처리해야 하는 경우가 많다.
+        2. 이때, 사용하는 것이 &(엠퍼센트)와 함께 특수문자 코드키워드이다.
+        3. 기본형식
+            &코드영문명;
+            &lt; - less than 즉 보다 작은으로 < 기호를 표현
+            &gt; - greater thean 즉 보다 큰으로 > 기호 표현
+        4. 여러가지 심볼 표현하기
+            &quot;
+            &apos;
+            &amp;
+            &uarr;
+            &divide;
+            &sum;
+            ...
+        -->
+        <h3>기호 넣기</h3>
+        <hr>
+        10 &divide; 2 =5<br>
+        &radic; 2 = 1.414<br>
+        2 &nbsp;&nbsp; &lt; &nbsp;&nbsp;&nbsp; 3<br>
+        오늘 &quot;Elvis&#34; 노래를 들었다.
+        <!--
+        # 공백과 줄바꿈을 코드 내용 그대로 처리해주는 per 태그
+        1. pre
+            해당 태그의 시작과 마지막 범위안에 있는 코드는
+            줄바꿈 공백 처리 태그나 특수문자 처리 없이 화면에서
+            코드 내용 그대로 처리해준다.
+            단, 정확한 공백이나 줄바꿈 처리가 일관되게 처리가 되지
+            않기에 태그를 활용하는 경우가 많다.
+        -->
+        <pre>
+            줄바꿈과     공백이       기존 문서와
+            비슷하게 되는지?
+
+            하지만 한계가 있기에 일반적으로 필요로 하는
+            특별한 경우 이외는 줄바꿈 태그와 공백처리
+            특수키와 함께 사용한다.
+        </pre>
+        <p>
+        &lt;p&gt; 태그를 사용하면
+        			여러 개의 빈 칸은 하나로,
+        			여러 줄은 한 줄에 붙여 출력됩니다.</p>
+        <hr>
+        <pre>
+        그러나 &lt;pre&gt; 태그를 사용하면
+        				사용자가 입력한
+        				그대로 출력됩니다.
+        </pre>
+    </body>
+</html>

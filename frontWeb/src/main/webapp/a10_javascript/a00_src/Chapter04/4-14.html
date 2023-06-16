@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // // 변수를 선언합니다.
+        // var array = ['포도', '사과', '바나나', '망고'];
+        // // for in 반복문
+        // // for(var 문자열index in 배열)
+        // for (var i in array) {
+        //     alert((i+1)+")"+array[i]+":"+typeof(i));
+        // }
+    </script>
+</head>
+<body>
+
+</body>
+<script>
+    // for in 구문을 활용해서
+    // 배열로 구매할 물건의 가격 3가지를 선언하고,
+    // 물건명 3가지 배열과 함께 출력하세요.
+    var array = ['포도', '사과', '바나나'];
+    var prices = [3000,2000,4000]
+    var show = `<table width='30%' align='center' border>
+                    <tr><th>물건명</th><th>가격</th></tr>`
+    for(var idx in prices){
+        show+=`<tr><td>${array[idx]}</td><td>${prices[idx]}</td></tr>`
+    }
+    document.body.innerHTML = show
+
+</script>
+</html>

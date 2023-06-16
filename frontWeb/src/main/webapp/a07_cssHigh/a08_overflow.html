@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		/*
+		# overflow
+		1. 지정된 화면의 크기보다 포함된 요소 내용이 많을 때,
+		이에 대한 처리 옵션을 설정하는 것을 말한다.
+		2. 형식
+			선택자{overflow:속성값;}
+		3. 속성값
+			hidden : 넘치는 부분은 보이지 않게 처리
+			visible : 넘쳐나서 보이게 처리(default)
+			scroll : 스크롤 바가 생성되어 스크롤해서 보이게 처리..
+			auto : 내용이 넘치기 전에는 scroll바가 생성되지 않고,
+				내용이 넘칠 때만 해당 좌우, 상하에 필요한 scroll바 생성
+				
+			ex) div안에 좋아하는 음악 가사를 검색해서 붙이고, 위 옵션을
+				확인하여 처리하세요..
+				
+		*/
+			p{width:180px;height:70px;border:1px solid blue;
+			  margin-bottom:10px;}
+			p.opt01{overflow:hidden;}
+			p.opt02{overflow:scroll;}
+			p.opt03{overflow:auto;}
+			div{width:380px;height:80px;border:1px solid green;}
+			
+			div.opt04{overflow:visible;}
+			div.opt05{overflow:hidden;}
+			div.opt06{overflow:scroll;}
+			div.opt07{overflow:auto;}
+		</style>		
+	</head>
+	<body>
+		<h2>The Sound of Music</h2>
+		<div class="opt04">		
+		The hills are alive With the sound of music<br>
+		
+		With songs they have sung For a thousand years<br>
+		
+		The hills fill my heart With the sound of music<br>
+		
+		My heart wants to sing Every song it hears<br>
+
+		My heart wants to sing Every song it hears<br>
+		</div><br><br><br>
+		<div class="opt05">		
+		The hills are alive With the sound of music<br>
+		
+		With songs they have sung For a thousand years<br>
+		
+		The hills fill my heart With the sound of music<br>
+		
+		My heart wants to sing Every song it hears<br>
+
+		My heart wants to sing Every song it hears<br>
+		</div><br><br><br>	
+		<div class="opt06">		
+		The hills are alive With the sound of music<br>
+		
+		With songs they have sung For a thousand years<br>
+		
+		The hills fill my heart With the sound of music<br>
+		
+		My heart wants to sing Every song it hears<br>
+
+		My heart wants to sing Every song it hears<br>
+		</div><br><br><br>	
+		<div class="opt07">		
+		The hills are alive With the sound of music<br>
+		
+		With songs they have sung For a thousand years<br>
+		
+		The hills fill my heart With the sound of music<br>
+		
+		My heart wants to sing Every song it hears<br>
+
+		My heart wants to sing Every song it hears<br>
+		</div>	<br><br><br>
+
+
+	
+		<h2>기본 옵션</h2>
+		<p>사과에 대한 설명사과에 대한 설명사과에 대한 설명사과에 대한 설명사과에 대한 설명사과에 대한 설명</p><br><br><br>
+		<h2>hidden 옵션</h2>
+		<p class="opt01">사과에 대한 설명사과에 대한 설명사과에 대한 설명사과에 대한 설명사과에 대한 설명사과에 대한 설명</p><br>
+		<h2>scroll 옵션</h2>
+		<p class="opt02">사과에 대한 설명사과에 대한 설명사과에 대한 설명사과에 대한 설명사과에 대한 설명사과에 대한 설명</p><br>
+		<h2>scroll 옵션</h2>
+		<p class="opt02">사과에 대한 설명</p><br><br><br>
+		<h2>auto 옵션</h2>
+		<p class="opt03">사과에 대한 설명사과에 대한 설명사과에 대한 설명사과에 대한 설명사과에 대한 설명사과에 대한 설명</p><br>
+		<h2>auto 옵션</h2>
+		<p class="opt03">사과에 대한 설명</p><br><br><br>
+	</body>
+</html>

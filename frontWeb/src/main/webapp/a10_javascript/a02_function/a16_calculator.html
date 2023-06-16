@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+          function loading(){
+            var h2Arr = document.querySelectorAll("h2");
+            var idx = 0;
+            var cnt = 1;
+
+            var arr = ['l','o','a','d','i','n','g','.','.','.']
+            h2Arr[idx].innerText = arr[idx];
+            var isFoward = true;
+                int01 = setInterval(()=>{
+                    h2Arr[idx].forEach(function(){
+                        
+                    });
+                    if(idx <= 9){
+                        idx++
+                    }else{
+                        clearInterval(int01);
+                    }
+    
+                    h2Arr[idx].innerText = arr[idx];
+                },500);
+        }
+        /*
+        # 실습문제
+        1. 문제: "7.8abc"에서 실수부만 추출하여 
+        숫자로 변환하고 이를 제곱하는 코드를 작성하세요.
+        */
+        // alert(Math.sqrt(parseFloat("7.8abc")))
+        /*
+        2. 문제: 일정 시간 간격으로 화면에 "Loading..." 
+        메시지를 출력한 후 5번 출력하면 중지되도록 하는 코드를 작성하세요.
+        */
+        // var cnt = 0;
+        // int = setInterval(()=>{
+        //     if(cnt==5){
+        //         alert("중지..") 
+        //         clearInterval(int)
+        //     }else{
+        //         alert("Loading...")
+        //         cnt++
+        //     }
+        // },1000)
+        
+    </script>
+    <style>
+        td{text-align: center;font-size: 30pt;}
+    </style>
+</head>
+<body>
+    <h1 onclick="loading()">[클릭]</h1>
+    <h2 style="display: inline;"></h2>
+    <h2 style="display: inline;"></h2>
+    <h2 style="display: inline;"></h2>
+    <h2 style="display: inline;"></h2>
+    <h2 style="display: inline;"></h2>
+    <h2 style="display: inline;"></h2>
+    <h2 style="display: inline;"></h2>
+    <h2 style="display: inline;"></h2>
+    <h2 style="display: inline;"></h2>
+    <h2 style="display: inline;"></h2>
+    <!-- <h2>계산기</h2>
+    <table width="400pt" height="500pt" border="1" cellpadding="10px">
+        <col width="25%"><col width="25%"><col width="25%">
+        <tr><td style="text-align: right;" colspan="4">0</td></tr>
+        <tr><td>7</td><td>8</td><td>9</td><td>+</td></tr>
+        <tr><td>4</td><td>5</td><td>6</td><td>-</td></tr>
+        <tr><td>1</td><td>2</td><td>3</td><td>*</td></tr>
+        <tr><td>C</td><td>0</td><td>=</td><td>/</td></tr>
+    </table> -->
+
+
+</body>
+    <script>
+        // var tdArr = document.querySelectorAll("td")
+        // tdArr.forEach(function(tdOb){
+        //     tdOb.onclick=function(){
+        //         // 클릭한 레이블을 가져온다
+        //         // = 가 있는 cell을 클릭시..
+        //         if(this.innerText=='='){
+        //             // tdArr[0].innerText에 있는 내용을
+        //             // eval() 코드처리 ==> 연산 처리.
+        //             // tdArr[0].innerText 레이블로 출력한다.
+        //             tdArr[0].innerText=eval(tdArr[0].innerText)   
+        //         }else if(this.innerText=='C'){
+        //             tdArr[0].innerText ="0"
+        //         }else{
+        //             if(tdArr[0].innerText == '0'){
+        //                 tdArr[0].innerText = this.innerText
+        //             }else{
+        //                 tdArr[0].innerText += this.innerText
+        //             }
+        //         }
+        //     }
+        // })
+    </script>
+</html>

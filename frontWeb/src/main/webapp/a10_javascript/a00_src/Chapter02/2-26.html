@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+
+        // BOM vs DOM
+        // browser object model : 윈도우 창.
+        // 
+        window.onload = function () {
+            // 이벤트로 브라우저가 완전히
+            // 로딩된 후에 수행할 함수를
+            // 익명함수로 선언.
+            // 변수를 선언합니다.
+            var list = '';
+            // 연산자를 사용합니다.
+            list += '<ul>';
+            list += '    <li>Hello</li>';
+            list += '    <li>JavaScript..!</li>';
+            list += '</ul>';
+            // 문서에 출력합니다.
+            /*
+            document. : DOM
+            body.  : body객체를 접근  <body></body> 지칭
+            .innerHTML : html 태그를 해석해서 출력 
+            .innerText : html 태그를 해석하지 않고 출력.
+            
+            */
+
+
+            document.body.innerHTML = list;
+        };
+        // 아래있는 태그 호출 상단에서 호출 불가
+        document.querySelector("h2")
+    </script>
+
+</head>
+<body>
+    <h2>호출가능할까?</h2>
+</body>
+    <script>
+        /*
+        # javascript 처리 흐름
+        1. 위에서부터 아래로 흘러서 처리된다.
+        2. 변수는 상단에 선언되어야지 아래 라인에서 코드로 
+            호출하여 사용할 수 있다.
+        3. DOM객체도 상단에 태그로 선언되어 있어야지 하단에
+            js코드로 인식을 할 수 있다.
+        4. 단, 아래와 같은 경우는 예외
+            1) 윈도우가 로딩된 후, 처리되는 이벤트 핸들러 함수가 있을
+                때는 상단에 있어도 무방
+                window.onload = function () {}
+            2) 변수형 함수가 아닌 선언적 함수인 경우에는 하단에
+                선언되어 있어도 호출이 가능
+                ex) 
+                call(); // 상단 호출 불가
+                var call = function(){} // 변수형 함수
+                call(); // 선언후 호출가능
+                
+                call2(); // 상단 호출 가능
+                function call2(){
+                }
+            3) setTimout, setInterval을 활용하면
+                시간을 지연시키기에 하단에 있는 DOM이 함수 처리
+
+
+
+
+        */
+        document.querySelector("h2")
+
+    </script>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>사람인</title>
+  <style type="text/css">
+    body, h1, h2, h3, p, ul, li {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #ffffff;
+      color: #000000;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: solid 1px;
+    }
+    .logo img {
+      height: 40px;
+      width: auto;
+      padding-left: 200px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+    nav ul li {
+      margin-right: 10px;
+    }
+    nav ul li a {
+      color: #000000;
+      text-decoration: none;
+      padding: 5px 10px;
+    }
+    main {
+      max-width: 100%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #dbe7ffd5;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #banner {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #banner h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    #banner p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #c3e1ff;
+      color: #000000;
+      text-decoration: none;
+      border: solid 1px;
+      border-radius: 5px;
+      border-color: #000000;
+    }
+    #job-listings h2 {
+      margin-bottom: 10px;
+      padding-left: 200px;
+    }
+    #job-listings ul {
+      list-style: none;
+      padding-left: 200px;
+    }
+    #job-listings li {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+    footer {
+      text-align: center;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+    }
+    .search-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+    }
+    .search-box {
+      padding: 11px;
+      font-size: 16px;
+      border: 3px solid #a0ff74;
+      border-radius: 4px;
+      width: 600px;
+    }
+    .main-menu {
+      display: flex;
+      margin-top: 3px;
+      padding-left: 200px;
+    }
+    .main-menu li {
+      list-style: none;
+      padding: 15px;
+      background-color: #f4f4f4;
+      transition: transform 0.3s ease-in-out;
+      cursor: pointer;
+    }
+    .main-menu li:hover {
+      transform: scale(1.1);
+      font-size: 20px;
+    }
+    .box-container {
+        display: flex;
+        justify-content: center;
+    }
+    .box {
+      border: 1px solid #3d43b6;
+      padding: 10px;
+      width: 280px;
+      height: 180px;
+      text-align: center;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="C:\Users\user\Desktop\로고2.png" alt="사람인 로고">
+    </div>
+    <div class="search-container">
+      <input type="text" placeholder="땡큐 베리 매치, 사람인! " class="search-box">
+    </div>
+    <nav>
+      <ul style="padding-right: 200px;">
+        <li><a>로그인</a></li>
+        <li><a>회원가입</a></li>
+        <li><a>프로필 등록</a></li>
+        <li><a>기업서비스</a></li>
+      </ul>
+    </nav>
+  </header>
+  <ul class="main-menu">
+    <li>채용정보</li>
+    <li>포지션MATCH</li>
+    <li>신입/인턴</li>
+    <li>기업/연봉</li>
+    <li>커리어성장</li>
+    <li>커뮤니티</li>
+  </ul>
+  <main>
+    <section id="banner">
+      <h1>취업의 시작, 사람인</h1>
+      <p>다양한 채용 정보와 인재를 연결합니다.</p>
+      <a class="cta-button">채용공고 매치</a>
+    </section>
+    <section id="job-listings">
+      <h2>인기 구인 정보</h2>
+      <ul>
+        <li>
+          <h3>웹 개발자</h3>
+          <p>경력 3년 이상 / 서울</p>
+        </li>
+        <li>
+          <h3>마케팅 전문가</h3>
+          <p>경력 무관 / 전국</p>
+        </li>
+        <li>
+          <h3>디자이너</h3>
+          <p>경력 1년 이상 / 부산</p>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <div class="box-container">
+    <div class="box">채용공고1</div>
+    <div class="box">채용공고2</div>
+    <div class="box">채용공고3</div>
+    <div class="box">채용공고4</div>
+  </div><br>
+  <div class="box-container">
+    <div class="box">채용공고1</div>
+    <div class="box">채용공고2</div>
+    <div class="box">채용공고3</div>
+    <div class="box">채용공고4</div>
+  </div><br>
+  <div class="box-container">
+    <div class="box">채용공고1</div>
+    <div class="box">채용공고2</div>
+    <div class="box">채용공고3</div>
+    <div class="box">채용공고4</div>
+  </div><br>
+  <div class="box-container">
+    <div class="box">채용공고1</div>
+    <div class="box">채용공고2</div>
+    <div class="box">채용공고3</div>
+    <div class="box">채용공고4</div>
+  </div><br>
+  <div class="box-container">
+    <div class="box">채용공고1</div>
+    <div class="box">채용공고2</div>
+    <div class="box">채용공고3</div>
+    <div class="box">채용공고4</div>
+  </div><br>
+  <footer>
+    <p>Copyright (c) (주)사람인. All rights reserved.</p>
+  </footer>
+</body>
+</html>

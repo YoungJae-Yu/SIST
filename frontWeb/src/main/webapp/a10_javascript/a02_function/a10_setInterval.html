@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        // a10_setInterval.html
+       // h3를 7개 선언하고,
+       // 시작하자 h3첫번째 부터 하나씩
+       // 안녕하세요 표시..
+       // var h3Arr = document.querySelectorAll("h3")
+       // idx 증가 ... h3Arr[idx]
+       var idx = 0;
+       var color = ['red','orange','yellow','green','blue','navy','purple']
+       var in01 = setInterval(()=>{
+        // 1초마다 수행할 내용을
+            var h3Arr = document.querySelectorAll("h3")
+            h3Arr[idx].style.background=color[idx]
+            h3Arr[idx++].innerText=idx+") 안녕하세요~"
+            if(idx==7){
+                alert("종료")
+                clearInterval(in01)
+            }
+
+       },1000)
+
+       function start(){
+            var tdArr = document.querySelectorAll("td")
+            // td의 모든 내용을 객체로 정의
+
+            // setInterval(반복할함수, 반복시간단위 1/1000)
+            var int01 = setInterval(()=>{
+
+                // 배열. forEach()
+                // 해당 DOM 객체의 모든 내용을 배경색상을
+                // 흰색으로 처리(반복시 마다 흰색을 처리하기 위해)
+                tdArr.forEach(function(ob,idx){
+                    // ob : 각각의 td를 지칭.
+                    ob.style.background="white"
+                })
+                // Math.floor() : 실수데이터 절삭처리
+                // Math.random()*경우의수 9가지 0~8
+                // 테이블의 td cell의 index로 지정하여 임의로
+                // 색상을 처리하기 위해서 처리..
+                var rIdx = Math.floor(Math.random()*9)
+                tdArr[rIdx].style.background="yellow"
+                tdArr[rIdx].onclick=function(){
+                    alert("종료!")
+                    // 클릭시, clearInterval(변수명)
+                    // 1. 반복을 중지
+                    // 2. 메모리를 해제
+                    clearInterval(int01)
+                }
+            },500)
+       }
+    </script>
+</head>
+<body>
+    <h2 onclick="start()">setInterval연습</h2>
+    <table width="300" height="300" border>
+        <tr><td></td><td></td><td></td></tr>        
+        <tr><td></td><td></td><td></td></tr>        
+        <tr><td></td><td></td><td></td></tr>        
+    </table>
+
+    <h3>타이틀</h3>
+    <h3>타이틀</h3>
+    <h3>타이틀</h3>
+    <h3>타이틀</h3>
+    <h3>타이틀</h3>
+    <h3>타이틀</h3>
+    <h3>타이틀</h3>
+
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

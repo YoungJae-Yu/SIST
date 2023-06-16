@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        #박스모델
+        1. html 태그중에서 공간을 처리하는 박스형 태그들이 있다.
+        2. 주로 div,p등으로 block형태로 넓이와 높이를 가지는 요소들을 말한다.
+        3. 이 박스형 모델은 해당 내용에 따른 주요 단계별 속성을 지정할 수 있다.
+        4. 구성요소의 단계별 내용
+            1) 가장 내부를 컨텐츠라고 하는데(주로 문자나, 이미지, 기타 포함되는 요소를 지칭한다.)
+            2) 다른 패딩(padding) : 테두리선을 나타내는 border와 사이의 간격을 설정하는 요소를 말한다.
+            3) 테두리(border) : padding 외부에 외곽선으로 직선이나 점선 혹은
+                이미지로 테두리를 그릴 수 있는 경계선을 말한다.
+            4) 여백(margin) : 박스의 맨 바깥 영역으로 테두리(border)와 
+                외부 다른 요소들과의 간격을 지정할 때 활용된다.
+        */
+    </style>
+</head>
+<body>
+    <!--
+        border:유형 굵기 색상
+            한번에 border의 속성을 지정할 때, 활용된다.
+        1. 각 border의 위치에 따른 속성
+            border top, border-bottom, border-left, border-right
+
+        ex) border의 옵션을 설정하여 각 방향별로 다른 색상을
+            설정하여 화면에 출력하세요
+    -->
+    <div style="border: solid 1px red;width: 70px;height: 70px;">
+        <span style="border: solid 1px blue;">안녕</span>
+    </div>
+    <br>
+    <div style="border-top: solid 1px rgb(15, 108, 229);width: 70px;height: 70px;">
+        <span style="border: solid 1px blue;">안녕</span>
+    </div>
+    <br>
+    <div style="border-bottom: solid 1px rgb(0, 255, 38);width: 70px;height: 70px;">
+        <span style="border: solid 1px blue;">안녕</span>
+    </div>
+    <br>
+    <div style="border-left: solid 1px rgb(255, 251, 0);width: 70px;height: 70px;">
+        <span style="border: solid 1px blue;">안녕</span>
+    </div>
+    <br>
+    <div style="border-right: solid 1px rgb(255, 0, 225);width: 70px;height: 70px;">
+        <span style="border: solid 1px blue;">안녕</span>
+    </div>
+    <br>
+    <div style="border: solid 1px rgb(255, 145, 0);width: 70px;height: 70px;">
+        <span style="border: solid 1px blue;">안녕</span>
+    </div>
+    <br>
+    <div style="border-top: solid 1px red;width: 70px;height: 70px;">
+        <span style="border: solid 1px blue;">안녕</span>
+    </div>
+    <br>
+    <div style="border-bottom: solid 1px red;width: 70px;height: 70px;">
+        <span style="border: solid 1px blue;">안녕</span>
+    </div>
+    <br>
+    <div style="border-left: solid 1px red;width: 70px;height: 70px;">
+        <span style="border: solid 1px blue;">안녕</span>
+    </div>
+    <br>
+    <div style="border-right: solid 1px red;width: 70px;height: 70px;">
+        <span style="border: solid 1px blue;">안녕</span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    /*ex) a20_hoverExp.html
+            h3 안녕하세요 리스트 5개 만들고, hover와 active 처리를하여
+            색상과 배경색상, 글자 크기 변경처리.. */ 
+        h3:hover{background-color: aquamarine;}
+        h3:active{font-size: 26px; color:deeppink}
+        h3{text-align:center;}
+        h3::first-letter{color: blue;font-size: 33px;}
+        input:focus{background-color: rgb(0, 0, 0);color: rgb(255, 255, 255);}
+        /*
+        ex) a21_formFocus 아래와 같이 구현하되 이름의 성을 글씨크기와 색상을
+        다르게 처리하고, 점수를 입력할 때,배경색과 글자색상을 변경되게 하세요.
+            이름 국어 영어 수학
+            @@@ [   ][   ][   ]
+            @@@ [   ][   ][   ]
+            @@@ [   ][   ][   ]
+        */
+    </style>
+</head>
+    <form>
+        이름:<input type="text"/><br>
+        나이:<input type="text"/><br>
+        사는곳:<input type="text"/><br>
+    </form>
+    <body>
+        <h3>안녕하세요</h3>
+        <h3>안녕하세요</h3>
+        <h3>안녕하세요</h3>
+        <h3>안녕하세요</h3>
+        <h3>안녕하세요</h3>
+    </body>
+</html>

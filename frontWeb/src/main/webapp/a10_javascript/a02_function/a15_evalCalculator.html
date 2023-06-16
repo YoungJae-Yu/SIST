@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # eval("문자열")
+        1. 문자열을 코드로 전환처리하여 실행함수.
+        */
+        function exeCode(){
+            var code01 = document.querySelector("#code01")
+            alert("코드 실행 : "+code01.value)
+            eval(code01.value)
+        }
+        function erase(){
+            code01.value=""
+        }
+        function exp(){
+            var h3Ob = document.querySelector("h3") 
+            alert("연산 실행 : "+h3Ob.value)
+            eval(h3Ob.value)
+        }
+        function showCal(){
+            var calcuOb = document.querySelector("#calcu")
+            // [3*4][계산]
+            // <input id="calcu" value="3*4">
+            var show = calcuOb.value
+            // 위와 같이 입력 후, click으로 함수를 호출하면
+            // DOM객체를 호출하고, 가지고 있는 속성 value
+            // 통해서 입력값을 가져올 수 있다.
+            var h3Ob = document.querySelector("h3")
+            h3Ob.innerText=show+" = "+eval(show)
+            // 하단에 DOM객체 호출
+            // innerText : 출력을 나타내는 속성
+            // show : 입력된 내용(3*4)
+            // " = "+eval(show) : 코드처리
+            // 결국은 3*4 = 12를 출력하게 된다.
+            calcuOb.value=""
+            calcuOb.focus()
+            // 입력된 내용을 속성으로 초기화
+        }
+    </script>
+</head>
+<body>
+    <h2>코드를 입력하세요</h2>
+    <textarea id="code01"cols="20"rows="10"></textarea>
+    <input type="button" onclick="exeCode()" value="실행"/>
+    <input type="button" onclick="erase()" value="코드삭제"/>
+    <br>
+    <input type="text" id="calcu"/>
+    <input type="button" value="계산" onclick="showCal()"/>
+    <!--ex) input에 입력한내용(연산식)을 [합산] 눌렀을 때.
+        계산된 결과가 아래에 입력된 내용과 함께 출력되게 하세요.
+    [3*3+5] [계산]
+    3*3+5=14 ==> 입력 후, 계산 클릭시 하단에 출력
+    -->
+    <h3></h3>
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

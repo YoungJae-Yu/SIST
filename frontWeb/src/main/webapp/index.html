@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>Insert title here</title>
+      <style type = "text/css">
+
+body {
+  width: 500px;
+  margin: 0 auto;
+  padding: 50px;
+  background-color: #D9D9D9;
+}
+
+div.arte {
+  margin: 20px 0;
+  text-align: left;
+}
+
+div.arte.float {
+  width: 158px;
+  float: left;
+  overflow: hidden;
+  margin-left: 1%;
+}
+
+label {
+  display: block;
+  padding-bottom: 10px;
+  font-size: 1.25em;
+}
+input, select {
+  border-radius: 2px;
+  border: 2px solid grey;
+  box-sizing: border-box;
+  font-size: 1.25em;
+  width: 100%;
+  padding: 10px;
+}
+
+div.arte.float input {
+  width: 95%;
+  float: left;
+  overflow: hidden;
+}
+
+hr {
+  border: 1px solid gray;
+}
+
+button {
+  height: 50px;
+  background: #747474;
+  border: none;
+  color: white;
+  font-size: 1.25em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  border: 2px solid black;
+}
+
+#notice {
+  overflow: auto;
+  width:500px;
+  height: 350px;
+  border: 1px solid;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+#personal {
+  overflow: auto;
+  width:500px;
+  height: 150px;
+  border: 1px solid;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+      </style>
+   </head>
+   <body>
+
+      <form action="reservation.php" method="post">
+         <h3 style="text-align: center;">ARTE MUSEUM</h3>
+         <div class="arte">
+            <label for="email">예약자 아이디</label>
+            <input type="email" id="resId" name="visitor_id" placeholder="higirl" required>
+         </div>
+         <div class="arte">
+           <label for="name">예약자명</label>
+           <input type="text" id="name" name="visitor_name" placeholder="홍길동" required>
+         </div>
+         <div class="arte">
+           <label for="email">예약자 이메일</label>
+           <input type="email" id="email" name="visitor_email" placeholder="xxxxxx@xxxx.xxx" required>
+         </div>
+
+         <div class="arte">
+           <label for="phone">예약자 전화번호</label>
+           <input type="tel" id="phone" name="visitor_phone" placeholder="000-0000-0000" pattern=(\d{3})-?\s?(\d{4})-?\s?(\d{4}) required>
+         </div>
+         <hr>
+         <div class="arte float">
+           <label for="adult">성인</label>
+           <input type="number" id="adult" name="total_adults" placeholder="1" min="0" required>
+         </div>
+         <div class="arte float">
+           <label for="puberty">청소년</label>
+           <input type="number" id="puberty" name="total_puberty" placeholder="1" min="0" required>
+         </div>
+         <div class="arte float">
+            <label for="child">소인</label>
+            <input type="number" id="child" name="total_children" placeholder="1" min="0" required>
+           </div>
+           <br>
+         <div class="arte">
+           <label for="reservation-date">예약일</label>
+           <input type="date" id="reservation-date" name="res" required>
+         </div>
+         <div class="arte">
+           <label for="loc-selection">지점 선택</label>
+           <select id="loc-selection" name="loc" required>
+            <option value="jeju">제주</option>
+            <option value="yeosu" selected>여수</option>
+            <option value="kangneung">강릉</option>
+           </select>
+         </div>
+         <hr>
+         <form class="arte">
+            <label for="agreement">약관 동의</label>
+            <div id="personal">
+             개인정보의 수집 및 이용 동의서<br>
+             - 이용자가 제공한 모든 정보는 다음의 목적을 위해 활용하며, 하기 목적 이외의 용도로는 사용되지 않습니다.<br>
+            ① 개인정보 수집 항목 및 수집·이용 목적<br>
+             가) 수집 항목 (필수항목)<br>
+            - 성명(국문), 주민등록번호, 주소, 전화번호(자택, 휴대전화), 사진, 이메일, 나이, 재학정보, 병역사항,
+            외국어 점수, 가족관계, 재산정도, 수상내역, 사회활동, 타 장학금 수혜현황, 요식업 종사 현황 등 지원
+            신청서에 기재된 정보 또는 신청자가 제공한 정보<br>
+             나) 수집 및 이용 목적<br>
+            -  연락 및 자격확인<br>
+            - 자원관리<br>
+             ② 개인정보 보유 및 이용기간<br>
+             - 수집·이용 동의일로부터 개인정보의 수집·이용목적을 달성할 때까지<br>
+             ③ 동의거부관리<br>
+             - 귀하께서는 본 안내에 따른 개인정보 수집, 이용에 대하여 동의를 거부하실 권리가 있습니다.<br>
+             다만, 귀하가 개인정보의 수집/이용에 동의를 거부하시는 경우에 장학생 선발 과정에 있어 불이익이 발생할 수
+            있음을 알려드립니다.
+    
+            </div>
+             <input type="radio" id="agreement" name="agree" value="yes" style="margin: 0px 3px 1px 0px; width:13px; height:13px">동의합니다
+             <input type="radio" id="agreement" name="agree" value="no" style="margin: 0px 3px 1px 0px; width:13px; height:13px">동의하지 않습니다
+           </form>
+           <hr>
+           <form class="arte">
+            <label for="check">유의사항 확인</label>
+            <div id ="notice">
+               1<br>
+               6월 13일, 14일 임시 휴관 예정<br>
+               아르떼뮤지엄 제주는 6월 13일, 14일 양일간 보다 나은 관람 환경 조성을 위해 임시휴관을 진행할 예정입니다.<br>
+    
+               2<br>
+               아르떼뮤지엄은 구매 1시간 이후 사용가능합니다.<br>
+               매표소에서 바코드 인증이 필요하며, 구매 60분 내에는 현장인증 및 입장이 불가함.<br>
+    
+               3<br>
+               이용조건/관광지정보 상세정보 확인필수<br>
+               4<br>
+               * 제주도민 및 할인대상자는 현장구매만 가능 *<br>
+               - 할인요금 적용대상 : 아동(2017년~2019년생), 경로(1959년 이전 출생), 장애인, 유공자, 군인(병장 이하 의무복무자에 한함)<br>
+               - 신분증/증빙서류 미지참 시 혜택 적용 불가, 중복할인 불가<br>
+               - 유아(2020년 이후 출생)는 무료입장 (증빙서류 지참자에 한함)<br>
+    
+               5<br>
+               [NOTICE]<br>
+               - 아르떼뮤지엄은 매일 2회 전시관 내부 환기/소독을 진행하고 있습니다.<br>
+    
+               6<br>
+               [아르떼뮤지엄 입장권+ARTE TEA BAR(1인)]<br>
+               ARTE TEA BAR 체험 이용티켓 구매자만 입장 가능합니다.<br>
+               - 비구매 고객은 입장불가<br>
+               - 입장을 원할 경우, 체험 이용티켓을 TEA BAR현장에서 추가 결제(4,000원) 후 입장 가능<br>
+               - 1인 1잔, TAKE OUT 불가<br>
+    
+               7<br>
+               [티켓이용방법]<br>
+               상품 구매 시 네이버 알림이 발송 됩니다.<br>
+               (별도 카카오톡 또는 SMS가 발송되지 않습니다.)<br>
+               현장 방문하여 바코드 제시 후 사용가능합니다.<br>
+    
+               * 예약 티켓 내역확인 방법<br>
+               1. 네이버 알림 > 상세내역 보기에서 확인 가능<br>
+               2. 네이버 MY플레이스 > 예약/주문 내에서 확인 가능<br>
+    
+               ※ 업체별 이용시간/이용조건이 상이하오니<br>
+               상세정보 반드시 확인하시어 이용 바랍니다.<br>
+            </div>
+             <input type="radio" id="check" name="agree" value="yes" style="margin: 0px 3px 1px 0px; width:13px; height:13px">동의합니다
+             <input type="radio" id="check" name="agree" value="no" style="margin: 0px 3px 1px 0px; width:13px; height:13px">동의하지 않습니다
+           </from>
+           <hr>
+         <button type="submit" value="예약">예약 하기</button>
+        </form>
+        
+   </body>
+
+
+</html>

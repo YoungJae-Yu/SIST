@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // '', null, 0 ==> false
+        alert('' == false);
+        alert('' == 0);
+        alert(0 == false);
+        // '문자열' ==  273
+        // 내용만 비교해서 처리..
+        alert('273' == 273); //true
+
+        alert(273 == 273);
+        // javascript는 데이터유형이 조금은
+        // 자동변환처리로 자유롭기에,
+        // 기본비교연산자(==)도 내용만 같으면
+        // true을 처리해준다.
+        // 단, type과 값을 둘다 check해서 같을 때,
+        // true 비교연산자가 있는데, 
+        // ===, !==
+        // === : 유형과 데이터가 같은 때 true
+        // 그외는 모두다 false
+        // ex) alert('273' === 273); // false
+    </script>
+</head>
+<body>
+
+</body>
+</html>

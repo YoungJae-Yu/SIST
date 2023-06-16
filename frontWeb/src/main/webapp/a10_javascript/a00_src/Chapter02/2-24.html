@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 변수를 선언합니다.
+        var stringVar = 'String';
+        var numberVar = 273;
+        var booleanVar = true;
+        var functionVar = function () { };
+        var objectVar = {};
+        // typeof 함수를 통해서 데이터 유형 확인
+        // 자바스크립트의 데이터 유형
+        // 1. string, number, boolean, function, object
+        // typeof(변수명), typeof 변수명
+        // 주의)에러 트래킹시에 객체인데 문자열로 되어 있거나
+        //      문자열인데 객체로 되어 있는 경우, 정상적인 처리가 되지 않는다.
+        //      위 함수를 이용해서 반드시 확인
+        // 2. 자바스크립트는 자동형변환을 사용해서 처리를 해준다.
+        //    "2"*"3" ==> 6
+        //    단, + 연산자는 문자를 이어주는 처리와 충돌되므로,
+        //    합산이 필요하면 명시적으로 함수를 이용해서 형변환하여야 한다.
+        //    "2"+ 3 ==> "23", parseInt("2") + 3 ==> 5
+        alert(typeof stringVar)
+        alert(typeof numberVar)
+        alert(typeof booleanVar)
+        alert(typeof functionVar)
+        alert(typeof objectVar)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

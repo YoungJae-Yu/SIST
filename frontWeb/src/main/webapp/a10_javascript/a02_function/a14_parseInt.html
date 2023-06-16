@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        5. parseInt()
+            1) 정수형 문자열을 정수로 변환
+            2) 실수형 문자열도 절삭해서 정수로 변환
+            3) 숫자로 시작하는 데이터는 뒤에 문자가 추가되기
+            전까지 숫자만 추출해서 형변환해준다.
+            4) 2진수, 8,16진수 등을 10진수로 변환 해준다.
+                parseInt(데이터, 진수)==> 10진수로 변경
+        */
+        // alert(parseInt("25")+parseInt("5"))
+        // alert( parseInt("25.7")+parseInt("5.2") )
+        // alert(parseInt(30.7))
+        // alert(parseInt(Math.random()*6+1))
+        // alert(parseInt("1000원")+parseInt("2000원"))
+        
+        // alert(parseInt(1010,2))
+        // alert(parseInt(24,8))
+        // alert(parseInt("1e",16))
+    //    alert(parseFloat("3.14PI")+parseFloat("5.7cm"))
+            
+       
+    </script>
+</head>
+<body>
+    <h2>물건 가격</h2>
+    <h3></h3>
+</body>
+    <script>
+        var h2Ob = document.querySelector("h2")
+        let price = prompt("가격을 입력(원/달러):","0원")
+        let cnt = prompt("갯수를 입력(개/박스/송이):","0개")
+        let tot = parseInt(price) * parseInt(cnt) 
+        h2Ob.innerText = "가격:"+price+", 갯수:"+cnt+", 총비용:"+tot      
+    </script>
+</html>

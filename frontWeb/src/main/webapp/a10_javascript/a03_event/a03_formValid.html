@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        #  form 입력 요소객체 처리 이벤트 핸들러
+        1. form은 프로그래머가 가장 많이 활용하는 데이터 처리
+        방법 중에 하나이다.
+        2. front단에서 서버단에 데이터를 전송할 때, 입력하는
+        태그의 요소 내용이다.
+        3. 서버에 전달되기 전에 front단에서 유효성을 check할때,
+        js코드가 많이 활용된다.
+        4. 접근할 DOM객체와 속성들
+            1) 전송하기 직전 이벤트 핸들러 선언
+                <form onsumit="이벤트 핸들러">
+                - form요소 가운데 <input type = "submit"가
+                서버에 form에 소속된 요소객체들을
+                name = "키" value = "값" 형식으로 전달하는데,
+                최종적으로 전송전에 처리할 내용에 대하여
+                이벤트 핸들러를 선언한다.
+                - 보통 필수 데이터 입력 유무나 형식이 맞는지
+                등에 대한 처리를 하는 것이 일반적이다.
+            2) 위 내용을 type="submit"를 type="button"으로
+                처리하고, 해당 버튼을 클릭시,
+                유효성을 다 check하고 문제 없을시
+                document.querySelector("form").submit()로
+                처리하는 경우도 있다.
+
+        */
+        function ckSendData(){
+            // alert("서버 전송전 마지막으로 점검")
+            var nameOb = document.querySelector("[name=name]")
+            var ageOb = document.querySelector("[name=age]")
+            // 입력값이 없을 때..
+            if(nameOb.value==""){
+                alert("이름이 입력되지 않았네요")
+                nameOb.focus()
+                return false
+            }
+            if(ageOb.value==""){
+                alert("나이가 입력되지 않았네요")
+                ageOb.focus()
+                return false
+            }
+            // ?name=홍길동 로 전송 처리..
+            // ex) a04_login.html
+            // 아이디 패스워드 화면 만들고,
+            // 둘다 입력될 때, 전송되고 그렇지 않으면
+            // 포커스 위치시키고 입력하세요 경고창 뜨게 하세요.
+        }
+    </script>
+</head>
+<body>
+    <h2>회원등록</h2>
+    <form onsubmit="return ckSendData()">
+        이름 : <input type="text" name="name" value=""/>
+        나이 : <input type="text" name="age" value=""/>
+        <input type="submit" value="서버에 전송"/>
+    </form>
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	 <script type="text/javascript">
+        /*
+        # form에서 사용되는 이벤트(요소객체 바로 선언)
+        1. 버튼 클릭 이벤트
+            type="submit"
+            type="핸들러함수"
+        2. 버튼 더블 클릭 이벤트
+            ondblclick="핸들러함수"
+        3. 키이벤트
+            onkeyup="핸들러함수"
+        4.포커스이벤트
+            onfocus="핸들러함수"
+        5. onsubmit 이벤트
+            <form onsubmit="return 이벤트핸들러함수()"
+            서버에 데이터 전달전에 처리할 수 있는 이벤트
+            핸들러 함수 처리..
+        # 변수를 활용하여 이벤트 처리
+        1. DOM객체명.on이벤트명 = 함수
+        ex) <input type="text" name="id"/>
+        var idOb = document.querySelector("[name=id]")
+        idOb.onfocus=function(){
+            this.style.background="yellow"
+            this.style.fontSize="1.5em"
+        }
+        # 이벤트의 강제와 이벤트의 종료
+        1. 이벤트의 특정한 경우에 해당 이벤트가 발생하지 않더라도
+        강제할 수 있다.
+        ex1) 유효하지 않은 입력이 있을 때, 해당 내용을 지우고,
+        특정한 요소객체에 focus를 위치 시킬 때..
+            if(conOb.value.length>20){
+                conOb.value=conOb.value.substring(0,20)
+                conOb.focus()
+                //20자 이상이면 20자로 잘라서 할당하고,
+                //해당 위치에 포커싱한 경우
+            }
+            if(idOb.value=='himan'){
+                idOb.value=""
+                idOb.focus()
+                // himan일 때, 지우고, 다시 입력할 수 있게
+                // 강제 포커싱 처리..
+            }
+        ex2) 선언된 이벤트를 강제로 프로그램에 의해 수행되게 할 수 있다.
+        # form에 입력 처리되는 key이벤트
+            btnOb.onclick=function(){
+                var tot = num01Ob.value * num02Ob.value
+                sumObj.value = tot
+            }
+            otherOb.onmouseover=function(){
+                btnOb.click() //코드상으로 이벤트를 실행
+            }
+        2. 이벤트 종료
+            ex) 좋아요/싫어요 한번만 수행할 수 있는 클릭을 
+            화면에서 처리하고, 더 이상 이벤트 해당 브라우저(클라이언트)
+            수행되지 않게 하는 이벤트 종료 처리하는 내용.
+            favorBtn.onclick=function(){
+                show.innerText += "♥"
+                this.onclick=null 
+                // 이벤트 한번 후 , 더 이상 처리 못하게 null 할당 처리
+            }
+        1. 유효성 처리
+            1) 입력 여부
+            2) 값의 크기 유효성 처리
+        */
+    </script>
+</head>
+<body>
+    <h2>form 하위 요소 key이벤트 처리</h2>
+    이름:<input type="text" name="name"/>
+    <span id="validId"></span><br>
+    <br>
+    <textarea type="text" name="textInput" style="background-color: rgb(235, 178, 126);">글자 입력</textarea>
+    <span id="validId2"></span><br>
+    <br>
+    아아디 입력 :<input type="text" name="id"/>
+    <input type="submit" value="로그인"/><br>
+    <span id="validId3"></span><br>
+</body>
+    <script type="text/javascript">
+        var nameOb = document.querySelector("[name=name]")
+        // 이름 항목에 입력된 글자수를 키를 입력할 때마다
+        // 출력 표시
+        // DOM객체.onkeyup : 해당 키를 입력 처리되는 이벤트
+        // = function(){} : 처리되는 이벤트 핸들러 함수
+        nameOb.onkeyup=function(){
+            // nameOb.value.length() 자바의 글자수
+            // nameOb.value.length : 자바스크립트의 글자수
+            var validIdOb = document.querySelector("#validId")
+            validIdOb.innerText="입력된 글자수:"+nameOb.value.length+"자"
+        }
+        // textarea를 만들고,
+        // @@/20자 표시를 만들어보세요..
+        // 전체 입력할 수 있는 글자 수 처리..
+        var textInputOb = document.querySelector("[name=textInput]")
+        textInputOb.onkeyup=function(){
+            // this : 이벤트가 일어나고 있는 대상 객체
+            // value.length : 해당 객체에 입력된 값의 길이
+            var validId2Ob = document.querySelector("#validId2")
+            if(this.value.length<=20){
+                validId2Ob.innerText=`${this.value.length}/20자`
+            }else{
+                alert("20자를 초과했습니다!")
+                textInputOb.focus()
+                validId2Ob.style.color="red"
+                // this.value.substring(0, 25)
+            }
+        }
+        // ex) 아이디 입력 : [ ] [span]
+        // 입력시, 글자수가 8~16가 아니면 아이디는 8~16자 입력입니다.
+        // 8~16 유효한 아이디 입니다. 출력. 배경색상도 표기.
+        var idOb = document.querySelector("[name=id]")
+        var validId3Ob = document.querySelector("#validId3")
+        idOb.onkeyup=function(){
+                if(this.value.length>=8 && this.value.length<17){
+                    validId3Ob.innerText="유효한 ID입니다."
+                    validId3Ob.style.color="green"
+                }else{
+                    validId3Ob.innerText="ID는 8~16자 입력입니다."
+                    validId3Ob.style.color="red"
+                }
+            }
+        /*
+        # 타이틀
+        */
+    </script>
+
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        /*
+        # let으로 선언한 변수
+        1. 지역변수와 전역변수를 구분해야할 필요성이 있을 때,
+           활용된다.
+        
+        */
+        let var2 = 300; // 전역변수 선언
+        {
+            // 스코프 A
+            // 지역변수 선언
+            let variable = 273;
+            alert(var2)
+        }
+        {
+        // 스코프 B
+            // 다른 block에서 호출하지 못 함..
+            // alert(variable);
+            alert(var2)
+        }
+        // 전역 스코프
+        //alert(variable);
+        alert(var2)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

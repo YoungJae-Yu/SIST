@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        # 가상 클래스(pseudo-class) 선택자
+        1. 어떤 조건이나 상황에서 스타일링을 적용하도록 만든 선택자
+            1) 40개 이상의 많은 가상 클래스 선택자가 있음
+                ex)
+                a:visited{color:green;} 링크로 방문했을 때, 글자 색상을 초록으로 처리
+                li:hover{backgroung-color:yellow;}
+                    리스트에 커서를 위치시켰을 때, 배경색상을 노랑색으로 처리.
+        2. 가상 클래스의 유형과 내용
+            1) 마우스
+                :hover - 마우스의 커서가 해당 요소 객체 위에 위치시켰을 때
+                :active - 마우스로 클릭하여 누르고 있는 상태에서 적용할 스타일 지정
+            2) 폼하위 요소객체
+                :focus - 폼 요소가 키보드나 마우스 클릭으로 포커스를 위치시켰을 때,
+                    적용할 스타일 지정
+                ex) 아이디:[   ]
+                    패스워드:[   ]
+                    input:focus{background-color:yellow;}
+                    입력하기 위해 커서를 위치 시켰을 때, 배경색상을 노랑으로
+                    변경 커서를 다른 곳으로 이동하면 배경색상적용이 사라짐
+            3) 링크
+                :link - 링크된 글자나 이미지가 아직 클릭을 통해 방문하지 않을 때
+                    적용할 스타일 지정
+                :visited - 링크된 글자나 요소객체가 클릭 후, 방문한 후에 다시
+                    현재 페이지를 볼 때, 방문 후인 것을 구분하기 위한 css적용
+            4) 블럭형 태그에 적용(주의 inline형 태그에는 적용되지 않음)
+                :first-letter - p, div등과 같은 문자를 포함하고 있는 블럭형
+                    태그의 첫글자에 스타일 적용하는 것을 말한다.   
+                :first-line - p, div등과 같은 문자를 포함하고 있는 블럭형
+                    태그에 첫 라인에 적용할 스타일을 지정할 때, 사용한다.
+            5) 구조처리 - 반복적으로 처리되는 태그에 대하여 구조적으로 
+                반복적인 css적용이 필요할 때, 사용된다.
+                ex) 짝수번째 라인, 홀수 번째 요소객수, 3개 단위 데이터에
+                    데이터 css적용 등.
+                :nth-child(even|odd) : 해당 반복적인 태그의 순서기준으로
+                    짝수인 것 또는홀수인 것에 대한 적용을 할 때, 사용된다.
+                    ex) 주로 테이블에 행단위로 짝/홀 행을 구분할 때, 많이 활용한다.
+                    :hover와 함께 각 라인별 데이터를 명확하게 확인하게 하기 위해서 사용한다.
+                :nth-child(1) : 첫번째 자식 태그에 스타일 적용
+                :nth-child(3n+1) : 반복된 해당 요소객체의 자식 태그가 3개 
+                    단위로 반복 스타일 적용하는 것으로 3개 단위마다 첫번째
+                    것에 대한 선택자를 지칭한다.
+                    ex) h2:nth-child(3n+1)
+                    <h2 ==> 3n+1 *
+                    <h2 ==> 3n+2
+                    <h2 ==> 3n
+                    <h2 ==> 3n+1 *
+                    <h2 ==> 3n+2
+                    <h2 ==> 3n
+                    <h2 *
+        */
+        td:hover{background-color: orange;}
+        tr:active{font-size: 30px;}
+        /*ex) a20_hoverExp.html
+            h3 안녕하세요 리스트 5개 만들고, hover와 active 처리를하여
+            색상과 배경색상, 글자 크기 변경처리.. 
+        */
+    </style>
+</head>
+<body>
+    <!-- hover, active -->
+    <table align="center" border="2px">
+    <tr><td>안녕하세요(hover와 active처리)</td></tr>
+    <tr><td>안녕하세요(hover와 active처리)</td></tr>
+    <tr><td>안녕하세요(hover와 active처리)</td></tr>
+    <tr><td>안녕하세요(hover와 active처리)</td></tr>
+    <tr><td>안녕하세요(hover와 active처리)</td></tr>
+    </table>    
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 문자열을 전달하거나 사용
+        // "" 사이에 '' 넣거나
+        // '' 사이에 "" 넣거나
+        alert('This is "string"');
+        alert("This is 'string'");
+        function call(str){
+            alert(str)
+        }
+        // ex1) 홍길동이 "안녕하세요" 라고 말한다.
+        // ex2) 김영희가 '반가워요'라고 말한다.
+        //  alert()으로 로딩해주세요..
+        alert('홍길동이 "안녕하세요"라고 말한다.')
+        alert("김영희가 '반가워요'라고 말한다.")
+    </script>
+</head>
+<body>
+    <h1 onclick="call('메시지')">안녕1</h1>
+    <h1 onclick='call("메시지")'>안녕2</h1>
+    <a href="javascript:call('링크메시지')">링크메시지</a>
+
+</body>
+</html>

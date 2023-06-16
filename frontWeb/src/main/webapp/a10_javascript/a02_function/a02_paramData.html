@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # 함수의 매개변수 선언과 전달
+        1. 함수는 호출하는 곳에서 데이터를 전달하고 해당 데이터를 지역변수로
+            여러가지 기능 처리를 할 수 있다.
+        2. 기본 형식(1개 기본 데이터 유형 전달)
+            function call(num01){
+                // 숫자형 매개변수 전달되었을 때..
+                alert("전달된 숫자:"+num01)
+            }
+        */
+        function call(num){
+            alert('숫자:'+num)
+        }
+        function call2(str){
+            alert('문자:'+str)
+        }
+        function pirce(num){
+            alert('가격:'+num)
+        }
+        
+        // ex) h3로 구매할 물건명을 표현하고 클릭시 물건의 가격을
+        // alret으로 표현되게 하세요.
+        // h3 사과 ==> 클릭시 가격인 2000 출력
+        // h3 바나나 ==> 클릭시 가격인 4000 출력
+
+        // ex) 회원명으로 리스트가 있고, 클릭시, 
+        // 해당회원의 권한(관리자, 일반사용자,수퍼유저)을
+        // alret으로 출력되게 하세요..
+        function call03(auth){
+            alert('권한:'+auth)
+        }
+    </script>
+</head>
+<body>
+    <h2 onclick="call03('관리자')">홍길동</h2>
+    <h2 onclick="call03('일반사용자')">김길동</h2>
+    <h2 onclick="call03('수퍼유저')">박길동</h2>
+    <h3 onclick="pirce(2000)">사과</h3>
+    <h3 onclick="pirce(4000)">바나나</h3>
+    <h2 onclick="call(1)">매개변수 전달 연습1</h2>
+    <h2 onclick="call(2)">매개변수 전달 연습2</h2>
+    <h2 onclick="call(3)">매개변수 전달 연습3</h2>
+    <h2 onclick="call2('사과')">매개변수 문자 전달 연습1</h2>
+    <h2 onclick="call2('바나나')">매개변수 문자 전달 연습2</h2>
+    <h2 onclick="call2('오렌지')">매개변수 문자 전달 연습3</h2>
+
+</body>
+    <script>
+        
+    </script>
+</html>

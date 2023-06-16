@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # 함수를 통한 객체 전달
+        1. 함수의 매개변수를 통해서 객체를 전달할 수 있다.
+        2. 객체의 종류
+            1) 배열
+                var arry = [1000,2000,3000]
+            2) json객체
+                var obj = {속성:속성값,...}
+            3) DOM객체
+                사용하는 화명상의 태그를 객체화 하여
+                말한다.
+        3. 매개변수 선언과 객체 전달의 유형
+        */
+        // 배열 전달.
+        function fun01(arry){
+            alert("배열데이터:"+arry)
+        }
+        
+        function fun02(obj){
+            alert("객체:"+obj.name+","+obj.age)
+            // for(var 속성 in 객체)
+            for(var pro in obj){
+            alert(pro+":"+obj[pro])// pro-속성, obj[pro] - 속성값
+            }
+            console.log(obj)
+        }
+        /*
+        # json객체
+        1. {속성:"문자열데이터",속성:숫자}
+        */
+       // ex) json형태로 물건명 가격 갯수를 속성/속성값으로 fun03으로
+       //  전달하고, 해당 속성속성값 for in 구문으로 출력하세요
+       function fun03(obj){
+            alert("물건명:"+obj.pname+", 가격:"+obj.price+", 갯수:"+obj.cnt)
+            // for(var 속성 in 객체)
+            for(var pro in obj){
+            alert(pro+" : "+obj[pro])// pro-속성, obj[pro] - 속성값
+            }
+            console.log(obj)
+        }
+    </script>
+</head>
+<body>
+    <h2 onclick="fun03({pname:'사과', price:2500, cnt:5})">물건 호출</h2>
+
+    <h2 onclick="fun02({name:'홍길동', age:25})">객체호출</h2>
+    <h2 onclick="fun01([1000,2000])">객체형 데이터 전달(배열1)</h2>
+    <h2 onclick="fun01(['사과','바나나'])">객체형 데이터 전달(배열2)</h2>
+    <h2 onclick="fun01(['오렌지','수박','키위'])">객체형 데이터 전달(배열3)</h2>
+</body>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        #  
+        */
+        
+    </script>
+</head>
+<body>
+    <div id="div01" 
+        style="width: 200px;height: 200px; 
+            border: 1px solid green;"></div>
+    <br>
+    <br>
+    <!--
+    1. 화면구성
+    2. DOM객체 메모리 로딩(선언)
+    3. 개상 DOM객체 이벤트 선언(이벤트 핸들러 함수 할당)
+    4. 이벤트에 의해 처리될 내용 코드 구현..
+-->
+    물건등록:<input type="text" id="prod"/>
+    <h3>물건리스트</h3>
+    <ol id="plist"></ol>
+</body>
+    <script>
+        var div01Ob = document.querySelector("#div01")
+        div01Ob.style.textAlign = "center"
+        div01Ob.onmouseover = function(){
+            this.style.background = "yellow"
+            this.style.textAlign = "center"
+            this.innerText = "마우스오버 이벤트"
+        }
+        div01Ob.onmouseout = function(){
+            this.style.background = "pink"
+            this.innerText = "마우스아웃 이벤트"
+        }
+        div01Ob.ondblclick = function(){
+            this.style.background = "skyblue"
+            this.innerText = "더블클릭 이벤트"
+        }
+
+        var prodOb = document.querySelector("#prod")
+        var plistOb = document.querySelector("#plist")
+        prodOb.onmouseover = function(){
+            this.style.background = "skyblue"
+        }
+        prodOb.onmouseout = function(){
+            this.style.background = "white"
+        }
+        prodOb.ondblclick = function(){
+            var prod = this.value
+            plistOb.innerHTML+="<li>"+prod+"</li>"
+            this.value = ""
+            this.focus()
+        }
+        // 물건 등록 : [   ] - 마우스오버/아웃에 따라 배경색상
+        //                    입력 후, 더블클릭시, 하단에 등록리스트에 추가 
+        // 등록 리스트
+        // @@@
+        /*
+        # 마우스이벤트
+        1. 마우스 커서 위치에 따른 이벤트 처리할 때, 주로 사용된다.
+        2. 종류
+            mouseover : 해당 DOM객체 위치에 마우스 커서가 있을 때
+            mouseout : 해당 DOM객체 위치에 마우스 커서가 있다가 벗어났을 때.
+            click : 클릭시
+            dblclick : 두번 클릭시
+        3. 기본 형식
+            <태그 on이벤트="이벤트핸들러함수()">
+            dom객체.on이벤트=함수; 
+        */
+        
+    </script>
+</html>

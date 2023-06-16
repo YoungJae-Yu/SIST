@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // // 변수를 선언합니다.
+        // var value = 5;
+        // // do while 반복문
+        // do {
+        //     // 조건에 맞지 않더라도 한번은
+        //     // 수행해야 할 필요가 있을 때, 
+        //     // 활용한다.
+        //     alert(value + '번째 반복문');
+        //     value++;
+        // } while (value < 5)
+        /*
+        ex) 컴퓨터가 임의로 구슬을 쥐게 하고(1~5) 홀/짝을
+            입력하여 맞추면 승, 못 맞추면 맞출때까지 
+            do while문을 반복하게 처리하세요.
+            let rCnt = Math.floor(Math.random()*5+1)
+            let comRst = rCnt%2==0?"짝":"홀"
+            let myChoice = prompt("홀? 짝? 입력하세요!","홀");
+
+        */
+        let rCnt = Math.floor(Math.random()*5+1)
+        let comRst = rCnt%2==0?"짝":"홀"
+        let myChoice = ""; 
+        do{
+            myChoice =  prompt("컴퓨터는 과연? 홀? 짝? 입력하세요!","홀");
+            if(comRst==myChoice){
+                alert("맞추었습니다\n컴퓨터의 구슬 수:"+rCnt+", 컴퓨터의 선택:"+comRst)
+            }else{
+                alert("틀렸습니다. 다시!!")
+            }
+        }while(comRst!=myChoice) // 맞추지 않을 때 반복..
+        alert("게임종료!")
+    </script> 
+</head>
+<body>
+
+</body>
+</html>

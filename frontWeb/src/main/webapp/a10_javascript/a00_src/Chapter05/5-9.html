@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 함수를 생성합니다.
+        // function 함수명(매개변수)
+        // return 리턴값
+        // function f(x) { return x * x; }
+        // 함수를 호출합니다.
+        // alert(f(3));
+        // ex) 매개변수와 리턴값을 활용하여,
+        //     입력값을 물건가격과 구매갯수로 총계 리턴
+        function calcu(price, cnt){
+            return price*cnt
+        }
+        alert(calcu(3000,2))
+        // ex) 1에서 for문이용해서 매개변수까지 합산값 리턴
+        function callAll(num){
+            let tot = 0;
+            for(var cnt=1;cnt<=num;cnt++){
+                tot += cnt
+            }
+            return tot
+        }
+        var no = Number(prompt('누적 합산할 데이터 입력:'))
+        alert('1에서 '+no+'까지 합산:'+callAll(no))
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

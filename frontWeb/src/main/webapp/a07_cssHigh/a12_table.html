@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		/*
+		# css3를 통한 표 꾸미기
+		1. 화면에서 가장 데이터를 많이 활용하는 구조가 테이블이라 할 
+		수 있다. 테이블은 2차원의 데이터를 효율적으로 나타낼 수 있는
+		구조이기에 많이 활용된다. 2중 라인으로 되어 있는 테이블을 
+		border를 효과적인 옵션을 통해서 처리하도록 한다.
+		2. 테이블 설정의 css3 주요 옵션
+			1) border:표 테두리, border-bottom : 하단의 테두리 설정
+			2) border-collapse : collapse
+				기본 border cell 2중선을 없애는 옵션
+			3) height/width : td/th의 폭과 넓이 개별적 조정
+                - 통일된 컬럼의 폭을 지정하는 방식
+                    css
+                    col width = "@@%"
+			4) padding : 글자와 border간 여백설정
+			5) text-align : td 셀안에 글자의 정렬처리 
+                ex) 게시판을 제목과 같이 어느정도 내용이 있는 것을
+                    왼쪽 정렬
+                    크기가 고정되고 작은 데이터는 중앙 정렬
+                    숫자형으로 처리하는 데이터를 오른쪽 정렬
+                    위 padding과 함꼐 적절하게 데이터가 출력되게 정렬 처리한다.
+			6) tr:nth-child(even|odd) : 짝수/홀수 단위 행단위
+				css 옵션을 가상 클래스로 선언
+			7) tr:hover : 행단위 커서를 위치시켰을 때, 옵션 설정
+		*/
+		    table{
+				border-collapse: collapse;
+			}
+
+			th,td{
+				padding:5px;
+				height:15px;
+				text-align:center;
+				width:100px;
+			}
+			.center{
+				text-align: center;
+			}
+			thead{
+				background-color: navy;
+				color:bisque
+			}
+			tbody>tr:nth-child(even){
+				background: aliceblue;
+			}
+			tbody>tr:hover{
+				background-color: pink;
+			}
+            /*
+			ex) 회원 정보(아이디, 이름, 나이, 권한, 포인트) 
+			리스트 테이블을 구성하여 위 css 기본 속성을 적용해보세요.
+			a13_memberList.html
+			*/
+			
+
+
+		</style>		
+	</head>
+	<body>
+		<h2 align="center">2023년 1학기 성적</h2>
+		<table align="center" width="80%">
+			<thead>
+				<tr><th>이름</th><th>자바</th><th>오라클</th><th>html</th></tr>
+			</thead>
+			<tbody>
+				<tr><td class="center">황기태</td><td>80</td><td>90</td><td>80</td></tr>
+				<tr><td class="center">이재문</td><td>70</td><td>90</td><td>90</td></tr>
+				<tr><td class="center">이병은</td><td>90</td><td>80</td><td>80</td></tr>
+				<tr><td class="center">김남윤</td><td>70</td><td>90</td><td>80</td></tr>
+				<tr><td class="center">홍길동</td><td>95</td><td>90</td><td>80</td></tr>
+			</tbody>
+		</table>
+		
+	</body>
+</html>

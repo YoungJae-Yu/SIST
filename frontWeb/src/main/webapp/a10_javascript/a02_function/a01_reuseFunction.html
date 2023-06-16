@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # 함수의 첫단계 : 기능의 재활용성
+        1. 함수는 기능이 선언된 내용을 재활용성이 가장 기본적인 내용이라고
+            할 수 있다.
+        2. 매개변수/리턴값 없이 처리하는 기능의 재활용과
+        3. 매개변수/리턴값으로 로직을 처리하거나 전역변수/지역변수에
+            할당하여 기능을 재활용하는 경우를 들 수 있다.
+        # 매개변수/리턴값 없이 기능의 재활용
+        1. console.log, alert(), prompt(), confirm()창을 
+            활용해서 데이터를 특정하게 출력처리하고,
+            로직을 전역변수에 저장할 때, 주로 활용된다.
+
+        */
+        
+    </script>
+</head>
+<body>
+    <!-- <h2 onclick="showColor()">기능 재활용(배경색상변경)</h2> -->
+    <!--클릭시 마다 선언된 코드를 재활용 처리..-->
+    <h3 onclick="showclick()">누적합산</h3>
+    
+
+</body>
+    <script>
+        /*
+        - 호출할 때 마다, 화면의 배경색상을 바꾸어 보자.
+        */
+        var colors = ['yellow','blue','green']
+        function showColor() {
+            alert('배경색상 변경')
+            document.body.style.backgroundColor = colors[parseInt(Math.random()*3)]
+        }
+      
+        // 전역변수를 tot 선언, 함수를 선언해서 클릭시마다,
+        // 1시작해 누적이되어 출력할 수 있게 해보세요..
+        // h3에 누적합산 결과 : @@
+        // var h3Obj = document.querySelector("h3")
+        // h3Obj.innerText = "누적합산 결과:"+tot
+        let tot = 0
+        let cnt = 1
+        function showclick(){
+            cnt++
+            tot += cnt
+            var h3Obj = document.querySelector("h3")
+            h3Obj.innerText = "누적합산 결과:"+tot
+        }
+    </script>
+</html>

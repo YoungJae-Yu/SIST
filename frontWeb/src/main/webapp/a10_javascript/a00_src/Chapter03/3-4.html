@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        /*
+        // 변수를 선언합니다.
+        var date = new Date();
+        var hour = date.getHours();
+        // 중첩 조건문
+        if (hour < 11) {
+            // "hour < 11"이 참일 때 실행합니다.
+            alert('아침 먹을 시간입니다.');
+        } else {
+            // "hour < 11"이 거짓일 때 실행합니다.
+            if (hour < 15) {
+                // "hour < 15"가 참일 때 실행합니다.
+                alert('점심 먹을 시간입니다.');
+            } else {
+                // "hour < 15"가 거짓일 때 실행합니다.
+                alert('저녁 먹을 시간입니다.');
+            }
+        }
+        ex) 나이를 prompt로 입력 받아서,
+        1) 상위 if문 18이상이면 성인 미만이면 미성년
+        2) 하위 if문
+            성인일때, 65이상이면 노인/일반인
+            미성년일때, 13미만이면 어린이 그외는 청소년
+        형식으로 중첩조건문을 이용해서 처리결과를
+        화면에 출력해보세요.
+        */
+       // window.onlaod=function(){}
+       // 화면이 브라우저로 로딩이 된 후에 처리할
+       // 내용이기에 body안에 태그들이 객체로 인식할
+       // 수 있다.
+        window.onload = function(){
+            let age = prompt("나이를 입력하세요","0")
+            var msg = ""
+            if(age>=18){
+                msg += "<h2>성인</h2>"
+                if(age>=65){
+                    msg += "<h3>노인</h3>"
+                }else{
+                    msg += "<h3>일반인</h3>"    
+                }
+            }else{
+                msg += "<h2>미성년자</h2>"
+                if(age<14){
+                    msg += "<h3>어린이</h3>"
+                }else{
+                    msg += "<h3>청소년</h3>"    
+                }
+            }
+            document.body.innerHTML = msg;
+        }
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>
