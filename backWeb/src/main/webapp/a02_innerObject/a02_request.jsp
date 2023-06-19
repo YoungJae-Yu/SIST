@@ -10,7 +10,13 @@
 <%--
 # request
 1. jsp에서 client단에 있는 정보를 서버단에 전송해서,
-	서버단에서 받을 때, 사용하는 객체를 말한다.
+	서버단에서 받을 때, 서버단의 프로그램으로 사용하는 객체를 말한다.
+	- request.getParameter()
+	- request.getParameterValues()
+	- request.setAttribute()
+	- request.getAttribute()
+	- request.getSession() session객체 생성
+	
 2. 기능내용
 	1) 요청값처리(***)
 	2) 쿠키정보 전달
@@ -46,14 +52,32 @@
 	요소객체의 속성을 통한 데이터 처리
 	- action
 	- method : get/post
-5. 단일 데이터 전송과 다중 데이터 전송
+		get방식 : url로 요청값을 전송하는 방식
+				요청값의 용량제한, 보안적으로 노출
+		post방식 : url로 요청값을 전달하지 않고,
+				내부적으로 요청 header에서 처리
+				요청값의 용량제한이 없고, 보안적으로 적합
+				==> 한글을 encoding을 처리하여야 한다.
+					request.setChaeacterEncoding("utf-8");
+					
+									
+5. 다양한 query string 처리 예시
+	0) front단(html form)
+		- url로 바로 요청값 입력
+		- form action="요청jsp"
+			name="key" value="val"
 	1) front단(js)
 		location.href="a01.jsp?id="+idVal+"&pwd="+passVal
 		<a href="a02.jsp?id=himan&pwd=7777">특정페이지 호출 </a>
 	2) back단(jsp)
 		조건문에서 처리
 		reponse.sendRedirect("a02.jsp?pname=사과&price=3000");
-6. 다양한 query string 처리 예시
+		==> backend(서버단결정) ==> front단에서 a02_jsp를 받아서
+		==> backend(서버단호출)
+	# 결국은 query string 요청값을 client(브라우저)에서
+	  호출하는 것으로 서버단에서 이러한 요청값을 전달하여 요청객체(request)
+	  로 처리하는 것이다.
+6. 단일 데이터 전송과 다중 데이터 전송
 	request.getParameterValues("")
 	1) 순수 query string으로 처리
 	2) from 요소객체

@@ -25,6 +25,12 @@
 		출력 스트림이다.
 	7) config : JSP 페이지를 구현한 자바 클래스의 인스턴스이다.
 	8) exception : 예외 객체, 예외 페이지에서만 사용된다.
+ 	# jsp에서 내장 객체 중에서 변수와 scope(시간에 따른 유지범위)
+ 	pageContext : 한페이지내에서만
+ 	request : 요청한 페이지까지 전달
+ 	session : 서버 vs 브라우저가 연결되어 있을 때까지
+ 	application : 서버가 재기동하는 범위까지
+ 	
  # out 기본 객체
  1. jsp페이지가 생성하는 모든 내용은 out 기본 객체를 통해서
  	전송 할 수 있다.
@@ -35,6 +41,7 @@
  	1) out.print():데이터를 출력만한다.
  	2) out.println():데이터를 출력하고 줄바꿈처리까지 한다.
  	3) out.newLine():줄바꿈 처리를 한다.
+ 	4) out.write() : char ==> 문자열 처리까지 출력..
  
  --%>
  <h2>script만 사용하는 경우</h2>
@@ -56,7 +63,6 @@
  			==> 반복문 처리
  		3. 반복 step이 규칙적으로 다른 내용
  			==> if문 처리
- 
  		 --%>
  	<table border width="300pt" height="300pt">
  	<%
