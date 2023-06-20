@@ -1,0 +1,152 @@
+1. Web Server와 Web Application Server의 차이점:
+   - Web Server: 정적인 컨텐츠(HTML, CSS, 이미지 등)를 제공하고 
+      처리하는 서버입니다. 클라이언트로부터 HTTP 요청을 받아 
+      정적인 파일을 반환합니다. 대표적인 예로 Apache, 
+      Nginx가 있습니다.
+   - Web Application Server(WAS): 동적인 컨텐츠를 처리하는 서버로,
+      비즈니스 로직을 실행하고 데이터베이스와의 상호작용, 
+      트랜잭션 관리 등을 수행합니다. 클라이언트로부터의 요청을 받아서
+      웹 애플리케이션 로직을 수행한 후, 결과를 클라이언트에게 반환합니다.
+      대표적인 예로 Apache Tomcat, JBoss, jeus, weblogic가 있습니다.
+
+2. WAS 안에서 JSP 프로그램의 처리 과정:
+   - 클라이언트(Client)가 웹 브라우저를 통해 JSP 페이지를 요청합니다.
+      url로 http://도메인/아이피주소:port/프로젝트명/경로/@@@.jsp
+   - 요청된 JSP 페이지는 WAS의 JSP 컨테이너에 의해 처리됩니다.
+   - JSP 컨테이너는 JSP 페이지를 Servlet으로 변환합니다. (컴파일)
+      jsp ==> servlet(java) ==> 
+   - 변환된 Servlet은 실행되어 동적인 HTML 문서를 생성합니다.
+   	  java+html(js,css) ==> html
+   	  java
+   	  <%
+   	  String isSuccess = 요청값을 받아서 DB를 확인해서 성공 여부를
+   	  	Y/N으로 할당.
+   	  %>  
+   	  <script>
+   	  var success = "<%=isSuccess%>"; 
+   	  if(success == 'Y'){
+   	      alert("로그인성공")
+   	  }else{
+   	      alert("로그인실패")
+   	  }
+   	  
+   - 생성된 HTML 문서는 클라이언트에게 전달되어 웹 브라우저에서
+     렌더링되어 화면에 출력됩니다.
+      response.getWriter().print("") 형식으로 
+      Stream을 객체를 통해서 웹브라우저에 전달.
+      
+      js/jsp 혼합해서 처리..
+      
+
+3. Servlet과 JSP의 차이점:
+   - Servlet: Java 코드 안에 HTML을 포함하여 작성되며, 
+      Java 기반으로 웹 애플리케이션 로직을 처리하는 클래스입니다. 
+      서버 측에서 동적인 컨텐츠를 생성하고 제공하기 위해 사용됩니다.
+   - JSP(JavaServer Pages): HTML 문서 안에 Java 코드를 포함하여 
+      작성되며, HTML과 Java 코드가 혼합된 형태입니다. 
+      주로 표현 로직을 처리하기 위해 사용되며, Servlet으로 
+      변환되어 실행됩니다.
+   
+
+4. Servlet에서 한글과 HTML 코드로 처리할 때 사용되는 코드:
+   - 한글 처리: request.setCharacterEncoding("UTF-8");
+   - HTML 코드 출력: response.setContentType("text/html;charset=UTF-8");
+
+5. Servlet에서 반복문으로 7가지 무지개 색 H2를 만드는 코드:
+```java
+PrintWriter out = response.getWriter();
+
+String[] colors = { "red", "orange", "yellow", 
+  "green", "blue", "navy", "purple" };
+
+out.println("<html>");
+out.println("<head><title>무지개 색</title></head>");
+out.println("<body>");
+
+for (String color : colors) {
+    out.println("<h2 style='background:"+color+"'>" 
+       + color + "</h2>");
+}
+
+out.println("</body>");
+out.println("</html>");
+```
+
+6. Servlet에서 4x4 테이블로 클릭 시 "@@번호 안녕하세요"가 
+	Alert으로 로딩되게 하는 코드:
+```java
+PrintWriter out = response.getWriter();
+
+out.println("<html>");
+out.println("<head><title>클릭 이벤트</title></head>");
+out.println("<script>function countCall(cnt){ alert(cnt+'번째 안녕하세요')}</script>");
+out.println("<body>");
+
+out.println("<table border='1'>");
+
+for (int i = 1; i <= 16; i++) {
+    if(i%4==1)
+    	out.println("<tr>");
+    out.println("<td onclick='countCall("+i+")'>"+i+"</td>");
+    if(i%4==0)
+    	out.println("</tr>");
+}
+
+out.println("</table>");
+
+out.println("</body>");
+out.println("</html>");
+```
+
+7. JSP의 Script 3가지:
+   - `<% %>`: Scriptlet 태그로 Java 코드를 작성하는 부분입니다.
+   - `<%= %>`: Expression 태그로, 자바 코드의 결과를 출력하는 부분입니다.
+   - `<%! %>`: Declaration 태그로, 멤버 변수나 메서드를 선언하는 부분입니다.
+
+8. JSP에서 선언(Declaration)을 통해 가격과 개수를 선언하고, 메서드를 통해 가격과 개수를 받아서 합산을 처리하는 메서드를 선언하고, 하단에서 호출하는 화면을 만드는 코드:
+```jsp
+<%@ page language="java" %>
+<html>
+<head><title>가격 합산</title></head>
+<body>
+<%
+    int price = 1000; // 가격 선언
+    int quantity = 5; // 개수 선언
+
+    int total = calculateTotal(price, quantity); // 메서드 호출
+
+    out.println("가격: " + price + "원<br>");
+    out.println("개수: " + quantity + "개<br>");
+    out.println("총합: " + total + "원<br>");
+%>
+
+<%!
+    public int calculateTotal(int price, int quantity) { // 메서드 선언
+        return price * quantity;
+    }
+%>
+</body>
+</html>
+```
+
+9. JSP의 Scriptlet과 Expression을 이용하여 랜덤 구구단을 테이블로 9x1로 출력하는 코드:
+```jsp
+<%@ page language="java" %>
+<html>
+<head><title>랜덤 구구단</title></head>
+<body>
+<table border="1">
+<%
+    for (int i = 1; i <= 9; i++) {
+        int randomNum = (int) (Math.random() * 9) + 1;
+%>
+        <tr>
+            <td><%= randomNum %> * <%= i %> = <%= randomNum * i %></td>
+        </tr>
+<%
+    }
+%>
+</table>
+</body>
+</html>
+```

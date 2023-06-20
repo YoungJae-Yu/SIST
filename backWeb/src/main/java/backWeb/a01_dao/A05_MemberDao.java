@@ -1,9 +1,11 @@
 package backWeb.a01_dao;
-// frontWeb.A05_MemberDao
+// backWeb.a01_dao.A05_MemberDao
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import backWeb.z01_vo.Member;
 
@@ -81,6 +83,40 @@ public class A05_MemberDao {
 			DB.close(rs, pstmt, con);
 		}
 	}
+	public List<Member> mlist() {
+	      List<Member> memlist = new ArrayList<Member>();
+	      String sql = "SELECT * FROM member02\r\n"
+	            + "order by regdate desc";
+	      //1. 연결(기본예외/자원해제)
+	      try {
+	         con = DB.con();
+	         // 2. 대화(sql 전달 후, 매개변수로 전달)
+	         pstmt = con.prepareStatement(sql);
+	         // 3. 결과
+	         rs = pstmt.executeQuery();
+	         // 4. (ResultSet ==> VO) ? 단일/여러개 if/while
+	         // Member(String id, String pass, String name, int point, String auth, Date regdate)
+	         while(rs.next()) {
+	            memlist.add(new Member(
+	               rs.getString("id"),
+	               rs.getString("pass"),
+	               rs.getString("name"),
+	               rs.getInt("point"),
+	               rs.getString("auth"),
+	               rs.getDate("regdate")
+	            ));
+	         }
+	         // 
+	      } catch (SQLException e) {
+	         System.out.println("DB:"+e.getMessage());
+	      }catch(Exception e) {
+	         System.out.println("기타:"+e.getMessage());
+	      }finally {
+	         DB.close(rs, pstmt, con);
+	      }
+	      return memlist;
+	   }
+
 	public static void main(String[] args) {
 		A05_MemberDao dao = new A05_MemberDao();
 		dao.insertMember(new Member("higirl","8888","홍리나",1000,"관리자"));

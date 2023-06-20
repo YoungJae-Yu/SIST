@@ -1,0 +1,137 @@
+[1단계:실습] 1. 직책정보를 jsp에서 Combo 박스로 출력하세요(- jobs 테이블 참고, DAO,JSP처리)
+[1단계:실습] 2. 웹화면에서 main.jsp을 두고, 상단페이지(top.jsp), 하단페이지(bottom.jsp)
+	          를 include지시자로 두어 처리하되, java, js, css 코드를 top.jsp에 선언하여
+	          main.jsp, bottom.jsp에서 호출하는 것을 처리해보세요.
+[1단계:실습] 3. 쿼리스트링으로 회원정보(아이디,패스워드,이름,권한,포인트)를 전송하고 이것을 출력하세요
+[1단계:실습] 4. 쿼리스트링으로 선수의정보(이름, 타석,안타)를 통해서 타석과 안타를 형변환하여 이름,타율을 출력하세요
+
+
+DAO와 JSP 처리를 통해 직책 정보를 가져와 Combo 박스로 출력하는 예제입니다.
+
+1) DAO에서 직책 정보를 가져오는 메서드 작성
+ 
+
+
+```java
+// JobDAO.java
+public class JobDAO {
+    public List<String> getJobList() {
+        // DB에서 직책 정보를 가져와서 List<String> 형태로 반환하는 로직 작성
+        // 예시: jobs 테이블에서 job_title 컬럼의 데이터를 가져온다고 가정
+        List<String> jobList = new ArrayList<>();
+        // DB 조회 로직 작성
+        // ...
+
+        return jobList;
+    }
+}
+```
+
+2) JSP에서 Combo 박스 출력을 위한 처리
+```jsp
+<!-- job.jsp -->
+<%@ page import="your.package.JobDAO" %>
+<%
+    JobDAO jobDAO = new JobDAO();
+    List<String> jobList = jobDAO.getJobList();
+%>
+<select name="job">
+    <% for (String job : jobList) { %>
+        <option value="<%= job %>"><%= job %></option>
+    <% } %>
+</select>
+```
+위의 코드에서 "your.package"은 실제 패키지명으로 대체되어야 합니다. 또한, JobDAO 클래스의 메서드는 실제로 DB에서 직책 정보를 가져오는 로직으로 대체되어야 합니다.
+
+이렇게 작성된 코드는 Combo 박스에 DB에서 가져온 직책 정보를 동적으로 출력합니다.
+
+[1단계:실습] 2. 상단 페이지와 하단 페이지를 include 지시자로 처리
+
+main.jsp 파일을 생성하고, 상단 페이지(top.jsp)와 하단 페이지(bottom.jsp)를 include 지시자로 처리하는 예제입니다.
+
+1) top.jsp에 자바, JavaScript, CSS 코드 작성
+```jsp
+<!-- top.jsp -->
+<%@ page language="java" %>
+<%
+    // 자바 코드 작성
+    String title="쇼핑몰입니다"
+%>
+
+<script type="text/javascript">
+    // JavaScript 코드 작성
+    var price = 3000;
+</script>
+
+<style>
+    /* CSS 코드 작성 */
+    .cls01{color:red;}
+</style>
+
+<!-- 상단 페이지 내용 작성 -->
+```
+
+2) main.jsp에서 include 지시자로 상단 페이지와 하단 페이지 포함
+```jsp
+<!-- main.jsp -->
+<%@ include file="top.jsp" %>
+
+<!-- 메인 페이지 내용 작성 -->
+<h2 class="cls01"><%=title%></h2>
+<script>
+	var h2Ob = document.querySelector("h2")
+	h2Ob.innerText+=", 가격:"+price;
+</script>
+<%@ include file="bottom.jsp" %>
+```
+
+위의 코드에서 top.jsp에는 자바 코드, JavaScript 코드, CSS 코드 등이 작성되어 있으며, main.jsp에서는 include 지시자를 통해 top.jsp와 bottom.jsp를 포함시켜 사용합니다.
+
+[1단계:실습] 3. 쿼리스트링으로 회원정보 전송 및 출력
+
+회원정보(아이디, 패스워드, 이름, 권한, 포인트)를 쿼리스트링으로 전송하고 이를 출력하는 예제입니다.
+
+ member.jsp에서 쿼리스트링을 받아 출력
+```jsp
+<!-- member.jsp?id=himan&password=7777&name=홍길동&authority=관리자&point=7000 -->
+<%
+    String id = request.getParameter("id");
+    String password = request.getParameter("password");
+    String name = request.getParameter("name");
+    String authority = request.getParameter("authority");
+    String point = request.getParameter("point");
+%>
+
+회원정보 출력:<br>
+아이디: <%= id %><br>
+패스워드: <%= password %><br>
+이름: <%= name %><br>
+권한: <%= authority %><br>
+포인트: <%= point %><br>
+```
+
+위의 코드에서 member.jsp는 쿼리스트링을 받아 각각의 정보를 변수에 저장하고, 출력합니다. 이때, request.getParameter("파라미터명") 메서드를 사용하여 쿼리스트링에서 해당 파라미터의 값을 가져옵니다.
+
+[1단계:실습] 4. 쿼리스트링으로 선수의 정보(이름, 타석, 안타)를 전송하고 타율을 출력
+
+선수의 정보(이름, 타석, 안타)를 쿼리스트링으로 전송하고, 전달받은 타석과 안타를 형변환하여 이름과 타율을 출력하는 예제입니다.
+
+1) 웹 페이지에서 선수의 정보를 입력하여 전송하는 form 태그 작성
+2) player.jsp에서 쿼리스트링을 받아 형변환하여 타율 계산 및 출력
+```jsp
+<!-- player.jsp?name=홍길동&atBats=3&hits=1 -->
+<%
+    String name = request.getParameter("name");
+    int atBats = Integer.parseInt(request.getParameter("atBats"));
+    int hits = Integer.parseInt(request.getParameter("hits"));
+
+    double battingAverage = (double) hits / atBats;
+    // 타율 계산: 안타 / 타석
+    // 소수점 세째 자리까지 출력하기 위해 형식화
+    DecimalFormat df = new DecimalFormat("#.###");
+    String battingAverageFormatted = df.format(battingAverage);
+%>
+
+선수 이름: <%= name %><br>
+타석 수: <%= atBats %><br>
+안타 수: <%= hits %

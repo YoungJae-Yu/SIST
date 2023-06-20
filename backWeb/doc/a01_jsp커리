@@ -1,0 +1,80 @@
+1. JSP 기본 개념
+   - JSP 개요 및 동작 원리 이해
+   - JSP 문법 및 구조 소개
+   - JSP 내장 객체 및 기능 소개
+
+2. JSP 기본 문법
+   - 스크립트 요소: 스크립트릿, 표현식, 선언문
+   - 디렉티브: 페이지 지시자, include 지시자
+   - 액션 태그: <jsp:include>, <jsp:forward> 등
+
+3. JSP와 서블릿
+   - JSP와 서블릿의 차이점 이해
+   - JSP의 서블릿으로의 변환 과정 이해
+   - JSP와 서블릿을 함께 사용하는 방법
+
+4. JSP 내장 객체 활용
+   - request, response, session, application 등의 내장 객체 활용
+   - 내장 객체를 통한 데이터 전달 및 공유 방법
+   - 내장 객체의 스코프와 라이프사이클 이해
+   # requst를 통한 요청값 처리
+   1. url로 요청처리 연습
+      - 문자열
+      - 숫자형처리 int num=0; 
+                if(reqStr!=null) num = Integer.parseInt(reqStr)
+      - 다중의요청값(동일한요청키를 여러개의 값설정)
+        배열처리
+      - 요청값을 객체로 할당.
+      - js에 처리방식
+        location.href=""
+   2. form객체를 활용해서 요청값처리
+      - get방식
+        단일 name, value
+        다중 name 동일한 내용 value ==> 다중의요청값(동일한요청키를 여러개의 값설정)
+        	type=text : 모두 다 배열로 전송
+        	type=checkbox : check된 것만 배열로 전송
+            select multiple
+      - post방식
+      
+      - 페이지 단위로 전송
+      	페이지1 ==> 페이지2
+      	페이지1 loop back으로 현재 페이지1을 호출하는 경우.(주의)
+      		초기페이지/호출된 페이지에 대한 내용을 구분하기 위하여
+      		조건문 처리를 하여야 한다.
+    3. 요청값과 js의 처리(front vs back)
+    	1) 페이지1 
+    		form이나 js에 의해 요청값 전달
+    	2) 페이지2
+    		String name = request.getParameter("name");
+    		js
+    		var name = "<%=name%>"
+    		if(name=='himan'){
+    			alert(name+"님 등록 성공")
+    		}else{
+    			alert("등록 실패했습니다")
+    		}
+	4. 요청값 VO객체 만들기
+	5. 요청값 처리된 내용 DB연동 처리
+   
+
+5. 데이터베이스 연동
+   - JDBC를 활용한 데이터베이스 연결 및 쿼리 처리
+   - PreparedStatement와 ResultSet을 활용한 데이터 조작
+   - 데이터베이스 트랜잭션 처리
+
+6. MVC 아키텍처 패턴
+   - Model-View-Controller(MVC) 아키텍처 이해
+   - JSP와 서블릿을 활용한 MVC 패턴 구현
+   - 데이터 처리, 화면 표시, 사용자 요청 처리 구분
+
+7. JSP 태그 라이브러리(JSTL) 활용
+   - JSTL 개요 및 사용 방법 소개
+   - JSTL 기본 태그 라이브러리 활용 (제어문, 반복문, 조건문 등)
+   - JSTL 함수 태그 라이브러리 활용 (문자열 처리, 날짜 포맷 등)
+
+8. 웹 애플리케이션 예외처리
+
+9. JSP 디버깅과 성능 최적화
+    - JSP 디버깅 기법및 도구 활용
+    - JSP 성능 최적화 방법
+    - JSP 캐싱과 컴파일 옵션 설정

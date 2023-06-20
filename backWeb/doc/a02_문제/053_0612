@@ -1,0 +1,103 @@
+실습예제1) jsp 스크립트릿에서 조건문을 활용하여 테이블로 홀/짝을 만들어서 정답을 클릭했을 때, 임의의 정답/오답으로 처리되게 하세요
+실습예제2) jsp 스크립트릿에서 조건문/반복문을 활용하여 4행 4열을 만들어 3/6/9게임의 내용을 1~16까지 내용으로 표시하세요
+실습예제3) 도서 대출 정보를 VO로 만들어 화면에 표시할 때, 테이블로 화면에 출력하세요.
+
+
+
+1. 실습예제1) 
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>홀짝 체크 게임</title>
+</head>
+<body>
+<h2>홀짝 체크 게임</h2> 
+<table width="50%" border>
+<%
+    for(int i=1;i<=10;i++){ 
+%>
+    <tr>
+        <td>숫자 : <%=i%></td>
+        <td><a href="?num=<%=i%>">정답 확인</a></td>
+    </tr>
+<%
+    }
+%>
+</table>
+
+<%
+    String numStr = request.getParameter("num");
+    if(numStr != null) {
+        int num = Integer.parseInt(numStr);
+        String result = (Math.random() > 0.5) ? "정답" : "오답";
+        out.println("<h3>당신이 선택한 숫자는 " + num + "이며, 결과는 " + result + "입니다.</h3>");
+    }
+%>
+</body>
+</html>
+```
+2. 실습예제2)
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3/6/9 게임</title>
+</head>
+<body>
+<h2>3/6/9 게임</h2> 
+<table width="50%" border>
+<%
+	// out.print("태그") : 화면 출력하는 jsp out 객체의 print메서드 
+    for(int i=1;i<=16;i++){
+    	if(i%4==1) out.print("<tr>");
+    	out.print("<td>");
+    	// 1,2,짝....10,12,짝.
+    	out.print( i%10!=0 && i%10%3==0 ?"짝":i );
+    	out.print("</td>";
+    	if(i%4==0) out.print("</tr>"); 
+    }
+%>
+</table>
+</body>
+</html>
+```
+3. 실습예제3)
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    import = "패키지.BookVo"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>도서 대출 정보</title>
+</head>
+<body>
+<h2>도서 대출 정보</h2> 
+<table width="50%" border>
+<tr>
+    <th>도서 번호</th>
+    <th>도서 제목</th>
+    <th>대출자</th>
+</tr>
+<%
+    BookVO book = new BookVo(1000,"jsp 중급","홍길동"); 
+%>
+    <tr>
+        <td><%=book.getBookNumber()%></td>
+        <td><%=book.getBookTitle()%></td>
+        <td><%=book.getBorrower()%></td>
+    </tr>
+
+</table>
+</body>
+</html>
+```
+

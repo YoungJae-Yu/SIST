@@ -1,0 +1,165 @@
+[1단계:개념] 1. 제약조건의 각각의 특징을 기본 예제를 통해서 설정하고 확인하세요.
+[1단계:코드] 2. 쇼핑몰의 회원 정보/구매정보/물품정보를 테이블로 만들 때, 오늘 배운 제약조건 5가지를 통해 만드세요
+[1단계:코드] 3. 컴퓨터부품테이블(부품key, 부품명, 가격, 재고량, 부품 설명)만들되, sequence를 이용해서 부품key를 설정해서 할당하도록 하세요.
+[1단계:코드] 4. Enrollments라는 테이블을 생성하고, 학생의 학번(student_id)과 수강한 강의의 고유번호(course_id)를 저장하는데, 
+              각각의 값은 Students 테이블과 Courses 테이블의 학번과 고유번호를 참조하는 외래키로 설정되도록 하세요.
+
+
+[1단계:개념] 1. 제약조건의 각각의 특징을 기본 예제를 통해서 설정하고 확인하세요.
+
+1) 데이터베이스에서 not null 제약 조건에 대한 예제:
+```sql
+-- 테이블 생성
+CREATE TABLE Customers (
+  customer_id INT PRIMARY KEY,
+  customer_name VARCHAR(50) NOT NULL
+);
+
+-- 예제 데이터 입력
+INSERT INTO Customers (customer_id, customer_name) VALUES (1, 'John');
+INSERT INTO Customers (customer_id, customer_name) VALUES (2, NULL); -- 에러 발생: not null 제약 조건 위반
+```
+
+2) 데이터베이스에서 unique key 제약 조건에 대한 예제:
+```sql
+-- 테이블 생성
+CREATE TABLE Products (
+  product_id INT PRIMARY KEY,
+  product_name VARCHAR(50),
+  product_code VARCHAR(10) UNIQUE
+);
+
+-- 예제 데이터 입력
+INSERT INTO Products (product_id, product_name, product_code) VALUES (1, 'Keyboard', 'KB001');
+INSERT INTO Products (product_id, product_name, product_code) VALUES (2, 'Mouse', 'KB001'); -- 에러 발생: unique key 제약 조건 위반
+```
+
+3) 데이터베이스에서 primary key 제약 조건에 대한 예제:
+```sql
+-- 테이블 생성
+CREATE TABLE Students (
+  student_id INT PRIMARY KEY,
+  student_name VARCHAR(50)
+);
+
+-- 예제 데이터 입력
+INSERT INTO Students (student_id, student_name) VALUES (1, 'Alice');
+INSERT INTO Students (student_id, student_name) VALUES (2, 'Bob');
+INSERT INTO Students (student_id, student_name) VALUES (1, 'Charlie'); -- 에러 발생: primary key 제약 조건 위반
+```
+
+4) 데이터베이스에서 foreign key 제약 조건에 대한 예제:
+```sql
+-- 부모 테이블 생성
+CREATE TABLE Departments (
+  department_id INT PRIMARY KEY,
+  department_name VARCHAR(50)
+);
+
+-- 자식 테이블 생성
+CREATE TABLE Employees (
+  employee_id INT PRIMARY KEY,
+  employee_name VARCHAR(50),
+  department_id INT,
+  FOREIGN KEY (department_id) REFERENCES Departments(department_id)
+);
+
+-- 예제 데이터 입력
+INSERT INTO Departments (department_id, department_name) VALUES (1, 'IT');
+INSERT INTO Departments (department_id, department_name) VALUES (2, 'Sales');
+INSERT INTO Employees (employee_id, employee_name, department_id) VALUES (1, 'John', 3); -- 에러 발생: foreign key 제약 조건 위반
+```
+
+5) 데이터베이스에서 check 제약 조건에 대한 예제:
+```sql
+-- 테이블 생성
+CREATE TABLE Products (
+  product_id INT PRIMARY KEY,
+  product_name VARCHAR(50),
+  price DECIMAL(10, 2),
+  quantity INT CHECK (quantity >= 0)
+);
+
+-- 예제 데이터 입력
+INSERT INTO Products (product_id, product_name, price, quantity) VALUES (1, 'Apple', 2.99, 10);
+INSERT INTO Products (product_id, product_name, price, quantity) VALUES (2, 'Banana', 1.99, -5); -- 에러 발생: check 제약 조건 위반
+```
+
+[1
+
+단계:코드] 2. 쇼핑몰의 회원 정보/구매정보/물품정보를 테이블로 만들 때, 오늘 배운 제약조건 5가지를 통해 만드세요.
+
+```sql
+-- 회원 정보 테이블
+CREATE TABLE Members (
+  member_id INT PRIMARY KEY,
+  member_name VARCHAR(50) NOT NULL,
+  member_email VARCHAR(100) UNIQUE,
+  member_phone VARCHAR(20) CHECK (LENGTH(member_phone) >= 10),
+  member_address VARCHAR(200) NOT NULL
+);
+
+-- 구매 정보 테이블
+CREATE TABLE Purchases (
+  purchase_id INT PRIMARY KEY,
+  member_id INT,
+  product_id INT,
+  purchase_date DATE,
+  FOREIGN KEY (member_id) REFERENCES Members(member_id),
+  FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+
+-- 물품 정보 테이블
+CREATE TABLE Products (
+  product_id INT PRIMARY KEY,
+  product_name VARCHAR(50) NOT NULL,
+  product_price DECIMAL(10, 2) CHECK (product_price >= 0),
+  product_quantity INT CHECK (product_quantity >= 0)
+);
+```
+
+[1단계:코드] 3. 컴퓨터 부품 테이블(부품key, 부품명, 가격, 재고량, 부품 설명)을 만들되, sequence를 이용해서 부품key를 설정해서 할당하도록 하세요.
+
+```sql
+-- 부품 테이블
+CREATE TABLE ComputerParts (
+  part_id INT PRIMARY KEY,
+  part_name VARCHAR(50) NOT NULL,
+  price DECIMAL(10, 2) CHECK (price >= 0),
+  stock_quantity INT CHECK (stock_quantity >= 0),
+  description VARCHAR(200)
+);
+
+-- 시퀀스 생성
+CREATE SEQUENCE part_id_seq
+  START WITH 1
+  INCREMENT BY 1
+  NOCACHE;
+
+insert into ComputerParts values(part_id_seq.nextval,'CPU',300000,100,'CPU에 대한 설명');
+
+[1단계:코드] 4. Enrollments라는 테이블을 생성하고, 학생의 학번(student_id)과 수강한 강의의 고유번호(course_id)를 저장하는데,
+              각각의 값은 Students 테이블과 Courses 테이블의 학번과 고유번호를 참조하는 외래키로 설정되도록 하세요.
+
+```sql
+-- 학생 테이블
+CREATE TABLE Students (
+  student_id INT PRIMARY KEY,
+  student_name VARCHAR(50)
+);
+
+-- 강의 테이블
+CREATE TABLE Courses (
+  course_id INT PRIMARY KEY,
+  course_name VARCHAR(50)
+);
+
+-- 수강 신청 테이블
+CREATE TABLE Enrollments (
+  enrollment_id INT PRIMARY KEY,
+  student_id INT,
+  course_id INT,
+  FOREIGN KEY (student_id) REFERENCES Students(student_id),
+  FOREIGN KEY (course_id) REFERENCES Courses(course_id)
+);
+```

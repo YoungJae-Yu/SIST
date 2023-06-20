@@ -1,0 +1,143 @@
+문제 1:
+HTML에서 form 태그의 하위 요소들은 어떤 역할을 가지고 있는가요?
+a) 서버에 데이터를 전송하는 UI 태그 및 객체
+b) 클라이언트에게 데이터를 전달하는 태그 및 객체
+c) 서버에서 데이터를 처리하는 태그 및 객체
+d) 클라이언트의 입력을 받아 처리하는 태그 및 객체
+
+정답: d) 클라이언트의 입력을 받아 처리하는 태그 및 객체
+해설: HTML에서 form 태그의 하위 요소들은 주로 클라이언트의 입력을 받아 처리하는 역할을 합니다. 이것들은 사용자로부터 입력을 받고, 그 입력을 처리하여 서버에게 전송하는 역할을 합니다.
+
+문제 2:
+다음 코드에서 form 요소 객체가 수행하는 역할은 무엇인가요?
+```html
+<form action="/이동할페이지" >
+  <input type="text" name="name" >
+  <input type="submit" value="Submit">
+</form>
+```
+a) 화면에 입력 폼을 만들어 주는 역할
+b) 서버로 데이터를 전송하는 쿼리 문자열을 생성해주는 역할
+c) 클라이언트의 입력 값을 검증해주는 역할
+d) 클라이언트에게 입력 값을 보여주는 역할
+
+정답: b) 서버로 데이터를 전송하는 쿼리 문자열을 생성해주는 역할
+해설: form 요소는 클라이언트가 입력한 데이터를 서버로 전송하는 역할을 합니다. 위 코드에서는 method 속성이 "post"로 설정되어 있으므로, 클라이언트가 입력한 데이터는 HTTP POST 요청의 본문에 포함되어 서버로 전송됩니다.
+
+문제 3:
+query string과 form 요소 객체의 속성을 비교했을 때 
+	어떤 내용이 일치하는가요?
+a) query string과 name 속성값이 일치함
+b) query string과 value 속성값이 일치함
+c) query string과 form 요소 객체의 태그명이 일치함
+d) query string과 form 요소 객체의 id 속성값이 일치함
+페이지?name=홍길동
+<input name="name" value="홍길동"
+문제 3:
+query string과 form 요소 객체의 속성을 비교했을 때, 
+ 아래 옵션 중 어떤 것이 일치하는가요? 
+ (예: `http://www.example.com?name=JohnDoe`)
+a) query string의 'name'과 name 속성값이 일치함
+b) query string의 'JohnDoe'와 value 속성값이 일치함
+c) query string과 form 요소 객체의 태그명이 일치함
+d) query string과 form 요소 객체의 id 속성값이 일치함
+
+<input name="name" value="JohnDoe"
+
+정답: a) query string의 'name'과 name 속성값이 일치함
+정답: b) query string의 'JohnDoe'와 value 속성값이 일치함
+해설: query string의 'name'은 form 요소의 name 속성과 일치합니다. 즉, query string에서 'name'은 form 요소 객체에서 해당 입력 필드의 이름을 나타냅니다.
+
+#문제 4:
+다음 코드에서 데이터가 전송되는 대상은 어디인가요?
+```html
+<form action="a02_formReceive.jsp" >
+  <input type="text" name="name" value="himan">
+  <input type="submit" value="Submit">
+</form>
+```
+==> a02_formReceive.jsp?name=himan
+
+a) a02_formReceive.jsp
+b) a03_formRev.jsp
+c) action 속성에 지정된 페이지
+d) submit 버튼의 onclick 이벤트
+
+정답: a) a02_formReceive.jsp
+해설: form 태그의 action 속성은 데이터가 전송되는 대상을 지정합니다. 이 경우, action 속성의 값이 "a02_formReceive.jsp"이므로 데이터는 이 페이지로 전송됩니다.
+
+문제 5:
+위의 코드에서 어떤 데이터가 전송되는가요?
+a) "name" 이라는 이름의 입력값
+b) 물건명과 가격
+c) 가격
+d) 물건명
+
+정답: a) "name" 이라는 이름의 입력값
+해설: input 태그의 name 속성이 "name"으로 설정되어 있으므로, 이 태그에 입력된 값이 서버로 전송됩니다.
+
+문제 6:
+'form' 태그에서 'method' 속성이 'post'일 경우, 
+  a03_formRev.jsp에서는 어떤 데이터를 받아서 출력하게 될까요?
+a) 물건명
+b) 가격
+c) 입력한 "name" 값을 pname과 price라는 이름으로 받음
+d) a03_formRev.jsp 페이지의 이름
+
+<form action="a03_formRev.jsp">
+	물건명:<input name="pname" > 
+	가격:<input name="price" > 
+
+정답: c) 입력한 "name" 값을 pname과 price라는 이름으로 받음
+해설: 'post' 메서드를 사용하는 경우, 서버로 전송되는 데이터는 HTTP 요청의 본문에 포함되므로
+, 서버 측에서는 본문을 분석하여 필요한 데이터를 추출해야 합니다. 이 경우, 입력한 "name" 값이 pname과 price라는 이름으로 서버에 전달될 것입니다.
+
+#문제 7:
+form을 사용하여 데이터를 전송할 때 어떤 메서드를 사용해야 하나요?
+a) GET
+b) ACTION
+c) SEND
+d) UPDATE
+
+<form method="get|post" action="대상"
+정답: a) GET
+해설: 데이터를 전송할 때는 주로 GET 또는 POST 메서드가 사용됩니다. 
+GET 메서드는 URL에 데이터를 포함하여 전송하는 방식이며, 
+POST는 HTTP 요청의 본문에 데이터를 포함하여 전송하는 방식입니다. 
+ACTION, SEND, UPDATE는 HTTP 메서드로서는 존재하지 않습니다. 
+따라서 이 문제에서는 GET이 정답입니다. 
+다만, POST도 데이터 전송에 사용되는 메서드이므로, 
+문제의 선택지에 POST가 포함되어 있다면 이에 대한 고려가 필요할 것입니다.
+
+문제 8:
+form 요소에서 사용되는 input 태그의 type 속성으로 
+   올바르게 채워 넣은 것은 무엇인가요?
+a) text
+b) submit
+c) button
+d) input
+
+정답: a, b, c
+해설: input 태그의 type 속성은 해당 입력 필드의 유형을 지정합니다. 'text'는 한 줄의 텍스트 입력 필드를 나타냅니다.
+
+문제 9:
+form 요소에서 값을 입력할 때 사용되는 태그는 무엇인가요?
+a) input
+b) form
+c) submit
+d) action
+
+정답: a) input
+해설:
+input 태그는 사용자로부터 값을 입력받는 데 사용되는 태그입니다.
+
+문제 10:
+form 요소에서 값을 전송할 때 사용되는 태그는 무엇인가요?
+a) input
+b) form
+c) submit
+d) action
+
+정답: c) submit
+해설: input 태그의 type 속성이 "submit"인 경우, 해당 버튼을 클릭하면 form의 데이터가 서버로 전송됩니다. 따라서 값을 전송할 때 사용되는 태그는 "submit"입니다.
+

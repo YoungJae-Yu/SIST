@@ -1,5 +1,5 @@
 package backWeb.z01_vo;
-
+// backendWeb.z01_vo.Member
 import java.util.Date;
 
 public class Member {
@@ -9,12 +9,45 @@ public class Member {
 	private int point;
 	private String auth;
 	private Date regdate;
+	public Member() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	// backWeb2.z01_vo.Member
+	// Member(String id, String pass, String name, String auth, int point) 
+	public Member(String id, String pass, String name, String auth, int point) {
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.point = point;
+		this.auth = auth;
+	}
+
+
 	// 로그인시 사용
 	public Member(String id, String pass) {
-		super();
 		this.id = id;
 		this.pass = pass;
 	}
+	// 등록을 위한 생성자
+	public Member(String id, String pass, String name, int point, String auth) {
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.point = point;
+		this.auth = auth;
+	}	
+	
+	// 로그인 후, 데이터 가져올 때 사용.
+	public Member(String id, String pass, String name, int point, String auth, Date regdate) {
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.point = point;
+		this.auth = auth;
+		this.regdate = regdate;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -51,26 +84,5 @@ public class Member {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	// 로그인 후 데이터 가져올 때 사용.
-	public Member(String id, String pass, String name, int point, String auth, Date regdate) {
-		super();
-		this.id = id;
-		this.pass = pass;
-		this.name = name;
-		this.point = point;
-		this.auth = auth;
-		this.regdate = regdate;
-	}
-	public Member(String id, String pass, String name, int point, String auth) {
-		super();
-		this.id = id;
-		this.pass = pass;
-		this.name = name;
-		this.point = point;
-		this.auth = auth;
-	}
-	public Member() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 }
