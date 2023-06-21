@@ -24,6 +24,13 @@
 	1) 기본 요청화면 구현
 	2) 요청화면에서 form객체에 의해 넘겨지는 데이터가 
 		어떤 유형인지 파악
+		주의사항
+		- number 형변환
+		- date(DB) : 문자열로 받아서 db sql에서
+			to_date(문자열, '형식')
+			ex) sql : to_date(?, 'YYYY-MM-DD')
+					pstmt.setString(5, vo.getDateS());
+					
 	3) 요청값에 의해 처리되는 값에 의해 type에 따른 VO객체 만들기
 	4) 요청값이 null 및 유형이 잘 못 전달될 때에 대한 대비
 		- 일반적으로 js에 의해 사전에 유효성 처리
@@ -45,7 +52,7 @@
 	// 15:05~
 	A05_MemberDao dao = new A05_MemberDao();
 	String regYN="F";
-	if(id!=null){
+	if(id!=null){// 입려 form에 입력이 되었을때
 		int point = Integer.parseInt(pointS);
 		// vo 객체로 받아들이기..
 		Member m = new Member(id,pass,name,auth,point) ;

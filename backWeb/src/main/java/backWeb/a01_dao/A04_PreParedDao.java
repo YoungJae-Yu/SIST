@@ -18,6 +18,7 @@ import backWeb.z01_vo.Job_history;
 import backWeb.z01_vo.Jobs;
 import backWeb.z01_vo.Locations;
 import backWeb.z01_vo.Manager;
+import backWeb.z01_vo.Member;
 
 //backWeb.a01_dao.A04_PreParedDao
 /*
@@ -483,6 +484,41 @@ public class A04_PreParedDao {
 		}
 		return mlist;
 	}
+	public List<Emp> elist() {
+	      List<Emp> emplist = new ArrayList<Emp>();
+	      String sql = "SELECT * FROM emp02 order by empno";
+	      //1. 연결(기본예외/자원해제)
+	      try {
+	         con = DB.con();
+	         // 2. 대화(sql 전달 후, 매개변수로 전달)
+	         pstmt = con.prepareStatement(sql);
+	         // 3. 결과
+	         rs = pstmt.executeQuery();
+	         // 4. (ResultSet ==> VO) ? 단일/여러개 if/while
+	         // Member(String id, String pass, String name, int point, String auth, Date regdate)
+	         while(rs.next()) {
+	        	 emplist.add(new Emp(
+	               rs.getInt("empno"),
+	               rs.getString("ename"),
+	               rs.getString("job"),
+	               rs.getInt("mgr"),
+	               rs.getString("hiredateS"),
+	               rs.getDouble("sal"),
+	               rs.getDouble("comm"),
+	               rs.getInt("deptno")
+	            ));
+	         }
+	         // 
+	      } catch (SQLException e) {
+	         System.out.println("DB:"+e.getMessage());
+	      }catch(Exception e) {
+	         System.out.println("기타:"+e.getMessage());
+	      }finally {
+	         DB.close(rs, pstmt, con);
+	      }
+	      return emplist;
+	   }
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		A04_PreParedDao dao = new A04_PreParedDao();

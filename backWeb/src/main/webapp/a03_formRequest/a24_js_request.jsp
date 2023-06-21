@@ -58,8 +58,13 @@
          		console.log(btnObj.value)
          		btnObj.innerText="유효성 확인완료";
          	}
+         	/*
+         	# 버튼으로 submit 처리하는 방법
+         	<button type="button" id="btn01">
+         	*/
      		btnObj.onclick=function(){
      			// 코드로 전송 처리...
+     			// 전송전에 유효성 처리 가능/로직처리 가능..
      			document.querySelector("form").submit();
      		}
      	</script>

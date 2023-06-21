@@ -64,9 +64,8 @@ Salgrade 객체에 등록이 되어 출력되게 처리하세요.--%>
 	String hisalS = request.getParameter("hisal");
 	z05_ExpDao dao= new z05_ExpDao();
 	String regYN="F";
-	if(id!=null){
-		int point = Integer.parseInt(pointS);
-		Salgrade s = new Salgrade(grade,losal,hisal) ;
+	if(gradeS!=null){
+		Salgrade s = new Salgrade(gradeS,losalS,hisalS) ;
 		dao.insertSalgrade(s);
 		regYN="Y";
 	}

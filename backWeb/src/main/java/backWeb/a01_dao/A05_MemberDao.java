@@ -116,6 +116,28 @@ public class A05_MemberDao {
 	      }
 	      return memlist;
 	   }
+	public boolean getMember(String id) {
+		boolean isid = false;
+	      String sql = "SELECT id\r\n"
+	      		+ "FROM member02\r\n"
+	      		+ "WHERE id=?";
+	      try {
+	         con = DB.con();
+	         pstmt = con.prepareStatement(sql);
+	         	pstmt.setString(1, id);
+	         rs = pstmt.executeQuery();
+	         if(rs.next()) {
+	        	  isid = true;
+	         }
+	      } catch (SQLException e) {
+	         System.out.println("DB:"+e.getMessage());
+	      }catch(Exception e) {
+	         System.out.println("기타:"+e.getMessage());
+	      }finally {
+	         DB.close(rs, pstmt, con);
+	      }
+	      return isid;
+	   }
 
 	public static void main(String[] args) {
 		A05_MemberDao dao = new A05_MemberDao();

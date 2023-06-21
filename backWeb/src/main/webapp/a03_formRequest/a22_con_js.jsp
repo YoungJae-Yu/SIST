@@ -16,7 +16,6 @@
 	int cnt = 10;
 	int tot = price*cnt;
 	boolean isAult = tot>=50000;
- 
  %>
  <script type="text/javascript">
  	var name = "<%=name%>"
