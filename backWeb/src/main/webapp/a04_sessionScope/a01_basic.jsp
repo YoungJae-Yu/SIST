@@ -19,13 +19,13 @@
 		jsp script 에서 저장되는 영역..
 	2) request영역 : 하나의 http요청을 처리할 때, 사용되는 영역
 	3) session영역 : 하나의 웹브라우저와 관련된 영역
-	4) application영역 : 하나의 웹 어플리케이션과 관련된 영역
+	4) application영역 : 하나의 웹 어플리케이션과 관련된 서버 영역
 3. 설정 방법
 	0) 저장 데이터는 기본 데이터유형, 배열, 객체...
 	1) 저장
 		범위객체.setAttribute("저장할키",저장할데이터)
 	2) 저장된 내용 호출
-		할당할 변수 = 범위객체.getAttribute("저장된키")
+		할당할 변수 = (타입casting)범위객체.getAttribute("저장된키")
 	3) 삭제
 		범위객체.removeAttribute("저장된키")
 4. 각 범위에 따른 처리

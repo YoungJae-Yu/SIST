@@ -518,6 +518,39 @@ public class A04_PreParedDao {
 	      }
 	      return emplist;
 	   }
+	public List<Emp> getEmpList(String ename, String job) {
+	    List<Emp> elist = new ArrayList<>();
+	    String sql = "SELECT * FROM emp02 where ename like ? and job like ? order by empno ";
+	    
+	    try {
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, '%'+ename+"%");
+	        pstmt.setString(2, '%'+job+"%");
+	        rs = pstmt.executeQuery();
+	        
+	
+	        while (rs.next()) {
+	            elist.add(new Emp(
+	                    rs.getInt("empno"),
+	                    rs.getString("ename"),
+	                    rs.getString("job"),
+	                    rs.getInt("mgr"),
+	                    rs.getDate("hiredate"),
+	                    rs.getDouble("sal"),
+	                    rs.getDouble("comm"),
+	                    rs.getInt("deptno")
+	            ));
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return elist;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

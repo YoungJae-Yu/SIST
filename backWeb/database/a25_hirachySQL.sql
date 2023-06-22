@@ -25,17 +25,14 @@
 컴퓨터공학과	멀티미디어학과		전자공학과		기계공학과
 
 		학과테이블 
-		deptno dname            col 
-		10	0		공과대학
+		deptno dname            col   loc
+		10			공과대학
 		101 		정보미디어학부    100
 		102		메카트로닉스학부  100
 		103		컴퓨터공학과       101
 		104		멀티미디어학과     101
 		105		전자공학과         102
 		106		기계공학과         102
-		
-		ex) part01 테이블을 위 구조와 데이터 만들고,
-		계층적으로 sql으로 lever로 출력하세요.
 
 5. 계층적 질의문의 기본 형식
 	1) select 명령문에서 start with와 connect by절 이용
@@ -64,48 +61,8 @@
 */
 select * from emp;
 
-SELECT LEVEL , empno, ename, mgr
-FROM emp
-START WITH empno = 7839
-CONNECT BY PRIOR empno=mgr;
-		/*학과테이블 
-		deptno dname            col 
-		10	0		공과대학
-		101 		정보미디어학부    100
-		102		메카트로닉스학부  100
-		103		컴퓨터공학과       101
-		104		멀티미디어학과     101
-		105		전자공학과         102
-		106		기계공학과         102
-		
-		ex) part01 테이블을 위 구조와 데이터 만들고,
-		계층적으로 sql으로 lever로 출력하세요.*/
-CREATE TABLE part01(
-	deptno NUMBER PRIMARY KEY,
-	dname varchar2(50),
-	col NUMBER
-);
 
-INSERT ALL
-	INTO part01 (deptno, dname, col) VALUES (100, '공과대학', NULL)
-	INTO part01 (deptno, dname, col) VALUES (101, '정보미디어학부', 100)
-	INTO part01 (deptno, dname, col) VALUES (102, '메카트로닉스학부', 100)
-	INTO part01 (deptno, dname, col) VALUES (103, '컴퓨터공학과', 101)
-	INTO part01 (deptno, dname, col) VALUES (104, '멀티미디어학과', 101)
-	INTO part01 (deptno, dname, col) VALUES (105, '전자공학과', 102)
-	INTO part01 (deptno, dname, col) VALUES (106, '기계공학과', 102)
-SELECT 1 FROM DUAL;
 
-SELECT * FROM part01;
-
-SELECT LEVEL , deptno, dname, col
-FROM part01
-START WITH deptno = 100
-CONNECT BY PRIOR deptno=col;
-
-UPDATE part01
-SET deptno = 100
-WHERE deptno = 10;
 
 
 
