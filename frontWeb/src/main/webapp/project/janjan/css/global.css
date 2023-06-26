@@ -1,0 +1,46 @@
+.wrap{width: 100%;}
+.inner{
+    margin: 0 auto;
+    width: 1440px;
+}
+header{
+    position: sticky;
+    top: 0;
+    background-color: white;
+    border-bottom: solid 1px rgb(180, 180, 180);
+}
+.gnb{
+    display: flex; 
+    align-items: center; 
+    height: 60px;
+}
+.gnbL{
+    margin-right: 1004px;
+}
+.gnbL ul{
+    display: flex;
+    align-items: center;
+}
+.gnbL ul li{
+    padding-right: 30px;
+    font-size: 17px;
+    font-weight: 700;
+}
+.gnbR ul{
+    display: flex;
+    align-items: center;
+}
+.gnbR ul li{
+    padding-right: 30px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.logo{
+    width: 70px;
+    margin-top: 5px;
+}
+.bag{
+    width: 20px;
+    padding-top: 5px;
+}
