@@ -33,7 +33,6 @@ SELECT 1 FROM DUAL;
 
 
 CREATE TABLE ALCOHOL(
-ALCOHOL_ID VARCHAR2(50),
 ALCOHOL_NAME VARCHAR2(50),
 TYPE_ID VARCHAR2(50),
 ALCOHOL_DEG NUMBER,
@@ -43,17 +42,21 @@ EXPDATE DATE,
 STORAGE_WAY VARCHAR2(30),
 ALCOHOL_IMG VARCHAR2(50),
 ALCOHOL_DES VARCHAR2(50),
-CONSTRAINT alcohol_pk PRIMARY KEY (ALCOHOL_ID),
-CONSTRAINT alcohol_fk FOREIGN KEY (TYPE_ID) REFERENCES ALCOHOL_TYPE(TYPE_ID),
-CONSTRAINT alcohol_fk1 FOREIGN KEY (TYPE_ID) REFERENCES ALCOHOL(TYPE_ID)
+SALE_YN VARCHAR2(10),
+CONSTRAINT alcohol_pk PRIMARY KEY (ALCOHOL_NAME),
+CONSTRAINT alcohol_fk FOREIGN KEY (type_id) REFERENCES alcohol_type(type_id)
 );
-
+DROP TABLE ALCOHOL;
 CREATE TABLE alcohol_type (
-TYPE_ID VARCHAR2(50) PRIMARY KEY,
-TYPE_NAME VARCHAR2(50)
+type_id VARCHAR2(50) PRIMARY KEY,
+TYPE_NAME VARCHAR2(50) 
 );
 
-INSERT INTO alcohol values('서울주','탁주',30,10000,350,sysdate + (INTERVAL'2'YEAR),'상온보관','/source','서울에서 만듬');
+INSERT INTO alcohol values('매실원주','A-5',30,10000,350,sysdate + (INTERVAL'2'YEAR),'상온보관','./img/alcohol/매실원주.jpg','#달콤한 매실주','Y');
+INSERT INTO alcohol values('고흥유자주','A-5',8,13000,500,sysdate + (INTERVAL'2'YEAR),'상온보관','./img/alcohol/고흥유자주.jpg','#달콤한 유자향','N');
+INSERT INTO alcohol values('신애유자','A-5',5,5900,330,sysdate + (INTERVAL'2'YEAR),'상온보관','./img/alcohol/신애유자.jpg','#레모네이드에 사과 한 조각','N');
+INSERT INTO alcohol values('요새로제','A-5',6.4,17900,750,sysdate + (INTERVAL'2'YEAR),'상온보관','./img/alcohol/요새로제.jpg','#달콤한 사과향','Y');
+INSERT INTO alcohol values('댄싱파파','A-5',7,5900,330,sysdate + (INTERVAL'2'YEAR),'상온보관','./img/alcohol/댄싱파파.jpg','#달지 않고 깔금','Y');
 
 CREATE TABLE SNACK (
 SNACK_ID VARCHAR2(50),

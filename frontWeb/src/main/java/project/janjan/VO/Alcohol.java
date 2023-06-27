@@ -10,14 +10,17 @@ public class Alcohol {
 	private String storageWay;
 	private String alcoholImg;
 	private String alcoholDet;
+	private String saleYN;
 	
 	public Alcohol() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
 	public Alcohol(String alcoholName, String alcoholType, int degree, int price, int capacity, String expDate,
-			String storageWay, String alcoholImg, String alcoholDet) {
+			String storageWay, String alcoholImg, String alcoholDet, String saleYN) {
 		super();
 		this.alcoholName = alcoholName;
 		this.alcoholType = alcoholType;
@@ -28,7 +31,18 @@ public class Alcohol {
 		this.storageWay = storageWay;
 		this.alcoholImg = alcoholImg;
 		this.alcoholDet = alcoholDet;
+		this.saleYN = saleYN;
 	}
+
+	public String getSaleYN() {
+		return saleYN;
+	}
+
+
+	public void setSaleYN(String saleYN) {
+		this.saleYN = saleYN;
+	}
+
 
 	public String getAlcoholName() {
 		return alcoholName;

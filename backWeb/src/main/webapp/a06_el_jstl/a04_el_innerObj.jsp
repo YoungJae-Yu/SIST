@@ -17,6 +17,15 @@
 3. 기본 객체들
 	1) scope관련 :  pageScope, requestScope, seessionScope,
 		applicationScope
+		ex) pageConext.setAttribute("name","홍길동")
+		${name} : 위 4개중 하나의 범위 상관 없이 출력된다.
+		${pageScope.name} : 출력
+		${requestScope.name} : 출력안됨.
+		ex) session.setAttribute("fruit","사과")
+		${fruit} : 위 4개중 하나의 범위 상관 없이 출력된다.
+		${pageScope.fruitv} : 출력안됨.
+		${requestScope.fruit} : 출력안됨.
+		${seessionScope.fruit} : 출력
 	2) pageConext : jsp의 page 기본 객체와 동일
 	3) param : 요청 파라미터의 값을 <파라미터이름, 값>매핑을
 		저장한 Map객체

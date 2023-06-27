@@ -81,42 +81,39 @@ public class A04_PreParedDao {
 		}
 		return elist;
 	}
-	public List<Job_history> getJob(Map<String,String> sch){
-		List<Job_history> elist = new ArrayList<Job_history>();
-		String sql = "SELECT *\r\n"
-				+ "FROM JOB_HISTORY\r\n"
-				+ "WHERE JOB_ID LIKE '%'||?||'%' \r\n"
-				+ "AND DEPARTMENT_ID BETWEEN ? AND ?";
-		try {
-			con = DB.con();
-			// 초기에 sql을 넘기면서 pstmt 객체 생성
-			pstmt = con.prepareStatement(sql);
-			// pstmt.set데이터유형(순서-1부터, 입력할 데이터)
-			pstmt.setString(1, sch.get("job"));
-			pstmt.setDouble(2, Double.parseDouble(sch.get("minDepartment")));
-			pstmt.setDouble(3, Double.parseDouble(sch.get("maxDepartment")));
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				elist.add(new Job_history(
-						rs.getInt("employee_id"),
-						rs.getString("start_date"),
-						rs.getString("end_date"),
-						rs.getString("job_id"),
-						rs.getInt("department_id")
-						));
-			}
-			rs.close();
-			pstmt.close();
-			con.close();
-		} catch (SQLException e) {
-			System.out.println("SQL예외:"+e.getMessage());
-		} catch (Exception e) {
-			System.out.println("일반예외:"+e.getMessage());
-		} finally {
-			DB.close(rs, pstmt, con);
-		}
-		return elist;
-	}
+    public List<Jobs> getJob(Map<String, String> sch) {
+        List<Jobs> jobList = new ArrayList<>();
+        String sql = "SELECT * FROM jobs "
+        		+ "	WHERE UPPER(job_title) LIKE UPPER(?) AND MIN_SALARY BETWEEN ? AND ?";
+        // where upper(컬럼) : 대상데이터를 대문자 변경
+        // like LIKE UPPER(?) : 입력데이터로 대문자 변경
+        // 대소문자 상관없이 검색이 가능하도록 처리.
+        try {
+            con = DB.con();
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, "%" + sch.get("title") + "%");
+            pstmt.setInt(2, Integer.parseInt(sch.get("min_sal1")));
+            pstmt.setInt(3, Integer.parseInt(sch.get("min_sal2")));
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                jobList.add(new Jobs(
+                        rs.getString("job_id"),
+                        rs.getString("job_title"),
+                        rs.getInt("min_salary"),
+                        rs.getInt("max_salary")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("DB 예외: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("일반 예외: " + e.getMessage());
+        } finally {
+            DB.close(rs, pstmt, con);
+        }
+        return jobList;
+    }
+	
 	public List<Jobs> getJobs(Map<String,String> sch){
 		List<Jobs> elist = new ArrayList<Jobs>();
 		String sql = "SELECT *\r\n"
@@ -486,7 +483,7 @@ public class A04_PreParedDao {
 	}
 	public List<Emp> elist() {
 	      List<Emp> emplist = new ArrayList<Emp>();
-	      String sql = "SELECT * FROM emp02 order by empno";
+	      String sql = "SELECT * FROM emp02";
 	      //1. 연결(기본예외/자원해제)
 	      try {
 	         con = DB.con();
@@ -502,7 +499,7 @@ public class A04_PreParedDao {
 	               rs.getString("ename"),
 	               rs.getString("job"),
 	               rs.getInt("mgr"),
-	               rs.getString("hiredateS"),
+	               rs.getString("hiredate"),
 	               rs.getDouble("sal"),
 	               rs.getDouble("comm"),
 	               rs.getInt("deptno")

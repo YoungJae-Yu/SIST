@@ -24,6 +24,7 @@
 	%>
     <div class="container mt-3">
 		<h2>dept 예제</h2>	
+		<a href='a03_session.jsp'>세션확인하러가기</a>
     	<h3>부서번호:${dept.deptno}</h3>
     	<h3>부서이름:${dept.dname}</h3>
     	<h3>근무지역:${dept.loc}</h3>
