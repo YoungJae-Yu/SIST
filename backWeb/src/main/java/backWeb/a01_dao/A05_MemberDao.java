@@ -139,6 +139,42 @@ public class A05_MemberDao {
 	      return isid;
 	   }
 
+	
+	public Member checkMem(String id) {
+		Member mem = null;
+		String sql = "SELECT * FROM member02\r\n"
+				+ "WHERE id=?";
+		// 1.연결
+		try {
+			con = DB.con();
+			//2.대화
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			//3.결과
+			rs = pstmt.executeQuery();
+			//4.(ResultSet ==> VO) ? 단일/여러개 if/while
+			if(rs.next()) {
+				mem = new Member(
+					rs.getString("id"),
+					rs.getString("pass"),
+					rs.getString("name"),
+					rs.getInt("point"),
+					rs.getString("auth"),
+					rs.getDate("regdate")
+				);
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("sql예외:"+e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반예외:"+e.getMessage());
+		} finally {
+			DB.close(rs, pstmt, con);
+		}
+		
+		return mem;
+	}
 	public static void main(String[] args) {
 		A05_MemberDao dao = new A05_MemberDao();
 		dao.insertMember(new Member("higirl","8888","홍리나",1000,"관리자"));

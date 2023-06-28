@@ -19,12 +19,6 @@
     <servlet-name>a</servlet-name>
     <url-pattern>/a</url-pattern>
   </servlet-mapping>
-  
- <!--
- 프로젝트명/A02_Servlet2 : urlpattern
- 클래스를 찾아가는 형식지정.
- -->
-  
   <servlet>
     <description></description>
     <display-name>A02_Servlet2</display-name>
@@ -54,5 +48,15 @@
   <servlet-mapping>
     <servlet-name>A04_Servlet_html</servlet-name>
     <url-pattern>/A04_Servlet_html</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>codeIns.do</display-name>
+    <servlet-name>codeIns.do</servlet-name>
+    <servlet-class>backWeb.a01_servlet.A06_CodeInsert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>codeIns.do</servlet-name>
+    <url-pattern>/codeIns.do</url-pattern>
   </servlet-mapping>
 </web-app>

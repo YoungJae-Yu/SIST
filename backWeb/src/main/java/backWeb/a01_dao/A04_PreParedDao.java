@@ -11,14 +11,14 @@ import java.util.Map;
 
 import backWeb.saram_vo.Company;
 import backWeb.saram_vo.Match;
+import backWeb.z01_vo.Code;
 import backWeb.z01_vo.Departments;
+import backWeb.z01_vo.Dept;
 import backWeb.z01_vo.Emp;
 import backWeb.z01_vo.Employee;
-import backWeb.z01_vo.Job_history;
 import backWeb.z01_vo.Jobs;
 import backWeb.z01_vo.Locations;
 import backWeb.z01_vo.Manager;
-import backWeb.z01_vo.Member;
 
 //backWeb.a01_dao.A04_PreParedDao
 /*
@@ -549,6 +549,129 @@ public class A04_PreParedDao {
 	    return elist;
 	}
 
+	public List<Code> getCodeList(String title) {
+	    List<Code> elist = new ArrayList<Code>();
+	    String sql = "SELECT NO, title, val , refno, ordno\r\n"
+	    		+ "FROM code\r\n"
+	    		+ "WHERE title LIKE ?\r\n"
+	    		+ "ORDER BY refno, ordno";
+	    
+	    try {
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, '%'+title+"%");
+	        rs = pstmt.executeQuery();
+	        
+	
+	        while (rs.next()) {
+	            elist.add(new Code(
+	                    rs.getInt("no"),
+	                    rs.getString("title"),
+	                    rs.getString("val"),
+	                    rs.getInt("refno"),
+	                    rs.getInt("ordno")
+	            ));
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return elist;
+	}
+	public List<Code> getCombo(int refno) {
+	    List<Code> elist = new ArrayList<Code>();
+	    String sql = "SELECT title, val\r\n"
+	    		+ "FROM code\r\n"
+	    		+ "WHERE refno = ?\r\n"
+	    		+ "ORDER BY ordno";
+	    
+	    try {
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, refno);
+	        rs = pstmt.executeQuery();
+	        
+	
+	        while (rs.next()) {
+	            elist.add(new Code(
+	                    rs.getString("title"),
+	                    rs.getString("val")
+	            ));
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return elist;
+	}
+	public void insertCode(Code ins) {
+		String sql="INSERT INTO code VALUES (code_seq.nextval,?,?,?,?)";
+		try {
+			con = DB.con();
+			// 자동 commit방지
+			con.setAutoCommit(false);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ins.getTitle());
+			pstmt.setInt(2, ins.getRefno());
+			pstmt.setInt(3, ins.getOrdno());
+			pstmt.setString(4, ins.getVal());
+			System.out.println(pstmt.executeUpdate());
+			int isInsert = pstmt.executeUpdate();
+			if(isInsert == 1) {
+				con.commit();//입력시 확정
+				System.out.println("등록성공");
+			}
+		} catch (SQLException e) {
+			System.out.println("sql예외:"+e.getMessage());
+			try {
+				con.rollback();// 원복처리
+			} catch (SQLException e1) {
+				System.out.println("롤백예외:"+e1.getMessage());
+			}
+		} catch (Exception e) {
+			System.out.println("일반예외:"+e.getMessage());
+		} finally {
+			DB.close(rs, pstmt, con);
+		}
+		
+	}
+	public List<Dept> getDeptList(String dname, String loc) {
+	    List<Dept> elist = new ArrayList<Dept>();
+	    String sql = "SELECT *\r\n"
+	    		+ "FROM DEPT d \r\n"
+	    		+ "WHERE dname LIKE ?\r\n"
+	    		+ "AND LOC LIKE ?";
+	    
+	    try {
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, dname);
+	        pstmt.setString(2, loc);
+	        rs = pstmt.executeQuery();
+	        
+	
+	        while (rs.next()) {
+	            elist.add(new Dept(
+	                    rs.getInt("deptno"),
+	                    rs.getString("dname"),
+	                    rs.getString("loc")
+	            ));
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return elist;
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		A04_PreParedDao dao = new A04_PreParedDao();

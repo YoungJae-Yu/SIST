@@ -29,3 +29,91 @@
 3. 이벤트에 의해서 데이터 가져오기
 	1) 요청값 전달
 	2) 화면가져오기.
+	
+# 클라이언트 vs 서버단 처리 내용 구분
+1. 클라이언트
+	1) 화면 UI 구현
+		[   ] : 입력
+		table : 출력
+	2) 화면에 이벤트 처리 이벤트 핸들러함수
+		- onclick = "callAjax()"
+		- onkeyup = "callAjax()"
+	3) 이벤트핸들러함수
+		- 요청갑 전달할 DOM객체의 value값 호출
+			var enameVal = document.querySelector("#ename").valeu
+		- ajax 연동 처리(함수모듈구분)
+			function synGet(page)
+				var xhr = new XMLHttpRequest()
+				xhr.open("get","서버자원",false)
+					get방식으로 서버의 특정 데이터나 화면을 가지고 오는
+					페이지 지정하고, 동기식(false)처리
+					요청값을 전달하려면 서버사원?key=value 형식으로
+					페이지를 지정하여야 한다.
+				xhr.send()
+				return xhr.responseText : 서버에서 가져온 데이터나 화면
+		- 결과값을 출력한 DOM innerHTML
+			var tBody = document.querySelector("tbody")
+			tBody.innerHTML = synGet("페이지?ename="+enameVal)
+			# json 데이터를 받을 시
+			var empList = JSON.parse(synGet("페이지?ename="+enameVal))
+			var html = ""
+			empList.forEach(function(emp)){
+				html += "<tr>"
+				html += "<td>"+emp.empno+"</td>"
+				html += "<td>"+emp.ename+"</td>"
+				...
+				html += "<tr>"
+			}
+2. 서버단 프로그램
+	1) 요청값에 대한 처리
+		${param.ename}
+		String ename = request.getParameter("ename");
+		if(ename==null) ename ="";
+	2) DB연동 호출(import, Dao객체 생성, 메서드에 요청값 전달)
+		List<Emp> elist = dao.getEmpList(ename);
+	3) 화면만들기
+		<% for(Emp e:elist)%>
+		<tr>
+			<td><%=e.getEmpno()%></td>
+			<td><%=e.getEname()%></td>
+			<td><%=e.getJob()%></td>
+			...
+	4) json데이터만들기.		
+		Gson : 객체 ==> json문자열로 변환..
+		jstl : <c:forEach var="emp" items="${empList}">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
