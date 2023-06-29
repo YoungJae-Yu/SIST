@@ -80,9 +80,13 @@
 			...
 	4) json데이터만들기.		
 		Gson : 객체 ==> json문자열로 변환..
+			<%=만들어진 json 데이터 출력&>
 		jstl : <c:forEach var="emp" items="${empList}">
-	
-	
+			[
+				{"empno":${emp.empno},...
+			]
+		servlet처리(contoller)
+			==> spring에서 controller
 	
 	
 	

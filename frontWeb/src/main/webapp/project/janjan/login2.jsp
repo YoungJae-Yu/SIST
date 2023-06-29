@@ -7,10 +7,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/reset.css">
@@ -93,95 +94,17 @@ if (id != "" && pwd != "") {
                         name="pwd" id="pwd" maxlength="16" minlength="8">
                     </div>
                     <div class="findData">
-                        <a class="goJoin" type="button" class="btn btn-primary" 
-                    	data-bs-toggle="modal" data-bs-target="#myModal">아이디 찾기 | 비밀번호 찾기</a>
+                        <a href="#">아이디 찾기 |</a>
+                        <a href="#">비밀번호 찾기</a>
                     </div>
                     <div class="loginBtn">
                          <input type="submit" value="로그인">
                     </div>
                     </form>
-                    <!--  -->
-                    <a  href="./join.jsp" >
-                    <p>아직 회원이 아니신가요? 회원가입</p></a>
+                    <a class="goJoin" href="./join.jsp"><p>아직 회원이 아니신가요? 회원가입</p></a>
                 </div>
             </section>
         </div>
     </div>
-    <!-- The Modal -->
-	<div class="modal" id="myModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title">아이디 찾기</h4>
-					<button type="button" class="btn-close" id="modalClsBtn" data-bs-dismiss="modal"></button>
-				</div>
-				<!-- Modal body -->
-				<div class="modal-body">
-					<div class="mb-3 mt-3"> <input
-							type="text" class="form-control" id="contactId" 
-							placeholder="휴대폰 번호 입력"
-							name="contactId">
-					</div>
-				</div>
-				<!-- Modal footer -->
-				<div class="modal-footer">
-					<button type="button" class="btn btn-success"
-						onclick="ajaxSchID()">아이디 찾기</button>
-				</div>
-				
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title">비밀번호 찾기</h4>
-				</div>
-				<!-- Modal body -->
-				<div class="modal-body">
-					<div class="mb-3 mt-3"><input
-							type="text" class="form-control" id="id" 
-							placeholder="아이디 입력"
-							name="id">
-					</div>
-				</div>
-				<div class="modal-body">
-					<div class="mb-3 mt-3"><input
-							type="text" class="form-control" id="contactPwd" 
-							placeholder="휴대폰 번호 입력"
-							name="contactPwd">
-					</div>
-				</div>
-				<!-- Modal footer -->
-				<div class="modal-footer">
-					<button type="button" class="btn btn-success"
-						onclick="ajaxSchPwd()">비밀번호 찾기</button>
-				</div>
-			</div>
-		</div>
-	</div>
-    	<script type="text/javascript">
-	function ajaxSchID(){
-		var contactId=document.querySelector(".modal-body #contactId").value
-		var qStr = "contact="+contactId
-		var xhr = new XMLHttpRequest()
-		xhr.open("post","/frontWeb/schId",true)
-		xhr.setRequestHeader("Content-Type",
-				"application/x-www-form-urlencoded")
-		xhr.send(qStr)
-		xhr.onreadystatechange=function(){
-			if(xhr.readyState==4&&xhr.status==200){
-				var result = xhr.responseText
-				if(result==contactId){
-					alert("등록된 아이디는" <%=result%>)
-					document.querySelector("#regFrm").reset()
-					if(!confirm("계속등록 하시겠습니까?")){
-						// 창닫기 처리
-						document.querySelector("#modalClsBtn").click()
-					}
-				}else{
-					alert("등록실패")
-				}
-			}
-		}
-	}
-	</script>
 </body>
 </html>

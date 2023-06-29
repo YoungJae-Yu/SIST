@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <title>잔잔</title>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <!--gnb-->
+            <div class="inner">
+                <div class="gnb">
+                    <div class="gnbL">
+                        <ul>
+                            <li><a href="index.html"><img src="./img/logo.png" class="logo"></a></li>
+                            <li><a href="sub.html">구독</a></li>
+                            <li><a href="store.html">스토어</a></li>
+                        </ul>
+                    </div>
+                    <div class="gnbR">
+                        <ul>
+                            <li><a href="login.html">로그인/회원가입</a></li>
+                            <li><a href="bag.html"><img src="./img/bag.png" class="bag"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="inner">
+            <section><!--여기에 콘텐츠 넣으시면 됩니다.-->
+                <div class="logInner"> <!--sns 로그인-->
+                    <h2 style="text-align: center;">로그인·회원가입</h2>
+                    <div class="kakao">
+                        <input type="button" value="카카오로 계속하기" name="" id="kakaologin">
+                    </div>
+                    <div class="apple">
+                        <input type="button" value="Apple로 계속하기" name="" id="applelogin">
+                    </div>
+                    <h2 style="text-align: center;">회원 로그인</h2>
+                    <div class="idInput">
+                        <input type="text" value="" placeholder="아이디를 입력하세요" name="id" id="id">
+                    </div>
+                    <div class="passInput">
+                        <input type="password" value="" placeholder="비밀번호를 입력하세요" name="pwd" id="pwd" maxlength="16" minlength="8">
+                    </div>
+                    <div class="findData">
+                        <a href="#">아이디 찾기 |</a>
+                        <a href="#">비밀번호 찾기</a>
+                    </div>
+                    <div class="loginBtn">
+                        <input type="submit" value="로그인">
+                    </div>
+                    <a class="goJoin" href="./join.html"><p>아직 회원이 아니신가요? 회원가입</p></a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</body>
+</html>

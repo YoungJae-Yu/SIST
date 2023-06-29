@@ -98,11 +98,89 @@ public class MemberDao {
 		}
 		return mem;
 	}
+	// 아이디 중복확인 Dao 메서드
+	public Member checkId(String id) {
+		Member mem = null;
+		String sql = "SELECT MEMID\r\n"
+				+ "FROM MEMBER_info\r\n"
+				+ "WHERE MEMID=?";
+		try {
+			con = DB.con();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				mem = new Member(
+					rs.getString("MEMID")
+				);
+			}
+		} catch (SQLException e) {
+			System.out.println("sql예외:"+e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반예외:"+e.getMessage());
+		} finally {
+			DB.close(rs, pstmt, con);
+		}
+		return mem;
+	}
+	// 잔잔 로그인 아이디 찾기 메서드
+	public Member schId(String contact) {
+		Member mem = null;
+		String sql = "SELECT MEMID\r\n"
+				+ "FROM MEMBER_info\r\n"
+				+ "WHERE CONTACT=?";
+		try {
+			con = DB.con();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, contact);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				mem = new Member(
+					rs.getString("MEMID")
+				);
+			}
+		} catch (SQLException e) {
+			System.out.println("sql예외:"+e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반예외:"+e.getMessage());
+		} finally {
+			DB.close(rs, pstmt, con);
+		}
+		return mem;
+	}
+	// 잔잔 로그인 패스워드 찾기 메서드
+	public Member schPwd(String id, String contact) {
+		Member mem = null;
+		String sql = "SELECT PASSWORD\r\n"
+				+ "FROM MEMBER_info\r\n"
+				+ "WHERE MEMID=? AND contact=?";
+		try {
+			con = DB.con();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, contact);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				mem = new Member(
+					rs.getString("PASSWORD")
+				);
+			}
+		} catch (SQLException e) {
+			System.out.println("sql예외:"+e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반예외:"+e.getMessage());
+		} finally {
+			DB.close(rs, pstmt, con);
+		}
+		return mem;
+	}
 	public static void main(String[] args) {
 		// login test
 		MemberDao dao = new MemberDao();
 //		System.out.println(dao.login("man01", "1111"));
+		System.out.println(dao.schId("010-1111-1111"));
+		System.out.println(dao.schPwd("man01","010-1111-1111"));
 		// join test
-		dao.join(new Member("man0101","aaaa1111","홍길동","서울시 강남역","010-0000-0000","aa@aa.aa"));
+//		dao.join(new Member("man0101","aaaa1111","홍길동","서울시 강남역","010-0000-0000","aa@aa.aa"));
 	}
 }	

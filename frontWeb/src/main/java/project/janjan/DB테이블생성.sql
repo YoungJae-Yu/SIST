@@ -1,10 +1,10 @@
-cREATE TABLE MEMBER_INFO(
-MEMID varchar2(30) PRIMARY KEY, -- (man01~5,girl01~5 순서대로)
-PASSWORD varchar2(50), --(1111,2222,~5555 위 ID 숫자와 맵핑)
-NAME VARCHAR2(20), --(한국에서 가장 많이 사용되는 이름 남자이름5개 여자이름5개 순서대로)
-ADDRESS VARCHAR2(50), -- (서울시 테헤란로 21길 6번지와 같은 형태로 랜덤으로 서울, 경기권 주소)
-CONTACT VARCHAR2(50), --(010-1111-1111~010-5555,5555 처럼 남자여자 순서대로 맵핑)
-EMAIL VARCHAR2(50) -- (man01@gmail.com~girl05@gmail.com 순서대로)
+CREATE TABLE MEMBER_INFO(
+MEMID varchar2(30) PRIMARY KEY, 					-- (man01~5,girl01~5 순서대로)
+PASSWORD varchar2(50), 									--(1111,2222,~5555 위 ID 숫자와 맵핑)
+NAME VARCHAR2(20), 										--(한국에서 가장 많이 사용되는 이름 남자이름5개 여자이름5개 순서대로)
+ADDRESS VARCHAR2(50), 									-- (서울시 테헤란로 21길 6번지와 같은 형태로 랜덤으로 서울, 경기권 주소)
+CONTACT VARCHAR2(50), 									--(010-1111-1111~010-5555,5555 처럼 남자여자 순서대로 맵핑)
+EMAIL VARCHAR2(50) 										-- (man01@gmail.com~girl05@gmail.com 순서대로)
 );
 SELECT *FROM MEMBER_info;
 DROP TABLE MEMBER_info;

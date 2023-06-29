@@ -549,17 +549,19 @@ public class A04_PreParedDao {
 	    return elist;
 	}
 
-	public List<Code> getCodeList(String title) {
+	public List<Code> getCodeList(String title, int refno) {
 	    List<Code> elist = new ArrayList<Code>();
-	    String sql = "SELECT NO, title, val , refno, ordno\r\n"
+	    String sql = "SELECT * \r\n"
 	    		+ "FROM code\r\n"
 	    		+ "WHERE title LIKE ?\r\n"
-	    		+ "ORDER BY refno, ordno";
+	    		+ "START WITH refno = ?\r\n"
+	    		+ "CONNECT BY PRIOR NO = refno";
 	    
 	    try {
 	        con = DB.con();
 	        pstmt = con.prepareStatement(sql);
 	        pstmt.setString(1, '%'+title+"%");
+	        pstmt.setInt(2, refno);
 	        rs = pstmt.executeQuery();
 	        
 	
@@ -621,7 +623,6 @@ public class A04_PreParedDao {
 			pstmt.setInt(2, ins.getRefno());
 			pstmt.setInt(3, ins.getOrdno());
 			pstmt.setString(4, ins.getVal());
-			System.out.println(pstmt.executeUpdate());
 			int isInsert = pstmt.executeUpdate();
 			if(isInsert == 1) {
 				con.commit();//입력시 확정

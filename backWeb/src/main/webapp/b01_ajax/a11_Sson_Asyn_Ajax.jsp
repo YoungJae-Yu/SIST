@@ -52,6 +52,8 @@
 	1) 화면 구현
 		id : [   ] [등록여부확인] ==> 클릭시 이벤트 핸들러
 	2) 이벤트핸들러 함수
+		// 비동기 통신시는 onreadyststechange 기능메서드 활용이
+		// 어렵다. 단, setTimeout() 활용하면 가능하다.
 		function asynAjx(page){
 			xhr.open("get",page,true)
 			xhr.onreadyststechange=function(){

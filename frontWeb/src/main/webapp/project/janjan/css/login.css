@@ -1,0 +1,120 @@
+.logInner{
+    width: 350px;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+.joinInner{
+    width: 350px;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.kakao input{
+    margin-top: 20px;
+    height: 50px;
+    width: 350px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffe72e;
+    font-size: 16px;
+}
+.apple input{
+    margin-top: 10px;
+    margin-bottom: 50px;
+    height: 50px;
+    width: 350px;
+    border: solid 1px gray;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    font-size: 16px;
+}
+.idInput input{
+    margin-top: 20px;
+    height: 50px;
+    width: 350px;
+    border: solid 1px gray;
+    border-radius: 5px;
+}
+.passInput input{
+    margin-top: 10px;
+    height: 50px;
+    width: 350px;
+    border: solid 1px gray;
+    border-radius: 5px;
+}
+.findData{
+    margin-top: 5px;
+    float: right;
+}
+.loginBtn input{
+    margin-top: 50px;
+    height: 50px;
+    width: 350px;
+    background-color: #4D9BF9;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+}
+.goJoin p{
+    margin-top: 10px;
+    text-align: center;
+}
+input{
+    display: block;
+    outline: none;
+    margin-top: 5px;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.name{
+    height: 30px;
+    width: 350px;
+}
+.gener{
+    height: 30px;
+    width: 350px; 
+}
+.idCh{
+    display: flex;
+}
+.createId{
+    height: 30px;
+    width: 350px;
+    margin-right: 5px; 
+}
+.pass{
+    height: 30px;
+    width: 350px;
+}
+label{
+    margin-top: 100px;
+} 
+.phoneCh{
+    display: flex;
+}
+.phoneNum{
+    height: 30px;
+    width: 350px;
+    margin-right: 5px;
+}
+.numCh{
+    height: 35px;
+}
+.checkG{
+    margin-top: 15px;
+}
+.checkG input{
+    display: inline;
+}
+.checkAll{
+    margin-bottom: 10px;
+}
+.doubleCh{
+    height: 30px;
+    width: 350px;
+    margin-right: 5px;
+}

@@ -30,6 +30,18 @@ public class Member {
 	}
 
 
+	public Member(String id) {
+		super();
+		this.id = id;
+	}
+
+	public Member(String id, String pwd, String contact) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.contact = contact;
+	}
+
 	public String getEmail() {
 		return email;
 	}
