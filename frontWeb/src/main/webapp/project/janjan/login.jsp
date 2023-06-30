@@ -127,7 +127,7 @@ if (id != "" && pwd != "") {
 				<!-- Modal footer -->
 				<div class="modal-footer">
 					<button type="button" class="btn btn-success"
-						onclick="ajaxSchID()">아이디 찾기</button>
+						onclick="ajaxSchId()">아이디 찾기</button>
 				</div>
 				
 				<!-- Modal Header -->
@@ -158,26 +158,50 @@ if (id != "" && pwd != "") {
 		</div>
 	</div>
     	<script type="text/javascript">
-	function ajaxSchID(){
+	function ajaxSchId(){
 		var contactId=document.querySelector(".modal-body #contactId").value
 		var qStr = "contact="+contactId
 		var xhr = new XMLHttpRequest()
 		xhr.open("post","/frontWeb/schId",true)
 		xhr.setRequestHeader("Content-Type",
 				"application/x-www-form-urlencoded")
-		xhr.send(qStr)
+		xhr.send(qStr);
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4&&xhr.status==200){
 				var result = xhr.responseText
-				if(result==contactId){
-					alert("등록된 아이디는" <%=result%>)
-					document.querySelector("#regFrm").reset()
-					if(!confirm("계속등록 하시겠습니까?")){
+				if(result!="null"){
+					alert("등록된 아이디는" + result + "입니다.")
+					if(confirm("로그인페이지로 이동할까요?")){
 						// 창닫기 처리
 						document.querySelector("#modalClsBtn").click()
 					}
 				}else{
-					alert("등록실패")
+					alert("등록된 계정이 없습니다.")
+				}
+			}
+		}
+	}
+	function ajaxSchPwd(){
+		var id=document.querySelector(".modal-body #id").value
+		var contactPwd=document.querySelector(".modal-body #contactPwd").value
+		var qStr = "id="+id+"&contact="+contactPwd
+		var xhr = new XMLHttpRequest()
+		xhr.open("post","/frontWeb/schPwd",true)
+		xhr.setRequestHeader("Content-Type",
+				"application/x-www-form-urlencoded")
+		xhr.send(qStr);
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4&&xhr.status==200){
+				var result = xhr.responseText
+				console.log(result)
+				if(result!=""){
+					alert("등록된 비밀번호는" + result + "입니다.")
+					if(confirm("로그인페이지로 이동할까요?")){
+						// 창닫기 처리
+						document.querySelector("#modalClsBtn").click()
+					}
+				}else{
+					alert("등록된 계정이 없습니다.")
 				}
 			}
 		}

@@ -30,16 +30,11 @@ public class schId extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		String contact = request.getParameter("contact");
-		Member prn = null;
-		System.out.println(contact);
-		if(contact!=null) {
-			Member ins = new Member(contact);
-			MemberDao dao = new MemberDao();
-			prn = dao.schId(contact);
-		}
+		if(contact==null)contact="";
+		String prn = "";
+		Member ins = new Member(contact);
+		MemberDao dao = new MemberDao();
+		prn = dao.schId(contact);
 		response.getWriter().print(prn);
-	
-
 	}
-
 }

@@ -31,19 +31,13 @@ public class schPwd extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
+		if(id==null)id="";
 		String contact = request.getParameter("contact");
-		String prn="N";
-		System.out.println(id);
-		System.out.println(contact);
-		if(contact!=null) {
-			Member ins = new Member(id, contact);
-			MemberDao dao = new MemberDao();
-			dao.schPwd(id, contact);
-			prn="Y";
-		}
+		if(contact==null)contact="";
+		String prn = "";
+		Member ins = new Member(id,contact);
+		MemberDao dao = new MemberDao();
+		prn = dao.schPwd(id,contact);
 		response.getWriter().print(prn);
-	
-
 	}
-
 }
