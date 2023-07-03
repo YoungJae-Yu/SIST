@@ -119,6 +119,13 @@ if (id != "" && pwd != "") {
 				<!-- Modal body -->
 				<div class="modal-body">
 					<div class="mb-3 mt-3"> <input
+							type="text" class="form-control" id="name" 
+							placeholder="이름 입력"
+							name="name">
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3 mt-3"> <input
 							type="text" class="form-control" id="contactId" 
 							placeholder="휴대폰 번호 입력"
 							name="contactId">
@@ -159,8 +166,9 @@ if (id != "" && pwd != "") {
 	</div>
     	<script type="text/javascript">
 	function ajaxSchId(){
+		var name=document.querySelector(".modal-body #name").value
 		var contactId=document.querySelector(".modal-body #contactId").value
-		var qStr = "contact="+contactId
+		var qStr = "name="+name+"&contact="+contactId
 		var xhr = new XMLHttpRequest()
 		xhr.open("post","/frontWeb/schId",true)
 		xhr.setRequestHeader("Content-Type",
@@ -169,6 +177,7 @@ if (id != "" && pwd != "") {
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4&&xhr.status==200){
 				var result = xhr.responseText
+				console.log(result)
 				if(result!="null"){
 					alert("등록된 아이디는" + result + "입니다.")
 					if(confirm("로그인페이지로 이동할까요?")){

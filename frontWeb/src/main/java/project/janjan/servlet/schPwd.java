@@ -38,6 +38,6 @@ public class schPwd extends HttpServlet {
 		Member ins = new Member(id,contact);
 		MemberDao dao = new MemberDao();
 		prn = dao.schPwd(id,contact);
-		response.getWriter().print(prn);
+		                             response.getWriter().print(prn);
 	}
 }

@@ -143,15 +143,16 @@ public class MemberDao {
 		return mem;
 	}
 	// 잔잔 로그인 아이디 찾기 메서드
-	public String schId(String contact) {
+	public String schId(String name,String contact) {
 		Member mem = new Member();
 		String sql = "SELECT MEMID\r\n"
 				+ "FROM MEMBER_info\r\n"
-				+ "WHERE CONTACT=?";
+				+ "WHERE NAME=? AND CONTACT=?";
 		try {
 			con = DB.con();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, contact);
+			pstmt.setString(1, name);
+			pstmt.setString(2, contact);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				mem = new Member(

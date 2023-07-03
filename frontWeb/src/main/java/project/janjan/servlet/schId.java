@@ -29,12 +29,14 @@ public class schId extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
+		String name = request.getParameter("name");
+		if(name==null)name="";
 		String contact = request.getParameter("contact");
 		if(contact==null)contact="";
 		String prn = "";
 		Member ins = new Member(contact);
 		MemberDao dao = new MemberDao();
-		prn = dao.schId(contact);
+		prn = dao.schId(name,contact);
 		response.getWriter().print(prn);
 	}
 }

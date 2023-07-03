@@ -7,6 +7,7 @@ public class Member {
 	private String address;
 	private String contact;
 	private String email;
+	private int auth;
 	
 	public Member() {
 		super();
@@ -44,6 +45,25 @@ public class Member {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public int getAuth() {
+		return auth;
+	}
+
+	public void setAuth(int auth) {
+		this.auth = auth;
+	}
+
+	public Member(String id, String pwd, String name, String address, String contact, String email, int auth) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.address = address;
+		this.contact = contact;
+		this.email = email;
+		this.auth = auth;
 	}
 
 	public void setEmail(String email) {
