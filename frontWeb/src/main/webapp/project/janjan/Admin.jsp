@@ -161,7 +161,7 @@
                </div>
                <div class="mb-3 mt-3">
                   <label for="UDSN">물건코드:</label> <input type="number"
-                     class="form-control" id="UD"
+                     class="form-control" id="UDSN"
                      placeholder="코드 입력(수정/삭제)" name="UDSN">
                </div>
             </div>
@@ -222,13 +222,13 @@
           var ordno = document.querySelector("#alcoholModal .modal-body #ordnoA").value
           var prdno = document.querySelector("#alcoholModal .modal-body #UDA").value
           // ?title=매실원주&refno=6&ordno=1&val=매실원주
-          var qStr = +"prdno="+prdno+"&title="+title+"&refno="+refno+"&ordno="+ordno+"&val="+val
-          
+          var qStr = "prdno="+prdno+"&title="+title+"&refno="+refno+"&ordno="+ordno+"&val="+val
           var xhr = new XMLHttpRequest();
           xhr.open("post","/frontWeb/AlcoholServletUdt",true)
           xhr.setRequestHeader("Content-Type",
                 "application/x-www-form-urlencoded")
           xhr.send(qStr)
+          console.log(qStr)
           xhr.onreadystatechange=function(){
              if(xhr.readyState==4&&xhr.status==200) {
                 var resultA = xhr.responseText
@@ -239,6 +239,37 @@
                    if(!confirm("계속 수정하시겠습니까?")){
                       // 창닫기 처리
                       document.querySelector("#modalClsBtnA").click()
+                   }
+                }else {
+                   alert("수정 실패")
+                }
+             }
+          }
+      }
+      function updateSN(){
+          var title = document.querySelector("#snackModal .modal-body #titleSN").value
+          var val = document.querySelector("#snackModal .modal-body #valSN").value
+          var refno = document.querySelector("#snackModal .modal-body #refnoSN").value
+          var ordno = document.querySelector("#snackModal .modal-body #ordnoSN").value
+          var prdno = document.querySelector("#snackModal .modal-body #UDSN").value
+          // ?title=매실원주&refno=6&ordno=1&val=매실원주
+          var qStr = "prdno="+prdno+"&title="+title+"&refno="+refno+"&ordno="+ordno+"&val="+val
+          var xhr = new XMLHttpRequest();
+          xhr.open("post","/frontWeb/SnackServletUdt",true)
+          xhr.setRequestHeader("Content-Type",
+                "application/x-www-form-urlencoded")
+          xhr.send(qStr)
+          console.log(qStr)
+          xhr.onreadystatechange=function(){
+             if(xhr.readyState==4&&xhr.status==200) {
+                var resultA = xhr.responseText
+                if(resultA=="Y"){
+                   alert("수정 성공")
+                   prd()
+                   document.querySelector("#snackModal #regFrm").reset()
+                   if(!confirm("계속 수정하시겠습니까?")){
+                      // 창닫기 처리
+                      document.querySelector("#modalClsBtnS").click()
                    }
                 }else {
                    alert("수정 실패")
@@ -265,6 +296,32 @@
                    if(!confirm("계속 삭제하시겠습니까?")){
                       // 창닫기 처리
                       document.querySelector("#modalClsBtnA").click()
+                   }
+                }else {
+                   alert("삭제 실패")
+                }
+             }
+          }
+      }
+      function deleteSN(){
+          var prdno = document.querySelector("#snackModal .modal-body #UDSN").value
+          // ?title=매실원주&refno=6&ordno=1&val=매실원주
+          var qStr = "prdno="+prdno
+          var xhr = new XMLHttpRequest();
+          xhr.open("post","/frontWeb/SnackServletDel",true)
+          xhr.setRequestHeader("Content-Type",
+                "application/x-www-form-urlencoded")
+          xhr.send(qStr)
+          xhr.onreadystatechange=function(){
+             if(xhr.readyState==4&&xhr.status==200) {
+                var resultA = xhr.responseText
+                if(resultA=="Y"){
+                   alert("삭제 성공")
+                   prd()
+                   document.querySelector("#snackModal #regFrm").reset()
+                   if(!confirm("계속 삭제하시겠습니까?")){
+                      // 창닫기 처리
+                      document.querySelector("#modalClsBtnS").click()
                    }
                 }else {
                    alert("삭제 실패")
@@ -303,63 +360,6 @@
          }
       }
       prd()
-      function updateSN(){
-          var title = document.querySelector("#alcoholModal .modal-body #titleSN").value
-          var val = document.querySelector("#alcoholModal .modal-body #valSN").value
-          var refno = document.querySelector("#alcoholModal .modal-body #refnoSN").value
-          var ordno = document.querySelector("#alcoholModal .modal-body #ordnoSN").value
-          var prdno = document.querySelector("#alcoholModal .modal-body #UDSN").value
-          // ?title=매실원주&refno=6&ordno=1&val=매실원주
-          var qStr = "title="+title+"&refno="+refno+"&ordno="+ordno+"&val="+val+"&prdno="+prdno
-          
-          var xhr = new XMLHttpRequest();
-          xhr.open("post","/frontWeb/SnackServletUdt",true)
-          xhr.setRequestHeader("Content-Type",
-                "application/x-www-form-urlencoded")
-          xhr.send(qStr)
-          xhr.onreadystatechange=function(){
-             if(xhr.readyState==4&&xhr.status==200) {
-                var resultA = xhr.responseText
-                if(resultA=="Y"){
-                   alert("수정 성공")
-                   prd()
-                   document.querySelector("#alcoholModal #regFrm").reset()
-                   if(!confirm("계속 수정하시겠습니까?")){
-                      // 창닫기 처리
-                      document.querySelector("#modalClsBtnA").click()
-                   }
-                }else {
-                   alert("수정 실패")
-                }
-             }
-          }
-      }
-      function deleteSN(){
-          var prdno = document.querySelector("#alcoholModal .modal-body #UDSN").value
-          // ?title=매실원주&refno=6&ordno=1&val=매실원주
-          var qStr = "prdno="+prdno
-          var xhr = new XMLHttpRequest();
-          xhr.open("post","/frontWeb/SnackServletDel",true)
-          xhr.setRequestHeader("Content-Type",
-                "application/x-www-form-urlencoded")
-          xhr.send(qStr)
-          xhr.onreadystatechange=function(){
-             if(xhr.readyState==4&&xhr.status==200) {
-                var resultA = xhr.responseText
-                if(resultA=="Y"){
-                   alert("삭제 성공")
-                   prd()
-                   document.querySelector("#alcoholModal #regFrm").reset()
-                   if(!confirm("계속 삭제하시겠습니까?")){
-                      // 창닫기 처리
-                      document.querySelector("#modalClsBtnA").click()
-                   }
-                }else {
-                   alert("삭제 실패")
-                }
-             }
-          }
-      }
    </script>
 </body>
 </html>

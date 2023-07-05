@@ -41,6 +41,17 @@ pageContext.request.contextPath
     				$(this).text("touch me??");
     			});
     	/*
+    	# jquery 선택자
+    	1. $("선택자")
+    		단일 선택으로 처리할 수 있고.
+    		동일한 태그에 모든 기능을 처리할 때도 for문
+    		없이도 가능하다.
+    		$("h1").text ("일괄변경")
+    		h1이 여러개 있더라도 한꺼번에 모두다 lable을
+    		일괄변경이 가능하다.
+    		$("선택자").eq(index번호).text("특정 내용변경")
+    		$("") 첫번째 내용 변경
+    	
     	# 레이블 변경
     	1. innerText ==>
     		$("선택자").text("변경할데이터")
@@ -63,6 +74,12 @@ pageContext.request.contextPath
 	    			background:"red",
 	    			color:"blue"
 	    		})
+	    # 이벤트
+	    $("선택자").이벤트명(익명함수);
+	    	$("h1").click(function(){
+	    		// this : h1 중에서 클릭한 대상객체..
+	    		$(this).css("background","yellow")
+	    	})
 	    		
     		
     		

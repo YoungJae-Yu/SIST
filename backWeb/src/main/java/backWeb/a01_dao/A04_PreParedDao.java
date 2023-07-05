@@ -19,6 +19,7 @@ import backWeb.z01_vo.Employee;
 import backWeb.z01_vo.Jobs;
 import backWeb.z01_vo.Locations;
 import backWeb.z01_vo.Manager;
+import backWeb.z01_vo.Salgrade;
 
 //backWeb.a01_dao.A04_PreParedDao
 /*
@@ -783,6 +784,107 @@ WHERE NO = ?
 		}
 		
 	}
+	/*
+		SELECT *
+	FROM CODE
+	WHERE NO = ?
+	
+	UPDATE CODE 
+		SET title = ?,
+			   refno = ?,
+			   ordno = ?,
+			   val = ?
+		WHERE NO=?
+		
+	DELETE
+	FROM CODE
+	WHERE NO = ? 
+		 
+		 */
+	public Dept getDept(int no) {
+	    Dept c = new Dept(0,"","");
+	    String sql = " SELECT * \r\n"
+	    		+ "FROM dept\r\n"
+	    		+ "WHERE deptno = ?";
+	    try {
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, no);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            c = new Dept(
+	                    rs.getInt("deptno"),
+	                    rs.getString("dname"),
+	                    rs.getString("loc")
+	            );
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return c;
+	}
+
+		public Jobs getJobs(String job_id) {
+		    Jobs job = new Jobs("","",0,0);
+		    String sql = "	SELECT * \r\n"
+		    		+ "FROM jobs\r\n"
+		    		+ "WHERE JOB_ID = ? ";
+		    System.out.println("# DB 접속 #");
+		    try {
+		        con = DB.con();
+		        pstmt = con.prepareStatement(sql); 
+		        pstmt.setString(1, job_id);; 
+		        rs = pstmt.executeQuery();
+		        //job_id, job_title, min_salary, max_salary
+		        if (rs.next()) {
+		        	job = new Jobs(
+		        			rs.getString("job_id"),
+		        			rs.getString("job_title"),
+		        			rs.getInt("min_salary"),
+		        			rs.getInt("max_salary")
+		            );
+		        }
+		    } catch (SQLException e) {
+		        System.out.println("DB 관련 오류: " + e.getMessage());
+		    } catch (Exception e) {
+		        System.out.println("일반 오류: " + e.getMessage());
+		    } finally {
+		        DB.close(rs, pstmt, con);
+		    }
+		    return job;
+		}
+		public Salgrade getSalgrade(String grade) {
+			Salgrade salgrade = new Salgrade(0,0,0);
+		    String sql = "	SELECT LOSAL , HISAL \r\n"
+		    		+ "FROM SALGRADE s \r\n"
+		    		+ "WHERE GRADE =? ";
+		    System.out.println("# DB 접속 #");
+		    try {
+		        con = DB.con();
+		        pstmt = con.prepareStatement(sql); 
+		        pstmt.setString(1, grade);; 
+		        rs = pstmt.executeQuery();
+		        //job_id, job_title, min_salary, max_salary
+		        if (rs.next()) {
+		        	salgrade = new Salgrade(
+		        			rs.getInt("grade"),
+		        			rs.getInt("losal"),
+		        			rs.getInt("hisal")
+		            );
+		        }
+		    } catch (SQLException e) {
+		        System.out.println("DB 관련 오류: " + e.getMessage());
+		    } catch (Exception e) {
+		        System.out.println("일반 오류: " + e.getMessage());
+		    } finally {
+		        DB.close(rs, pstmt, con);
+		    }
+		    return salgrade;
+		}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		A04_PreParedDao dao = new A04_PreParedDao();

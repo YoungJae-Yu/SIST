@@ -43,7 +43,43 @@
  	<jsp:setProperty name="id" property="이름" param="파라미터"
  		param : 프로퍼티의 값으로 사용할 파라미터 이름
  	<jsp:getProperty name="자바빈" property="프로퍼티"/> 
+ 
+ 4. 요청값 처리 기능
+ 	페이지?name=홍길동&age77=25
+ 	
+ 	<jsp:setProperty name="p01" property="name"/>
+ 	<jsp:setProperty name="p01" property="age"/>
+ 	
+ 	요청값과 저장하는 메서드이름이 다른 때, 요청값이름으로 property를
+ 	연동할 때, param을 활용한다.
+ 	<jsp:setProperty name="p01" property="age" param="age77"/>
+ 	==> 요청값이 querystring으로 있을 때, 저장된다.
+ 	p01.setName("홍길동");
+ 	p01.setAge(25)
+ 	p01.setAge("25")
+ 	
+ 	단) VO(bean 클래스가)
+ 	public void setName(int num01){ (X)
+ 	public void setAge(String name){ (O)
+ 	
+ 	public void setAge(int age){ (O)
+ 	public void setAge(String age){ (O)
+ 	
+ 	# 최강기능
+ 	<jsp:setProperty name="p01" property="*"/>
+ 	querystring이 property와 동일한 이름과 할당가능한 type으로
+ 	선언되어 있으면 자동으로 모두다 할당함.
+	?name=홍길동&age=25&loc=서울
+	setName(String name){}
+	setAge(int age){}
+	setLoc(String loc){}
+	?name=홍길동&age=25&loc=서울
+	setName(String name){}
+	setAge(String age){}
+	setLoc(String loc){}
+	
 
+	
  --%>
 <!DOCTYPE html>
 <html>

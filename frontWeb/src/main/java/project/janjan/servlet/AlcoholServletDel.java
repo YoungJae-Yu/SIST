@@ -4,6 +4,7 @@ package project.janjan.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import project.janjan.VO.Admin;
 /**
  * Servlet implementation class AlcoholServlet
  */
+@WebServlet("/AlcoholServletDel")
 public class AlcoholServletDel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,11 +34,13 @@ public class AlcoholServletDel extends HttpServlet {
 		// TODO Auto-generated method stub
 		// ?title=매실원주&refno=6&ordno=1&val=매실원주
 		request.setCharacterEncoding("utf-8");
-		String prdno = request.getParameter("prdno");
+		String prdnoS = request.getParameter("prdno");
+		int prdno = 0; 
+		if(prdnoS!=null) prdno=Integer.parseInt(prdnoS);
 		String prn = "N";
-		if(prdno!=null) {
+		if(prdno!=0) {
 			AdminDao dao = new AdminDao();
-			dao.deleteAS(Integer.parseInt(prdno));
+			dao.deleteAS(prdno);
 			prn = "Y";
 		}
 		response.getWriter().print(prn);
