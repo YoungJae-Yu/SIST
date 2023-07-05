@@ -325,43 +325,43 @@ public class A04_PreParedDao {
 			DB.close(rs, pstmt, con);
 		}
 	}
-	public Employee getEmpList(String id){
-		Employee emp = null;
-		String sql = "SELECT * FROM EMPLOYEES "
-				+ "WHERE employee_id = ?";
-		System.out.println("# DB 접속 #");
-		try {
-			con = DB.con();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				emp = new Employee(
-						rs.getInt("employee_id"),
-						rs.getString("first_name"),
-						rs.getString("last_name"),
-						rs.getString("email"),
-						rs.getString("phone_number"),
-						rs.getDate("hire_date"),
-						rs.getString("job_id"),
-						rs.getDouble("salary"),
-						rs.getDouble("commission_pct"),
-						rs.getInt("manager_id"),
-						rs.getInt("department_id")
-						);
-			}
-			rs.close();
-			pstmt.close();
-			con.close();
-		} catch (SQLException e) {
-			System.out.println("SQL예외:"+e.getMessage());
-		} catch (Exception e) {
-			System.out.println("일반예외:"+e.getMessage());
-		} finally {
-			DB.close(rs, pstmt, con);
-		}
-		return emp;
-	}
+//	public Employee getEmpList(String id){
+//		Employee emp = null;
+//		String sql = "SELECT * FROM EMPLOYEES "
+//				+ "WHERE employee_id = ?";
+//		System.out.println("# DB 접속 #");
+//		try {
+//			con = DB.con();
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, id);
+//			rs = pstmt.executeQuery();
+//			while(rs.next()) {
+//				emp = new Employee(
+//						rs.getInt("employee_id"),
+//						rs.getString("first_name"),
+//						rs.getString("last_name"),
+//						rs.getString("email"),
+//						rs.getString("phone_number"),
+//						rs.getDate("hire_date"),
+//						rs.getString("job_id"),
+//						rs.getDouble("salary"),
+//						rs.getDouble("commission_pct"),
+//						rs.getInt("manager_id"),
+//						rs.getInt("department_id")
+//						);
+//			}
+//			rs.close();
+//			pstmt.close();
+//			con.close();
+//		} catch (SQLException e) {
+//			System.out.println("SQL예외:"+e.getMessage());
+//		} catch (Exception e) {
+//			System.out.println("일반예외:"+e.getMessage());
+//		} finally {
+//			DB.close(rs, pstmt, con);
+//		}
+//		return emp;
+//	}
 	public List<Manager> getManager(){
 		List<Manager> elist = new ArrayList<Manager>();
 		String sql = "SELECT EMPNO , ename, dname\r\n"

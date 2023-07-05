@@ -120,7 +120,29 @@
 		// 조건에 따라서 메서드 처리
 		// 결과값 처리 Gson활용.
 		
+# 상세 데이터 ajax가져오기..
+1. 내용
+	해당 list 내용 중에 특정 데이터 row 단위로 클릭시,
+	상세 데이터를 ajax로 가져와서 form 화면에 출력한다.
+2. 처리순서
+	1) 클릭시, 해당 데이터를 요청값을 만들어 ajax 처리한다.(핸들러함수 선언)
+	2) 단일 데이터 가져오는  dao생성
+	3) 단일 데이터 가져와서 json 데이터 return하는  servlet 생성
+	4) ajax 요청 처리로 servlet 호출, ajax 처리..
+		
+
 		 --%>
+		 <%-- jquery 선언 --%>
+<script src = "https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
+    
+<script type="text/javascript">
+    	// window.onload와 동일한 메서드
+    	$(document).ready( function(){
+    		
+    		$("h2").text("jquery 로딩 성공")
+    	});
+</script> 
+
 <script type="text/javascript">
 	function schCode() {
 		var titleVal = document.querySelector("#title").value
@@ -151,13 +173,20 @@
 		}
 	}
 	function detail(no){
-		document.querySelector("#loadModal").click();
+		document.querySelector("#detailModal").click();
 		document.querySelector(".modal-title").innerText 
-			= "코드상세 [코드번호:"+no+"]"		
+			= "코드상세 [코드번호:"+no+"]"	
+			// ajax로 상세 데이터를 가져와서 화면에 데이터 넣기
+			$("#regBtn").hide()
+			$("#uptBtn").show()
+			$("#delBtn").show()
 	}
-	function insModal(no){
+	function insModal(){
 		document.querySelector(".modal-title").innerText 
-			= "코드등록"		
+			= "코드등록"	
+				$("#regBtn").show()
+				$("#uptBtn").hide()
+				$("#delBtn").hide()
 	}
 </script>
 <body>
@@ -171,9 +200,8 @@
 				<label for="">상위코드:</label> <input onkeyup="schCode()"
 					type="text" class="form-control" id="refno" placeholder="상위코드 입력"
 					name="refno" value="0"></div>
-			<div id="detailModal" 
-			data-bs-toggle="modal"
-				data-bs-target="#myModal"></div>
+		<div  id="detailModal" data-bs-toggle="modal"
+			data-bs-target="#myModal"></div>	
 			<button type="button" onclick="insModal()" 
 			class="btn btn-success" data-bs-toggle="modal"
 				data-bs-target="#myModal">코드등록</button>
@@ -243,12 +271,13 @@
 				</div>
 
 				<!-- Modal footer -->
+
 				<div class="modal-footer">
-					<button type="button" class="btn btn-success"
+					<button id="regBtn" type="button" class="btn btn-success"
 						onclick="ajaxSave()">등록</button>
-					<button type="button" class="btn btn-primary"
+					<button id="uptBtn"  type="button" class="btn btn-primary"
 						onclick="ajaxUpdate()">수정</button>
-					<button type="button" class="btn btn-warning"
+					<button id="delBtn"  type="button" class="btn btn-warning"
 						onclick="ajaxDelete()">삭제</button>
 					<button  id="" type="button" class="btn btn-danger"
 						data-bs-dismiss="modal">Close</button>

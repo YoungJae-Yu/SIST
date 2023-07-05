@@ -1,0 +1,28 @@
+# tomcat 10 ==> tomcat 9 변경
+1. jstl인식 호환문제로 변경 필요
+2. 절차
+	1) tomcat 10.0 삭제 처리
+	2) 프로젝트 오른쪽 마우스 클릭 ==> properties
+		 ==> project facts ==> dynamic web module 4.0 변경
+	3) tomcat 9.0 설치
+	4) tomcat 9.0 폴드 안에
+		C:\a01_javaexp\tomcat\apache-tomcat-9.0.71\lib
+		servlet-api.jar
+		jsp-api.jar
+		==> main\webapp\WEB-INF\lib 복사.
+	5) 프로젝트 tomcat9.0에 추가.
+	6) 특정파일 실행.
+# 수업 소스 문제 발생/서버 에러..(git폴드 아님 본인 코딩 소스)
+0. 최신 git update/git의 위치 확인
+	C:\Users\user\git\web19\backendWeb
+1. 프로젝트 단위로 삭제
+	workspace에서도 삭제된지 확인..
+2. project explorer에서 오른쪽 마우스 클릭 import ==> import	
+	==> General  ==> exists project into workspace
+	==> C:\Users\user\git\web19\backendWeb 찾아가서
+	프로젝트 선택..
+	==> 하위 check 옵션에 copy project into worksapce로
+	프로젝트 단위로 소스를 가져온다.
+3. 특정 파일 tomcat 9.0에서 실행 확인			
+			
+		  
