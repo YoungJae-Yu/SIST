@@ -2,6 +2,8 @@ package project.janjan.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.annotation.WebServlet;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +14,7 @@ import project.janjan.VO.Member;
 /**
  * Servlet implementation class schId
  */
+@WebServlet("/schId")
 public class schId extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

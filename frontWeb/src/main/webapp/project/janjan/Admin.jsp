@@ -186,10 +186,8 @@
          var val = document.querySelector("#alcoholModal .modal-body #valA").value
          var refno = document.querySelector("#alcoholModal .modal-body #refnoA").value
          var ordno = document.querySelector("#alcoholModal .modal-body #ordnoA").value
-          
          // ?title=매실원주&refno=6&ordno=1&val=매실원주
          var qStr = "title="+title+"&refno="+refno+"&ordno="+ordno+"&val="+val
-         
          var xhr = new XMLHttpRequest();
          xhr.open("post","/frontWeb/AlcoholServlet",true)
          xhr.setRequestHeader("Content-Type",
@@ -221,8 +219,8 @@
           var refno = document.querySelector("#alcoholModal .modal-body #refnoA").value
           var ordno = document.querySelector("#alcoholModal .modal-body #ordnoA").value
           var prdno = document.querySelector("#alcoholModal .modal-body #UDA").value
-          // ?title=매실원주&refno=6&ordno=1&val=매실원주
-          var qStr = "prdno="+prdno+"&title="+title+"&refno="+refno+"&ordno="+ordno+"&val="+val
+          var qStr = "prdno="+prdno+"&title="+title+"&refno="+refno+"&ordno="+
+          		ordno+"&val="+val
           var xhr = new XMLHttpRequest();
           xhr.open("post","/frontWeb/AlcoholServletUdt",true)
           xhr.setRequestHeader("Content-Type",

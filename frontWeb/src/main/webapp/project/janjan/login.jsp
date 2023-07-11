@@ -114,7 +114,8 @@ if (id != "" && pwd != "") {
 				<!-- Modal Header -->
 				<div class="modal-header">
 					<h4 class="modal-title">아이디 찾기</h4>
-					<button type="button" class="btn-close" id="modalClsBtn" data-bs-dismiss="modal"></button>
+					<button type="button" class="btn-close" 
+					id="modalClsBtn" data-bs-dismiss="modal"></button>
 				</div>
 				<!-- Modal body -->
 				<div class="modal-body">

@@ -1,6 +1,7 @@
 package backWeb.a01_servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,19 +34,19 @@ public class A12_AjaxControllerJob extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/plain;utf-8");
 		// 1. 요청
 		String job_id=request.getParameter("job_id");
 		if(job_id==null)job_id="";
 		
 		// 2. 모델 Dept
 		A04_PreParedDao dao = new A04_PreParedDao();
-		Jobs d = dao.getJobs(job_id);
+		List<Jobs> jlist = dao.getJobs(job_id);
 		
 		// 3. json 뷰호출
 		Gson g = new Gson();
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/plain;utf-8");
-		response.getWriter().print(g.toJson(d));
+		response.getWriter().print(g.toJson(jlist));
 	}
 
 }

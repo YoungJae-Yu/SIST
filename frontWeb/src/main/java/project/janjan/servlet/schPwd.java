@@ -13,6 +13,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class schPwd
  */
+@WebServlet("/schPwd")
 public class schPwd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

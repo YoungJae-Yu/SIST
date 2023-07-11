@@ -18,6 +18,46 @@
 <title>Insert title here</title>
 </head>
 <%--
+# 콤보박스 리스트 처리를 위한 관리
+1. 목적
+	콤보박스 리스트를 데이터베이스와 연동된
+	내용을 처리하기 위한 관리 화면 구성
+2. 주요기능
+	1) 계층형 리스트 화면(조회) 
+		- b01_ajax\a13_ComBoAjax.jsp(화면)
+		- b01_ajax\z13_comboList.jsp(json데이터 처리)
+	2) 등록 처리 - 다이얼로그박스
+		- A06_CodeInsert.java(등록처리 controller)
+	2) 상세화면(form창) - 다이얼로그박스
+		- 수정
+			A06_CodeUpdate.java(수정처리 controller)
+		- 삭제
+			A06_CodeDelete.java(삭제처리 controller)
+3. 기능 처리를 위한 핵심 모듈
+	1) ajax 처리
+	 	ex)
+		 $.ajax({
+			 url:"${path}/codeupdate.do",
+			 	요청 controller/json데이터 호출 주소
+			 type:"post",
+			 data:$("#modalFrm #no").val(),
+			 	 요청값 전달
+			 dataType:"json",
+			 	결과값의 데이터 유형
+			 success:function(code){
+			 	결과 처리
+	2) 각 기능버튼별 이벤트 처리
+		$("#uptBtn").click(function(){
+		버튼요소객체 및 이벤트 핸들러 함수
+	3) 다이얼로그 박스 로딩 처리
+		- 기능버튼
+			<button type="button"
+			 data-bs-toggle="modal"
+			data-bs-target="#myModal">코드등록</button>
+		- 다이얼로그 박스(모달창)
+			<div class="modal" id="myModal">
+				<div class="modal-dialog">
+
     code(키, 값, 상위키,정렬순위)
     1000  과일   0
     1001  사과   1000 1
@@ -135,17 +175,60 @@
 	2) 단일 데이터 가져오는 dao 생성
 	3) 단일 데이터 가져와서 json데이터 return하는 servlet 생성
 	4) ajax 요청 처리로 servlet 호출, ajax 처리..
-	
-		
-	    	
+# 수정 처리
+1. 상세화면에서 데이터를 확인하고, 변경데이터를 입력하고,
+	수정버튼 클릭시 수정된다.
+2. 수정에 필요한 데이터를 받아서 수정되는 dao 처리
+3. 	수정 요청값을 받아서 수정되는 Servlet controller
+	1) 요청값처리
+	2) 수정 처리되는 메서드 호출
+	3) 수정 후 상세 검색되는 메서드호출
+	4) json 데이터 출력
+4. 화면단에 수정데이터 입력 후, 버튼 클릭시 ajax 호출
+	1) 화면단에 수정데이터 입력 후, 버튼클릭시 ajax 호출
+	2) success:function(code){}로 수정 후,
+		alert('수정성공')
+		다시, 데이터로딩 처리.
+
+#삭제처리
+1. 상세화면에서 삭제버튼 클릭 이벤트핸들러로 로딩
+
+
+	    
  --%>
     <script src = "https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
     
     <script type="text/javascript">
     
     	$(document).ready( function(){
-    		
-    		
+    		//title refno ordno val
+    		$("#uptBtn").click(function(){
+    			if(confirm("수정하시겠습니까?")){
+    				//alert( $("#modalFrm").serialize())
+    				// ajax 처리
+    				 $.ajax({
+    					 url:"${path}/codeupdate.do",
+    					 type:"post",
+    					 data:$("#modalFrm").serialize(),
+    					 dataType:"json",
+    					 success:function(code){
+    						 alert("수정성공")
+	    					console.log(code)
+							// title val refno ordno
+							$("#modalFrm #title").val(code.title)
+							$("#modalFrm #val").val(code.val)
+							$("#modalFrm #refno").val(code.refno)
+							$("#modalFrm #ordno").val(code.ordno)
+							$("#modalFrm #no").val(data.no)
+							schCode(); // 전체화면 재검색
+    					 },
+    					 error:function(err){
+    						 console.log("#에러발생#")
+    						 console.log(err)
+    					 }
+    				 })
+    			}
+    		})
     	});
     </script>   
  
@@ -203,10 +286,11 @@
 						console.log(data)
 						alert(data);
 						// title val refno ordno
-						$("#regFrm #title").val(data.title)
-						$("#regFrm #val").val(data.val)
-						$("#regFrm #refno").val(data.refno)
-						$("#regFrm #ordno").val(data.ordno)
+						$("#modalFrm #title").val(data.title)
+						$("#modalFrm #val").val(data.val)
+						$("#modalFrm #refno").val(data.refno)
+						$("#modalFrm #ordno").val(data.ordno)
+
 					},
 					error:function(err){
 						console.log(err)
@@ -219,6 +303,8 @@
 		$("#regBtn").show()
 		$("#uptBtn").hide()
 		$("#delBtn").hide()
+		$("#modalFrm")[0].reset()
+		// 상세화면에서 등록화면을 클릭시, form데이터 초기화 처리.
 	}
 </script>
 <body>
@@ -281,7 +367,8 @@
 				-- 제목, 값, 상위번호, 정렬 
 -- title, val, refno, ordno 
 				-->
-				<form id="regFrm">
+				<form id="modalFrm">
+					<input type="hidden"name="no"id="no"/>
 				<div class="modal-body">
 					<div class="mb-3 mt-3">
 						<label for="title">제목:</label> 
@@ -314,9 +401,9 @@
 					<button id="regBtn" type="button" class="btn btn-success"
 						onclick="ajaxSave()">등록</button>
 					<button id="uptBtn"  type="button" class="btn btn-primary"
-						onclick="ajaxUpdate()">수정</button>
+						>수정</button>
 					<button id="delBtn"  type="button" class="btn btn-warning"
-						onclick="ajaxDelete()">삭제</button>
+						>삭제</button>
 					<button type="button" class="btn btn-danger"
 						data-bs-dismiss="modal">Close</button>
 						
@@ -347,7 +434,7 @@
 					if(result=="Y"){
 						alert("등록성공")
 						schCode()
-						document.querySelector("#regFrm").reset()
+						document.querySelector("#modalFrm").reset()
 						if(!confirm("계속등록하시겠습니까?")){
 							// 창닫기 처리
 							document.querySelector("#modalClsBtn").click()

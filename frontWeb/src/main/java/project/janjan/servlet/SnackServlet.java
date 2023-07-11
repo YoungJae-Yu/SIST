@@ -4,6 +4,7 @@ package project.janjan.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import project.janjan.VO.Admin;
 /**
  * Servlet implementation class SnackServlet
  */
+@WebServlet("/SnackServlet")
 public class SnackServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

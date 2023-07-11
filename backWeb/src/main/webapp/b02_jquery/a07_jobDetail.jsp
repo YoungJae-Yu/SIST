@@ -20,8 +20,33 @@
     <script type="text/javascript">
     	// window.onload와 동일한 메서드
     	$(document).ready( function(){
-    		
-    		$("h2").text("jquery 로딩 성공")
+    		$("#job_id").on('keyup',function(){
+    			if(event.keyCode==13){
+    				var idVal = $(this).val()
+    				$.ajax({
+    					url:"${path}/job.do",
+    					type:"post",
+    					data:"job_id="+$(this).val(),
+    					dataType:"json",
+    					success:function(jlist){
+    						console.log(jlist)
+    						var add=""
+   							jlist.forEach(function(job){
+   								add += "<tr class='text-center'>"
+   								add += "<td>"+job.job_id+"</td>"
+   								add += "<td>"+job.job_title+"</td>"
+   								add += "<td>"+job.max_salary+"</td>"
+   								add += "<td>"+job.min_salary+"</td>"
+   								add += "</tr>"
+   							})
+   				   			$("#show").html(add)
+    					},
+    					error:function(err){
+    						console.log(err)
+    					}
+    				})
+    			}
+    		})
     	});
     </script>      
     
@@ -32,36 +57,20 @@
     	<h2>사원정보 등록</h2>
 	  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	  		<div class="container-fluid">    	
-	    	<form method="post"  class="d-flex align-items-center" >
 	            <input type="text" class="form-control me-2" 
-	      	     id="title" placeholder="직책명 입력" value="${param.title}" name="title"  aria-label="Search">
-	            <input type="text" class="form-control me-2" 
-	      	     id="min_sal1" placeholder="최소급여 시작"  
-	      	     value="${empty param.min_sal1? 0: param.min_sal1}"  name="min_sal1"  aria-label="Search">
-	      	    ~
-	            <input type="text" class="form-control me-2" 
-	      	     id="min_sal2" placeholder="최소급여 마지막" 
-	      	      value="${empty param.min_sal2? 9999999: param.min_sal2}"  name="min_sal2"  aria-label="Search">
-	      	     
-	      	     
-	         	<button type="submit" class="btn btn-primary" style="width:200px;">조회</button>
-	     	</form>
+	      	     id="job_id" placeholder="직책아이디 입력"name="job_id"  aria-label="Search">
 	 	    </div>
 	 	</nav>
 		<table class="table table-striped table-hover">
 			<thead class="table-success">
 		      	<tr  class="text-center">
-				    <th>Firstname</th>
-				    <th>Lastname</th>
-				    <th>Email</th>
+				    <th>직책아이디</th>
+				    <th>직책명</th>
+				    <th>최소급여</th>
+				    <th>최대급여</th>
 		      	</tr>
 		    </thead>
-		    <tbody>
-			   	<tr  class="text-center">
-			        <td>John</td>
-			        <td>Doe</td>
-			        <td>john@example.com</td>
-			   	</tr>
+		    <tbody id="show">
 		 	</tbody>
 		</table>      	
     </div>

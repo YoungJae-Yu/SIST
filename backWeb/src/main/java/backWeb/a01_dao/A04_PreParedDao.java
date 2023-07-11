@@ -726,6 +726,7 @@ WHERE NO = ?
 				+ "		   ordno = ?,\r\n"
 				+ "		   val = ?\r\n"
 				+ "	WHERE NO=?";
+		//title refno ordno val
 		try {
 			con = DB.con();
 			// 자동 commit방지
@@ -828,35 +829,6 @@ WHERE NO = ?
 	    return c;
 	}
 
-		public Jobs getJobs(String job_id) {
-		    Jobs job = new Jobs("","",0,0);
-		    String sql = "	SELECT * \r\n"
-		    		+ "FROM jobs\r\n"
-		    		+ "WHERE JOB_ID = ? ";
-		    System.out.println("# DB 접속 #");
-		    try {
-		        con = DB.con();
-		        pstmt = con.prepareStatement(sql); 
-		        pstmt.setString(1, job_id);; 
-		        rs = pstmt.executeQuery();
-		        //job_id, job_title, min_salary, max_salary
-		        if (rs.next()) {
-		        	job = new Jobs(
-		        			rs.getString("job_id"),
-		        			rs.getString("job_title"),
-		        			rs.getInt("min_salary"),
-		        			rs.getInt("max_salary")
-		            );
-		        }
-		    } catch (SQLException e) {
-		        System.out.println("DB 관련 오류: " + e.getMessage());
-		    } catch (Exception e) {
-		        System.out.println("일반 오류: " + e.getMessage());
-		    } finally {
-		        DB.close(rs, pstmt, con);
-		    }
-		    return job;
-		}
 		public Salgrade getSalgrade(String grade) {
 			Salgrade salgrade = new Salgrade(0,0,0);
 		    String sql = "	SELECT LOSAL , HISAL \r\n"
@@ -884,6 +856,35 @@ WHERE NO = ?
 		        DB.close(rs, pstmt, con);
 		    }
 		    return salgrade;
+		}
+		public List<Jobs> getJobs(String job_id) {
+			List<Jobs> jlist = new ArrayList<Jobs>(); 
+		    String sql = "	SELECT * \r\n"
+		    		+ "FROM jobs\r\n"
+		    		+ "WHERE JOB_ID like ? ";
+		    System.out.println("# DB 접속 #");
+		    try {
+		        con = DB.con();
+		        pstmt = con.prepareStatement(sql); 
+		        pstmt.setString(1, '%'+job_id+'%');; 
+		        rs = pstmt.executeQuery();
+		        //job_id, job_title, min_salary, max_salary
+		        while (rs.next()) {
+		        	jlist.add(new Jobs(
+		        			rs.getString("job_id"),
+		        			rs.getString("job_title"),
+		        			rs.getInt("min_salary"),
+		        			rs.getInt("max_salary"))
+		            );
+		        }
+		    } catch (SQLException e) {
+		        System.out.println("DB 관련 오류: " + e.getMessage());
+		    } catch (Exception e) {
+		        System.out.println("일반 오류: " + e.getMessage());
+		    } finally {
+		        DB.close(rs, pstmt, con);
+		    }
+		    return jlist;
 		}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
