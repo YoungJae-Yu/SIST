@@ -20,7 +20,7 @@
     	// window.onload와 동일한 메서드
     	$(document).ready( function(){
     		
-    		$("h2").text("스프링 시작")
+    	//	$("h2").text("jquery 로딩 성공")
     	});
     </script>      
     
@@ -28,35 +28,38 @@
 </head>
 <body>
     <div class="container mt-3">
-    	<h2>사원정보 등록</h2>
-    	<h3>${msg }</h3>
+    	<h2>사원정보 조회</h2>
     	<form action="" method="post">
          	<div class="mb-3 mt-3">
-            <label for="empno">사원번호:</label>
-            <input type="number" class="form-control" 
-      	     id="empno" placeholder="사원번호 입력" name="empno">
-         	</div>
-         	<div class="mb-3 mt-3">
-            <label for="ename">사원명:</label>
-            <input type="text" class="form-control" 
+            <input type="text" class="form-control" value="${emp.ename}"
       	     id="ename" placeholder="사원명 입력" name="ename">
          	</div>
-         	<button type="submit" class="btn btn-primary">등록</button>
+         	<div class="mb-3 mt-3">
+            <input type="text" class="form-control" value="${emp.job}"
+      	     id="job" placeholder="직책 입력" name="job">
+         	</div>
+         	<button type="submit" class="btn btn-primary">찾기</button>
      	</form>
 		<table class="table table-striped table-hover">
 			<thead class="table-success">
 		      	<tr  class="text-center">
-				    <th>Firstname</th>
-				    <th>Lastname</th>
-				    <th>Email</th>
+				    <th>사원번호</th>
+				    <th>사원명</th>
+				    <th>직책명</th>
+				    <th>급여</th>
+				    <th>부서번호</th>
 		      	</tr>
 		    </thead>
 		    <tbody>
-			   	<tr  class="text-center">
-			        <td>John</td>
-			        <td>Doe</td>
-			        <td>john@example.com</td>
-			   	</tr>
+		    	<c:forEach var="emp" items="${empList}">
+				   	<tr  class="text-center">
+				        <td>${emp.empno}</td>
+				        <td>${emp.ename}</td>
+				        <td>${emp.job}</td>
+				        <td>${emp.sal}</td>
+				        <td>${emp.deptno}</td>
+				   	</tr>
+		    	</c:forEach>
 		 	</tbody>
 		</table>      	
     </div>

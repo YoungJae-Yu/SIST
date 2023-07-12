@@ -1,0 +1,123 @@
+# 스프링의 학습 내용 계열화
+1. 스프링 기본 개념들
+	1) 컨테이너
+	2) 스프링 MVC
+	3) DI
+	4) AOP
+	5) 스프링 처리구조
+2. 스프링 환경설정
+	1) dynamic web ==> spring 설정
+	2) spring boot 환경 설정
+3. 스프링에서 발생하는 에러 유형에 대한 처리 방법
+4. 스프링 DI에 대한 이해
+	1) 스프링 프레임워크 흐름 구조
+	2) 제어역전(IoC, Inversion of Control)
+	3) 의존성주입(Dependency Injection)
+5. 스프링 MVC 웹 개발
+6. 스프링의 Database Access
+	1) 스프링의 데이터베이스 처리를 위한 framework(mybatis)
+	2) 데이터 처리 환경 설정
+	3) 데이터 처리를 위한 핵심 개발 패턴
+7. 스프링 AOP
+8. 기타 실무 적용 처리 프로그램
+	1) 스프링에서 ajax로 처리하는 jquery lib
+		- fullcalender api
+		- 차트 처리 
+	2) 스프링에서 메일 발송 처리
+	3) 웹소켓을 통한 실시간 채팅
+	4) 파일업로드/다운로드 처리
+	
+# 스프링 웹 개발 환경 설정
+0. 웹 처리 프로세스
+	1) url을 브라우저에서 입력
+		http://localhost:5080/springweb/start.do
+	2) 입력된 url에서 특정 ip/port/프로젝트를 확인해서
+		해당 웹서버 호출
+	3) web.xml 호출
+		해당 url 패턴으로 호출할 servlet 처리
+		스프링의 경우 *.do 로 설정하여 fronrt controller(공통컨트롤러)
+		dispatcher servlet 호출
+	4) dispatcher-servlet.xml
+		fronrt controller과 mapping되어 있는 컨테이너
+		스프링에서 사용하는 모든 클래스를 선언해 놓고, 이 선언해 놓은
+		클래스가 객체화하여 메모리에 로딩된다.
+		이 컨테이너에 등록된 controller에 해당 url 패턴에 맞는
+		controller와 controller안에 메서드 호출
+	5) controller
+		위 url 패턴에 맞는 메서드 호출
+		요청값 처리,
+		모델 데이터 처리(view에 전달할 핵심데이터)
+		 return 화면 jsp 파일 경로 호출
+	6) jsp(view의 형식중 하나)
+		controller에 마지막 return값으로 호출되어
+		전달한 model데이터와 함께 화면을 처리해준다.
+1. web.xml
+
+2. dispatcher-servlet.xml
+		
+# 스프링 MVC 웹 개발(기초)
+1. controller
+2. model
+3. view
+
+# 스프링 MVC 화면 호출 처리 순서
+1. Controller 생성
+	A02_CallController.java
+	- @Controller 클래스명 위에 선언
+2. container(xml) 패키지.클래스명
+3. view단 jsp생성
+	a02_callView.jsp
+	wabapp 기준으로 경로 복사
+	WEB-INF\views\a02_callView.jsp
+4. RequestMapping 선언과 메서드 선언.
+	0) 전체 url 주소를 정리
+	1) 요청값을 매개변수호출 
+		@RequestParam("요청key") String name
+		@RequestParam("요청key") int age
+	2) Model 매개변수
+	3) d.addAttribute("greet","hello spring")
+	4) return "jsp페이지 위치"
+		등록
+5. view 모델데이터 ${모델명} 호출 처리.
+
+ex) A03_CallMVC.java
+		url / mvc99.do
+		모델데이터 : show //스프링 화면 호출
+		a03_callmvc.jsp
+
+#  스프링에서 요청값 처리
+0. 스프링은 메서드의 매개변수로 요청값을 처리할 수 있다.
+	아래의 내용은 jsp를 배운 기반하여 처리하는 것을 해보자.
+1. 단일 요청값
+	1) @RequestParam("요청키") 할당할 데이터 유형	
+2. 객체형 요청값 처리
+	2) Person p : useBean의 property 개념으로
+		요청키에 해당하는 set요청키()가 선언되어 있으면
+		자동으로 할당되어 객체로 사용할 수 있다.
+# 스프링 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

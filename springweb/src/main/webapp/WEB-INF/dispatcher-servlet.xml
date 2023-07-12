@@ -32,4 +32,8 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd   
       ">
       <bean class="springweb.a01_start.A01_StartController"></bean>
+      <bean class="springweb.a01_start.A02_CallController"></bean>
+      <bean class="springweb.a01_start.A03_CallMVC"></bean>
+      <bean class="springweb.a01_start.A04_ModelView"></bean>
+      <bean class="springweb.a01_start.A05_MVC_Controller"></bean>
 </beans>      

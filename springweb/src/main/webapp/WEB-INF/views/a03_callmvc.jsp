@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    import="java.net.URLDecoder"
-    %>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 	<c:set var="path" 
@@ -22,7 +20,7 @@
     	// window.onload와 동일한 메서드
     	$(document).ready( function(){
     		
-    		//$("h2").text("jquery 로딩 성공")
+    		$("h2").text("스프링 예제 로딩 성공")
     	});
     </script>      
     
@@ -30,30 +28,8 @@
 </head>
 <body>
     <div class="container mt-3">
-    	<h2>쿠키정보</h2>
-<%
-// 쿠키의 저장위치는 클라이언트 브라우저 프로그램 내,
-// 화면에 출력하려면 클라이언트 ==> 서버로 전송해서 확인 가능
-// 전송해서 확인해주는 객체가 request
-Cookie[] cookies = request.getCookies();
-for(Cookie c:cookies){
-	// default값은 출력에서 제외
-	 if(!c.getName().equals("JSESSIONID")){
-		 // 쿠키의 키와 값에서 한글이 공백 등 특수문자가 포함되면
-		 // 반드시 encoding <==> decoding 처리를 통해서
-		 // 출력하고 저장한다.
-		 out.print("<h2>"+
-				 URLDecoder.decode(c.getName(),"utf-8")
-		 +":"+
-		 		URLDecoder.decode(c.getValue(),"utf-8")
-		 +"</h2>");
-	 }
-}
-/*
-a10_insertEncoding.jsp 키가 한글로된 쿠키 설정
-a11_showEncoding.jsp  키와 값을 확인 쿠키
-*/
-%>    	
+    	<h2>사원정보 등록</h2>
+    	<h3>${show }</h3>
     	<form action="" method="post">
          	<div class="mb-3 mt-3">
             <label for="empno">사원번호:</label>
