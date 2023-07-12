@@ -9,6 +9,8 @@
 	1) dynamic web ==> spring 설정
 	2) spring boot 환경 설정
 3. 스프링에서 발생하는 에러 유형에 대한 처리 방법
+	1) xml에 controller 등록이 안되어있으면 404 발생
+	2) RequestMapping 안에 url 패턴은 서버에 동일하게 있으면 안된다. 
 4. 스프링 DI에 대한 이해
 	1) 스프링 프레임워크 흐름 구조
 	2) 제어역전(IoC, Inversion of Control)

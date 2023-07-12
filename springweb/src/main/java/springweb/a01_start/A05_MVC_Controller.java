@@ -68,6 +68,12 @@ public class A05_MVC_Controller {
 	// 사원명/직책명을 사원정보 조회 처리..
 	@RequestMapping("empList88.do")
 	public String mvc04(Emp sch, Model d){
+		/*
+		name="ename" value="${param.ename}"
+		name="job"		value="${emp.job}"
+		<c:for var="emp" items="${empList}"
+			${emp.empno}${emp.ename}${emp.job}
+		 */
 		A04_PreParedDao dao = new A04_PreParedDao();
 		if(sch.getEname()==null) sch.setEname("");
 		if(sch.getJob()==null) sch.setJob("");

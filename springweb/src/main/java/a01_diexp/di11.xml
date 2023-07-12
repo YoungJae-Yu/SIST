@@ -31,10 +31,46 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd   
       ">
-      <bean class="springweb.a01_start.A01_StartController"></bean>
-      <bean class="springweb.a01_start.A02_CallController"></bean>
-      <bean class="springweb.a01_start.A03_CallMVC"></bean>
-      <bean class="springweb.a01_start.A04_ModelView"></bean>
-      <bean class="springweb.a01_start.A05_MVC_Controller"></bean>
-      <bean class="springweb.a02_emp.A01_EmpController"></bean>
+      <bean id="obj" class="java.lang.Object"></bean>
+      <!-- 
+      Person p01 = new Person();
+      p01.setName("홍길동");
+      p01.setAge(25);
+      p01.setLoc("서울");
+       -->
+       <bean id="p01" class="backWeb.z01_vo.Person">
+       		<property name="name" value="홍길동"></property>
+       		<property name="age" value="25"></property>
+       		<property name="loc" value="서울"></property>
+       </bean>  
+       <!-- 
+       Product prod01
+        -->
+       <bean id="prod01" class="backWeb.z01_vo.Product">
+       		<property name="name" value="사과"></property>
+       		<property name="price" value="2500"></property>
+       		<property name="cnt" value="5"></property>
+       </bean> 
+       <!--
+       Person p02 = new Person("마길동",25,"대전");
+        -->
+        <bean id="p02" class="backWeb.z01_vo.Person">
+        	<constructor-arg value="마길동"/>
+        	<constructor-arg value="25"/>
+        	<constructor-arg value="대전"/>
+        </bean>
+        <bean id="m01" class="backWeb.z01_vo.Music">
+        	<constructor-arg value="좋은날"/>
+        	<constructor-arg value="아이유"/>
+        	<constructor-arg value="2012"/>
+        </bean>
 </beans>      
+
+
+
+
+
+
+
+
+

@@ -228,7 +228,7 @@ public class A04_PreParedDao {
 				+ "	SET ENAME = ?,\r\n"
 				+ "		JOB = ?,\r\n"
 				+ "		sal = ?,\r\n"
-				+ "		HIREDATE = to_date(?,'YYYY/MM/DD')\r\n"
+				+ "		HIREDATE = to_date(?,'YYYY/MM/DD') deptno = ?\r\n"
 				+ "	WHERE EMPNO = ?";
 		try {
 			con = DB.con();
@@ -239,7 +239,8 @@ public class A04_PreParedDao {
 			pstmt.setString(2, upt.getJob());
 			pstmt.setDouble(3, upt.getSal());
 			pstmt.setString(4, upt.getHiredateS());
-			pstmt.setInt(5, upt.getEmpno());
+			pstmt.setInt(5, upt.getDeptno());
+			pstmt.setInt(6, upt.getEmpno());
 			int isUpt = pstmt.executeUpdate();
 			if(isUpt == 1) System.out.println("수정성공");
 			con.commit();//입력시 확정
@@ -908,6 +909,67 @@ WHERE NO = ?
 	        DB.close(rs, pstmt, con);
 	    }
 	    return dlist;
+	}
+	public Emp getEmp(int empno) {
+	   Emp emp = null;
+	    String sql = "SELECT * FROM emp02 where empno = ?";
+	    
+	    try {
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, empno);
+	        rs = pstmt.executeQuery();
+	        
+	
+	        if (rs.next()) {
+	            emp=new Emp(
+	                    rs.getInt("empno"),
+	                    rs.getString("ename"),
+	                    rs.getString("job"),
+	                    rs.getInt("mgr"),
+	                    rs.getDate("hiredate"),
+	                    rs.getDouble("sal"),
+	                    rs.getDouble("comm"),
+	                    rs.getInt("deptno")
+	            );
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return emp;
+	}
+	public int deleteEmp(int empno) {
+		int inDelete = 0;
+		String sql="DELETE \r\n"
+				+ "FROM emp02\r\n"
+				+ "WHERE empno=?";
+		try {
+			con = DB.con();
+			con.setAutoCommit(false);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, empno);
+			inDelete = pstmt.executeUpdate();
+			if(inDelete == 1) System.out.println("삭제성공");
+			con.commit();//입력시 확정
+			pstmt.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("sql예외:"+e.getMessage());
+			try {
+				con.rollback();// 원복처리
+			} catch (SQLException e1) {
+				System.out.println("롤백예외:"+e1.getMessage());
+			}
+		} catch (Exception e) {
+			System.out.println("일반예외:"+e.getMessage());
+		} finally {
+			DB.close(rs, pstmt, con);
+		}
+		return inDelete;
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
