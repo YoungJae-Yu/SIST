@@ -14,15 +14,16 @@ public class DIExp12 {
 		String path="a01_diexp\\di12.xml";
 		AbstractApplicationContext ctx = 
 				new GenericXmlApplicationContext(path);
-		// DL(Dependency Loopup) 객체를 찾는 처리
+		// DL(Dependency Lookup) 객체를 찾는 처리
 		HPUser u01 = ctx.getBean("u01", HPUser.class);
-		System.out.println(" 컨테이너의 객체호출:"+u01);
+		System.out.println("컨테이너의 객체호출:"+u01);
 		u01.usingMyPhone();
 		// ex) Car 차종 배기량 최고속도
-		// CarDriver 운전자 이름 Car객체
-		CarDriver d01 = ctx.getBean("d01", CarDriver.class);
-		System.out.println(" 컨테이너의 객체호출:"+d01);
-		d01.driving();
+		//     CarDriver 자동차기사  이름  Car객체..
+		CarDriver cd01 = ctx.getBean("cd01", CarDriver.class);
+		CarDriver cd02 = ctx.getBean("cd02", CarDriver.class);
+		cd01.driving();
+		cd02.driving();
 		
 		ctx.close();
 		System.out.println("종료");

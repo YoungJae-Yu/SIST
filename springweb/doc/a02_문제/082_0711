@@ -1,0 +1,109 @@
+1. 쿠키는 서버와 클라이언트 간에 어떤 정보를 임시로 저장하는데 사용되는 요소는 무엇인가요?
+   a. Session
+   b. Cookie
+   c. Object
+   d. Request
+
+2. 쿠키는 언제 생성되나요?
+   a. 클라이언트가 요청할 때
+   b. 서버에서 응답할 때
+   c. 클라이언트가 응답할 때
+   d. 서버에서 요청할 때
+
+3. 쿠키의 값을 어떻게 가져올 수 있나요?
+   a. request.getParameter("key")
+   b. request.getAttribute("key")
+   c. request.getSession().getAttribute("key")
+   d. request.getCookies()
+
+4. 쿠키의 값을 수정하려면 어떻게 해야 하나요?
+   a. response.addCookie(new Cookie("key", "new value"))
+   b. response.setCookie("key", "new value")
+   c. request.setAttribute("key", "new value")
+   d. request.getSession().setAttribute("key", "new value")
+
+5. 쿠키를 삭제하려면 어떻게 해야 하나요?
+   a. response.removeCookie("key")
+   b. response.setCookie("key", null)
+   c. response.addCookie(new Cookie("key", null))
+   d. response.addCookie(new Cookie("key", ""))
+  
+6. 쿠키의 생존 기간을 설정하려면 어떻게 해야 하나요?
+   a. cookie.setExpiration(3600)
+   b. cookie.setMaxAge(3600)
+   c. cookie.setDuration(3600)
+   d. cookie.setSurvival(3600)
+  
+7. 한글 키를 가진 쿠키를 설정할 때 인코딩이 필요한 이유는 무엇인가요?
+   a. 한글은 2바이트 이상의 문자이기 때문입니다.
+   b. 쿠키는 1바이트 단위로 저장되기 때문입니다.
+   c. 서버와 클라이언트 간의 인코딩 방식이 다르기 때문입니다.
+   d. 쿠키의 키에는 인코딩이 필요하지 않습니다.
+
+8. JSP에서 에러 처리 페이지를 설정하기 위해 사용되는 디렉티브는 무엇인가요?
+   a. <%@ include %>
+   b. <%@ page %>
+   c. <%@ taglib %>
+   d. <%@ errorPage %>
+  
+9. JSP에서 에러 처리 페이지에 접근하기 위해 사용되는 예외 객체는 무엇인가요?
+   a. response
+   b. request
+   c. exception
+   d. session
+
+10. 서버 단위에서 HTTP 코드 에러를 처리하기 위해 사용되는 XML 요소는 무엇인가요?
+    a. <error-page>
+    b. <exception-page>
+    c. <http-error>
+    d. <http-status>
+
+11. HTTP 응답 코드 404는 어떤 상황을 나타내나요?
+    a. 잘못된 요청
+    b. 인증 오류
+    c. 페이지를 찾을 수 없음
+    d. 서버 내부 오류
+
+12. HTTP 응답 코드 500은 어떤 상황을 나타내나요?
+    a. 잘못된 요청
+    b. 인증 오류
+    c. 페이지를 찾을 수 없음
+    d. 서버 내부 오류
+
+
+
+1. b. Cookie
+   - 쿠키는 서버와 클라이언트 간에 정보를 임시로 저장하기 위해 사용됩니다.
+
+2. b. 서버에서 응답할 때
+   - 쿠키는 서버에서 응답할 때 생성되며, 클라이언트에게 전달됩니다.
+
+3. d. request.getCookies()
+   - 쿠키의 값을 가져오기 위해서는 request.getCookies()를 사용합니다.
+
+4. a. response.addCookie(new Cookie("key", "new value"))
+   - 쿠키의 값을 수정하기 위해서는 해당 키로 새로운 쿠키를 생성하여 response에 추가합니다.
+
+5. c. response.addCookie(new Cookie("key", null))
+   - 쿠키를 삭제하기 위해서는 해당 키로 null 값을 가지는 쿠키를 생성하여 response에 추가합니다.
+
+6. b. cookie.setMaxAge(3600)
+   - 쿠키의 생존 기간을 설정하기 위해서는 cookie.setMaxAge() 메서드를 사용합니다.
+
+7. a. 한글은 2바이트 이상의 문자이기 때문입니다.
+   - 한글은 2바이트 이상의 문자로 구성되기 때문에 쿠키의 키에 한글을 사용할 때는 인코딩이 필요합니다.
+
+8. d. <%@ errorPage %>
+   - JSP에서 에러 처리 페이지를 설정하기 위해 사용되는 디렉티브는 <%@ errorPage %>입니다.
+
+9. c. exception
+   - JSP에서 에러 처리 페이지에 접근하기 위해 사용되는 예외 객체는 exception입니다.
+
+10. a. <error-page>
+    - 서버 단위에서 HTTP 코드 에러를 처리하기 위해 사용되는 XML 요소는 <error-page>입니다.
+
+11. c. 페이지를 찾을 수 없음
+    - HTTP 응답 코드 404는 페이지를 찾을 수 없는 상황을 나타냅니다.
+
+12. d. 서버 내부 오류
+    - HTTP 응답 코드 500은 서버 내부에서 오류가 발생한 상황을 나타냅니다.

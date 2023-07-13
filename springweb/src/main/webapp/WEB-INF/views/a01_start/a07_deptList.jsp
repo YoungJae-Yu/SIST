@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
-	<c:set var="path" 
+<c:set var="path" 
 	value="${pageContext.request.contextPath}"/>
 <fmt:requestEncoding value="utf-8"/>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,34 +29,38 @@
 </head>
 <body>
     <div class="container mt-3">
-    	<h2>부서정보 조회</h2>
-    	<form action="" method="post">
-         	<div class="mb-3 mt-3">
-            <input type="text" class="form-control" value="${dept.dname}"
-      	     id="dname" placeholder="부서 입력" name="dname">
-         	</div>
-         	<div class="mb-3 mt-3">
-            <input type="text" class="form-control" value="${dept.loc}"
-      	     id="loc" placeholder="근무지 입력" name="loc">
-         	</div>
-         	<button type="submit" class="btn btn-primary">조회</button>
-     	</form>
+    	<h2>부정 정보 리스트</h2>
+	  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	  		<div class="container-fluid">    	
+	    	<form method="post"  class="d-flex align-items-center" >
+	            <input type="text" class="form-control me-2" 
+	      	     placeholder="부서명 입력" value="${dept.dname}" 
+	      	     name="dname"  aria-label="Search">
+	            <input type="text" class="form-control me-2" 
+	      	     placeholder="부서위치 입력" value="${dept.loc}"
+	      	     name="loc"  aria-label="Search">
+	          
+	         	<button type="submit" class="btn btn-primary"
+	         		 style="width:200px;">조회</button>
+	     	</form>
+	 	    </div>
+	 	</nav>
 		<table class="table table-striped table-hover">
 			<thead class="table-success">
 		      	<tr  class="text-center">
 				    <th>부서번호</th>
 				    <th>부서명</th>
-				    <th>근무지</th>
+				    <th>부서위치</th>
 		      	</tr>
 		    </thead>
 		    <tbody>
-		    	<c:forEach var="dept" items="${deptList}">
-				   	<tr  class="text-center">
-				        <td>${dept.deptno}</td>
-				        <td>${dept.dname}</td>
-				        <td>${dept.loc}</td>
-				   	</tr>
-		    	</c:forEach>
+		    	<c:forEach var="dept" items="${dlist}">
+			   	<tr  class="text-center">
+			        <td>${dept.deptno}</td>
+			        <td>${dept.dname}</td>
+			        <td>${dept.loc}</td>
+			   	</tr>
+			   	</c:forEach>
 		 	</tbody>
 		</table>      	
     </div>

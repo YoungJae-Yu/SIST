@@ -1,14 +1,12 @@
 package a01_diexp.z01_vo;
-
+// a01_diexp.z01_vo.HandPhone
 public class HandPhone {
 	private String number;
 	private String company;
 	public HandPhone() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
 	public HandPhone(String number, String company) {
-		super();
 		this.number = number;
 		this.company = company;
 	}
@@ -24,4 +22,6 @@ public class HandPhone {
 	public void setCompany(String company) {
 		this.company = company;
 	}
+	
+
 }

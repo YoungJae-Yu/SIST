@@ -23,68 +23,64 @@
     <script type="text/javascript">
     	// window.onload와 동일한 메서드
     	$(document).ready( function(){
-    		
+    		var proc= "${proc}"
+    		if(proc=="ins"){
+    			if(confirm("등록 성공\n조회화면 이동하시겠습니까?")){
+    				location.href="${path}/empList.do";
+    			}
+    		}
     		//$("h2").text("jquery 로딩 성공")
     	});
     </script>      
     
     
 </head>
-<script type="text/javascript">
-	$(document).ready(function(){
-		var proc = "${proc}"
-		if(proc=="ins"){
-			if(confirm("등록 성공\n조회하면 이동하시겠습니까?")){
-				 location.href="${path}/empList.do";
-			}
-		}
-	})
-</script>
 <body>
     <div class="container mt-3">
     	<h2>사원정보 등록</h2>
 		<form method="post">
 		  <div class="mb-3 mt-3">
-		    <label for="empno" class="form-label">사원번호:</label>
+		    <label for="empno" class="form-label">empno:</label>
 		    <input type="number" class="form-control" id="empno" placeholder="Enter empno" name="empno">
 		  </div>
-		  <div class="mb-3">
-		    <label for="ename" class="form-label">사원명:</label>
+		  <div class="mb-3 mt-3">
+		    <label for="ename" class="form-label">ename:</label>
 		    <input type="text" class="form-control" id="ename" placeholder="Enter ename" name="ename">
 		  </div>
-		  <div class="mb-3">
-		    <label for="job" class="form-label">직책명:</label>
+		  <div class="mb-3 mt-3">
+		    <label for="job" class="form-label">job:</label>
 		    <input type="text" class="form-control" id="job" placeholder="Enter job" name="job">
 		  </div>
-		  <div class="mb-3">
-		    <label for="mgr" class="form-label">관리자번호:</label>
+		  <div class="mb-3 mt-3">
+		    <label for="mgr" class="form-label">mgr:</label>
 		    <input type="number" class="form-control" id="mgr" placeholder="Enter mgr" name="mgr">
 		  </div>
-		  <div class="mb-3">
-		    <label for="hiredateS" class="form-label">입사일:</label>
+		  <div class="mb-3 mt-3">
+		    <label for="hiredateS" class="form-label">hiredate:</label>
 		    <input type="date" class="form-control" id="hiredateS" placeholder="Enter hiredate" name="hiredateS">
 		  </div>
-		  <div class="mb-3">
-		    <label for="sal" class="form-label">급여:</label>
+		  <div class="mb-3 mt-3">
+		    <label for="sal" class="form-label">sal:</label>
 		    <input type="number" class="form-control" id="sal" placeholder="Enter sal" name="sal">
 		  </div>
-		  <div class="mb-3">
-		    <label for="comm" class="form-label">보너스:</label>
+		  <div class="mb-3 mt-3">
+		    <label for="comm" class="form-label">comm:</label>
 		    <input type="number" class="form-control" id="comm" placeholder="Enter comm" name="comm">
 		  </div>
-		  <div class="mb-3">
-		    <label for="deptno" class="form-label">부서번호:</label>
+		  <div class="mb-3 mt-3">
+		    <label for="deptno" class="form-label">deptno:</label>
 		    <input type="number" class="form-control" id="deptno" placeholder="Enter deptno" name="deptno">
 		  </div>
-		  <button type="submit" class="btn btn-primary">등록</button>
-		  <button type="button" id="goMain"
-		  class="btn btn-primary">메인화면</button>
+		  <button type="submit" class="btn btn-success">등록</button>
+		  <button type="button"
+		  	 id="goMain"		 
+		  	 class="btn btn-info">메인화면</button>
 		</form>
-		<script type="text/javascript">
-		$("#goMain").click(function(){
-			location.herf="${path}/empList.do"
-		})
-		</script>
+		   <script type="text/javascript">
+		   	$("#goMain").click(function(){
+		   		location.href="${path}/empList.do"
+		   	})
+		   </script>
     </div>
 </body>
 </html>

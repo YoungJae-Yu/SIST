@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
-	<c:set var="path" 
+<c:set var="path" 
 	value="${pageContext.request.contextPath}"/>
 <fmt:requestEncoding value="utf-8"/>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,17 +30,36 @@
 <body>
     <div class="container mt-3">
     	<h2>${result}</h2>
-    	<form action="" method="post">
-         	<div class="mb-3 mt-3">
-            <input type="text" class="form-control" 
-      	     id="id" placeholder="아이디 입력" name="id">
-         	</div>
-         	<div class="mb-3 mt-3">
-            <input type="password" class="form-control" 
-      	     id="pass" placeholder="패스워드 입력" name="pass">
-         	</div>
-         	<button type="submit" class="btn btn-primary">로그인</button>
-     	</form>
+	  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	  		<div class="container-fluid">    	
+	    	<form method="post"  class="d-flex align-items-center" >
+	            <input type="text" class="form-control me-2" 
+	      	     id="id" placeholder="id 입력" name="id"  aria-label="Search">
+	            <input type="password" class="form-control me-2" 
+	      	     id="pass" placeholder="pass 입력"  name="pass"  aria-label="Search">
+	
+	      	     
+	         	<button type="submit" class="btn btn-primary" 
+	         		style="width:200px;">로그인</button>
+	     	</form>
+	 	    </div>
+	 	</nav>
+		<table class="table table-striped table-hover">
+			<thead class="table-success">
+		      	<tr  class="text-center">
+				    <th>Firstname</th>
+				    <th>Lastname</th>
+				    <th>Email</th>
+		      	</tr>
+		    </thead>
+		    <tbody>
+			   	<tr  class="text-center">
+			        <td>John</td>
+			        <td>Doe</td>
+			        <td>john@example.com</td>
+			   	</tr>
+		 	</tbody>
+		</table>      	
     </div>
 </body>
 </html>

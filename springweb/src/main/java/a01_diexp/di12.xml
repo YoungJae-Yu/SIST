@@ -31,78 +31,71 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd   
       ">
-      <bean id="obj" class="java.lang.Object"></bean>
+	<bean id="obj" class="java.lang.Object"/>
 	<!-- 
-	# 컨테이너 안에서 객체 vs 객체 설정과
-	객체 vs 리스트객체를 선언해보자..
+	# 컨터네이넌 안에서 객체 vs 객체 설정과
+	객체 vs 리스트객체를 선언해보자.
 	1. 객체 vs 객체 구조 선언.
 		Controller <==> Service <==> Dao
 	2. 컨테이너에서 호출..
-	3. main() 호출 및 활용....
+	3. main() 호출 및 활용..
 	
 	# 핸드폰과 핸드폰사용자 1:1관계설정.
 	1. 핸드폰 클래스 선언.
 	2. 핸드폰 사용자 클래스
 		핸드폰 객체를 할당.
-		기능 메서드로 호출...
+		기능 메서드로 호출..
 	 -->
-	 <!-- 
-	 3. 실제 코드 설정
-	 	1) 포함될 객체 생성
-	 	HandPhone p01 = new HandPhone("갤럭시s22","삼성");
-	 	HandPhone p02 = new HandPhone("갤럭시s23","삼성");
-	 	HandPhone p03 = new HandPhone("아이폰14","애플");
-	 	2) 포함할 객체 생성
-	 	HPUser u01 = new HPUser("홍길동");
-	 	u01.usingMyPhone(); // 할당이 안될때 사용 메서드
-	 	u01.setHandPhone(p01); // 이 객체 안에 할당되어 처리가능..
-	 	u01.usingMyPhone(); // 할당이 될 때, 사용 메서드.
-	  -->
-		<bean id="p01" class="a01_diexp.z01_vo.HandPhone">
-			<constructor-arg value="갤럭시s22"/>
-			<constructor-arg value="삼성"/>
-		</bean>	 
-		<bean id="p02" class="a01_diexp.z01_vo.HandPhone">
-			<constructor-arg value="갤럭시s23"/>
-			<constructor-arg value="삼성"/>
-		</bean>	 
-		<bean id="p03" class="a01_diexp.z01_vo.HandPhone">
-			<constructor-arg value="아이폰14"/>
-			<constructor-arg value="애플"/>
-		</bean>	 
-		<!-- 
-		u01.setHandPhone(p01);
-		 -->
-		<bean id="u01" class="a01_diexp.z01_vo.HPUser">
-			<constructor-arg value="홍길동"></constructor-arg> 
-			<property name="handPhone" ref="p01"></property>
-		</bean>
-		<bean id="c01" class="a01_diexp.z01_vo.Car">
-			<constructor-arg value="람보르기니 우르스"/>
-			<constructor-arg value="5000"/>
-			<constructor-arg value="350"/>
-		</bean>
+	<!-- 
+	3. 실제 코드 설정
+		1) 포함될 객체 생성
+		HandPhone p01 = new HandPhone("갤럭시s22","삼성");
+		HandPhone p02 = new HandPhone("아이폰14","apple");
+		HandPhone p03 = new HandPhone("아이폰13","apple");
+		2) 포함할 객체 생성
+		HPUser u01 = new HPUser("홍길동");
+		u01.usingMyPhone(); // 할당이 안될때 사용 메서드
+		u01.setHandPhone(p01); // 이 객체 안에 할당되어 처리가능..
+		u01.usingMyPhone(); // 할당이 될 때, 사용 메서드.
+	 -->
+	<bean id="p01" class="a01_diexp.z01_vo.HandPhone">
+		<constructor-arg value="갤럭시s22"/>
+		<constructor-arg value="삼성"/>
+	</bean>		 
+	<bean id="p02" class="a01_diexp.z01_vo.HandPhone">
+		<constructor-arg value="아이폰14"/>
+		<constructor-arg value="apple"/>
+	</bean>	
+	<bean id="p03" class="a01_diexp.z01_vo.HandPhone">
+		<constructor-arg value="아이폰13"/>
+		<constructor-arg value="apple"/>
+	</bean>		
+	<!-- 
+	u01.setHandPhone(p01);
+	 -->
+	<bean id="u01" class="a01_diexp.z01_vo.HPUser">
+		<constructor-arg value="홍길동"/>
+		<property name="handPhone" ref="p01"/>
+	</bean>	  
+	<!-- 
+	//a01_diexp.z01_vo.Car CarDriver
+	
+	 -->
+	<bean id="car" class="a01_diexp.z01_vo.Car">
+		<constructor-arg value="그랜저"/>
+		<constructor-arg value="3000"/>
+		<constructor-arg value="230"/>
+	</bean>
+	<bean id="cd01" class="a01_diexp.z01_vo.CarDriver">
+		<constructor-arg value="홍길동"/>
+		<property name="car" ref="car"/>
+	</bean>
+	<bean id="cd02" class="a01_diexp.z01_vo.CarDriver">
+		<constructor-arg value="신길동"/>
+	</bean>
 		
-		<bean id="d01" class="a01_diexp.z01_vo.CarDriver">
-			<constructor-arg value="유영재"></constructor-arg> 
-			<property name="car" ref="c01"></property>
-		</bean>
-</beans>      
+	     
+</beans>   
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   

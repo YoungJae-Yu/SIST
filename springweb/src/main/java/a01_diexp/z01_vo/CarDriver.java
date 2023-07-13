@@ -1,29 +1,32 @@
 package a01_diexp.z01_vo;
 
+//a01_diexp.z01_vo.Car CarDriver
 public class CarDriver {
-	private String driver;
+	private String name;
 	private Car car;
 	public CarDriver() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
+	public CarDriver(String name) {
+		this.name = name;
+	}
 	public void driving() {
-		System.out.println("#운전한다#");
-		System.out.println("운전자:"+driver);
+		System.out.println("자동차를 "+name+" 타고 운행할려고 합니다.");
 		if(car!=null) {
-			System.out.println("#탑승한 자동차 정보#");
-			System.out.println("차종:"+car.getModel());
+			System.out.println("# 운행할 차량 정보 #");
+			System.out.println("자동차 종류:"+car.getKind());
 			System.out.println("배기량:"+car.getCc());
-			System.out.println("최고속도:"+car.getMaximum());
+			System.out.println("최고속도:"+car.getMaxVel());
 		}else {
-			System.out.println("자동차를 탑승하세요!");
+			System.out.println("소유한 차량이 없네요. ㅠㅠ");
 		}
+		
 	}
-	public String getDriver() {
-		return driver;
+	public String getName() {
+		return name;
 	}
-	public void setDriver(String driver) {
-		this.driver = driver;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public Car getCar() {
 		return car;
@@ -31,8 +34,5 @@ public class CarDriver {
 	public void setCar(Car car) {
 		this.car = car;
 	}
-	public CarDriver(String driver) {
-		super();
-		this.driver = driver;
-	}
+	
 }

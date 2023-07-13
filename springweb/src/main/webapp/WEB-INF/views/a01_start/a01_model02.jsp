@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
-	<c:set var="path" 
+<c:set var="path" 
 	value="${pageContext.request.contextPath}"/>
 <fmt:requestEncoding value="utf-8"/>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@
     	// window.onload와 동일한 메서드
     	$(document).ready( function(){
     		
-    		$("h2").text("jquery 로딩 성공")
+    		//$("h2").text("jquery 로딩 성공")
     	});
     </script>      
     
@@ -40,10 +41,10 @@
 		    </thead>
 		    <tbody>
 			   	<tr  class="text-center">
-			        <td>${dept.deptno }</td>
-			        <td>${dept.dname }</td>
+			        <td>${dept.deptno}</td>
+			        <td>${dept.dname}</td>
 			        <td>${dept.loc}</td>
-			       	</tr>
+			   	</tr>
 		 	</tbody>
 		</table>      	
     </div>

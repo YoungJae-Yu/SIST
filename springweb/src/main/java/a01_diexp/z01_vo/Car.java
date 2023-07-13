@@ -1,24 +1,22 @@
 package a01_diexp.z01_vo;
-
+// a01_diexp.z01_vo.Car
 public class Car {
-	private String model ;
-	private int cc ;
-	private int maximum  ;
+	private String kind;
+	private int cc;
+	private int maxVel;
 	public Car() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Car(String model, int cc, int maximum) {
-		super();
-		this.model = model;
+	public Car(String kind, int cc, int maxVel) {
+		this.kind = kind;
 		this.cc = cc;
-		this.maximum = maximum;
+		this.maxVel = maxVel;
 	}
-	public String getModel() {
-		return model;
+	public String getKind() {
+		return kind;
 	}
-	public void setModel(String model) {
-		this.model = model;
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
 	public int getCc() {
 		return cc;
@@ -26,11 +24,11 @@ public class Car {
 	public void setCc(int cc) {
 		this.cc = cc;
 	}
-	public int getMaximum() {
-		return maximum;
+	public int getMaxVel() {
+		return maxVel;
 	}
-	public void setMaximum(int maximum) {
-		this.maximum = maximum;
+	public void setMaxVel(int maxVel) {
+		this.maxVel = maxVel;
 	}
 	
 }

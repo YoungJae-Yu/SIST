@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
-	<c:set var="path" 
+<c:set var="path" 
 	value="${pageContext.request.contextPath}"/>
 <fmt:requestEncoding value="utf-8"/>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,52 +23,25 @@
     		
     		//$("h2").text("jquery 로딩 성공")
     	});
-    </script>    
+    </script>      
+    
+    
 </head>
 <body>
     <div class="container mt-3">
     	<h2>요청 모델 연습</h2>
-    	<form action="" method="post">
-    	
-         	<div class="mb-3 mt-3">
-            <input type="text" class="form-control" value="${names}"
-      	     id="name" placeholder="이름 입력" name="name">
-      	     </div>
-      	    
-
-         	<button type="submit" class="btn btn-primary">등록</button>
-     	</form>     	
-     	<%--
-     	 // /mvc03.do?age=
-     	 // 클릭시, +1 입력한 나이보다 증가하게 처리.
-     	 --%>
+	  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	  		<div class="container-fluid">    	
+	    	<form method="post"  class="d-flex align-items-center" >
+	            <input type="text" class="form-control me-2" 
+	      	     id="name" placeholder="이름 입력"
+	      	      value="${names}" name="name"  aria-label="Search">
+	         	<button type="submit" class="btn btn-primary"
+	         		 style="width:200px;">조회</button>
+	     	</form>
+	 	    </div>
+	 	</nav>
+	 	<%-- --%>
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
