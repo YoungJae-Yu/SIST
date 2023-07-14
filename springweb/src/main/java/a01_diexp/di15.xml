@@ -31,16 +31,75 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd   
       ">
-	<bean class="springweb.a01_start.A01_StartController"/>      
-	<bean class="springweb.a01_start.A02_CallController"/>      
-	<bean class="springweb.a01_start.A03_CallMVC"/>      
-	<bean class="springweb.a01_start.A04_ModelView"/>      
-	<bean class="springweb.a01_start.A05_MVC_Controller"/>      
-	<bean class="springweb.a02_emp.A01_EmpController"/>      
-	<bean class="springweb.a01_start.A06_ReqModelContorller"/>      
-	<bean class="springweb.a02_emp.A01_StartController"/>      
-      
+	<bean id="obj" class="java.lang.Object"/>      
+	<!-- 
+#namespace를 이용한 객체 생성과 property 사용
+1. 위에 선언한 dtd(xml 상단에 사용할 태그와 속성 규칙)에
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	가 선언되어 있으면 객체 생성과 선언방식을 보다 간단하게 처리할 수 있다.
+2. p : property 선언
+	c : controller 선언
+3. property선언 방식
+	1) p:프로퍼티명="값설정"
+4. constructor 선언 방식
+	1) c:매개변수명="할당할데이터"
+	2) c:_0 : 생성자 선언 순서
+		c:_1="20" 생성자 두번째에 20을 매개변수로 선언해서 할당 처리...
+	 -->
+	 <bean id="p01" class="backendWeb.z01_vo.Person"
+ 		p:name="홍길동" p:age="25" p:loc="서울"/>
+	 <bean id="prod1" class="backendWeb.z01_vo.Product"
+ 		c:name="사과" c:price="2500" c:cnt="3"/>
+	 <bean id="prod2" class="backendWeb.z01_vo.Product"
+ 		c:_0="바나나" c:_1="4000" c:_2="5"/>
+ 		<!-- 
+ 		ex) Dept : 프로퍼티로 선언
+ 			 Calculator : 생성자(1,2)로 선언해서 호출
+ 			 해서 출력하세요.
+ 		 -->
+	 <bean id="dept" class="backendWeb.z01_vo.Dept"
+ 		p:deptno="10" p:dname="총무" p:loc="서울"/>
+	 <bean id="calcu" class="backendWeb.z01_vo.Calculator"
+ 		c:_0="10" c:_1="5" c:_2="+" c:_3="15"/>
+ 		<!-- 
+ 		ex) Music m01, 		m02, 		m03
+ 						프로퍼터  생성자1		생성자 방식으로
+ 				xml 선언 후, 호출..
+ 		 -->
+  	 <bean id="m1" class="backendWeb.z01_vo.Music"
+ 		p:mname="좋은날" p:singer="아이유" p:pubyear="2012"/>
+  	 <bean id="m2" class="backendWeb.z01_vo.Music"
+ 		c:mname="아이야" c:singer="창모" c:pubyear="2016"/>
+  	 <bean id="m3" class="backendWeb.z01_vo.Music"
+ 		c:_0="곡예사" c:_1="조광일" c:_2="2020"/>
 </beans>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
    
