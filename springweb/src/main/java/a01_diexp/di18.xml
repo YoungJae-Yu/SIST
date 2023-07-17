@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:task="http://www.springframework.org/schema/task" 
+   xmlns:aop="http://www.springframework.org/schema/aop" 
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xmlns:p="http://www.springframework.org/schema/p"
+   xmlns:c="http://www.springframework.org/schema/c"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:util="http://www.springframework.org/schema/util"
+   xmlns:websocket="http://www.springframework.org/schema/websocket"
+   xmlns:sec="http://www.springframework.org/schema/security"
+   xmlns:tx="http://www.springframework.org/schema/tx" 
+    
+   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task.xsd       
+        http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc.xsd     
+        http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+         http://www.springframework.org/schema/websocket
+      http://www.springframework.org/schema/websocket/spring-websocket.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd   
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd   
+      ">
+	<bean id="obj" class="java.lang.Object"/>      
+	<!-- 
+	# 특정한 패키지(폴드) 단위로 클래스를 등록시켜, 객체를 사용하는방법
+	1. 특정 패키지에 @Component 라고 선언된 클래스는 메모리에 로딩되게 처리
+	2. 특정 패키지에 모든 객체들 메모리에 로딩 처리
+	3. 특정 패키지에 스프링에서 사용되는 Controller, Service, Repository
+		클래스만 객체로 메모리에 로딩 처리.
+	4. 특정 패키지 특정 소스 코드로 autowiring	
+	 -->
+	 <!-- 
+	 a01_diexp.z02_vo
+	 폴드(패키지에) 있고 @Component라고 선언되어 있으면
+	 객체로 메모리 로딩 처리
+	 호출이름은 default로 클래스명을 첫문자를 소문자처리
+	 class Person ==> person
+	  -->
+	  <context:component-scan 
+	  base-package="a01_diexp.z02_vo"/>
+	  <!-- 
+	  1. 이 범위 안에 모든 클래스들이 객체로 만들어
+	  단, class명 위에 @Component
+	  Car car = new Car();
+	  CarDriver carDriver = new CarDriver();
+	  ....
+	   -->
+</beans>   
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   

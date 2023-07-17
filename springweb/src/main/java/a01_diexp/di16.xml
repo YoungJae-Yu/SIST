@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:task="http://www.springframework.org/schema/task" 
+   xmlns:aop="http://www.springframework.org/schema/aop" 
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xmlns:p="http://www.springframework.org/schema/p"
+   xmlns:c="http://www.springframework.org/schema/c"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:util="http://www.springframework.org/schema/util"
+   xmlns:websocket="http://www.springframework.org/schema/websocket"
+   xmlns:sec="http://www.springframework.org/schema/security"
+   xmlns:tx="http://www.springframework.org/schema/tx" 
+    
+   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task.xsd       
+        http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc.xsd     
+        http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+         http://www.springframework.org/schema/websocket
+      http://www.springframework.org/schema/websocket/spring-websocket.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd   
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd   
+      ">
+	<bean id="obj" class="java.lang.Object"/>  
+	<!-- 
+# 의존성 자동 주입
+1. 컨테이너 객체는 bean 안에 객체가 선언되고 호출될 때, 각 객체간에
+	연관관계에 의해서 사용할 때가 많다.
+2. 예를 들면 EmpController은 EmpDao가 객체로 선언되어 있으면
+	 ref="dao"  등을 형태로 특정 기능 메서드나 필드로 할당되어 사용하는
+	 경우를 말한다.
+3. 이와같이 연관관계가 구체적으로 container 코드로 설정하여 사용하는
+	경우도 있지만, 특정한 경우에는 객체를 자동으로 연관되어 할달되게
+	할 수도 있다.
+4. 이를 autowiring(자동연관) 설정이라고 한다. 이번 장에서는 이러한
+	자동연관 설정 옵션이 어떤 것이 있는지와 실제적인 적용을 하여,
+	스프링의 핵심인 DI의 개념과 실체를 확인하고자 한다.
+5. 기본 형식
+	1) 객체 선언
+		autowire="자동연관 옵션"
+	2) 자동연관옵션
+		- byName
+		- byType
+		- constructor : 생성자의 type을 할당해서 처리
+		- autodect : type이 있는지 여부를 할당해서 처리
+// a01_diexp.z01_vo.HPUser
+// a01_diexp.z01_vo.HandPhone
+	HandPhone(String number, String company)
+	 -->
+	 <bean id="hp" class="a01_diexp.z01_vo.HandPhone"
+	 	c:_0="010-8888-9999" c:_1="삼성전자"
+	 />
+	 <bean id="hu" class="a01_diexp.z01_vo.HPUser"
+	 	c:_0="홍길동" autowire="byType"
+	 />
+	 <!-- 
+	 byType에 의해서 해당 객체를 할당하는 메서드가 있으면 자동으로
+	 할당 처리되게 하는 것을 말한다.
+	 public void setHandPhone(HandPhone handPhone)
+	 에 해당 객체가 할당하게 처리하고 있기때문에, 설정하는 것이 가능하다.
+	 
+	 ex) Car, CarDriver를 선언하여 호출해보세요
+	  autowiring 옵션.
+// a01_diexp.z01_vo.Car
+//a01_diexp.z01_vo.Car CarDriver
+Car(String kind, int cc, int maxVel)
+	  -->
+	 <bean id="car01" class="a01_diexp.z01_vo.Car"
+	 	c:_0="SUV" c:_1="3500" c:_2="250"
+	 />
+	 <bean id="car02" class="a01_diexp.z01_vo.Car"
+	 	c:_0="아반때" c:_1="1500" c:_2="200"
+	 />
+	 <bean id="car03" class="a01_diexp.z01_vo.Car"
+	 	c:_0="소나타" c:_1="2500" c:_2="230"
+	 />
+	 <bean id="cd" class="a01_diexp.z01_vo.CarDriver"
+	 	c:_0="김길동" autowire="byName"
+	 />
+	 <!-- 
+	 # byName 옵션
+	 1. 자동할당 byName 옵션은 byType에 의해 여러 객체가 들어올 수 있다.
+	 2. type이 같고, 메서드의 property를 check하는 특정한 객체가
+	 	자동할당되게 하는 옵션을 말한다.
+	 3. 예시
+	 	1) CarDriver클래스에서
+	 		public void setCar(Car c){}
+	 		public void setCar02(Car c){}
+	 	2) byType을 하면 두개의 메서드가 다 호출되기에 구분할 수 없지만
+	 	3) byName을 하면 위 두개의 메서드 중에서
+	 		id가 car02인 내용을 type을 check하여 할당하게
+	 		처리하는 것을 말한다.
+	 		즉, car02의 setproperty인 setCar02를 찾아서
+	 		type인 Car인 것을 찾아서 해당 기능 메서드를 호출하여
+	 		처리한다.
+ 	4. 위와 같이 여러개의 같은 type을 메서드명인 property로 구분하여
+ 		할당하는 형태를 byName에 의한 설정이라고 할 수 있다.
+	  -->
+</beans>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

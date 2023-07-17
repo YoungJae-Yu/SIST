@@ -110,6 +110,15 @@
 		<constructor-arg value="VIP"/>
 		<constructor-arg value="300000"/>
 	</bean>
+	<!-- 
+	Member mem01 = new Member(..);
+	Member mem02 = new Member(..);
+	List<Member> list = new ArrayList<Member>();
+	list.add(mem01);
+	list.add(mem02);
+	ShoppingMall sm = new ShoppingMall(" 쌍용백화점");
+	sm.seMtlist(list);
+	 -->
 	<bean id="s01" class="a01_diexp.z01_vo.ShoppingMall">
 		<constructor-arg value="쌍용백화점"/>
 		<property name="mlist">

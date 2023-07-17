@@ -21,7 +21,10 @@
   	  http://....../@@@.do 
   	  일반 servlet과 호출을 구분하기 위해서 마지막에 .do라고 해야지
   	  스프링에서 사용되는 컨테이너를 처리하겠다는 표시..
-   -->
+   		dispatcher이름을 접두어로 해서 container(조립기)
+   		를 호출하여 스프링에 사용할 객체를 메모리에 로딩
+   		해당 url 패턴에 맞는 메서드 호출
+   	-->
    <filter>
    	  <filter-name>encodingFilter</filter-name>
    	  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>	

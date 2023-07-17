@@ -1,7 +1,9 @@
-package a01_diexp.z01_vo;
+package a01_diexp.z02_vo;
+
+import org.springframework.stereotype.Component;
 
 //a01_diexp.z01_vo.Car CarDriver
-
+@Component("cardriver01")// 변경된 id 를 사용할 수 있다.
 public class CarDriver {
 	private String name;
 	private Car car;

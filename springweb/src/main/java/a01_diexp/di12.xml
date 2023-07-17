@@ -71,6 +71,7 @@
 		<constructor-arg value="apple"/>
 	</bean>		
 	<!-- 
+	HPUser u01 = new HPUser("홍길동");
 	u01.setHandPhone(p01);
 	 -->
 	<bean id="u01" class="a01_diexp.z01_vo.HPUser">

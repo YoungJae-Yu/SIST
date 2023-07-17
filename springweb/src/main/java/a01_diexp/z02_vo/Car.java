@@ -1,6 +1,10 @@
-package a01_diexp.z01_vo;
+package a01_diexp.z02_vo;
+
+import org.springframework.stereotype.Component;
+
 // a01_diexp.z01_vo.Car
 //a01_diexp.z01_vo.Car CarDriver
+@Component
 public class Car {
 	private String kind;
 	private int cc;
