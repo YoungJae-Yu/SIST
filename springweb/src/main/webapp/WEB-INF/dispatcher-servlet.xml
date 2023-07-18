@@ -31,16 +31,77 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd   
       ">
-	<bean class="springweb.a01_start.A01_StartController"/>      
-	<bean class="springweb.a01_start.A02_CallController"/>      
-	<bean class="springweb.a01_start.A03_CallMVC"/>      
-	<bean class="springweb.a01_start.A04_ModelView"/>      
-	<bean class="springweb.a01_start.A05_MVC_Controller"/>      
-	<bean class="springweb.a02_emp.A01_EmpController"/>      
-	<bean class="springweb.a01_start.A06_ReqModelContorller"/>      
-	<bean class="springweb.a02_emp.A01_StartController"/>      
-      
+      <!-- 
+      @Controller/@Service/@Repository 클래스 ==> 객체
+      A04_PreparedDao ==> 클래스
+      컨테이너(메모리 수영장)
+      empList01.do 위 객체들의 메서드중에 찾기 시작.
+       -->
+      <context:component-scan base-package="springweb">
+      	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+      	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+      	<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+      </context:component-scan>
+      <bean class="backendWeb.a01_dao.A04_PreparedDao"/>
+	<!-- 
+	# DB연결처리
+	1. DBCP(Database Connection Pool)을 이용해서 DB연결 처리..
+		 	destroy-method="close" 종료시 bean객체에서 사용하는
+		 	
+		 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" 
+			value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>	
+		<property name="password" value="tiger"/>	
+	
+	</bean> 
+	<!--
+	# mybatis연동처리..
+	1. 위 연결 정보 설정
+	2. mybatis 공통 xml 연동 처리
+	3. mybatis 를 통해 만들어질 실제 객체가 바라보는 
+		dao interface위치 설정
+	 -->
+	<bean id="sqlSessionFactory" 
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" 
+			value="classpath:resource/mybatis.Spring.xml"/>	
+	</bean> 
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" 
+			value="springweb.a05_mvcexp.a03_dao"/>
+	</bean>
 </beans>   
 
 
-   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

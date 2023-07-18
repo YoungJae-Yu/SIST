@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- 선언된 Mapper.xml에서 member라는 이름으로 해당 객체를
+		접근하여 사용가능하다. -->
+		<typeAlias alias="member" 
+			type="springweb.a05_mvcexp.z01_vo.Member"/>
+	</typeAliases>
+	<mappers>
+		<!-- sql을 입력값과 리턴값에 의해 실제 객체를 만들어 주는 xml
+			선언 위치 지정 -->
+		<mapper resource="resource/A01_MemberMapper.xml"/>	
+	</mappers>
+</configuration>

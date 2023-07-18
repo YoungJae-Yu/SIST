@@ -1,0 +1,77 @@
+# DB 처리를 효과적으로 해주는 mybatis framework
+1. 웹개발에서 데이터베이스 연동 처리는 중요한 부분 중에 하나이다.
+2. DB 처리시, 자원의 효율적인 처리, 보다 쉬운DB연동 및 sql 처리는
+	프로그램에서 반드시 수행해야할 부분이다.
+3. spring은 여러가지 DB연동 framwork을 지원하는데,
+4. 그 중에서 가장 쉽고도 효율적인 framwork을 사용해보자.
+5. mybatis framwork 처리 학슴 내용 계열화
+	1) interface 개념 이해
+		인터페이스를 통해서 다양한 실제 객체 생성 활용
+	2) mybatis framwork에 의해 처리 구조에 대한 이해.
+		- 컨테이너 등록
+			접속
+			mybatis 공통 설정 파일
+		- mybatis 공통 설정 파일
+			사용 vo : 간편하게 활용
+			단위 데이터 처리 mapper.xm, 호출
+		- mapper.xml
+			실제 sql 처리
+			
+			리턴할 내용 선언 처리
+		- 인터페이스 선언
+	3) dao 인터페이스와 mapper.mxl의 설정에 대한 이해
+		- 네임스페이스
+		- id
+		- parameterType
+		- resultType
+	4) 실제 개발 순서 및 처리
+		- sql 작성
+		- vo 작성
+		- dao 인터페이스 작성
+		- 공통  mybatis 등록 : alias, mapper.xml 선언
+		- mapper.xml 선언 및 처리.
+		
+연결 풀[1] 또는 커넥션 풀(connection pool)은 소프트웨어 공학에서 
+데이터베이스로의 추가 요청이 필요할 때 연결을 재사용할 수 있도록 관리되는 
+데이터베이스 연결의 캐시이다. 
+연결 풀을 사용하면 데이터베이스의 명령 실행의 성능을 강화할 수 있다. 
+각 사용자마다 데이터베이스 연결을 열고 유지보수하는 것은 비용이 많이 
+들고 자원을 낭비한다. 연결 풀의 경우 연결이 수립된 이후에 풀에 위치해 
+있으므로 다시 사용하면 새로운 연결을 수립할 필요가 없어진다. 
+모든 연결이 사용 중이면 새로운 연결을 만들고 풀에 추가된다. 
+연결 풀은 사용자가 데이터베이스에 연결을 수립하는데까지 
+대기해야하는 시간을 줄이기도 한다.
+		
+# Member	list 검색 처리하기 mybatis로 만들기		
+1. sql 작성 
+	SELECT *
+	FROM MEMBER02
+	WHERE id LIKE '%%'
+	AND name LIKE '%%'
+2. vo 작성
+	id, pass, name, auth, point
+3. dao 인터페이스 작성
+4. 공통  mybatis 등록 : alias, mapper.xml 선언
+5. mapper.xml 선언 및 처리.	
+		
+		
+		==> Dao를 만들려면?
+	sql
+	매개변수
+	리턴데이터
+	==> Mapper.xml ==> A01_MemberDao 상속받은 실제객체가 만들어진다.
+	연동 규칙을 설정
+		mapper.xml		interface
+	1. namespace			springweb.a05_mvcexp.a03_dao.A01_MemberDao
+	2. id						메서드명 memberList
+	3. parameterType	Member:공통mybatis에서 지정이름
+	4. resutType	        List<Member>:공통mybatis에서 지정이름
+	5. sql
+		getXXX호출. ==> 실제 메서드가 만들어져서 사용가능하다
+		
+		
+		
+		
+		
+		
+		

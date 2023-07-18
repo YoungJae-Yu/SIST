@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="springweb.a05_mvcexp.a03_dao.A01_MemberDao">
+	<select id="memberList" 
+		parameterType="member" 
+		resultType="member">
+		SELECT * 
+		FROM MEMBER02
+		WHERE id LIKE '%'||#{id}||'%'
+		AND name LIKE '%'||#{name}||'%'
+		
+		
+	</select>
+	<!-- 
+	sql = " like ? "
+	pstmt.setString(1, sch.getId());
+	
+	parameterType="member"가 가지고 있는 getXXX()
+	에 property이어야 한다.
+	===> 인터페이스를 상속한 실제객체가 mybatis에 의해
+	만들어 진다.
+	
+	 -->
+
+</mapper>	
