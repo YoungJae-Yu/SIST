@@ -9,27 +9,29 @@
 		인터페이스를 통해서 다양한 실제 객체 생성 활용
 	2) mybatis framwork에 의해 처리 구조에 대한 이해.
 		- 컨테이너 등록
-			접속
+			접속(dbcp) ex) DB.java,
 			mybatis 공통 설정 파일
 		- mybatis 공통 설정 파일
 			사용 vo : 간편하게 활용
+				패키지명 .패키지명... 클래스명==>alias명 지정
+				==> 각 mapper.xml에서 사용하기 위하여
 			단위 데이터 처리 mapper.xm, 호출
 		- mapper.xml
 			실제 sql 처리
-			
 			리턴할 내용 선언 처리
 		- 인터페이스 선언
 	3) dao 인터페이스와 mapper.mxl의 설정에 대한 이해
-		- 네임스페이스
-		- id
-		- parameterType
-		- resultType
+		- 네임스페이스 : 패키지명.인터페이스명
+		- id : 메서드명
+		- parameterType : 메서드의 매개변수유형
+		- resultType : 리턴타입의 유형
 	4) 실제 개발 순서 및 처리
 		- sql 작성
 		- vo 작성
 		- dao 인터페이스 작성
 		- 공통  mybatis 등록 : alias, mapper.xml 선언
 		- mapper.xml 선언 및 처리.
+		- service단에 dao 메서드 호출해서 확인
 		
 연결 풀[1] 또는 커넥션 풀(connection pool)은 소프트웨어 공학에서 
 데이터베이스로의 추가 요청이 필요할 때 연결을 재사용할 수 있도록 관리되는 
@@ -68,6 +70,211 @@
 	4. resutType	        List<Member>:공통mybatis에서 지정이름
 	5. sql
 		getXXX호출. ==> 실제 메서드가 만들어져서 사용가능하다
+	
+# mybatis Dao 처리 연습
+0. 규칙과 처리순서
+	1)
+	mapper.xml		dao 인터페이스
+	---------------------------------
+	namespace		패키지명.인터페이스명
+	id						메서드명
+	parameterType   메서드의 매개변수유형
+	resultMap			sql의 결과과 VO의 property가 다를 때
+	2) 처리순서
+		sql 작성
+		vo 작성
+		인터페이스/메서드 추가
+		mapper.xml 처리
+		service단 호출 확인
+		
+		
+1. 기본호출 연습
+	0) 기본
+		매개변수X
+		리턴유형 문자열
+		SELECT ename
+		FROM emp
+		WHERE  empno = 7369
+		인터페이스
+		public String exp01();
+		mapper
+		<select id="exp01" resultType="string">
+			SELECT ename
+			FROM emp
+			WHERE  empno = 7369
+		</select>
+		
+		service
+		
+		sysout("첫번째 연습" + dao.exp01());
+		
+		ex)
+		select job
+		from emp
+		where empno = 7369
+		
+		select deptno
+		from emp
+		where empno = 7521
+		
+		
+		
+	1) 매개변수
+		단일
+		select job
+		from emp
+		where ename = 'SMITH'
+		
+		public String exp04(String ename);
+		
+		<select id="exp04" parameterType="string" resultType="string">
+		select job
+		from emp
+		where ename = #{ename}
+		
+		</select>
+		
+		service 
+			System.out.println("연습04"+dao.exp04("SMITH"));
+		
+		ex)
+		SELECT sal
+		FROM emp
+		WHERE  empno = 7844;
+		
+		SELECT mgr
+		FROM emp
+		WHERE  ename = 'CLARK';
+		
+		SELECT HIREDATE 
+		FROM emp
+		WHERE  empno = 7844;
+		
+		다중
+			객체
+			 insert into dept01 values(11, '인사', '서울')
+			 vo==> dept VO 필요
+			
+			Map형식
+			@Param("mapper이름") 타입 유형	
+
+	2) 리턴유형
+		기본유형
+		객체유형
+		다중객체유형
+		컬럼명과 객체가 다른 유형
+2. 추가 인터페이스/Mapper 생성시 처리시
+3. 추가 dao 패키지 처리시
+	
+# 등록 연습
+1. sql 작성
+	INSERT INTO STUDENT02 VALUES(1,'',1,1,1)
+	INSERT INTO STUDENT02 VALUES(#{sno},#{name},#{kor},#{eng},#{math})
+	
+2. vo 작성
+	sql 에서 사용하는 데이터 유형 확인
+	테이블에 컬럼이 있으면 컬럼명과 유형과 동일하게 하고.\
+	만약에 없으면 추가해서 vo에 속성과 property를 처리하여야 한다.
+	
+	class Student
+		private int sno;
+		private String name;
+		private int kor;
+		private int eng;
+		private int math;
+		
+	select *
+	from emp
+	where sal beteen 1000 and 2000
+	emp 테이블에 sal있지만, 최대값과 최소값은 없다.
+	vo에 아래 속성 추가.
+		private int minsal;
+		private int maxsal;
+		get/setXXX()
+		
+3. 공통 mybatis.xml에 alias 추가
+	1) 추가된 vo는 alias 등록 처리
+		student
+		
+4. 인터페이스/메서드 추가
+5. mapper.xml 처리
+	등록된 student를 사용해서 입력과 리턴시 활용
+	<insert id="exp09insStu" parameterType="student">
+	INSERT INTO STUDENT02 VALUES(#{sno},#{name},#{kor},#{eng},#{math})
+	</insert>
+6. service단 호출 확인
+	dao.exp09insStu(new Student(5,'마길동',90,90,90));
+7. 테스트 화면 호출시 입력된 데이터 확인..
+		
+SELECT * FROM emp
+WHERE ename LIKE '%'||''||'%'
+AND sal BETWEEN 1000 AND 2000
+		
+		
+# 2~3개 데이터 처리하는 map 형식 처리
+1. sql
+	select *
+	from emp
+	where ename like '%'||''||'%'
+	and job like '%'||''||'%'	
+2. vo/mybatis
+3. interface
+	public List<Emp> exp12EmpList(Map sch);		
+4. mapper
+	<select id="exp12EmpList" resultType="emp" parameterType="map">
+		select *
+		from emp
+		where ename like '%'||#{ename_sch}||'%'
+		and job like '%'||#{job_sch}||'%'
+	</select>
+5. service
+	Map<String,String> sch = new HashMap<String,String>();
+	sch.put("ename_sch","A");
+	sch.put("job_sch","ER");
+	for(Emp e:dao.exp12EmpList(sch)){
+		System.out.print(e.getEname()+"\t");
+		System.out.print(e.getJob()+"\n");
+	}
+
+ex) dao ==> mapper ==> service 처리 하세요.
+		
+# 2~3 데이터 매개변수 처리하기(@Param()활용)
+1. sql
+	INSERT INTO DEPT01 d values(#{no},#{dpartnm},#{location})
+2. 인터페이스 확인
+	public void exp14DeptInsert(
+			@Param("no") int deptno,
+			@Param("dpartnm") int dname,
+			@Param("location") int loc));
+	
+3. mapper
+	주의) 매개변수로 mybatis에서 지원하는 @Param("no")형식으로
+	처리하기에 parameterType을 선언하지 않는다.
+	<insert id="exp14DeptInsert">
+		INSERT INTO DEPT01 d values(#{no},#{dpartnm},#{location})
+	</insert>
+4. service 처리.
+	dao.exp14DeptInsert(22, "교육","부산");
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

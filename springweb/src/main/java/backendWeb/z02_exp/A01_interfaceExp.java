@@ -23,6 +23,17 @@ interface MemberDao{
 	public List<Member> memberList();
 }
 // mybatis ==> XXXmapper.xml에 의해서 sql
+// 인터페이스명, 메서드명, 리턴값, 매개변수 ==> XXXMapper.xml 
+//  ==> 상속받은 실제 객체							앞에 정보  + sql                          
+// MemberDao dao = new MemberDaoImpl();
+// 인터페이스로 데이터를 리턴하는 객체의 메서드를 사용할 수 있다.
+/*
+# Service
+@AutoWierd
+private MemberDao dao;
+dao.getMemberList(); ==> 리스트형 결과 객체
+
+ */
 class MemberDaoImpl implements MemberDao{
 	@Override
 	public List<Member> memberList() {

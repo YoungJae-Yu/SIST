@@ -1,27 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="springweb.a05_mvcexp.a03_dao.A01_MemberDao">
-	<select id="memberList" 
-		parameterType="member" 
+	<select id="memberList" parameterType="member"
 		resultType="member">
-		SELECT * 
+		SELECT *
 		FROM MEMBER02
 		WHERE id LIKE '%'||#{id}||'%'
-		AND name LIKE '%'||#{name}||'%'
-		
-		
+		AND name
+		LIKE '%'||#{name}||'%'
+
+
 	</select>
-	<!-- 
-	sql = " like ? "
-	pstmt.setString(1, sch.getId());
+	<!-- sql = " like ? " pstmt.setString(1, sch.getId()); parameterType="member"가 
+		가지고 있는 getXXX() 에 property이어야 한다. ===> 인터페이스를 상속한 실제객체가 mybatis에 의해 만들어 진다. -->
+	<select id="exp01" resultType="string">
+		SELECT ename
+		FROM emp
+		WHERE empno =
+		7369
+	</select>
+	<select id="exp02" resultType="string">
+		select job
+		from emp
+		where empno =
+		7369
+	</select>
+	<select id="exp03" resultType="string">
+		select deptno
+		from emp
+		where empno =
+		7521
+	</select>
+	<select id="exp04" parameterType="string" resultType="string">
+		select job
+		from emp
+		where ename = #{ename}
+	</select>
+	<select id="exp05" parameterType="int" resultType="double">
+		SELECT sal
+		FROM emp
+		WHERE  empno =#{empno}
+	</select>
+	<select id="exp06" parameterType="string" resultType="int">
+		SELECT mgr
+		FROM emp
+		WHERE  ename =#{ename}
+	</select>
+	<select id="exp07" parameterType="int" resultType="date">
+		SELECT HIREDATE 
+		FROM emp
+		WHERE  empno = #{empno}
+	</select>
+	<insert id="exp08Ins" parameterType="dept">
+	insert into dept01 values(#{deptno},#{dname},#{loc})
+	</insert>
+	<insert id="exp09Ins" parameterType="Student">
+	INSERT INTO student02 VALUES(#{sno},#{name},#{kor},#{eng},#{math})
+	</insert>
+	<insert id="locIns" parameterType="Locations">
+	INSERT INTO LOCATIONS01 
+VALUES (#{location_id},#{street_address},#{postal_code},#{city},#{state_province},#{country_id})
+	</insert>
 	
-	parameterType="member"가 가지고 있는 getXXX()
-	에 property이어야 한다.
-	===> 인터페이스를 상속한 실제객체가 mybatis에 의해
-	만들어 진다.
-	
-	 -->
+	<select id="emp11EmpList" parameterType="emp" resultType="emp">
+		SELECT * 
+		FROM emp
+		WHERE  ename like '%'||#{ename}||'%'
+		and sal between #{minSal} and #{maxSal}
+	</select>
+	<select id="exp12EmpList" resultType="emp" parameterType="map">
+		select *
+		from emp
+		where ename like '%'||#{ename_sch}||'%'
+		and job like '%'||#{job_sch}||'%'
+	</select>
+	<select id="exp13EmpList" resultType="emp" parameterType="map">
+		SELECT *
+		FROM emp
+		WHERE job IN (#{job01},#{job02})
+	</select>
+	<insert id="exp14DeptInsert">
+		INSERT INTO DEPT01 d values(#{no},#{dpartnm},#{location})
+	</insert>
+		
+
+		
+
+
+
+
 
 </mapper>	
