@@ -6,9 +6,24 @@ public class Student {
 	private int kor;
 	private int eng;
 	private int math;
+	private int strPoint;
+	private int endPoint;
+	
 	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public int getStrPoint() {
+		return strPoint;
+	}
+	public void setStrPoint(int strPoint) {
+		this.strPoint = strPoint;
+	}
+	public int getEndPoint() {
+		return endPoint;
+	}
+	public void setEndPoint(int endPoint) {
+		this.endPoint = endPoint;
 	}
 	public Student(int sno, String name, int kor, int eng, int math) {
 		super();

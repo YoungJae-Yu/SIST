@@ -84,12 +84,92 @@ VALUES (#{location_id},#{street_address},#{postal_code},#{city},#{state_province
 	<insert id="exp14DeptInsert">
 		INSERT INTO DEPT01 d values(#{no},#{dpartnm},#{location})
 	</insert>
-		
-
-		
-
-
-
-
-
+	<select id="exp15EmpList" resultType="emp">
+		SELECT *
+		FROM emp
+		WHERE HIREDATE 
+		BETWEEN to_date(#{startDte},'YYYY-MM-DD')
+		AND to_date(#{endDte},'YYYY-MM-DD')
+	</select>
+	<select id="exp16" resultType="Student">
+		SELECT * FROM STUDENT02 s 
+		WHERE name LIKE '%'||#{name}||'%'
+		AND (kor+eng+math)/3 BETWEEN #{strPoint} AND #{endPoint}
+	</select>
+	<select id="exp17getEmpLoyee" resultType="employee">
+		SELECT 
+		employee_id,
+		first_name,
+		last_name,
+		email,
+		phone_number,
+		hire_date,
+		job_id,
+		salary,
+		commission_pct,
+		manager_id,
+		department_id
+		FROM EMPLOYEES e 
+		WHERE EMPLOYEE_ID = #{id}
+	</select>
+	<select id="exp18getJobs" resultType="jobs">
+			SELECT *
+			FROM JOBS j 
+			WHERE JOB_ID = #{job_id}
+	</select>
+	<select id="exp19getEnames" resultType="string">
+		SELECT ename
+		FROM emp
+		WHERE sal BETWEEN #{minSal} AND #{maxSal}
+	</select>
+	<select id="exp20getCity" resultType="string">
+		SELECT CITY 
+		FROM LOCATIONS
+		WHERE COUNTRY_ID = #{ctyId}
+	</select>
+	<resultMap type="emp" id="rst01">
+		<id column="no" property="empno"/>
+		<result column="name" property="ename"/>
+		<result column="salary" property="sal"/>
+	</resultMap>
+	<select id="getEmpResultExp" resultMap="rst01">
+		SELECT empno NO, ename name,
+				sal salary
+		FROM emp02
+		order by no
+	</select>
+	<resultMap type="dept" id="rst02">
+		<id column="no" property="deptno"/>
+		<result column="name" property="dname"/>
+		<result column="location" property="loc"/>
+	</resultMap>
+	<select id="getDeptResultExp" resultMap="rst02">
+		SELECT DEPTNO NO, dname name,loc location
+		FROM DEPT01 d
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>	

@@ -15,6 +15,10 @@
 			type="springweb.a05_mvcexp.z01_vo.Locations"/>
 		<typeAlias alias="emp" 
 			type="springweb.a05_mvcexp.z01_vo.Emp"/>
+		<typeAlias alias="employee" 
+			type="springweb.a05_mvcexp.z01_vo.Employee"/>
+		<typeAlias alias="jobs" 
+			type="springweb.a05_mvcexp.z01_vo.Jobs"/>
 	</typeAliases>
 	<mappers>
 		<!-- sql을 입력값과 리턴값에 의해 실제 객체를 만들어 주는 xml

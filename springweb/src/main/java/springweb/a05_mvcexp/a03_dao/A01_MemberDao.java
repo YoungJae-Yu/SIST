@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import springweb.a05_mvcexp.z01_vo.Dept;
 import springweb.a05_mvcexp.z01_vo.Emp;
+import springweb.a05_mvcexp.z01_vo.Employee;
+import springweb.a05_mvcexp.z01_vo.Jobs;
 import springweb.a05_mvcexp.z01_vo.Locations;
 import springweb.a05_mvcexp.z01_vo.Member;
 import springweb.a05_mvcexp.z01_vo.Student;
@@ -34,6 +36,27 @@ public interface A01_MemberDao {
 			@Param("no") int deptno,
 			@Param("dpartnm") String dname,
 			@Param("location") String loc);
+	 public List<Emp> exp15EmpList(
+			 	@Param("startDte") String startDte,
+			 	@Param("endDte") String endDte);
+	 public List<Student> exp16(
+			 @Param("name") String name,
+			 @Param("strPoint") int strPoint,
+			 @Param("endPoint") int endPoint
+			 );
+		public Employee exp17getEmpLoyee(
+				@Param("id") int employee_id);
+		public Jobs exp18getJobs(
+				@Param("job_id") String job_id);
+		public List<String> exp19getEnames(
+				@Param("minSal") int minSal,
+				@Param("maxSal") int maxSal);
+		public List<String> exp20getCity(
+				@Param("ctyId") String ctyId);
+		public List<Emp> getEmpResultExp();
+		public List<Dept> getDeptResultExp();
+
+		
 }
 /*
 ==> Dao 를 만들려면?

@@ -256,10 +256,219 @@ ex) dao ==> mapper ==> service 처리 하세요.
 4. service 처리.
 	dao.exp14DeptInsert(22, "교육","부산");
 	
+# Param 활용 DB 처리
+1. sql 작성
+	SELECT *
+	FROM emp
+	WHERE HIREDATE 
+	BETWEEN to_date(#{startDte},'YYYY-MM-DD')
+	AND to_date(#{endDte},'YYYY-MM-DD')
+2. vo/공통 등록(x)
+3. dao 인터페이스
+	 public List<Emp> exp15EmpList(
+	 	@Param("startDte") String startDte,
+	 	@Param("endDte") String endDte);
+4. mapper
+	<select id="exp15EmpList" resultType="emp">
+		SELECT *
+		FROM emp
+		WHERE HIREDATE 
+		BETWEEN to_date(#{startDte},'YYYY-MM-DD')
+		AND to_date(#{endDte},'YYYY-MM-DD')
+	</select>`
+5. service
+	for(Emp emp:dao.exp15EmpList("1981-01-01","1981-12-31")){
+			System.out.print(emp.getEname()+"\t");
+			System.out.print(emp.getHiredate()+"\n");
+	}
+
+# dao 리턴값 처리 예제(단계별)
+0. 기본 속성
+	resultType
+	메서드의 리턴 타입이 void인 경우 생략가능
+1. 단일데이터
+	결과값 기본 데이터 유형의 단일 데이터이거나 문자열인 경우를 말한다.
+	- 사원의 수를 검색
+		select count(*)
+		from emp
+		where sal between 2000 and 3000
 		
+		public int getEmpCount(@Param("minSal") int minSal,
+										@Param("maxSal") int maxSal);
+		mapper.xml
+		<select id="getEmpCount" resultType="int">
+			select count(*)
+			from emp
+			where sal between #{minSal} and #{maxSal}
+		</select>
+	- 사원중에 급여가 최고인 급여
+		select max(sal),deptno
+		from emp
+		WHERE DEPTNO = 30
+		GROUP by deptno;
 		
+		public int getEmpCount(@Param("deptno") int deptno);
 		
+		mapper.xml
+		<select id="getDeptMaxSal" resultType="int">
+			select max(sal),deptno
+			from emp
+			WHERE DEPTNO = #{deptno}
+			GROUP by deptno
+		</select>
+	
+2. 단일객체처리
+	sql에서 여러 컬럼을 한 row로 처리되는 경우를 말한다.
+	보통 검색시는 key로 입력할 때, 주로 나타난다.
+	select * from emp where empno = 7800
+	이렇게 되면 여러열의 데이터를 담을 수 있는 객체 vo를 선언하고,
+	vo를 공통 mybatis에 선언한 후에 처리할 수 있다.
+	alias명 설정, mapper에서는 resultType="객체명"
+	일반적으로 컬럼명과 getProperty가 동일할 때, 사용한다.
+	1) 처리 수넛
+		sql 작성
+			SELECT 
+			employee_id,
+			first_name,
+			last_name,
+			email,
+			phone_number,
+			hire_date,
+			job_id,
+			salary,
+			commission_pct,
+			manager_id,
+			department_id
+			FROM EMPLOYEES e 
+			WHERE EMPLOYEE_ID = 100	
+		vo 작성
+			public class Employee{
+			    private int employee_id;
+			    private String first_name;
+			    private String last_name;
+			    private String email;
+			    private String phone_number;
+			    private Date hire_date;
+			    private String job_id;
+			    private double salary;
+			    private double commission_pct;
+			    private int manager_id;
+			    private int department_id;
+			}
+		공통 mybatis vo등록
+		dao인터페이스 작성
+			public Employee exp17getEmpLoyee(
+				@Param("id") int employee_id);
 		
+		mapper 등록
+			<select id="exp17getEmpLoyee" resultType="employee">
+				SELECT 
+				employee_id,
+				first_name,
+				last_name,
+				email,
+				phone_number,
+				hire_date,
+				job_id,
+				salary,
+				commission_pct,
+				manager_id,
+				department_id
+				FROM EMPLOYEES e 
+				WHERE EMPLOYEE_ID = #{id}
+			</select>
+		service단 확인
+			Employee emp = dao.exp17getEmpLoyee(100);
+			System.out.print(emp.getEmployee_id()+"\t");
+			System.out.print(emp.getFirst_name()+"\t");
+			System.out.print(emp.getLast_name()+"\n");
+			
+			
+	ex)   SELECT *
+			FROM JOBS j 
+			WHERE JOB_ID = 'AD_PRES';
+	
+3. 단일배열데이터
+	조회된 데이터가 단일열의 배열형 데이터를 말한다.
+	현재 등록된 사원번호, 급여가 1000~3000사이 사원명
+	리턴형식이 단일 배열이거나, List<타입>으로 설정해서 처리한다.
+	sql
+		SELECT ename
+		FROM emp
+		WHERE sal BETWEEN 1000 AND 2000
+		SELECT ename
+		FROM emp
+		WHERE sal BETWEEN #{minSal} AND #{maxSal}
+		#dao
+		public List<String> exp19getEnames(
+				@Param("minSal") int minSal,
+				@Param("maxSal") int maxSal);
+		#mapper
+		<select id="getEnames" resultType="string">
+			SELECT ename
+			FROM emp
+			WHERE sal BETWEEN #{minSal} AND #{maxSal}
+		</select>
+		#service
+		for(String name:dao.exp19getEnames(1000,3000){
+			System.out.println(name);
+		}
+	
+4. 객체형배열데이터
+	resultType으로 위에 있는 단일데이터와 List형
+	데이터를 처리할 수 있다.
+
+5. resultMap의 활용
+	1) 컬럼명하고 property 다른 경우 설정처리..
+	2) 사원정보/부서정보 join
+		select e.*, d.dname, d.loc
+		from emp e, dept d
+		where e.deptno = d.deptno;
+	3) class EmpDept{
+			private Emp emp;
+			private Dept dept;
+			//set/get메서드..
+	   }	
+	   class Dept2{
+	   	  private int deptno;
+	   	  private String dname;
+	   	  private String loc;
+	   	  private Emp emp;
+	   	  
+	   }	
+# resultMap을 활용한 처리
+1. sql column과 vo proerty가 다른 경우
+	1) xxxMapper.xml
+		<resultMap의 선언
+			id = "사용할이름"
+			type = "vo객체"
+		<result column = "" property=""
+		
+SELECT empno NO, ename name,
+			sal salary
+FROM emp
+
+public List<Emp> getEmpResultExp();
+
+	<resultMap type="emp" id="rst01">
+		<id column="" property="empno"/>
+		<result column="name" property="ename"/>
+		<result column="salary" property="sal"/>
+	</resultMap>
+id는 sql 결과가 중복되더라도 첫번째 데이터를 출력처리하는 식별자
+	컬럼을 처리하는 것을 말한다.
+	참고) 중복되더라도 그대로 vo객체에 담을려면 id==>result로
+	처리한다.
+column="name" property="ename"
+	sql결과는 column으로 설정된 내용을 vo특정한 set property에 
+	mapping 시킬 때, 사용된다..
+이렇게해서 설정된 공통 resultMap의 id속성의 rst01은 각 select의
+속성 resultMap에 값으로 할당하여 공통으로 재활용 할 수 있다.
+
+# 기타 여러가지 형식의 dao 인터페이스 형식 처리.
+	
+	 	
+	 
 		
 		
 		

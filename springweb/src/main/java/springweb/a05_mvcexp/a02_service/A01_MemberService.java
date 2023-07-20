@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import springweb.a05_mvcexp.a03_dao.A01_MemberDao;
+import springweb.a05_mvcexp.z01_vo.Dept;
 import springweb.a05_mvcexp.z01_vo.Emp;
+import springweb.a05_mvcexp.z01_vo.Employee;
+import springweb.a05_mvcexp.z01_vo.Jobs;
 import springweb.a05_mvcexp.z01_vo.Locations;
 import springweb.a05_mvcexp.z01_vo.Member;
 import springweb.a05_mvcexp.z01_vo.Student;
@@ -56,8 +59,56 @@ public class A01_MemberService {
 			System.out.print(e.getEname()+"\t");
 			System.out.print(e.getJob()+"\n");
 		}
-		dao.exp14DeptInsert(22, "교육","부산");
+		//dao.exp14DeptInsert(22, "교육","부산");
+		System.out.print("연습 15");
+		for(Emp emp:dao.exp15EmpList("1981-01-01","1981-12-31")){
+			System.out.print(emp.getEname()+"\t");
+			System.out.print(emp.getHiredate()+"\n");
+		}
+		System.out.print("연습 16");
+		for(Student emp:dao.exp16("홍길동",20,100)){
+			System.out.print(emp.getSno()+"\t");
+			System.out.print(emp.getName()+"\t");
+			System.out.print(emp.getKor()+"\t");
+			System.out.print(emp.getEng()+"\t");
+			System.out.print(emp.getMath()+"\n");
+		}
+		System.out.print("연습 17");
+		Employee emp = dao.exp17getEmpLoyee(100);
+		System.out.print(emp.getEmployee_id()+"\t");
+		System.out.print(emp.getFirst_name()+"\t");
+		System.out.print(emp.getLast_name()+"\n");
+		
+		System.out.print("연습 18");
+		Jobs job = dao.exp18getJobs("AD_PRES");
+		System.out.print(job.getJob_id()+"\t");
+		System.out.print(job.getJob_title()+"\t");
+		System.out.print(job.getMin_salary()+"\t");
+		System.out.print(job.getMax_salary()+"\n");
+		System.out.print("연습 19");
+		for(String name:dao.exp19getEnames(1000,3000)){
+			System.out.println(name);
+		}
+		System.out.print("연습 20");
+		for(String city:dao.exp20getCity("US")){
+			System.out.println(city);
+		}
+		System.out.println("연습 21 resultMap 연 습");
+		for(Emp emp1:dao.getEmpResultExp()){
+			System.out.print(emp1.getEmpno()+"\t");
+			System.out.print(emp1.getEname()+"\t");
+			System.out.print(emp1.getSal()+"\n");
+		}
+		System.out.println("연습 22 resultMap 연습");
+		for(Dept d:dao.getDeptResultExp()){
+			System.out.print(d.getDeptno()+"\t");
+			System.out.print(d.getDname()+"\t");
+			System.out.print(d.getLoc()+"\n");
+		}
+		
+		
 	}
+	
 	public void daoexp02() {
 		System.out.println("연습09 입력:");
 		dao.exp09Ins(new Student(3,"김길동",90,80,70));
