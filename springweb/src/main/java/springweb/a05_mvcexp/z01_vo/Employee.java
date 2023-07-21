@@ -1,13 +1,13 @@
 package springweb.a05_mvcexp.z01_vo;
 
 import java.util.Date;
-// springweb.a05_mvcexp.z01_vo.Employee
+
 public class Employee {
-    private int employee_id;
-    private String first_name;
-    private String last_name;
-    private String email;
-    private String phone_number;
+	private int employee_id;
+	private String first_name;
+	private String last_name;
+	private String email;
+	private String phone_number;
     private Date hire_date;
     private String job_id;
     private double salary;
@@ -15,12 +15,11 @@ public class Employee {
     private int manager_id;
     private int department_id;
 	public Employee() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
+	// 10:05~
 	public Employee(int employee_id, String first_name, String last_name, String email, String phone_number,
 			Date hire_date, String job_id, double salary, double commission_pct, int manager_id, int department_id) {
-		super();
 		this.employee_id = employee_id;
 		this.first_name = first_name;
 		this.last_name = last_name;
@@ -99,4 +98,5 @@ public class Employee {
 	public void setDepartment_id(int department_id) {
 		this.department_id = department_id;
 	}
+    
 }

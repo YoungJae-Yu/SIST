@@ -5,12 +5,19 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import springweb.a05_mvcexp.z01_vo.Dept;
 import springweb.a05_mvcexp.z01_vo.Emp;
+import springweb.a05_mvcexp.z01_vo.EmpDept;
 import springweb.a05_mvcexp.z01_vo.Employee;
+import springweb.a05_mvcexp.z01_vo.EmployeesJobs;
 import springweb.a05_mvcexp.z01_vo.Jobs;
 import springweb.a05_mvcexp.z01_vo.Locations;
 import springweb.a05_mvcexp.z01_vo.Member;
@@ -55,6 +62,27 @@ public interface A01_MemberDao {
 				@Param("ctyId") String ctyId);
 		public List<Emp> getEmpResultExp();
 		public List<Dept> getDeptResultExp();
+		public List<EmpDept> getEmpDeptList(@Param("ename") String ename,
+				@Param("dname") String dname);
+		public List<EmployeesJobs> getEmployeesJobsList(
+				@Param("first_name") String first_name,
+				@Param("job_title") String job_title);
+		@Select("SELECT count(*) FROM emp WHERE DEPTNO =#{deptno}")
+		public int getDeptnoCnt(@Param("deptno") int deptno);
+		@Select("SELECT count(*)\r\n"
+				+ "FROM emp\r\n"
+				+ "WHERE sal BETWEEN #{minSal} AND #{maxSal}")
+		public int getSalCnt(@Param("minSal") int minSal,@Param("maxSal") int maxSal);
+		@Insert("INSERT INTO DEPT01 d VALUES(#{deptno}, #{dname}, #{loc})")
+		public void getInsDept(@Param("deptno") int deptno,@Param("dname") String dname
+				,@Param("loc") String loc);
+		@Update("UPDATE STUDENT02 SET kor = 100 WHERE sno=#{sno}")
+		public void getUdtStudent(@Param("sno") int sno);
+		@Delete("DELETE FROM emp02 WHERE empno = #{empno}")
+		public void getDelEmp(@Param("empno") int empno);
+		public List<Emp> getDynamicSQL(@Param("ename") String ename);
+		 public List<Emp> getEmpByEmpnos(
+				 	@Param("empnos") List<Integer> empnos);
 
 		
 }

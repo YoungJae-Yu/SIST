@@ -148,28 +148,77 @@ VALUES (#{location_id},#{street_address},#{postal_code},#{city},#{state_province
 		FROM DEPT01 d
 	</select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<resultMap type="empdept" id="edRst">
+		<association property="emp" javaType="emp">
+			<id column="empno" property="empno"/>
+			<result column="ename" property="ename"/>
+			<result column="job" property="job"/>
+			<result column="mgr" property="mgr"/>
+			<result column="hiredate" property="hiredate"/>
+			<result column="sal" property="sal"/>
+			<result column="comm" property="comm"/>
+			<result column="deptno" property="deptno"/>
+		</association>
+		<association property="dept" javaType="dept">
+			<id column="deptno" property="deptno"/>
+			<result column="dname" property="dname"/>
+			<result column="loc" property="loc"/>
+		</association>
+	</resultMap>
+	<select id="getEmpDeptList" resultMap="edRst">
+		SELECT e.*, dname, loc
+		FROM emp e, dept d
+		WHERE e.DEPTNO = d.DEPTNO 
+		AND ename LIKE '%'||#{ename}||'%'
+		AND dname LIKE '%'||#{dname}||'%'	
+	</select>
+	<resultMap type="employeesjobs" id="ejRst">
+	    <association property="employee" javaType="employee">
+	        <id column="employee_id" property="employee_id"/>
+	        <result column="first_name" property="first_name"/>
+	        <result column="last_name" property="last_name"/>
+	        <result column="email" property="email"/>
+	        <result column="phone_number" property="phone_number"/>
+	        <result column="hire_date" property="hire_date"/>
+	        <result column="job_id" property="job_id"/>
+	        <result column="salary" property="salary"/>
+	        <result column="commission_pct" property="commission_pct"/>
+	        <result column="manager_id" property="manager_id"/>
+	        <result column="department_id" property="department_id"/>
+	    </association>
+	    <association property="jobs" javaType="jobs">
+	        <id column="job_id" property="job_id"/>
+	        <result column="job_title" property="job_title"/>
+	        <result column="min_salary" property="min_salary"/>
+	        <result column="max_salary" property="max_salary"/>
+	    </association>
+	</resultMap>
+	<select id="getEmployeesJobsList" resultMap="ejRst">
+		SELECT e.*,job_title, min_salary, max_salary
+		FROM EMPLOYEES e , JOBS j 
+		WHERE e.JOB_ID = j.JOB_ID 
+		AND FIRST_NAME LIKE '%'||#{first_name}||'%'
+		AND job_title LIKE '%'||#{job_title}||'%'
+	</select>
+	<!--  
+	List<Emp> getDynamicSQL(@Param("ename") String ename);
+	 -->
+	 <select id="getDynamicSQL" resultType="emp">
+	 	select *
+	 	from emp
+	 	where 1=1
+	 	<if test="ename != null">
+	 		and ename like '%'||#{ename}||'%'
+	 	</if>
+	 </select>
+	 	 <select id="getEmpByEmpnos" resultType="emp">
+	 		 SELECT *
+			 FROM emp 
+			 WHERE empno IN
+			 <foreach collection="empnos" item="empno"
+			 	separator="," open="(" close=")">
+			 	#{empno}
+			 </foreach>
+ 		</select>
+	 
 </mapper>	

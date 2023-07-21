@@ -429,6 +429,10 @@ ex) dao ==> mapper ==> service 처리 하세요.
 			private Dept dept;
 			//set/get메서드..
 	   }	
+	   class EmpDept{
+	   		private Emp emp;
+	   		private Dept dept;
+	   }
 	   class Dept2{
 	   	  private int deptno;
 	   	  private String dname;
@@ -465,15 +469,144 @@ column="name" property="ename"
 이렇게해서 설정된 공통 resultMap의 id속성의 rst01은 각 select의
 속성 resultMap에 값으로 할당하여 공통으로 재활용 할 수 있다.
 
-# 기타 여러가지 형식의 dao 인터페이스 형식 처리.
+
+
+
+
+
+
+# 여러가지 join 구문을 통한 1:1관계 vo객체의 resultMap 처리
+1. sql을 사용하면, 하나의 테이블을 sql을 만드는 것보다,
+	여러개의 테이블을 이요해서 join하여 결과를 만드는 경우가 많은데,
+2. 이 때, 기존에 만들어진 VO를 재활용하여 객체안에 객체로 사용할 때,
+	mybatis의 resultMap 에서 새로운 구성요소를 이용하여서 사용한다.
+3. 처리순서
+	1) sql 작성(join구문)
+		SELECT e.*, dname, loc
+		FROM emp e, dept d
+		WHERE e.DEPTNO = d.DEPTNO 
+		AND ename LIKE '%'||#{ename}||'%'
+		AND dname LIKE '%'||#{dname}||'%'
 	
-	 	
+	
+	2) VO - 기존 만들어진 class로 객체 안에 객체의 구성으로 선언한다.
+		선언한다.
+		class EmpDept{
+			private Emp emp;
+			private Dept dept;
+		}
+	
+	3) 공통 mybatis vo 추가
+		springweb.a05_mvcexp.z01_vo.EmpDept
+	4) dao 인터페이스 선언
+		public EmpDept getEmpDeptList(@Param("ename") String ename,
+													   @Param("dname") String dname);
+	5) mapper 선언
+		resultmap에서 association 요소 사용
+			<resultMap type="empdept" id="edRst">
+				<association property="emp">
+					<id column="empno" property="empno"/>
+					<result column="ename" property="ename"/>
+					<result column="job" property="job"/>
+					<result column="mgr" property="mgr"/>
+					<result column="hiredate" property="hiredate"/>
+					<result column="sal" property="sal"/>
+					<result column="comm" property="comm"/>
+					<result column="deptno" property="deptno"/>
+				</association>
+				<association property="dept">
+					<id column="deptno" property="deptno"/>
+					<result column="dname" property="dname"/>
+					<result column="loc" property="loc"/>
+				</association>
+			</resultMap>
+	6) service 호출 test		
+		for(EmpDept ed:dao.getEmpDeptList("A","SAL")){
+			System.out.print(ed.getEmp().getEmpno()+"\t");
+			System.out.print(ed.getEmp().getEname()+"\t");
+			System.out.print(ed.getEmp().getSal()+"\t");
+			System.out.print(ed.getDept().getDeptno()+"\t");
+			System.out.print(ed.getDept().getDname()+"\n");
+		}
+	
+ex)	
+SELECT e.*,job_title, min_salary, max_salary
+FROM EMPLOYEES e , JOBS j 
+WHERE e.JOB_ID = j.JOB_ID 
+AND FIRST_NAME LIKE '%'||''||'%'
+AND job_title LIKE '%'||''||'%'
+
+
+# 기타 여러가지 형식의 dao 인터페이스 형식 처리.
+1. 간단하게 mapper 사용하지 않고 dao인터페이스에서 sql로 처리하는 경우
+2. 형식(dao 인터페이스에서 처리)
+	@Select("sql구문과 매개변수 처리")
+	public 리턴유형 메서드명(@Param("매개변수명") 입력데이터);
+	
+ex1) dept01 데이터입력
+ex2) STUDENT02의 데이터 수정
+ex3) EMP02 사원번호 데이터 삭제.
 	 
+# 동적 sql 처리
+1. 프로그래밍 DB 처리시, 가능한한 동적 sql을 만들지 말아야지
+	효과적으로 데이터 처리를 할 수 있지만, 여건에 따라서
+	sql의 변화가 필요로 하는 경우가 있다.
+2. 이를 동적 query이라고 한다. 즉, 조건에 따라 sql 구문 자체가
+	변경이 되는 것을 말한다.
+3. mybatis는 동적 쿼리를 위하여, ${전달데이터}와 ognl 방식의
+	조건<if><choose><when>, 반복<foreach>, <where>
+	<trim><set> 등을 지원하고 있다.
+4. 기본 형식
+ 	select *
+ 	from emp
+ 	where 1=1
+ 	<if test="ename != null and ename!='' ">
+ 		and ename like '%'||#{ename}||'%'
+ 	</if>
+ 	<if test="job != null">
+ 		and job like '%'||#{job}||'%'
+ 	</if>
+ 	ename이 null값일 때는 전체 검색을 하고, 데이터가 있을 때는
+ 	해당 이름으로 키워드 검색하게 처리..
 		
-		
-		
-		
-		
+# 반복문 처리 동적 쿼리
+1. 기본형식
+	<foreach collection="배열/리스트매개변수"
+		item="단위데이터" separator="," open="(" close=")">
+	</foreach>
+2. 배열이나 리스트형식을 데이터를 전달하고, 해당 데이터의
+	단위데이터를 반복형식으로 동적쿼리를 처리하는 것을 말한다.
+3. 속성
+	1) separator : 반복형식의 구분자.
+	2) open : 시작 동적 쿼리 추가 내용
+	3) close : 종료 동적 쿼리 추가 내용
+4. 예제 처리
+	사원번호를 in 구문으로 검색하는 반복 쿼리 처리
+	 SELECT *
+	 FROM emp 
+	 WHERE empno IN (7369, 7499, 7511)
+	 1) dao
+	 public List<Emp> getEmpByEmpnos(
+	 	@Param("empnos") List<Integer> empnos);
+	 2) mapper
+	 <select id="getEmpByEmpnos" resultType="emp">
+	 		 SELECT *
+			 FROM emp 
+			 WHERE empno IN
+			 <foreach collection="empnos" item="empno"
+			 	separator="," open="(" close=")">
+			 	#{empno}
+			 <foreach>
+	 3) service
+	 	List<Integer> empnos = new ArrayList<Integer>();
+	 	empnos.add(7369);
+	 	empnos.add(7499);
+	 	empnos.add(7521);
+	  	 	for(Emp emp1:dao.getEmpByEmpnos(empnos)) {
+	 		System.out.print(emp1.getEmpno()+"\t");
+	 		System.out.print(emp1.getEname()+"\t");
+	 		System.out.print(emp1.getJob()+"\t");
+	 	}
 		
 		
 		

@@ -1,5 +1,6 @@
 package springweb.a05_mvcexp.a02_service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 import springweb.a05_mvcexp.a03_dao.A01_MemberDao;
 import springweb.a05_mvcexp.z01_vo.Dept;
 import springweb.a05_mvcexp.z01_vo.Emp;
+import springweb.a05_mvcexp.z01_vo.EmpDept;
 import springweb.a05_mvcexp.z01_vo.Employee;
+import springweb.a05_mvcexp.z01_vo.EmployeesJobs;
 import springweb.a05_mvcexp.z01_vo.Jobs;
 import springweb.a05_mvcexp.z01_vo.Locations;
 import springweb.a05_mvcexp.z01_vo.Member;
@@ -105,6 +108,56 @@ public class A01_MemberService {
 			System.out.print(d.getDname()+"\t");
 			System.out.print(d.getLoc()+"\n");
 		}
+		System.out.println("연습 23 resultMap association 연습");
+		for(EmpDept ed:dao.getEmpDeptList("A","SAL")){
+			System.out.print(ed.getEmp().getEmpno()+"\t");
+			System.out.print(ed.getEmp().getEname()+"\t");
+			System.out.print(ed.getEmp().getSal()+"\t");
+			System.out.print(ed.getDept().getDeptno()+"\t");
+			System.out.print(ed.getDept().getDname()+"\n");
+		}
+		System.out.println("연습 24 resultMap association 연습");
+		for(EmployeesJobs ed:dao.getEmployeesJobsList("e","o")){
+			System.out.print(ed.getEmployee().getFirst_name()+"\t");
+			System.out.print(ed.getEmployee().getLast_name()+"\t");
+			System.out.print(ed.getJobs().getJob_id()+"\t");
+			System.out.print(ed.getJobs().getJob_title()+"\t");
+			System.out.print(ed.getJobs().getMin_salary()+"\t");
+			System.out.print(ed.getJobs().getMax_salary()+"\n");
+		}
+		System.out.println("연습 25 부서의 사원수:");
+		System.out.println(dao.getDeptnoCnt(30)+"명");
+		System.out.println("연습 26 급여별 사원수:");
+		System.out.println(dao.getSalCnt(1000,4000)+"명");
+//		System.out.println("연습 27 ins:");
+//		dao.getInsDept(10,"홍길동","서울");
+//		System.out.println("입력완료");
+//		System.out.println("연습 28 udt:");
+//		dao.getUdtStudent(100);
+//		System.out.println("업데이트완료");
+//		System.out.println("연습 29 del:");
+//		dao.getDelEmp(100);
+//		System.out.println("삭제완료");
+//		System.out.println("연습 30  동적 query 처리");
+		System.out.println("1) ename이 null일 때");
+		for(Emp e:dao.getDynamicSQL(null)) {
+			System.out.println(e.getEname());
+		}
+		System.out.println("2) ename이 null이 아닐 때(A)");
+		for(Emp e:dao.getDynamicSQL("A")) {
+			System.out.println(e.getEname());
+		}
+	 	List<Integer> empnos = new ArrayList<Integer>();
+	 	empnos.add(7369);
+	 	empnos.add(7499);
+	 	empnos.add(7521);
+	 	for(Emp emp1:dao.getEmpByEmpnos(empnos)) {
+	 		System.out.print(emp1.getEmpno()+"\t");
+	 		System.out.print(emp1.getEname()+"\t");
+	 		System.out.print(emp1.getJob()+"\n");
+	 	}
+		
+		
 		
 		
 	}
