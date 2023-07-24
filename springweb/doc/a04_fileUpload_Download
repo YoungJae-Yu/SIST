@@ -4,14 +4,207 @@
 2. 일반적으로 파일을 첨부를 통해서 이미지를 보이게 하거나, 업무진행시,
 필요한 문서자료를 첨부하는 등 여러가지 작업을 할 수 있다.
 3. 파일 업로드 진행 프로세스
-	1) 화면이 로딩되면 첨부 파일을 하는 항목이 있고,
+	1) 화면이 로딩되면 첨부 파일을 하는 항목이 있고, 
 	2) 해당 항목을 클릭을 통해 파일을 첨부한다.
 	3) 등록버튼을 통해서 해당 파일을 서버에 등록 처리한다.
 	4) 등록된 파일을 특정 위치에 저장되고, DB에도 저장이 되어,
-	5) 추후, 다른 이미지화면이나 게시물의 첨부자료로 사용할 수 있다.
-	
+	5) 추후, 다른 이미지화면이나 게시물의 첨부자료 사용할 수 있다.
 4. 개발을 위한 내용 계열화
+    0) 공통 설정 파일을 처리하기 위하여 선언하는 객체를 컨테이너에
+    	선언 ex) 기본 파일 업로드 위치 지정
 	1) spring에서 첨부파일을 위한 환경 설정 이해
-		- 컨테이너에 파일 첨부 jar 파일 설정
-		- 
-5. 개발 순서
+		- 컨테이너에 파일 첨부 프레임워크 객체 설정
+		- view resolver 설정:스프링에서 화면뿐만아니라, 파일업로드
+			다운로드도 view resolver에 의해 등록하여 처리한다.
+	2) form 요청 속성값 설정
+		- 첨부파일이 있는 form 하위 요소객체가 있으면,
+			form을 속성을 지정하여야 한다.
+	3) 파일데이터를 네트워크를 통해 전송하여 받을 수 있는 객체
+		- controller단의 매개변수로 선언하거나, 요청 VO에 선언하여야 한다.
+		==> MultipartFile 객체에 대한 이해
+	4) 자바에서 사용되는 파일 관리 객체를 물리적 파일로 저장하는
+		객체에 대한 이해 MultipartFile ==> File객체	
+	5) 파일을 관리하기 위한 DB 설정(테이블내 특정 컬럼 설정)이해				
+5. 개발순서
+	1) 컨테이너 선언***
+		jsp/여러 뷰를 사용할 수 있게 선언
+		file를 처리하는 뷰 선언.
+	2) 초기 파일을 첨부할 수 있는 화면과 화면을 호출하는 controller
+		url mapping 선언	
+	3) 첨부 파일 화면 구현 : front 속성 지정
+	4) 파일 첨부시 처리되는 controller 선언
+	5) service 단에서 MultipartFile을 File객체로 변환해서
+		특정위치에 저장
+	6) 저장하면서 파일정보도 DB에 저장 처리
+	
+# 컨테이너 선언
+1. 일반 jsp 뷰와 기타 다른 viewer를 선언이 가능 한 환경 설정
+2. 파일 업로드 뷰 선언.
+3. 초기 화면 로딩 및 파일을 업로드 할 수 있는 form 화면 구성 controller
+	선언
+	1) controller(A02_FileUploadCtrl.java)
+		upload01.do
+	2) view(a05_mvcexp/a03_fileupload.jsp)
+4. view단 처리
+	1) form 속성
+		enctype="multipart/form-data"
+	2) form 요소객체
+		type=file
+		multiple : 파일 다중 설정시 필요	 
+	3) submit로 처리시
+5. controller
+	@Param("이름") MultipartFile[] mpfs
+6. service 저장..
+	1) 저장 경로설정 : container 공통 설정 파일로 처리
+		resource 파일로 a01_config 파일 만들기 
+			파일 경로, DB 서버 정보등을 설정
+		container에서 위 내용일 인식할 수 있게 설정.
+		
+		ex) resource/a02_config 파일 만들어서
+			영어 -  이름,나이,사는곳 설정
+			@GetMapping("upload01.do")로 호출하여 출력되게
+			하세요..
+			
+		
+	2) @Value("공통설정명)
+	   String path;  : 공통설정문자열 가져오기..
+	3) File 객체 생성
+		위 파일경로명과 파일명을 기준으로 파일 객체 생성
+	4) MultipartFile ==> File객체로 변환처리..
+		멀티파일.transerTo(파일객체)
+		파일저장 처리..
+	5) 해당 경로에 파일 저장된 내용 확인..
+7. DB처리
+	1) 데이터베이스 자료 테이블 만들어서
+		입력 sql 작성 확인
+	2) VO 생성
+	3) dao 인력 인터페이스
+	4) mapper 생성
+	5) 위 파일업로드 service에서 DB 입력 정보 처리..
+	 
+			
+
+
+		
+
+ex) A02_FileUploadCtrl 추가 메서드로
+	/upload02.do로 해서
+	a04_fileupload.jsp
+		자료명 : img01
+		파일frm요소명 : image
+		로 처리해서 업로드된 자료 출력..
+	WEB-INF\views\a05_mvcexp\a04_fileupload.jsp
+	
+A03_FileUploadCtrl.java
+	/uploadExp03.do
+	a05_fileupload.jsp
+		자료명 : title01
+		파일form요소명 : report01
+		
+ex) A03_FileUploadService.java
+	A03_FileUploadCtrl.java
+	로 파일이 업로드 처리되게 하세요.
+ * */
+
+# 첨부파일DB처리 업로드
+1. 기능별 파일 구성
+	0)  <input type="file" name="fileInfos">
+		<input  name="content">
+	1) controller
+		A04_FileUploadCtrl.java
+	2) service
+		A04_FileUploadService.java
+			public String upload(FileVo f){
+				.. 파일업로드 처리
+				int no = dao.getNo(); 반복문 밖에서 호출
+				
+				// DB 처리(반복문안에서 처리)
+				dao.insertFileInfo(new Restore(no, fname, 
+								f.getContent() ));
+			}			
+	3) Dao
+		A04_FileUploadDao.java
+		@select("select file_seq.nextval from dual")
+		public int getNo();
+		@insert("insert into restore values(	
+			#{no},#{content},#{fname},sysdate,sysdate)")
+		public void insFileInfo(Restore ins);
+	4) VO
+		- 파일업로드 DB 처리  
+			Restore.java
+				private int no;
+				private String content;
+				private String filename;
+				private Date regdte;
+				private Date uptdte;
+		- 요청값 처리 FileVo.java
+			private MultipartFile[] fileInfos;
+			private String content; 
+	4) view
+	   a06_fileupload.jsp
+2. DB구성
+	1) 테이블(restore)
+		no			  number
+		content   varchar2(1000)
+		filename  varchar2(100)
+		regdte    date
+		uptdte    date
+	2) 자동sequence
+		create sequence file_seq;
+	3) 파일등록 sql
+		select file_seq.nextval from dual
+		insert into restore values(	
+			#{no},#{content},#{filename},sysdate,sysdate);	
+		확인할 때, 처리내용.	
+		select * from restore
+		where no = #{no}			   
+	   
+# 처리 순서
+1. DB 생성
+	CREATE TABLE restore(
+			NO NUMBER,
+			content varchar2(1000),
+			filename varchar2(100),
+			regdte DATE,
+			uptdte DATE);
+	create sequence file_seq;
+	
+	select file_seq.nextval from dual;
+	
+	insert into restore values(	
+		1,'내용','파일명',sysdate,sysdate);	
+	SELECT * FROM restore WHERE NO=1;
+	
+2. vo, Dao 처리
+		- 파일업로드 DB 처리  
+			Restore.java
+				private int no;
+				private String content;
+				private String filename;
+				private Date regdte;
+				private Date uptdte;
+		- 요청값 처리 FileVo.java
+			private MultiPartFile[] fileInfos;
+			private String content; 
+3. Dao 호출 service 단 처리
+			@select("select file_seq.nextval from dual")
+		public int getNo();
+		@insert("insert into restore values(	
+			#{no},#{content},#{fname},sysdate,sysdate)")
+		public void insFileInfo(Restore ins);
+4. service 파일업로드
+
+5. controller 요청 처리
+
+6. 화면구현...
+	   
+	    	
+	
+	
+	 	
+		
+
+
+
+
+# 스프링에서 파일다운로드 처리
