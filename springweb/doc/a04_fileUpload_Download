@@ -22,6 +22,8 @@
 	3) 파일데이터를 네트워크를 통해 전송하여 받을 수 있는 객체
 		- controller단의 매개변수로 선언하거나, 요청 VO에 선언하여야 한다.
 		==> MultipartFile 객체에 대한 이해
+			멀티파일.transerTo(파일객체)
+			파일저장 처리(메모리에 있는 파일정보가 실제 특정위치에 저장 처리)
 	4) 자바에서 사용되는 파일 관리 객체를 물리적 파일로 저장하는
 		객체에 대한 이해 MultipartFile ==> File객체	
 	5) 파일을 관리하기 위한 DB 설정(테이블내 특정 컬럼 설정)이해				
@@ -198,8 +200,58 @@ ex) A03_FileUploadService.java
 
 6. 화면구현...
 	   
-	    	
+# 스프링에서 파일다운로드 처리
+1. 업로드된 정보를 확인하고, 이벤트에 의해 클릭시, 다운로드되게
+	처리하는 것을 말한다.
+2. 처리 프로세스
+	1) 특정 자료 클릭시, 다운 여부를 확인한다.
+	2) 다운로드가 되면 지정된 폴드(다운로드폴드)에 다운되어 해당
+		파일을 서버에서 가져올 수 있다.
+3. 개념 내용 계열화
+	1) 웹에서 다운로드 처리하기 위해 어떤 과정을 거치는지 이해
+		클라이언트 ==> 서버
+					<== response를 통해서 파일을 전송
+							파일명 한글 encoding 처리
+							파일을 크기나 파일명을 response header에
+							포함시켜 전송
+							파일전송 형식 binary로 설정..
+							FileInputStream을 통해서 파일객체를 가져와서
+							response의 OutputStream을 통해서 전송을 한다.
+	2) 스프링에서 다운로드 뷰리졸버의 역할과 설정
+		위 처리되는 과정의 코드를 클래스를 만들어 viewer로 설정하여
+		컨테이너에 등록
+	3) 다운로드 뷰의 활용
+		컨트롤러에 의해 파일명을 모델로하여 컨테이너에 등록된 viewer를
+		호출하여 다운로드 되게 한다.
+4. 개발순서
+	1)	다운로드 뷰 클래스 선언
+	2) 다운로드 뷰 컨테이너에 등록
+	3) 예시용 파일 리스트 컨트롤러/서비스/dao 구현
+	4) 다운로드 처리를 위한 컨트롤러 선언
+	5) 화면단에서 클릭시, 다운로드 컨트롤로 호출 확인
 	
+# 예시용 파일 리스트 컨트롤러/서비스/dao 구현
+1. DB 처리
+	1) sql 작성
+		select * from restore
+	2) VO
+	3) dao 인터페이스 A04_FileUploadDao
+		@Select("select * from restore order by regdte desc")
+		public List<Restore> restoreList();
+	4) service 단 호출 A04_FileUploadService
+		public List<Restore> restoreList(){
+			reture dao.restoreList();
+		}
+	5) controller 호출 모델 데이터 선언 A04_FileUploadCtrl
+		d.addAttribute("rlist",service.restoreList());
+	6) viewer단 데이터 리스트 출력
+		<c:forEach var="rs" items="${rlist}">
+			${rs.no}
+			${rs.content}
+			${rs.filename}
+			${rs.regdte}
+			${rs.uptdte}
+		</c:forEach>
 	
 	 	
 		
@@ -207,4 +259,34 @@ ex) A03_FileUploadService.java
 
 
 
-# 스프링에서 파일다운로드 처리
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

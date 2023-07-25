@@ -18,6 +18,7 @@ public class A02_FileUploadSevice {
 			File upFile = new File(path+mpf.getOriginalFilename());
 			// MultipartFile ==> File
 			try {
+				// 실제 파일이 생성
 				mpf.transferTo(upFile);
 			} catch (IllegalStateException e) {
 				System.out.println(e.getMessage());

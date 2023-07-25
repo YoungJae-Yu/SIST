@@ -7,4 +7,4 @@ jdbc.pass=tiger
 
 
 # 2. 파일 업로드 경로
-user.upload=C:\Users\youngjae\git\SIST\springweb\src\main\webapp\z01_upload
+user.upload=C:/Users/youngjae/git/SIST/springweb/src/main/webapp/z01_upload/

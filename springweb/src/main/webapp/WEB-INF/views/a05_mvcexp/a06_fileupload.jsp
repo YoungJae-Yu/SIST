@@ -22,41 +22,69 @@
     <script type="text/javascript">
     	// window.onload와 동일한 메서드
     	$(document).ready( function(){
-    		
-    		//$("h2").text("jquery 로딩 성공")
+    		var msg = "${msg}"
+    		if(msg!="")
+    			alert(msg)
     	});
-    </script>      
+    </script>         
     
     
 </head>
 <body>
     <div class="container mt-3">
-    	<h2>파일업로드 DB처리</h2>
-    	<form action="" method="post" enctype="multipart/form-data">
-         	<div class="mb-3 mt-3">
-            <input type="text" class="form-control" 
-      	     id="content" placeholder="파일정보 입력" name="content">
-         	</div>
-         	<div class="mb-3 mt-3">
-            <input type="file" class="form-control" 
-      	     id="fileInfos" multiple="multiple" placeholder="파일정보" name="fileInfos">
-         	</div>
-         	<button type="submit" class="btn btn-primary">업로드</button>
-     	</form>
+    	<h2>파일업로드 DB 처리</h2>
+	  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	  		<div class="container-fluid">
+	  		<!-- 
+	  		// fileInfos content
+	  		 -->    	
+	    	<form method="post" enctype="multipart/form-data" class="d-flex align-items-center" >
+	            <input type="text" class="form-control me-2" 
+	      	     placeholder="파일정보 입력" value="${param.content}" 
+	      	     name="content"  aria-label="Search">
+				<input type="file" class="form-control me-2" 
+	      	     name="fileInfos" multiple="multiple"  aria-label="Search">
+	         	<button type="submit" class="btn btn-primary" style="width:200px;">업로드</button>
+	     	</form>
+	 	    </div>
+	 	</nav>
 		<table class="table table-striped table-hover">
 			<thead class="table-success">
 		      	<tr  class="text-center">
-				    <th>Firstname</th>
-				    <th>Lastname</th>
-				    <th>Email</th>
+				    <th>번호</th>
+				    <th>내용</th>
+				    <th>파일명</th>
+				    <th>등록일</th>
+				    <th>수정일</th>
 		      	</tr>
 		    </thead>
+		    <script>
+		    	function down(fname){
+		    		if(confirm(fname+"\n파일을 다운로드하시겠습니까?")){
+		    			// download.do?fname=파일명
+		    			location.href="${path}/download.do?fname="+fname
+		    		}
+		    	}
+		    </script>
+		    
 		    <tbody>
-			   	<tr  class="text-center">
-			        <td>John</td>
-			        <td>Doe</td>
-			        <td>john@example.com</td>
+		    	<c:forEach var="rs" items="${rlist}">
+			   	<tr  onclick="down('${rs.filename}')" class="text-center">
+			        <td>${rs.no}</td>
+			        <td>${rs.content}</td>
+			        <td>${rs.filename}</td>
+			        <td><fmt:formatDate type="both"
+			        	 dateStyle="short"
+			        	 timeStyle="short"
+			        	 value="${rs.regdte}"/></td>
+			        <td><fmt:formatDate type="both"
+			        	 dateStyle="short"
+			        	 timeStyle="short"
+			        	 value="${rs.uptdte}"/>			        
+			        
+			        </td>
 			   	</tr>
+			   	</c:forEach>
 		 	</tbody>
 		</table>      	
     </div>

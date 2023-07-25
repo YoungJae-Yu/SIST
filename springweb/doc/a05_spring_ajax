@@ -1,0 +1,18 @@
+# 스프링에서 여러가지 ajax 처리
+1. 스프링은 여러가지 형식의 ajax 처리를 할 수 있다.
+2. jquery나 vue, react등 여러가지 front단에서 요청한 ajax를
+	backend에서 json데이터를 효율적으로 처리하고 있다.
+3. 스프링 ajax 처리 기본 형태
+	1) container에 json viewer를 처리를 할 수 있게 처리
+	2) ajax 요청 및 모델 데이터를 호출하여
+	3) return "json뷰어"를 통해 ajax 데이터를 가져올 수 있다.
+4. 개발 순서
+	1) 초기화면 로딩
+		ctrl ==> view(jsp)
+	2) json데이터를 처리한 controller 기능메서드 선언
+		dao ==> service ==> controller(json데이터로 처리)	
+	3) 이벤트에 의해 ajax처리
+		jquery ajax 처리..	
+	
+	
+		
