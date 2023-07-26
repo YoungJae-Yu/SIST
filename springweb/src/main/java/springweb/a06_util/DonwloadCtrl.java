@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+// springweb.a06_util.DonwloadCtrl
 @Controller
 public class DonwloadCtrl {
 	// download.do?fname=파일명

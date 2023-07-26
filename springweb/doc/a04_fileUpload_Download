@@ -46,6 +46,7 @@
 	선언
 	1) controller(A02_FileUploadCtrl.java)
 		upload01.do
+		public String upload01(@RequestParam("report01") MultipartFile[] mfs)
 	2) view(a05_mvcexp/a03_fileupload.jsp)
 4. view단 처리
 	1) form 속성
@@ -225,11 +226,26 @@ ex) A03_FileUploadService.java
 		호출하여 다운로드 되게 한다.
 4. 개발순서
 	1)	다운로드 뷰 클래스 선언
-	2) 다운로드 뷰 컨테이너에 등록
+	2) 다운로드 뷰 컨테이너에 등록(클래스상단에 @Component, @Bean)
 	3) 예시용 파일 리스트 컨트롤러/서비스/dao 구현
 	4) 다운로드 처리를 위한 컨트롤러 선언
 	5) 화면단에서 클릭시, 다운로드 컨트롤로 호출 확인
-	
+5. 다운로드 처리를 위한 파일 구조
+	1) 컨테이너에 등록할 다운로드 뷰
+		// springweb.a06_util.DonwloadCtrl
+	2) 화면에서 클릭시 다운로드뷰를 파일명을 모델명으로
+		전달할 컨트롤러/메서드
+		@Controller
+		public class DonwloadCtrl {
+			// download.do?fname=파일명
+			@RequestMapping("download.do")
+			public String download(@RequestParam("fname") String fname, Model d) {
+				d.addAttribute("downloadFile",fname);
+				System.out.println("호출!!");
+				return "downloadViewer";
+			}
+	3) 화면에서 리스트된 파일정보 데이터 중에 클릭하여
+		컨트롤러 호출할 이벤트와 함수 처리
 # 예시용 파일 리스트 컨트롤러/서비스/dao 구현
 1. DB 처리
 	1) sql 작성

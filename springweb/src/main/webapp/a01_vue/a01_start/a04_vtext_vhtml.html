@@ -12,14 +12,12 @@
 <script src="/springweb/a00_com/vue.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		// 모델데이터 선언(데이터 처리)
-		var model = {msg:"vue 시작(메시지)",name:"홍길동", age:25}
-		//view와 model을 연결해주는 Vue객체(view model)
-		var vm= new Vue({
-			el:".container", // view의 범위를 속성으로 지정
-			data:model 	   // 선언된 모델 데이터를 연결 처리
+		var model = {name:"홍길동",kor:"<h3>국어점수:80</h3>",eng:"영어점수:90",
+								math:"<h3>수학점수:90</h3>"}
+		var vm = new Vue({
+			el:".container",
+			data:model
 		})
-		// ex) a02_start.html 물건명 가격 갯수..
 	});
 </script>
 </head>
@@ -27,10 +25,17 @@
 
 <div class="container">
 	<div class="jumbotron text-center">
-	<!-- 화면단 모델명으로 선언할 수 있다. -->
-	  <h2 >{{msg}}</h2>
-	  <h2 >{{name}}</h2>
-	  <h2 >{{age}}</h2>
+	  <h2 >학생이름:{{name}}</h2>
+	  <div v-html="kor"></div>
+	  <div v-text="eng"></div>
+	  <div v-text="math"></div>
+	  <div>
+	<!-- 
+	ex) a04_vtext_vhtml.html
+		v-text, v-html을 활용하여,
+		학생의 이름과 국어, 영어, 수학 점수를 출력하세요..
+	 -->
+	</div>
 	</div>
 	<form id="frm01" class="form-inline"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">

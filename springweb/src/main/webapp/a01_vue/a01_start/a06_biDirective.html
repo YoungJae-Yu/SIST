@@ -11,15 +11,29 @@
 <script src="/springweb/a00_com/bootstrap.min.js"></script>
 <script src="/springweb/a00_com/vue.js"></script>
 <script type="text/javascript">
+/*
+# 양방향 directive
+1. 모델 데이터를 선언하고
+2. 입력형식의 태그 form 하위의 객체에 v-model로
+	모델 속성을 선언하면,
+3. 입력되는 데이터는 모델 데이터에 영향을 미치고,
+	이 모델 데이터를 호출하는 각 화면에 구성 요소들은
+	이에 영향을 받아서 처리되는 형태를 말한다.
+4. 즉, 이벤트와 같이 입력key를 처리할 때, 바로 반영이 된다.
+5.  기본 형식
+	1) 모델 데이터 선언
+	2) form 하위 객체 요소 속성 v-model="모델명"
+	3) 출력할 모델 데이터 directive 형식 중에 하나로 선언.
+ */
 	$(document).ready(function(){
-		// 모델데이터 선언(데이터 처리)
-		var model = {msg:"vue 시작(메시지)",name:"홍길동", age:25}
-		//view와 model을 연결해주는 Vue객체(view model)
-		var vm= new Vue({
-			el:".container", // view의 범위를 속성으로 지정
-			data:model 	   // 선언된 모델 데이터를 연결 처리
+		var model = {data01:""}
+		var vm = new Vue({
+			el:".container",
+			data:model
 		})
-		// ex) a02_start.html 물건명 가격 갯수..
+		// a07_biDirective.html
+		// form 하위에 물건명 가격 갯수를 입력한 내용을
+		// 테이블에 출력되게 하세요..
 	});
 </script>
 </head>
@@ -27,14 +41,13 @@
 
 <div class="container">
 	<div class="jumbotron text-center">
-	<!-- 화면단 모델명으로 선언할 수 있다. -->
-	  <h2 >{{msg}}</h2>
-	  <h2 >{{name}}</h2>
-	  <h2 >{{age}}</h2>
+	  <h2 >모델데이터:{{data01}}</h2>
+	  <h2 >모델데이터:{{data01}}</h2>
+	  <h2 >모델데이터:{{data01}}</h2>
 	</div>
 	<form id="frm01" class="form-inline"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input class="form-control mr-sm-2" placeholder="제목" />
+	    <input v-model="data01" class="form-control mr-sm-2" placeholder="제목" />
 	    <input class="form-control mr-sm-2" placeholder="내용" />
 	    <button class="btn btn-info" type="submit">Search</button>
  	</nav>

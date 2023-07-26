@@ -10,41 +10,49 @@
 <script src="/springweb/a00_com/jquery.min.js"></script>
 <script src="/springweb/a00_com/bootstrap.min.js"></script>
 <script src="/springweb/a00_com/vue.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
-		// 모델데이터 선언(데이터 처리)
-		var model = {msg:"vue 시작(메시지)",name:"홍길동", age:25}
-		//view와 model을 연결해주는 Vue객체(view model)
-		var vm= new Vue({
-			el:".container", // view의 범위를 속성으로 지정
-			data:model 	   // 선언된 모델 데이터를 연결 처리
+		var model = {im01:"apple.jpeg",
+					 ph01:"입력1",ph02:"입력2",
+					 width01:"20%",val01:"홍길동"}
+		var vm = new Vue({
+			el:".container",
+			data:model
 		})
-		// ex) a02_start.html 물건명 가격 갯수..
+		// ex) placeholder, width, value
+		//     아래 기본 태그의 속성을 이용해서 
+		//     모델데이터로 속성값을 선언한 후, 호출하여
+		//     출력하세요..
 	});
 </script>
 </head>
 <body>
-
 <div class="container">
 	<div class="jumbotron text-center">
-	<!-- 화면단 모델명으로 선언할 수 있다. -->
-	  <h2 >{{msg}}</h2>
-	  <h2 >{{name}}</h2>
-	  <h2 >{{age}}</h2>
+	  <img v-bind:src="im01"><br>
+	  <img :src="im01"><br>
 	</div>
+	<!-- 
+	ph01:"입력1",ph02:"입력2",width01:"20%",val01:"홍길동"
+	 -->
 	<form id="frm01" class="form-inline"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input class="form-control mr-sm-2" placeholder="제목" />
-	    <input class="form-control mr-sm-2" placeholder="내용" />
+	    <input class="form-control mr-sm-2" 
+	    	v-bind:placeholder="ph01" />
+	    <input class="form-control mr-sm-2" 
+	    	:placeholder="ph02" />
+	    <input class="form-control mr-sm-2" 
+	    	:value="val01" />
 	    <button class="btn btn-info" type="submit">Search</button>
  	</nav>
 	</form>
    <table class="table table-hover table-striped">
-   	<col width="10%">
-   	<col width="50%">
-   	<col width="15%">
-   	<col width="15%">
-   	<col width="10%">
+   	<col :width="width01">
+   	<col :width="width01">
+   	<col :width="width01">
+   	<col :width="width01">
+   	<col width="20%">
     <thead>
     
       <tr class="table-success text-center">

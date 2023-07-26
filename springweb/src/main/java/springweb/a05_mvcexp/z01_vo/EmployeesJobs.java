@@ -2,12 +2,12 @@ package springweb.a05_mvcexp.z01_vo;
 
 public class EmployeesJobs {
 	private Employee employee;
-	private Jobs jobs;
+	private Job jobs;
 	public EmployeesJobs() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public EmployeesJobs(Employee employee, Jobs jobs) {
+	public EmployeesJobs(Employee employee, Job jobs) {
 		super();
 		this.employee = employee;
 		this.jobs = jobs;
@@ -18,10 +18,10 @@ public class EmployeesJobs {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	public Jobs getJobs() {
+	public Job getJobs() {
 		return jobs;
 	}
-	public void setJobs(Jobs jobs) {
+	public void setJobs(Job jobs) {
 		this.jobs = jobs;
 	}
 }

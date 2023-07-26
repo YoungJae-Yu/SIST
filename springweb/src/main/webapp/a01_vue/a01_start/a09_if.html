@@ -12,31 +12,32 @@
 <script src="/springweb/a00_com/vue.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		// 모델데이터 선언(데이터 처리)
-		var model = {msg:"vue 시작(메시지)",name:"홍길동", age:25}
-		//view와 model을 연결해주는 Vue객체(view model)
-		var vm= new Vue({
-			el:".container", // view의 범위를 속성으로 지정
-			data:model 	   // 선언된 모델 데이터를 연결 처리
+		var model = {msg:"조건문(v-if)처리 연습", point:0,credit:""}
+		var vm = new Vue({
+			el:".container",
+			data:model
 		})
-		// ex) a02_start.html 물건명 가격 갯수..
 	});
+/*
+	
+	a09_if.html
+		점수:[   ] : 점수에 따른 테이블에 출력과 학점을 표시
+		--------
+		점수 : 학점
+		92     A점
+*/
 </script>
 </head>
 <body>
 
 <div class="container">
 	<div class="jumbotron text-center">
-	<!-- 화면단 모델명으로 선언할 수 있다. -->
 	  <h2 >{{msg}}</h2>
-	  <h2 >{{name}}</h2>
-	  <h2 >{{age}}</h2>
+
 	</div>
 	<form id="frm01" class="form-inline"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input class="form-control mr-sm-2" placeholder="제목" />
-	    <input class="form-control mr-sm-2" placeholder="내용" />
-	    <button class="btn btn-info" type="submit">Search</button>
+	    <input v-model="point" class="form-control mr-sm-2" placeholder="점수" />
  	</nav>
 	</form>
    <table class="table table-hover table-striped">
@@ -48,17 +49,17 @@
     <thead>
     
       <tr class="table-success text-center">
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회</th>
+        <th>점수</th>
+        <th>학점</th>
       </tr>
     </thead>	
     <tbody>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr><td>{{point}}</td>
+    	<td v-if="point>=90">A점</td>
+				<td v-else-if="point>=80">B점</td>
+				<td v-else-if="point>=70">C점</td>
+				<td v-else-if="point>=60">D점</td>
+				<td v-else>F점</td></tr>
     </tbody>
 	</table>       
 </div>

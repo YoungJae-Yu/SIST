@@ -11,15 +11,31 @@
 <script src="/springweb/a00_com/bootstrap.min.js"></script>
 <script src="/springweb/a00_com/vue.js"></script>
 <script type="text/javascript">
+/*
+# 조건문 처리 디렉티브
+1. 특정요소객체가 조건에 합당할 때 즉 true일 때만
+	화면에 보일게 할때 사용하는 디렉티브이다.
+2. 모델데이터의 조건값에 따른 처리로 볼 수 있다.
+3. 기본 형식
+	var model = {price:0}
+	
+	<input v-model="price"/>
+	<span v-if="price>=6000">Gold</span>
+	<span v-else-if="price>=3000">Silver</span>
+	<span v-else>Basic</span>
+	
+	a09_if.html
+		점수:[   ] : 점수에 따른 테이블에 출력과 학점을 표시
+		--------
+		점수 : 학점
+		92     A점
+ */
 	$(document).ready(function(){
-		// 모델데이터 선언(데이터 처리)
-		var model = {msg:"vue 시작(메시지)",name:"홍길동", age:25}
-		//view와 model을 연결해주는 Vue객체(view model)
-		var vm= new Vue({
-			el:".container", // view의 범위를 속성으로 지정
-			data:model 	   // 선언된 모델 데이터를 연결 처리
+		var model = {msg:"조건문(v-if)처리", price:0}
+		var vm = new Vue({
+			el:".container",
+			data:model
 		})
-		// ex) a02_start.html 물건명 가격 갯수..
 	});
 </script>
 </head>
@@ -27,16 +43,14 @@
 
 <div class="container">
 	<div class="jumbotron text-center">
-	<!-- 화면단 모델명으로 선언할 수 있다. -->
 	  <h2 >{{msg}}</h2>
-	  <h2 >{{name}}</h2>
-	  <h2 >{{age}}</h2>
+	<span v-if="price>=6000">Gold</span>
+	<span v-else-if="price>=3000">Silver</span>
+	<span v-else>Basic</span>
 	</div>
 	<form id="frm01" class="form-inline"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input class="form-control mr-sm-2" placeholder="제목" />
-	    <input class="form-control mr-sm-2" placeholder="내용" />
-	    <button class="btn btn-info" type="submit">Search</button>
+	    <input v-model="price" class="form-control mr-sm-2" placeholder="제목" />
  	</nav>
 	</form>
    <table class="table table-hover table-striped">

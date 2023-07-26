@@ -16,7 +16,7 @@ import springweb.a05_mvcexp.z01_vo.EmpDept;
 import springweb.a05_mvcexp.z01_vo.Employee;
 import springweb.a05_mvcexp.z01_vo.EmployeesJobs;
 import springweb.a05_mvcexp.z01_vo.FileVo;
-import springweb.a05_mvcexp.z01_vo.Jobs;
+import springweb.a05_mvcexp.z01_vo.Job;
 import springweb.a05_mvcexp.z01_vo.Locations;
 import springweb.a05_mvcexp.z01_vo.Member;
 import springweb.a05_mvcexp.z01_vo.Restore;

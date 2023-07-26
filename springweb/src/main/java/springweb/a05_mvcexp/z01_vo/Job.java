@@ -1,14 +1,15 @@
 package springweb.a05_mvcexp.z01_vo;
 // springweb.a05_mvcexp.z01_vo.Jobs
-public class Jobs {
+// job_id=ASS&job_title=개발자&min_salary=3500&max_salary=12000
+public class Job {
 	private String job_id;
 	private String job_title;
 	private int min_salary;
 	private int max_salary;
-	public Jobs() {
+	public Job() {
 		// TODO Auto-generated constructor stub
 	}
-	public Jobs(String job_id, String job_title, int min_salary, int max_salary) {
+	public Job(String job_id, String job_title, int min_salary, int max_salary) {
 		this.job_id = job_id;
 		this.job_title = job_title;
 		this.min_salary = min_salary;

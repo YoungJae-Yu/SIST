@@ -12,14 +12,14 @@
 <script src="/springweb/a00_com/vue.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		// 모델데이터 선언(데이터 처리)
-		var model = {msg:"vue 시작(메시지)",name:"홍길동", age:25}
-		//view와 model을 연결해주는 Vue객체(view model)
-		var vm= new Vue({
-			el:".container", // view의 범위를 속성으로 지정
-			data:model 	   // 선언된 모델 데이터를 연결 처리
+		var model = {prod:"",price:"",cnt:""}
+		var vm = new Vue({
+			el:".container",
+			data:model
 		})
-		// ex) a02_start.html 물건명 가격 갯수..
+		// a07_biDirective.html
+		// form 하위에 물건명 가격 갯수를 입력한 내용을
+		// 테이블에 출력되게 하세요..
 	});
 </script>
 </head>
@@ -27,15 +27,13 @@
 
 <div class="container">
 	<div class="jumbotron text-center">
-	<!-- 화면단 모델명으로 선언할 수 있다. -->
-	  <h2 >{{msg}}</h2>
-	  <h2 >{{name}}</h2>
-	  <h2 >{{age}}</h2>
+	  <h2 ></h2>
 	</div>
 	<form id="frm01" class="form-inline"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input class="form-control mr-sm-2" placeholder="제목" />
-	    <input class="form-control mr-sm-2" placeholder="내용" />
+	    <input v-model="prod" class="form-control mr-sm-2" placeholder="물건명" />
+	    <input v-model="price" class="form-control mr-sm-2" placeholder="가격" />
+	    <input v-model="cnt" class="form-control mr-sm-2" placeholder="갯수" />
 	    <button class="btn btn-info" type="submit">Search</button>
  	</nav>
 	</form>
@@ -48,17 +46,19 @@
     <thead>
     
       <tr class="table-success text-center">
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회</th>
+        <th>물건명</th>
+        <th>가격</th>
+        <th>갯수</th>
+        <th>합계</th>
       </tr>
     </thead>	
     <tbody>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr>
+    		<td>물건명:{{prod}}</td>
+    		<td>가격:{{price}}</td>
+    		<td>갯수:{{cnt}}</td>
+    		<td>합계:{{price*cnt}}</td>
+    	</tr>
     </tbody>
 	</table>       
 </div>

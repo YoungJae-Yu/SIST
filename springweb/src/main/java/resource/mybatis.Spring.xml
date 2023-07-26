@@ -18,7 +18,7 @@
 		<typeAlias alias="employee" 
 			type="springweb.a05_mvcexp.z01_vo.Employee"/>
 		<typeAlias alias="jobs" 
-			type="springweb.a05_mvcexp.z01_vo.Jobs"/>
+			type="springweb.a05_mvcexp.z01_vo.Job"/>
 		<typeAlias alias="empdept" 
 			type="springweb.a05_mvcexp.z01_vo.EmpDept"/>
 		<typeAlias alias="employeesjobs" 

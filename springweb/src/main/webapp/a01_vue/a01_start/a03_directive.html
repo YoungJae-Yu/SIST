@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/springweb/a00_com/bootstrap.min.css" >
+<style>
+	td{text-align:center;}
+</style>
+<script src="/springweb/a00_com/jquery.min.js"></script>
+<script src="/springweb/a00_com/bootstrap.min.js"></script>
+<script src="/springweb/a00_com/vue.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var model = {msg:"뷰 디렉티브", msg2:"안녕하세요",
+							msg3:"<h2>반갑습니다</h2>",
+							al01:"center",
+							im01:"apple.jpeg",
+							im02:"banana.jpeg",
+							im03:"mango.jpeg"}
+		var vm = new Vue({
+			el:".container",
+			data:model
+			// ex) placeholder, width, value
+			// 아래 기본 태그의 속성을 이용해서
+			// 모델데이터로 속성값을 선언한 후, 호출하여
+			// 출력하세요..
+		})
+	});
+/*
+# directive
+1. 뷰에서 사용하는 변수 선언형식을 말한다.
+	여러가지 형식으로 데이터를 사용하고, 출력할 수 있다.
+	크게 두가지 형식으로 나눠지는데, 하나는 단방향 directive,
+	다른 하나는 양방향 directive이다.
+2. 단방향 directive 
+	1) mustache expression
+		{{모델명}} 형식으로 모뎅데이터(변수)를 호출하는 것을 말한다.
+	2) v-text="모델명"
+		출력오쇼객체의 속성으로 선언하여, 해당 모델명의 내용을
+		기본적인 출력을 할 때 사용된다.
+		ex) 
+			var model = {greet:"안녕하세요"}
+			<h2 v-text="greet"></h2>
+	3) v-html="모델명"
+		출력요소객체의 속성으로 선언하면, 해당 모델값의 내용에
+		html 코드가 포함되어 있을 때, 해당 코드가 적용된 출력을
+		처리할 때, 사용된다.
+		ex) var model = {show:"<h3>반가워용</h3>"}
+		<div v-html="show"></div>
+	4) v-bind:속성명="모델명", :속성명="모델명"
+		해당 태그의 속성을 모델 데이터로 처리할 수 있다.
+		ex) var model = {al01:"center", img01:"a01_img.jpg"}
+		<h2 v-bind:align="al01">안녕하세요</h2>
+		<img:src="img01">
+
+ */
+</script>
+</head>
+<body>
+
+<div class="container">
+	<div class="jumbotron text-center">
+	  <h2 >{{msg}}</h2>
+	  <h3 v-text="msg2"></h3>
+	  <div v-text="msg3"></div>
+	  <div v-html="msg3"></div>
+	  <h3 v-bind:align="al01">{{msg}}</h3>
+	  <img v-bind:src="im01">
+	  <img :src="im02">
+	  <img :src="im03">
+	  
+	</div>
+	<div>
+	<!-- 
+	ex) a04_vtext_vhtml.html
+		v-text, v-html을 활용하여,
+		학생의 이름과 국어, 영어, 수학 점수를 출력하세요..
+	 -->
+	</div>
+	<form id="frm01" class="form-inline"  method="post">
+  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	    <input class="form-control mr-sm-2" placeholder="제목" />
+	    <input class="form-control mr-sm-2" placeholder="내용" />
+	    <button class="btn btn-info" type="submit">Search</button>
+ 	</nav>
+	</form>
+   <table class="table table-hover table-striped">
+   	<col width="10%">
+   	<col width="50%">
+   	<col width="15%">
+   	<col width="15%">
+   	<col width="10%">
+    <thead>
+    
+      <tr class="table-success text-center">
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회</th>
+      </tr>
+    </thead>	
+    <tbody>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+	</table>       
+</div>
+</body>
+</html>

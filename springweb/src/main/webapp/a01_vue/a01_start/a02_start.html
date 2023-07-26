@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		// 모델데이터 선언(데이터 처리)
-		var model = {msg:"vue 시작(메시지)",name:"홍길동", age:25}
+		var model = {prod:"사과", price:2500, cnt:5}
 		//view와 model을 연결해주는 Vue객체(view model)
 		var vm= new Vue({
 			el:".container", // view의 범위를 속성으로 지정
@@ -27,10 +27,10 @@
 
 <div class="container">
 	<div class="jumbotron text-center">
-	<!-- 화면단 모델명으로 선언할 수 있다. -->
-	  <h2 >{{msg}}</h2>
-	  <h2 >{{name}}</h2>
-	  <h2 >{{age}}</h2>
+	  <h2 >물건명:{{prod}}</h2>
+	  <h2 >가격:{{price}}</h2>
+	  <h2 >갯수:{{cnt}}</h2>
+	  <h2 >합계:{{cnt*price}}</h2>
 	</div>
 	<form id="frm01" class="form-inline"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">

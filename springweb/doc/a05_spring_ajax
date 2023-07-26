@@ -4,6 +4,7 @@
 	backend에서 json데이터를 효율적으로 처리하고 있다.
 3. 스프링 ajax 처리 기본 형태
 	1) container에 json viewer를 처리를 할 수 있게 처리
+		자바의 객체 ==> json형식의 객체 
 	2) ajax 요청 및 모델 데이터를 호출하여
 	3) return "json뷰어"를 통해 ajax 데이터를 가져올 수 있다.
 4. 개발 순서
@@ -14,5 +15,22 @@
 	3) 이벤트에 의해 ajax처리
 		jquery ajax 처리..	
 	
-	
+# 직책 등록(실무 예제 처리) ajax
+1. 프로세스
+	1) 등록창 버튼 클릭시, 등록 모달창 로딩
+	2) 필요한 데이터를 항목별로 등록하고, 등록 버튼 클릭
+	3) 등록완료가 뜨고 계속 등록여부 확인
+2. 개발 진행
+	1) 등록 dao 처리(sql과 dao 인터페이스 메서드 선언)
+		INSERT INTO JOBS01 j VALUES(#{job_id},#{job_title},#{min_salary},#{max_salary})
+		public void insertJob(Job ins);
+	2) 서비스단 호출
+	3) controller단 등록 url과 함께 처리 및 서비스단 호출
+		ajax 처리 리턴값으로 성공여부 전달
+	4) 화면단 구성 a07_ajaxList.jsp
+		모달창 div 위치, 모달창 로딩 코드 위치 ..
+		
+		- 등록창 클릭시, 모달 창 처리
+		- 모달창 항목에 등록 내용 입력
+		- 등록 버튼 클릭시, ajax로 입력된 내용 controller단 호출
 		

@@ -26,9 +26,6 @@ public class A03_FileUploadCtrl {
 		for(MultipartFile mf:mfs) {
 			System.out.println("업로드파일:"+mf.getOriginalFilename());
 		}
-		
-		
-		
 		return "WEB-INF\\views\\a05_mvcexp\\a05_fileupload.jsp";
 	}
 }
