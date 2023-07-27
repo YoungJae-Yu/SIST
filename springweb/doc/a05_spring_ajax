@@ -34,3 +34,100 @@
 		- 모달창 항목에 등록 내용 입력
 		- 등록 버튼 클릭시, ajax로 입력된 내용 controller단 호출
 		
+ex) 연습예제 지역리스트 및 등록 처리
+1. DB처리
+	1) sql
+		SELECT *
+		FROM REGIONS01
+		WHERE region_name LIKE '%'||''||'%'	
+		
+		INSERT INTO REGIONS01 VALUES(5,'서울')
+		
+	2) dao
+		VO
+		class Region{
+			private int region_id;
+			private String region_name;
+		}
+		
+		A07_RegDao.java
+		@Select("SELECT *
+		FROM REGIONS01
+		WHERE region_name LIKE '%'||#{region_name}||'%'")
+		public List<Region> regionList(@Param("region_name)
+			String region_name;
+			
+		@Insert("INSERT INTO REGIONS01 VALUES(#{region_id},#{region_name})")
+		public int insertRegion(Region insert);
+		
+	3) service
+		A07_RegService.java
+			@Autowired
+			private A07_RegDao dao;
+			
+			public List<Region> regionList(String region_name){
+				if(region_name==null) region_name="";
+				return dao.regionList(region_name);
+			}
+			public String insertRegion(Region insert) {
+				return dao.insertRegion(insert)>0?
+						"등록성공":"등록되지 않음";
+			}
+	4) Controller
+		A07_RegCtrl.java
+		- ajax data url
+			/regData.do
+			/regInsert.do
+			
+		- 초기화면
+			/regList.do
+			
+2. 화면처리 (WEB-INF\views\a05_mvcexp\a09_regList.jsp)
+	1) 등록리스트 조회 ajax 출력 만들기.
+		$().
+	
+		function search(){
+			$.ajax({
+				url:"regList.do,
+				success:function(regList){
+					var add=""
+					regList.forEach(function(reg){
+						add+="<tr><td>"+region_id+"</td>"
+						add+="<td>"+region_name+"</td></tr>"
+					})
+					$("tbody").html(add);
+				}
+			})
+		}
+	2) 등록 버튼 추가
+		클릭시, 모달창 로딩.
+	3) 등록 입력 값 처리..
+		등록 타이틀
+		입력 form 설정
+		id="region_id" name="region_name"
+		등록 버튼 클릭 이벤트 핸들러 처리
+		등록 ajax 호출
+		$.ajax({
+				url:"${path}/regInsert.do
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
