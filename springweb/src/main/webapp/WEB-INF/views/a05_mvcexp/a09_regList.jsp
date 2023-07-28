@@ -29,6 +29,10 @@
     		search()  // 초기화면 로딩
     		
     		$("#region_name").keyup(function(){
+    			// 키입력시 enter입력시만 호출처리
+    			// 주의) form 하위는 enter키로 submit가 default
+    			// 이벤티가 있기에 이를 막아주는 설정을 하여야 한다.
+    			
     			search()
     		})
     		$("#schBtn").click(function(){

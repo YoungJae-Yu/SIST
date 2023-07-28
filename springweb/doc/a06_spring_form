@@ -16,7 +16,56 @@
 		리스트 - 등록 처리구현
 			등록버튼 클릭시, 등록 form화면 이동
 		등록form화면 - 등록 form양식 선언.
-			
+# 직책아이디 중복 ajax 처리
+1. 프로세스 처리
+	1)직책아이디를 입력후, 중복확인버튼 클릭시, 
+		유효성 및 중복여부 확인
+	2)직책명를 입력후, 중복확인버튼 클릭시, 
+		유효성 및 중복여부 확인
+	3)등록버튼 클릭시, 위 직책아이디/직책명 유효성/중복여부 확인하지
+		않았을 시, 경고창이 뜨며 등록이 되지 않는다.
+2. 개발 순서			
+1) 유효성 정리 및 sql 작성
+	/*
+	job_id(4~8자)와 job_title(8자 이상)
+	은 반드시 입력하여야 하고,
+	DB에 입력되지 않는 데이터를 처리하여야 한다.
+	**/
+	SELECT count(*)
+	FROM jobs01
+	WHERE LOWER(job_id)=lower('PU_MAN');
+	SELECT count(*)
+	FROM jobs01
+	WHERE LOWER(job_title)=lower('President');
+	
+	Dao/Service/Controller단 처리
+	Dao
+	SELECT count(*)
+	FROM jobs01
+	WHERE LOWER(job_id)=lower(#{job_id})	
+	SELECT count(*)
+	FROM jobs01
+	WHERE LOWER(job_title)=lower(#{job_title})
+		
+		public int checkId(@Param("job_id") String job_id);
+		public int checktitle(@Param("job_title") String job_title);
+	Service
+		등록불가/등록가능 리턴	
+	Controller	
+	/checkJob_id.do job_id
+	/checkjob_title.do job_title
+	
+	
+2) 입력후, 유효성 클릭시,
+    - 버튼[유효성확인]
+    	
+	- 글자수를 먼저 확인하고, 해당 유효글자 범위에 있을 때,
+	  ajax로 데이터를 확인 처리한다.
+	- 각 내용이 필수 처리 유효check hidden을 true로 처리한다.
+	- 이렇게 유효성처리가 되면 더 이상 수정 불가능하게 처리한다.
+	  버튼[유효성확인] ==> 버튼[재입력] ==> 클릭시 활성화 되면서
+	  다시 유효성확인을 하여야 등록이 된다.	  	
+	- 등록처리시 등록되게 한다.  
 		
 		
 		

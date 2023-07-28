@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Good day!! ^^</title>
+<link rel="stylesheet" href="/springweb/a00_com/bootstrap.min.css" >
+<style>
+	td{txt-align:center;}
+</style>
+<script src="/springweb/a00_com/jquery.min.js"></script>
+<script src="/springweb/a00_com/bootstrap.min.js"></script>
+<script src="/springweb/a00_com/vue.js"></script>
+
+<script type="text/javascript">
+/*
+# vue에서 css 처리
+1. vue에서는 css를 프로그램적으로 동적으로 처리가 가능하다.
+2. 기본 css 선언된 내용으로 프로그램의 객체화 하여 처리한다.
+	1) css: <h2 style="color:red">
+	   vue: <h2 v-bind:style="{color:'red'}"
+	   vue: <h2 :style="{color:'red'}"
+	   위와 같이 기본적은 속성을 객체화 하여 처리한다
+	2) 객체화 처리하면, model 속성으로 위 속성값을 지정하거나
+		호출할 수 있다.
+		data:{color01:'blue'}
+		vue: <h2 v-bind:style="{color:color01}"
+		위 내용을 객체화하고 모델설정값으로 처리할 수 있다.
+	3) vue에서 모델객체로 들어가면, v-model로 인해 입력값에 의해
+		속성값도 동적으로 변경할 수 있다.
+		<select v-model="color01"
+			<option>red</option>
+			<option>green</option>
+			<option>blue</option>
+			<option>orange</option>
+	   
+ */
+	$(document).ready(function(){
+		var vm = new Vue({
+			el:".container",
+			data:{
+				cl01:'purple',
+				bk01:'orange',
+				styOb:{color:'yellow',background:'navy'},
+				fs01:'36px',
+				cssOb:{fontSize:'30pt',border:'1px solid green'}
+			}
+		})
+	});
+</script>
+</head>
+<body>
+
+<div class="container">
+	<div class="jumbotron text-center">
+	<!-- 1. css  inline선언과 vue 선언 -->
+	  <h2 style="color:red">css inline 처리</h2>
+	  <h2 v-bind:style="{color:'red',background:'yellow'}">vue css 처리</h2>
+	  <!-- 
+	  ex1) vue로 글자색상과 배경색상을 선언해보세요 h3 
+	  ex2) vue로 테두리 굵기와 색상을 선언해보세요 h4 
+	  -->
+	  <h3 v-bind:style="{color:'orange',background:'navy'}">안녕하세요</h3>
+	  <h4 :style="{border:'1px solid blue'}">배경 테두리</h4>
+	  <h2 v-bind:style="{color:cl01,background:bk01}">vue css 처리(모델)</h2>
+	  <h3 v-bind:style="styOb">안녕하세요</h3>
+	  <!-- 
+	  ex3) Vue로 글자 크기의 값을 모델속성으로 선언하여 호출 h4
+	  ex4) Vue로 글자 크기와 테두리가 선언될 모델 객체를 호출하여 
+	  		선언 h5 
+	   -->
+	  <h4 :style="{fontSize:fs01}">vue 글자크기</h4> 
+	  <h5 :style="cssOb">vue 테두리와 글자 크기</h5> 
+	  <h5 :style="[cssOb,styOb]">vue 객체 배열 선언</h5> 
+	  	  
+	</div>
+	<form id="frm01" class="form-inline"  method="post">
+  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	    <select v-model="" class="form-control mr-sm-2" >
+	    	<option>red</option>
+	    	<option>blue</option>
+	    	<option>green</option>
+	    </select>
+	    <select v-model="bk01" class="form-control mr-sm-2" >
+	    	<option>yellow</option>
+	    	<option>purple</option>
+	    	<option>orange</option>
+	    </select>
+	    <!-- 
+	    ex1) 선택에 따라 중앙/왼쪽/오른쪽 글자 정렬이 되게 처리하세요.
+	    ex2) 선택에 따라 글자크기가 변경되게 하세요.
+	     -->
+	    <h2>동적정렬 및 크기조정</h2>
+	    <select v-model="styOb" class="form-control mr-sm-2" >
+			<option>left</option>
+	    	<option>right</option>
+	    	<option>center</option>
+	    </select>
+	    <select v-model="fs01" class="form-control mr-sm-2" >
+			<option>12px</option>
+	    	<option>32px</option>
+	    	<option>60px</option>
+	    </select>
+	     
+	    <input class="form-control mr-sm-2" placeholder="제목" />
+	    <input class="form-control mr-sm-2" placeholder="내용" />
+	    <button class="btn btn-info" type="submit">Search</button>
+ 	</nav>
+	</form>
+   <table class="table table-hover table-striped">
+   	<col width="10%">
+   	<col width="50%">
+   	<col width="15%">
+   	<col width="15%">
+   	<col width="10%">
+    <thead>
+    
+      <tr class="table-success text-center">
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회</th>
+      </tr>
+    </thead>	
+    <tbody>
+    	<tr  class="text-center"><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+	</table>       
+</div>
+</body>
+</html>

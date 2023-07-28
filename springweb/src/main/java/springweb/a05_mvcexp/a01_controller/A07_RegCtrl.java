@@ -36,4 +36,19 @@ public class A07_RegCtrl {
 	public ResponseEntity<String> regInsert(Region ins){
 		return ResponseEntity.ok(service.insertRegion(ins));
 	}	
+	// getRegion.do?region_name=서울
+	@RequestMapping("getRegion.do")
+	public ResponseEntity<Region> getRegion(@RequestParam("region_name") String region_name){
+		return   ResponseEntity.ok(service.getRegion(region_name));
+	}
+	// updateRegion.do?region_name=인천&region_id=5
+	@RequestMapping("updateRegion.do")
+	public ResponseEntity<String> updateRegion(Region upt){
+		return   ResponseEntity.ok(service.updateRegion(upt));
+	}
+	// deleteRegion.do?region_id=5
+	@RequestMapping("deleteRegion.do")
+	public ResponseEntity<String> deleteRegion(@RequestParam("region_id") int region_id){
+		return   ResponseEntity.ok(service.deleteRegion(region_id));
+	}
 }

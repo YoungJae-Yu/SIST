@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import springweb.a05_mvcexp.a02_service.A06_JobService;
@@ -47,6 +48,22 @@ public class A06_AjaxCtrlView {
 	@RequestMapping("jobInsAjax2.do")
 	public ResponseEntity<String> insertJob2(Job ins) {
 		return ResponseEntity.ok(service.insertJob(ins));
+	}
+	
+	// getJob.do?job_id=AC_ACCOUNT
+	@RequestMapping("getJob.do")
+	public ResponseEntity<Job> getJob(@RequestParam("job_id") String job_id){
+		return   ResponseEntity.ok(service.getJob(job_id));
+	}
+	// updateJob.do?job_id=AC_MGR&job_title=관리자&min_salary=10000&max_salary=35000
+	@RequestMapping("updateJob.do")
+	public ResponseEntity<String> updateJob(Job upt){
+		return   ResponseEntity.ok(service.updateJob(upt));
+	}
+	// deleteJob.do?job_id=AD_VP
+	@RequestMapping("deleteJob.do")
+	public ResponseEntity<String> deleteJob(@RequestParam("job_id") String job_id){
+		return   ResponseEntity.ok(service.deleteJob(job_id));
 	}
 	
 }

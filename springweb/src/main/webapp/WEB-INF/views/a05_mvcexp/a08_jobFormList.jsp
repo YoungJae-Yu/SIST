@@ -21,30 +21,44 @@
     <script src = "https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
     
     <script type="text/javascript">
+    	// window.onload와 동일한 메서드
     	$(document).ready( function(){
-
-
+    		$("#regBtn").click(function(){
+    			if(confirm("등록화면 이동합니다.")){
+    				location.href="${path}/jobInsert.do"
+    			}
+    		})
     	});
     </script>      
     
     
 </head>
 <body>
+<!-- 
+	 	직책아이디  직책명      최소급여     최대급여
 
+
+
+jobListData2.do
+ -->
     <div class="container mt-3">
-      	
     	<h2>직책 리스트</h2>
 	  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	  		<div class="container-fluid">    	
 	    	<form method="post"  class="d-flex align-items-center" >
 	            <input type="text" class="form-control me-2" 
-	      	    value="${param.job_id}" id="job_id" placeholder="직책아이디 입력" name="job_id"  aria-label="Search">
+	      	     value="${param.job_id}" placeholder="직책아이디 입력" id="job_id" name="job_id"  aria-label="Search">
 	            <input type="text" class="form-control me-2" 
-	      	    value="${param.job_title}" id="job_title" placeholder="직책명 입력" name="job_title"  aria-label="Search">
+	      	     value="${param.job_title }" placeholder="직책명 입력" id="job_title" name="job_title"  aria-label="Search">
+	      	     
 	         	<button type="submit" class="btn btn-primary" style="width:200px;">조회</button>
+	         	<button type="button" id="regBtn" class="btn btn-success" style="width:200px;">등록</button>
 	     	</form>
 	 	    </div>
 	 	</nav>
+	 	<!-- 
+
+	 	 -->
 		<table class="table table-striped table-hover">
 			<thead class="table-success">
 		      	<tr  class="text-center">
@@ -55,51 +69,19 @@
 		      	</tr>
 		    </thead>
 		    <tbody id="show">
-			   	<c:forEach var = "job" items="${jobList}">
-			   		<tr class="text-center">
-			   			<td>${job.job_id}</td>
-			   			<td>${job.job_title}</td>
-			   			<td><fmt:formatNumber value="${job.min_salary}"/></td>
-			   			<td><fmt:formatNumber value="${job.max_salary}"/></td>
-			   		</tr>
-			   	
+		    	<!-- job_id job_title -->
+		    	<c:forEach var="job" items="${jobList}">
+			   	<tr  class="text-center">
+			        <td>${job.job_id}</td>
+			        <td>${job.job_title}</td>
+			        <td><fmt:formatNumber value="${job.min_salary}"/> </td>
+			        <td><fmt:formatNumber value="${job.max_salary}"/> </td>
+			   	</tr>
 			   	</c:forEach>
-			   	
 		 	</tbody>
 		</table>      	
     </div>
-    <div class="container">
-	<form id="frm01" class="form-inline"  method="post">
-  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input class="form-control mr-sm-2" placeholder="제목" />
-	    <input class="form-control mr-sm-2" placeholder="내용" />
-	    <button class="btn btn-info" type="submit">Search</button>
- 	</nav>
-	</form>
-   <table class="table table-hover table-striped">
-   	<col width="10%">
-   	<col width="50%">
-   	<col width="15%">
-   	<col width="15%">
-   	<col width="10%">
-    <thead>
-    
-      <tr class="table-success text-center">
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회</th>
-      </tr>
-    </thead>	
-    <tbody>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-    </tbody>
-	</table>    
-    
 
-
+    
 </body>
 </html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/springweb/a00_com/bootstrap.min.css" >
+<style>
+	td{text-align:center;}
+</style>
+<script src="/springweb/a00_com/jquery.min.js"></script>
+<script src="/springweb/a00_com/bootstrap.min.js"></script>
+<script src="/springweb/a00_com/vue.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var vm = new Vue({
+			el:".container",
+			data:{
+				msg:"사원정보리스트",
+				empList:[
+					{empno:7780, ename:"홍길동", job:"사원", dname:"인사"},
+					{empno:7780, ename:"김길동", job:"대리", dname:"재무"},
+					{empno:7780, ename:"신길동", job:"과장", dname:"회계"}
+				]
+			}
+			
+		})
+	});
+</script>
+</head>
+<body>
+
+<div class="container">
+	<div class="jumbotron text-center">
+	  <h2 >{{msg}}</h2>
+	</div>
+	<form id="frm01" class="form-inline"  method="post">
+  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	    <input class="form-control mr-sm-2" placeholder="제목" />
+	    <input class="form-control mr-sm-2" placeholder="내용" />
+	    <button class="btn btn-info" type="submit">Search</button>
+ 	</nav>
+	</form>
+   <table class="table table-hover table-striped">
+   	<col width="25%">
+   	<col width="25%">
+   	<col width="25%">
+   	<col width="25%">
+    <thead>
+    
+      <tr class="table-success text-center">
+        <th>사원번호</th>
+        <th>사원명</th>
+        <th>직책명</th>
+        <th>부서명</th>
+      </tr>
+    </thead>	
+    <tbody>
+    	<tr v-for="emp in empList" class="text-center">
+    	<td>{{emp.empno}}</td>
+    	<td>{{emp.ename}}</td>
+    	<td>{{emp.job}}</td>
+    	<td>{{emp.dname}}</td></tr>
+    </tbody>
+	</table>       
+</div>
+</body>
+</html>
