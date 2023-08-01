@@ -1,0 +1,16 @@
+# 스프링부트의 DB 연동 처리
+1. pom.xml 설정 lib 다운로드
+2. 기본설정 application.properties
+	1)url 계정 비번 드라이버 설정
+	2) mybatis의 공통 파일 설정
+	3) mybatis의 mapper 파일 설정 규칙
+3. MybatisConfig 파일 설정
+	1) 기본 sqlSessionTemplate 설정
+4. dao 작성
+	sql 작성
+	dao 작성
+		@Mapper 선언
+	공통 파일/공통mapper 선언
+	service 선언
+	controller 선언
+	화면단 처리

@@ -1,0 +1,221 @@
+# 스프링부트와 함께 답변형 게시판 
+1. 주요기능
+	1) 로그인하여 session으로 등록/수정/삭제 권한에 따라 처리한다.
+	2) 페이지단위를 설정하여 한페이지에 보일 데이터 리스트 건수를 지정한다.
+	3) 하단에 페이징 리스트로 효과적으로 대량의 게시물을 관리할 수 있다.
+	4) 첨부파일을 첨부하여 자료관리를 한다.
+	5) 계층적으로 답들을 처리하여, 게시물에 대한 커뮤니케이션 기능을 할 수 있다.
+	
+2. 처리프로세스
+	1) 초기화면에 로그인 페이지가 나오고, 로그인하여 게시물의 
+			메인 페이지에 session을 가지고 들어간다.
+	2) 답글이 처리된 페이지리스트가 출력되고, 하단에 페이지 번호를 클릭시, 
+			해당 페이지의 글을 확인 할 수 있다.
+	3) 글쓰기를 클릭하여 글쓰기 페이지가 나오고, 해당 글의 내용을 등록한다.
+			작성자는 로그인 session값을 기준으로 자동 등록 된다.
+	4) 파일을 다중으로 선택하여 첨부를 할 수 있다. 권한에 따른 자료에 다운로드 처리
+	5) 글 등록을 하면 메인페이지에 리스트가 처리된다.
+	6) 등록된 리스트 글을 클릭시, 상세 내용을 확인할 수 있고, 첨부파일을 클릭시,
+			다운로드 할 수 있다.(이부분도 권한을 설정하여 해당 group 권한이
+			있는 session만이 다운로드가 가능하다-현재사용자,관리자,그룹,모두)
+	7) 글의 수정 삭제는 현재 로그인한 사용자와 작성자가 동일할 때만 가능하게
+			session을 비교하여 처리한다.
+	8) 답글 달기를 통해서, 해당 글에 대한 답글 등록을 할 수 있다.
+	9) 답글이 등록되면, 메인화면 리스트에서 계층적으로 답글이라는 것을
+			확인할 수 있다.
+	10) 로그아웃을 통해서 session이 만료가되면,다시 로그인 하여야 게시물을
+			확인할 수 있다.
+3. 개발순서
+	1) DB설계
+		board
+		boardfile
+		member
+		board_seq(시퀀스)
+	2) sql 작성
+		기본 계층적 조회
+		고유 시퀀스번호 가져오기
+		각 고유번호에 따른 게시물과 첨부파일
+		멤버의 로그인
+		게시물 등록
+		게시물 첨부파일 정보 등록
+		게시물 조회수 수정
+		게시물 수정
+		게시물 첨부파일 정보 수정
+		게시물 삭제
+		게시물 첨부파일 정보 삭제
+	3) VO
+		조회를 위한 BoardSch
+		리스트/등록/수정 위한 Board
+		첨부파일 정보 BoardFile
+		회원정보 Member
+	4) Dao/Mapper
+	5) Service단
+		페이징 처리를 위한 알고리즘
+		- 특정한 페이지번호를 클릭시, 나타날 데이터 리스트
+		하단에 페이징 블럭단위 리스트 처리 알고리즘
+		- <- 1 2 3 4 5 ->
+		위 형태로 하단에 블럭단위로 화살표로 좌우로 페이지
+		리스트 번호가 범위에 따라 출력되어야 한다.
+		
+		파일업로드처리
+			- 물리적 파일업로드
+			- DB 입력/수정처리
+			
+	6) controller단
+		조회리스트
+		등록처리
+		상세화면
+		수정처리
+		삭제처리
+		
+		처리 후, msg 및 session, 모델처리
+	7) view단 처리
+		로그인
+			아이디 패스워드 입력 로그인 처리
+		조회리스트
+			상단에 @@ 로그인중 표시/로그아웃기능버튼
+			검색할 form : 제목/작성자, 검색(버튼), 등록화면(버튼)
+			리스트할 데이터
+				글번호 제목 작성자 등록일 조회수
+			한번에 보일 데이터 건수(선택 select)
+			좌우 화살표가 있는 페이지 블럭 리스트
+		등록화면
+			제목
+			작성자
+			등록할 내용
+			첨부파일
+		상세화면
+			글번호
+			상위글번호
+			제목
+			작성자
+			조회수
+			등록할 내용
+			첨부파일
+			
+			답글,수정,삭제,메인화면 기능 버튼
+			상단 alert()으로 기능처리 메시지 출력
+			
+4. 난이도에 따른 개발 순서
+	1) 초기 리스트 화면 처리(페이지처리X)
+	2) 로그인/로그아웃 sesison 처리
+	3) 등록 처리(첨부파일X)
+	4) 상세 화면 처리
+	5) 수정 처리(첨부파일X)
+	6) 삭제 처리
+	7) 답글 처리
+	8) 계층형 sql 적용된 리스트 화면 처리
+	9) 등록 첨부파일 처리
+	10) 수정 첨부파일 처리
+	11) 페이징 처리 리스트 service단
+	12) 페이징 처리 리스트 화면단
+		
+# 초기 리스트 화면 처리(페이지처리X)
+1. DB부분
+	1) sql
+		select * from board
+		where subject like '%'||#{subject}||'%'
+		and writer like '%'||#{writer}||'%'
+	2) vo(BoardSch, Board)
+	3) dao/mapper  		BoardDao.java / BoardMapper.xml
+		public List<Board> boardList(BoardSch);
+---------------------------------------------
+2. service		BoardService.java
+	1) 초기 검색 null처리
+3. controller   BoardController.java
+	1) boardList
+	2) 요청값 BoardSch
+	3) 모델처리
+4. 화면단 리스트 처리
+----------------------------------------
+# 로그인/로그아웃 session 처리
+1. DB
+	1) sql
+		SELECT *
+		FROM MEMBER01
+		WHERE id = #{id}
+		AND pass = #{pass}
+	2) VO
+		
+	3) Dao/mapper
+		public Member login(Member mem);
+----------------------------------------------
+2. service
+3. controller
+	1) 초기화면 로딩
+		public String login(Member login, Model d)
+	2) 로그인 성공시 session 처리
+		front단에서 main화면 이동
+	3) 
+		
+# 등록 처리(첨부파일X)
+1. 리스트에서 등록화면 버튼 클릭시, 등록화면 이동
+2. 등록 controller 초기 화면 호출.
+	boardInsert
+	a03_boardInsert
+	session 없을때는 로그인 처리하게 처리..
+3. DB
+	1) sql
+		SELECT board_seq.nextval FROM dual;
+		
+		SELECT * FROM board;
+		INSERT INTO board VALUES(1,0,'첫번째글','내용','himan',0,sysdate,sysdate);
+	2) vo
+	3) dao/mapper
+		public int getNo();
+		public int insertBoard(Board insert);
+4. service
+	public String insertBoard(Board ins){
+		ins.setNo(dao.getNo())
+		return dao.insertBoard(ins)>0?"등록성공":"등록실패";
+	}	
+	-------------------------------------
+5. controller
+	insertBoard
+	
+	public String insertBoard(Board ins,Model d){
+		if(ins.getSubject()!=null){
+			d.addAttribute("msg",service.insertBoard(ins);
+		}
+		return "";
+	}
+	
+6. 화면단 처리(jsp)
+	var msg = "${msg}"
+	if(msg!=""){
+		alert(msg);
+	}		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

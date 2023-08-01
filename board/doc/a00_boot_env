@@ -1,0 +1,31 @@
+# 스프링 부트 환경에서 게시판 만들기
+0. 개발 환경에 대한 이해
+	1) sts
+		c:\a02_springbt
+		c:\a02_springbt\workspace
+		구조로 폴드 만들고
+		다운받은 파일 c:\a02_springbt으로 복사
+		파일명 ==> sts.jar
+		윈도우 하단에 명령어
+		cmd
+		cd ..
+		cd ..
+		cd a02_springbt
+		java -jar sts.jar
+		
+	2) maven이란?
+		- lib online상 xml의 선언에 의해서 다운로드 처리..
+		- 프로젝트에서 필요한 lib을 pom.xml로 설정해서 다운받게 해준다.
+	3) 기본 DI 컨테이너 설정
+		- 기본적인 컨테이너 설정을 모두 다 설정을 처리한 환경에서 진행
+		- 추가 설정
+			내장된 tomcat 서버 port 지정
+			DB 서버 정보
+			파일 업로드 정보
+			mybatis의 설정파일 정보
+			jsp view단 설정 default 경로
+		- 클래스
+			추가 View
+			mybatis 설정 conf
+			
+1. sts 다운로드 및 초기 호출..
