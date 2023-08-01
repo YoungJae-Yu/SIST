@@ -12,35 +12,39 @@
 <script src="/springweb/a00_com/vue.js"></script>
 <script type="text/javascript">
 /*
-# 조건문 처리 디렉티브
-1. 특정요소객체가 조건에 합당할 때 즉 true일 때만
-	화면에 보일게 할때 사용하는 디렉티브이다.
-2. 모델데이터의 조건값에 따른 처리로 볼 수 있다.
-3. 기본 형식
-	var model = {price:0}
+
+# vue 에서 기능 함수인 메서드 사용
+1. vue에서 이벤트에 의해 특정한 기능 함수를 처리하는데, 이 기능 처리함수
+	내용이 모델 데이터와 연동해서 처리할 때, Vue객체 하위에서 함수형태로
+	선언한 메서드를 활용하여 처리한다.
+2. 기본 형식
+	data:{모델데이터:초기데이터}
+	methods:{
+		함수명1:function(){
+			처리할 내용
+			this.모델데이터 : 데이터를 동적으로 처리할 수 있다.
+		}
+	}
+	함수 호출 이벤트
+	<요소태그 v-on:이벤트명="함수명1"
+	<요소태그 @이벤트명="함수명1"
 	
-	<input v-model="price"/>
-	
-	<span v-show="price>=6000">Gold</span>
-	:v-if와 동일한 내용인데, 자주 사용하거나 메모리를 로딩할 때
-	시간이 걸릴 때 사용된다. v-show는 일단 메모리에 로딩된 상황에서
-	hide/show로 처리되는 것이고, 아래 v-if는 초기에 화면자체가
-	조건에 의해서 로딩여부를 결정하는 것이다.
-	<span v-if="price>=6000">Gold</span>
-	<span v-else-if="price>=3000">Silver</span>
-	<span v-else>Basic</span>
-	
-	a09_if.html
-		점수:[   ] : 점수에 따른 테이블에 출력과 학점을 표시
-		--------
-		점수 : 학점
-		92     A점
  */
 	$(document).ready(function(){
-		var model = {msg:"조건문(v-if)처리", price:0}
 		var vm = new Vue({
 			el:".container",
-			data:model
+			data:{msg:"method 처리",num01:0,num02:0,sum:0},
+			methods:{
+				plus:function(){
+					// 
+					this.sum = 
+						Number(this.num01) + Number(this.num02)
+				}
+			}
+			// a14_method.html
+			// 물건명[   ] 가격[   ] 갯수[   ] [계산]
+			// h3 타이틀로 구매한 물건은 @@@이고 단가는 @@@원인데 @@@개
+			// 구매하여 총 @@@원입니다.
 		})
 	});
 </script>
@@ -50,13 +54,13 @@
 <div class="container">
 	<div class="jumbotron text-center">
 	  <h2 >{{msg}}</h2>
-	<span v-if="price>=6000">Gold</span>
-	<span v-else-if="price>=3000">Silver</span>
-	<span v-else>Basic</span>
+	  <h3>{{num01}}+{{num02}}={{sum}}</h3>
 	</div>
 	<form id="frm01" class="form-inline"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input v-model="price" class="form-control mr-sm-2" placeholder="제목" />
+	    <input v-model="num01" class="form-control mr-sm-2" placeholder="0" />
+	    <input v-model="num02" class="form-control mr-sm-2" placeholder="0" />
+	    <button v-on:click="plus" class="btn btn-info" type="button">합산</button>
  	</nav>
 	</form>
    <table class="table table-hover table-striped">

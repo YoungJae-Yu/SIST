@@ -71,7 +71,7 @@
 		$("#ckTitle").click(function(){
 			if($(this).val()=="유효성확인"){
 				var len = $("#job_title").val().length
-			 	if( len>8){
+			 	if(len<8){
 			 		alert("등록 직책명은 8자이상 이여야 합니다.")
 			 		$("#job_title").focus()
 			 	}else{

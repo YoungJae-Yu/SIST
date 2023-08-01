@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Good day!! ^^</title>
+<link rel="stylesheet" href="/springweb/a00_com/bootstrap.min.css" >
+<style>
+	td{txt-align:center;}
+</style>
+<script src="/springweb/a00_com/jquery.min.js"></script>
+<script src="/springweb/a00_com/bootstrap.min.js"></script>
+<script src="/springweb/a00_com/vue.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var vm = new Vue({
+			el:".container",
+			data:{msg:"구매물품",name:"",price:0,cnt:0,tot:0},
+			methods:{
+				buy:function(){
+					// js +이외에 연산자는 자동형변환 처리.
+					this.tot = this.price*this.cnt
+					console.log("# 총계 #"+this.tot)
+				}
+			}
+		}) 
+	});
+	/*
+// a14_method.html
+		// 물건명[   ] 가격[   ] 갯수[   ] [계산]
+		// h3타이틀로 구매한 물건은 @@@이고 단가는 @@@원인데 @@@개
+		// 구매하여 총 @@@원입니다.	
+	*/
+</script>
+</head>
+<body>
+
+<div class="container">
+	<div class="jumbotron text-center">
+	  <h2 >{{msg}}</h2>
+	  <h3 v-show="tot>0"><!-- 조건에 따라서 show/hide -->
+	  	구매한 물건은 {{name}}이고 단가는 {{price}}원인데 {{cnt}}개
+		구매하여 총 {{tot}}원입니다.	
+	  </h3>
+	</div>
+	<form id="frm01" class="form"  method="post">
+  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	    <input v-model="name" class="form-control mr-sm-2" placeholder="물건명" />
+	    <input v-model="price" class="form-control mr-sm-2" placeholder="가격" />
+	    <input v-model="cnt"  class="form-control mr-sm-2" placeholder="갯수" />
+	    <button @click="buy" class="btn btn-info" type="button">계산</button>
+ 	</nav>
+	</form>
+   <table class="table table-hover table-striped">
+   	<col width="10%">
+   	<col width="50%">
+   	<col width="15%">
+   	<col width="15%">
+   	<col width="10%">
+    <thead>
+    
+      <tr class="table-success text-center">
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회</th>
+      </tr>
+    </thead>	
+    <tbody>
+    	<tr  class="text-center"><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+	</table>       
+</div>
+</body>
+</html>

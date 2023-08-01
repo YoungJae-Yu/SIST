@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Good day!! ^^</title>
+<link rel="stylesheet" href="/springweb/a00_com/bootstrap.min.css" >
+<style>
+	td{txt-align:center;}
+</style>
+<script src="/springweb/a00_com/jquery.min.js"></script>
+<script src="/springweb/a00_com/bootstrap.min.js"></script>
+<script src="/springweb/a00_com/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var vm = new Vue({
+			el:".container",
+			data:{msg:"부서정보리스트",dname:"",loc:"",
+				  deptList:[]},
+			methods:{
+				checkValid:function(){
+					console.log("키업")
+					if(event.keyCode==13){
+						this.search()
+					}
+				},
+				search:function(){
+					console.log("검색!")
+					// http://localhost:7080/springweb/deptListAjax.do 현재 서버를 이용할 때 생략가능
+					console.log("dname="+this.dname+"&loc="+this.loc)
+					var url = "/springweb/deptListAjax.do?dname="+this.dname+"&loc="+this.loc;
+					this.deptList = [] // 검색 내용 초기화
+					var vm = this
+					// 주의) this : Vue()객체로 메서드나 모델데이터를
+					// 접근 가능..
+					fetch(url).then(function(response){
+						//this : fetch api 객체를 지칭.
+						console.log("# 함수1(response 객체) #")
+						console.log(response)
+						return response.json()
+					}).then(function(json){
+						console.log("# 함수2(json 객체) #")
+						vm.deptList = json
+					}).catch(function(err){
+						console.log("#에러 발생시#")
+						console.log(err)
+					})
+					
+				}
+			}	  
+		}) 
+	});
+</script>
+</head>
+<body>
+
+<div class="container">
+	<div class="jumbotron text-center">
+	  <h2 >{{msg}}</h2>
+	</div>
+	
+  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	    <input v-model="dname" @keyup="checkValid" class="form-control mr-sm-2" placeholder="부서명" />
+	    <input v-model="loc"  @keyup="checkValid"  class="form-control mr-sm-2" placeholder="근무지" />
+	    <button @click="search" class="btn btn-info" type="button">검색</button>
+ 	</nav>
+	
+   <table class="table table-hover table-striped">
+   	<col width="10%">
+   	<col width="50%">
+   	<col width="15%">
+   	<col width="15%">
+   	<col width="10%">
+    <thead>
+    
+      <tr class="table-success text-center">
+        <th>부서번호</th>
+        <th>부서명</th>
+        <th>근무지</th>
+      </tr>
+    </thead>	
+    <tbody>
+    	<tr  v-for="dept in deptList" class="text-center">
+    	<td>{{dept.deptno}}</td>
+    	<td>{{dept.dname}}</td>
+    	<td>{{dept.loc}}</td></tr>
+    </tbody>
+	</table>       
+</div>
+</body>
+</html>
