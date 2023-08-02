@@ -99,7 +99,7 @@
         		 value="${empty param.refno?'0':param.refno}"/>
           <div class="mb-3">
             <label for="subject">제목</label>
-            <input name="subject" type="text" value="${param.subject}" class="form-control  ckValid" id="subject" placeholder="제목 입력" required>
+            <input name="subject" value="${param.subject}" type="text" value="${param.subject}" class="form-control  ckValid" id="subject" placeholder="제목 입력" required>
             <div class="invalid-feedback">
               제목을 입력해주세요.
             </div>
@@ -114,7 +114,7 @@
           </div>   
           <div class="mb-3">
             <label for="content">내용</label>
-            <textarea name="content"  class="form-control  ckValid" id="content" placeholder="내용 입력" required rows="5" >${param.content}</textarea>
+            <textarea name="content" class="form-control  ckValid" id="content" placeholder="내용 입력" required rows="5" >${param.content}</textarea>
             <div class="invalid-feedback">
               내용를 입력해주세요.
             </div>

@@ -26,6 +26,9 @@ SELECT COUNT(*)
 FROM board
 WHERE subject LIKE '%'||''||'%'
 AND writer LIKE '%'||''||'%';
+
+SELECT * FROM BOARD b ;
+
 --		기본 계층적 조회
 SELECT *
 FROM (

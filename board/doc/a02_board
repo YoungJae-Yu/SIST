@@ -65,6 +65,7 @@
 		조회리스트
 		등록처리
 		상세화면
+		답글처리
 		수정처리
 		삭제처리
 		
@@ -168,7 +169,7 @@
 	public String insertBoard(Board ins){
 		ins.setNo(dao.getNo())
 		return dao.insertBoard(ins)>0?"등록성공":"등록실패";
-	}	
+	}
 	-------------------------------------
 5. controller
 	insertBoard
@@ -185,37 +186,251 @@
 	if(msg!=""){
 		alert(msg);
 	}		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+# 상세 화면 조회 처리
+1. 처리 프로세스
+	1) 리스트 화면에서 특정한 row를 클릭시, 상세화면 이동
+	2) 상세화면에서 글번호, 상위글번호, 제목, 작성자,
+		조회수, 내용, 첨부파일 출력을 확인할 수 있고,
+	3) 기능버튼으로 답글, 수정, 삭제, 메인페이지 이동을 처리할 수 있다.
+2. 개발 순서
+	1) DB 처리
+		상세조회 sql : select * from board where no = #{no}
+		VO  확인
+		dao/mapper 처리
+			public Board getBoard(int no);
+	2) service
+	-----------------------------------------
+	3) controller
+		@GetMapping/boardDetail
+		@RequestParam("no") int no
+			d.addAttribute("board",service.getBoard(no));
+	4) view(a01_boardList.jsp)
+			tr oncilck="goDetail(${board.no})"
+				주의) js 넘기는 데이터 유형에 따라서 문자열형이면
+					반드시 '' 사이로 처리하여야 한다.
+					ex) "goDetail('${board.writer}')"
+			function goDetail(no)
+				location.href="${path}/boardDetail?no="+no
+				
+	    view(a04_boardDetail.jsp)
+		name="no"			value="${board.no}" 
+		name="refno"		value="" ==> value="0"
+		숫자형 VO의 property는 아에 없던지 있으면
+		빈드시 숫자형으로 초기값을 선언하여야 한다.
+		그렇지 않으면 controller 요청 처리가 아에 되지 않는다. 404발생
+			void setRefno(int refno) int refno = ""
+		name="refno"		value="${board.refno}"
+		글번호	답글번호
+		제목
+		작성자	조회수
+		등록일	수정일
+		내용
+		첨부파일
+		name="subject"		value="${board.subject}" 
+		name="witer"		value="${board.witer}" 
+		name="readcnt"		value="${board.readcnt}" 
+		name="content"		value="${board.content}" 
+		name="report"		value="${board.report}" 
+		id="reBtn"
+		id="uptBtn"
+		id="delBtn"
+		id="mainBtn"
+		$("#uptBtn").click(function(){
+			// 각 기능 버튼마다 요청 action이 다른 경우
+			// 처리할 내용..
+			#("form").attr("action","${path}/updateBoard");
+		})
+	5) 조회수 카운트업
+		sql
+			update board
+				set readcnt = readcnt + 1
+			 where no = #{no}
+		dao/mapper	 
+			public void readCntUp();
+		service
+			public Board detailBoard()
+				dao.readCntUp();
+# 수정 처리(첨부파일X)
+1. 프로세스
+	1) 수정할 내용 변경 수정버튼 클릭  
+	2) 권한 점검 -  로그인한 회원만 작성한 글만 수정 가능
+	3) 수정 처리 프로세스 수정성공 알람 뜨고, 수정 내용 확인
+		메인 화면 이동 처리 여부 확인
+2. 개발순서
+	1) js에서 session id 가져오기 
+		ex) var sessId = "${mem.id}"
+	2) 수정 버튼 클릭시, 위 sessId와 현재 작성자 비교하여
+		같지 않으면 수정권한이 없다고 처리
+	3) 데이터 베이스 처리
+		update board
+			set subject=#{subject},
+			     content=#{content},
+			     uptdte = sysdate
+			where no = #{no}
+		dao/mapper
+			public int updateBoard(Board upt);
+	4) service
+		public String updateBoard(Board upt){
+			dao.updateBoard(upt)>0?"수정성공":"수정되지않음";
+		}
+	5) controller
+		updateBoard
+		public String updateBoard(Board upt, Model d){
+			d.addAttribute("msg",service.updateBoard(upt));
+			d.addAttribute("board",service.getBoard(upt.getNo()));
+			return "a04_boardDetail";
+		}
+	6) view(a04_boardDetail.jsp)
+		$("#uptBtn").click(function(){
+			if(confirm("수정하시겠습니까?")){
+				$("form").attr("action","${path}/updateBoard")
+				$("form").submit();
+		})
+	
+		var msg = "${msg}"
+		if(msg!=""){
+			alert(msg)
+			if(msg=="수정	성공"){
+				if(confirm("메인화면 이동하시겠습니까?")){
+					location.fref="${path}/a01_boardList"
+				}
+			}
+		}
+		var sessId = "${mem.id}"
+		if(!sessId==$("#writer").val()){
+			$("#uptBtn").hide()		
+			$("#delBtn").hide()		
+		}
+# 삭제 처리	
+1. 개발 순서
+	1) sql
+		delete from board where no = #{no}
+	2) mapper/dao
+		public int deleteBoard(int no);
+	3) service
+		public String deleteBoard(int no){
+			return dao.deleteBoard(no)>0?"삭제성공":"삭제실패";
+		}	
+	4) controller
+		deleteBoard
+		public String deleteBoard(@RequestParam("no") String no)
+	5) jsp
+		$("#delBtn").click(function(){
+			if(confirm("삭제하시겠습니까?")){
+				location.href=
+					"${path}/deleteBoard?no="+$("#no").val();
+			}
+		})
+# 답글 처리
+1. 프로세스
+	1) 상세화면에서 답글을 클릭
+	2) 등록화면이동되면서
+		제목에 기존글에 RE:@@@가 붙는다.
+		내용도 기존글 내용을 포함해서
+			=== 상위글 ===
+		입력하게 처리한다.
+	3) 등록처리하면, 등록프로세스가 처리되어 조회화면에 
+		계층적으로 처리가 된다.
+2. 개발순서
+	1) 상세화면에서 답글 클릭시
+		no의 값이 refno에 할당되게 처리한다.
+		subject의 값은 "RE:" 가 붙어서 처리된다.
+		content는 내용은 \n\n\n\n\n\n====이전글====\n+이전글내용
+		을 포함하여 js로 처리한다.
+	2) 요청값으로 글등록에 전송이 된다.
+		$("form").submit() 처리
+	3) 글등록 화면에 답글을 위한 데이터가 처리된 상황에서
+		글을 등록한다.
+	4) 등록 처리시, 답글이 위 규칙에 의해 DB에 등록된다.
+	
+	5) 등록과 답글처리에 대한 로직 처리
+		- 글등록 초기화면(DB 처리X)
+			refno가 0
+			subject가 없음
+		- 답글달기 초기화면(DB 처리X)
+			refno가 있음
+			subject가 RE 있음
+		- 글내용 등록시 조건(DB 처리)
+			refno가 0
+			subject가 있음.
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		

@@ -41,6 +41,11 @@
 				location.href="${path}/logout";
 		})	
 	});
+		function goDetail(no){
+			if(confirm("상세화면이동")){
+				location.href="${path}/boardDetail?no="+no
+			}
+		}
 </script>
 </head>
 
@@ -92,7 +97,7 @@
     </thead>	
     <tbody>
     	<c:forEach var="board" items="${boardList}">
-    	<tr><td>${board.no}</td>
+    	<tr onclick="goDetail(${board.no})"><td>${board.no}</td>
     		<td>${board.subject}</td>
     		<td>${board.writer }</td>
     		<td><fmt:formatDate value="${board.regdte}"/></td>

@@ -27,7 +27,18 @@ public class BoardService {
 		return dao.insertBoard(insert)>0?
 				"등록성공":"등록되지 않았습니다";
 	}	
-	
-	
-
+	public Board getDetail(int no) {
+		// 조회할 때, 조회횟수 증가 처리 ..
+		dao.readCntUp(no);
+		return dao.getBoard(no);
+	}
+	public Board getBoard(int no) {
+		return dao.getBoard(no);
+	}
+	public String updateBoard(Board upt){
+		return dao.updateBoard(upt)>0?"수정성공":"수정실패";
+	}
+	public String deleteBoard(int no){
+		return dao.deleteBoard(no)>0?"삭제성공":"삭제실패";
+	}	
 }
