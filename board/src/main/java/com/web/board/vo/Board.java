@@ -1,16 +1,31 @@
 package com.web.board.vo;
 // com.web.board.vo.Board
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class Board {
 	private int no;
 	private int refno;
+	private int level;
+	private int cnt;
 	private String subject;
 	private String content;
 	private String writer;
 	private int readcnt;
 	private Date regdte;
 	private Date uptdte;
+	private List<String> fnames;
+	private MultipartFile[] report;
+	
+	
+	public MultipartFile[] getReport() {
+		return report;
+	}
+	public void setReport(MultipartFile[] report) {
+		this.report = report;
+	}
 	public Board() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -26,6 +41,13 @@ public class Board {
 		this.readcnt = readcnt;
 		this.regdte = regdte;
 		this.uptdte = uptdte;
+	}
+
+	public List<String> getFnames() {
+		return fnames;
+	}
+	public void setFnames(List<String> fnames) {
+		this.fnames = fnames;
 	}
 	public int getNo() {
 		return no;
@@ -74,5 +96,17 @@ public class Board {
 	}
 	public void setUptdte(Date uptdte) {
 		this.uptdte = uptdte;
+	}
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 }

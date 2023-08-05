@@ -57,14 +57,14 @@
 			location.href="${path}/login";
 		}	
 		var msg = "${msg}"
-		if(msg!=""){
-			alert(msg)
-			if(msg=="등록성공"){
-				if(!confirm("계속 등록하시겠습니까?")){
-					location.href="${path}/boardList"
-				}
+		if(msg.indexOf("등록")!=-1){
+			$("#refno").val("0")
+			$(".initFrm").val("")
+			if (confirm(msg+"\n 조회화면으로 이동 하시겠습니까?")) {
+				location.href = "${path}/boardList"
 			}
 		}
+
 		$("#goMain").click(function(){
 			location.href="${path}/boardList"
 		})	
@@ -80,26 +80,32 @@
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3">게시판 등록</h4>
         <!-- 
-        form 하위에 있는
+        form 하위에 있는 
         	name="key" value="val"
         	
-        	submit 를 클릭시, form 에 action="insertBoard"으로 지정한 
+        	submit를 클릭시, form에 action="boardInsert"으로 지정한
         	controller단에 query string 
-        	insertBoard?key=val로 전송한다.
         	
-       		@RequestMapping("boardInsert")
-			public String boardInsert(Board ins, Model d) {
-        	setKey(String val)
+        	boardInsert?key=val로 전송한다. 
         	
+		      @RequestMapping("boardInsert")
+			public String boardInsert(Board ins, Model d) {  	
+        		setKey(String val)
+        		
         	단, form에 action속성이 설정되지 않으면,
         	이 화면을 호출한 controller를 다시 호출한다.
+        		
+        		
          -->
-        <form method="post"  enctype="multipart/form-data"  class="validation-form" novalidate>
-        	<input type="hidden" name="refno"
+        <form method="post" 
+        	action="${path}/boardInsert"
+         enctype="multipart/form-data" 
+         class="validation-form" novalidate>
+        	<input id="refno" type="hidden" name="refno"
         		 value="${empty param.refno?'0':param.refno}"/>
           <div class="mb-3">
             <label for="subject">제목</label>
-            <input name="subject" value="${param.subject}" type="text" value="${param.subject}" class="form-control  ckValid" id="subject" placeholder="제목 입력" required>
+            <input class="form-control initFrm"   name="subject" value="${param.subject}" type="text" value="" class="form-control  ckValid" id="subject" placeholder="제목 입력" required>
             <div class="invalid-feedback">
               제목을 입력해주세요.
             </div>
@@ -114,7 +120,7 @@
           </div>   
           <div class="mb-3">
             <label for="content">내용</label>
-            <textarea name="content" class="form-control  ckValid" id="content" placeholder="내용 입력" required rows="5" >${param.content}</textarea>
+            <textarea  name="content"  class="form-control initFrm  ckValid" id="content" placeholder="내용 입력" required rows="5" >${param.content}</textarea>
             <div class="invalid-feedback">
               내용를 입력해주세요.
             </div>

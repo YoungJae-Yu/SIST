@@ -1,37 +1,59 @@
-# 스프링부트와 함께 답변형 게시판 
+# 난이도에 따른 개발 순서
+	1) 초기 리스트 화면 처리(페이지처리X)
+	2) 로그인/로그아웃 session 처리
+	3) 등록 처리(첨부파일X)
+	4) 상세 화면 처리(조회수카운트업)
+	5) 수정 처리(첨부파일X)
+	6) 삭제 처리
+	7) 답글 처리
+	8) 계층형 sql 적용된 리스트 화면 처리
+	-------------------------------
+	9) 등록 첨부파일 처리
+	10) 수정 첨부파일 처리
+	11) 페이징 처리 리스트 service단
+	12) 페이징 처리 리스트 화면처리
+
+
+# 스프링부트와 함께 답편형 게시판
 1. 주요기능
-	1) 로그인하여 session으로 등록/수정/삭제 권한에 따라 처리한다.
-	2) 페이지단위를 설정하여 한페이지에 보일 데이터 리스트 건수를 지정한다.
+	1) 로그인하여 session으로 등록/수정/삭제 권한에 따라 
+		처리한다.
+	2) 페이지단위를 설정하여 한페이지에 보일 데이터 리스트 건수를
+		지정한다.
 	3) 하단에 페이징 리스트로 효과적으로 대량의 게시물을 관리할 수 있다.
-	4) 첨부파일을 첨부하여 자료관리를 한다.
-	5) 계층적으로 답들을 처리하여, 게시물에 대한 커뮤니케이션 기능을 할 수 있다.
-	
+	4) 첨부파일을 첨부하여 자료관리를 한다. 권한에 따른 자료에 다운로
+		드처리
+	5) 계층적으로 답글을 처리하여, 게시물에 대한 커뮤니케이션 기능을
+		할 수 있다.
 2. 처리프로세스
-	1) 초기화면에 로그인 페이지가 나오고, 로그인하여 게시물의 
-			메인 페이지에 session을 가지고 들어간다.
-	2) 답글이 처리된 페이지리스트가 출력되고, 하단에 페이지 번호를 클릭시, 
-			해당 페이지의 글을 확인 할 수 있다.
-	3) 글쓰기를 클릭하여 글쓰기 페이지가 나오고, 해당 글의 내용을 등록한다.
-			작성자는 로그인 session값을 기준으로 자동 등록 된다.
-	4) 파일을 다중으로 선택하여 첨부를 할 수 있다. 권한에 따른 자료에 다운로드 처리
-	5) 글 등록을 하면 메인페이지에 리스트가 처리된다.
-	6) 등록된 리스트 글을 클릭시, 상세 내용을 확인할 수 있고, 첨부파일을 클릭시,
-			다운로드 할 수 있다.(이부분도 권한을 설정하여 해당 group 권한이
-			있는 session만이 다운로드가 가능하다-현재사용자,관리자,그룹,모두)
-	7) 글의 수정 삭제는 현재 로그인한 사용자와 작성자가 동일할 때만 가능하게
-			session을 비교하여 처리한다.
+	1) 초기화면에 로그인 페이지가 나오고, 로그인하여 게시물의 메인
+		페이지에 session을 가지고 들어간다.
+	2) 답글이 처리된 페이지리스트가 출력되고, 하단에 페이지 번호를
+		클릭시, 해당 페이지의 글을 확인할 수 있다.
+	3) 글쓰기를 클릭하여 글쓰기 페이지가 나오고, 해당 글의 내용을
+		등록한다. 작성자는 로그인 session값을 기준으로 자동 등록
+		된다. 
+	4) 파일을 다중으로 선택하여 첨부를 할 수 있다.
+	5) 글 등록을 하면 메인 페이지에 리스트가 처리된다.
+	6) 등록된 리스트 글을 클릭시, 상세 내용을 확인할 수 있고,
+		첨부된 파일을 클릭시, 다운로드 할 수 있다.(이 부분도 권한을
+		설정하여 해당 group 권한이 있는 session만이 다운로드가
+		가능하다-현재사용자,관리자,그룹,모두)
+	7) 글을 수정 삭제는 현재 로그인한 사용자와 작성자가 동일할 때마
+		가능하게 session을 비교하여 처리한다.
 	8) 답글 달기를 통해서, 해당 글에 대한 답글 등록을 할 수 있다.
-	9) 답글이 등록되면, 메인화면 리스트에서 계층적으로 답글이라는 것을
-			확인할 수 있다.
-	10) 로그아웃을 통해서 session이 만료가되면,다시 로그인 하여야 게시물을
-			확인할 수 있다.
+	9) 답글이 등록되면, 메인화면 리스트에서 계층적으로 답글이라는
+		것을 확인할 수 있다.
+	10) 로그아웃을 통해서 session이 만료가 되면, 다시 로그인 하여야
+		게시물을 확인할 수 있다.			
+
 3. 개발순서
 	1) DB설계
 		board
 		boardfile
 		member
-		board_seq(시퀀스)
-	2) sql 작성
+		board_seq(시쿼스)
+	2) sql작성
 		기본 계층적 조회
 		고유 시퀀스번호 가져오기
 		각 고유번호에 따른 게시물과 첨부파일
@@ -42,14 +64,14 @@
 		게시물 수정
 		게시물 첨부파일 정보 수정
 		게시물 삭제
-		게시물 첨부파일 정보 삭제
+		게시물 첨부파일 정보삭제
 	3) VO
-		조회를 위한 BoardSch
+		조회를 위한 BoardSch : 조회, 페이징로직 포함
 		리스트/등록/수정 위한 Board
 		첨부파일 정보 BoardFile
 		회원정보 Member
 	4) Dao/Mapper
-	5) Service단
+	5) Service단 
 		페이징 처리를 위한 알고리즘
 		- 특정한 페이지번호를 클릭시, 나타날 데이터 리스트
 		하단에 페이징 블럭단위 리스트 처리 알고리즘
@@ -60,14 +82,15 @@
 		파일업로드처리
 			- 물리적 파일업로드
 			- DB 입력/수정처리
-			
+		
 	6) controller단
+		로그인
 		조회리스트
 		등록처리
 		상세화면
-		답글처리
+		답글처리(답글을 위한 요청값변경 후, 등록처리)
 		수정처리
-		삭제처리
+		삭제처리	
 		
 		처리 후, msg 및 session, 모델처리
 	7) view단 처리
@@ -78,13 +101,13 @@
 			검색할 form : 제목/작성자, 검색(버튼), 등록화면(버튼)
 			리스트할 데이터
 				글번호 제목 작성자 등록일 조회수
-			한번에 보일 데이터 건수(선택 select)
+			한번에 보일 데이터 건수(선택 select)	
 			좌우 화살표가 있는 페이지 블럭 리스트
 		등록화면
 			제목
 			작성자
 			등록할 내용
-			첨부파일
+			첨부파일	
 		상세화면
 			글번호
 			상위글번호
@@ -95,151 +118,167 @@
 			첨부파일
 			
 			답글,수정,삭제,메인화면 기능 버튼
-			상단 alert()으로 기능처리 메시지 출력
-			
+			상단 alert()으로 기능처리 메시지 출력			
+				
 4. 난이도에 따른 개발 순서
 	1) 초기 리스트 화면 처리(페이지처리X)
-	2) 로그인/로그아웃 sesison 처리
+	2) 로그인/로그아웃 session 처리
 	3) 등록 처리(첨부파일X)
-	4) 상세 화면 처리
+	4) 상세 화면 처리(조회수카운트업)
 	5) 수정 처리(첨부파일X)
 	6) 삭제 처리
 	7) 답글 처리
+	-----------------------
 	8) 계층형 sql 적용된 리스트 화면 처리
 	9) 등록 첨부파일 처리
 	10) 수정 첨부파일 처리
 	11) 페이징 처리 리스트 service단
-	12) 페이징 처리 리스트 화면단
-		
-# 초기 리스트 화면 처리(페이지처리X)
+	12) 페이징 처리 리스트 화면처리
+
+#  초기 리스트 화면 처리(페이지처리X)
 1. DB부분
-	1) sql
-		select * from board
-		where subject like '%'||#{subject}||'%'
-		and writer like '%'||#{writer}||'%'
-	2) vo(BoardSch, Board)
-	3) dao/mapper  		BoardDao.java / BoardMapper.xml
-		public List<Board> boardList(BoardSch);
----------------------------------------------
-2. service		BoardService.java
-	1) 초기 검색 null처리
-3. controller   BoardController.java
-	1) boardList
-	2) 요청값 BoardSch
+   1) sql
+   	   select *
+   	   from board
+   	   where subject like '%'||#{subject}||'%'
+   	   and writer  like '%'||#{writer}||'%'
+   2) vo(BoardSch, Board)
+   		com.web.board.vo.Board
+   3) dao/mapper  BoardDao.java  BoardMapper.xml
+   	   public List<Board> boardList(Board);
+   ------------------------------------------------	   
+2. service BoardService.java
+   1) 초기 검색 null 처리
+3. controller BoardController.java
+	1) /boardList
+	2) 요청값 Board				 	
 	3) 모델처리
+		boardList
 4. 화면단 리스트 처리
-----------------------------------------
+
+---------------------------
 # 로그인/로그아웃 session 처리
 1. DB
 	1) sql
-		SELECT *
-		FROM MEMBER01
-		WHERE id = #{id}
-		AND pass = #{pass}
+	SELECT *
+	FROM MEMBER01
+	WHERE id = 'himan'
+	AND pass = '7777'	
 	2) VO
-		
 	3) Dao/mapper
 		public Member login(Member mem);
-----------------------------------------------
+------------------------------------------
+		
 2. service
 3. controller
-	1) 초기화면 로딩
+	1) 초기화면 로딩/로그인 처리
 		public String login(Member login, Model d)
 	2) 로그인 성공시 session 처리
 		front단에서 main화면 이동
 	3) 
-		
+
 # 등록 처리(첨부파일X)
-1. 리스트에서 등록화면 버튼 클릭시, 등록화면 이동
+1. 리스트에서 등록화면 버튼 클릭시, 등록화면이동
 2. 등록 controller 초기 화면 호출.
 	boardInsert
-	a03_boardInsert
-	session 없을때는 로그인 처리하게 처리..
+	a03_boardInsert.jsp	
+	session 없을 때는 로그인 처리 하게 처리..
 3. DB
 	1) sql
-		SELECT board_seq.nextval FROM dual;
+		SELECT board_seq.nextval FROM dual	
+	
+		INSERT INTO board VALUES(1,0,'첫번째글','내용',
+		'himan',0, sysdate, sysdate);
 		
-		SELECT * FROM board;
-		INSERT INTO board VALUES(1,0,'첫번째글','내용','himan',0,sysdate,sysdate);
+		INSERT INTO board VALUES(#{no},#{refno},
+		#{subject},#{content},
+		#{writer},0, sysdate, sysdate)	
 	2) vo
 	3) dao/mapper
+		SELECT board_seq.nextval FROM dual	
+	
 		public int getNo();
+		INSERT INTO board VALUES(#{no},#{refno},
+		#{subject},#{content},
+		#{writer},0, sysdate, sysdate)	
+		
 		public int insertBoard(Board insert);
 4. service
 	public String insertBoard(Board ins){
 		ins.setNo(dao.getNo())
-		return dao.insertBoard(ins)>0?"등록성공":"등록실패";
+		return ins.insertBoard(ins)>0?"등록성공":"등록실패";
 	}
-	-------------------------------------
+	---------------------------------
 5. controller
 	insertBoard
-	
-	public String insertBoard(Board ins,Model d){
+	public String insertBoard(Board ins, Model d){
 		if(ins.getSubject()!=null){
-			d.addAttribute("msg",service.insertBoard(ins);
+			d.addAttribute("msg",service.insertBoard(ins));
 		}
-		return "";
+		return ""
 	}
-	
-6. 화면단 처리(jsp)
+6. 화면단처리(jsp)
 	var msg = "${msg}"
 	if(msg!=""){
 		alert(msg);
-	}		
-
+	}
+	
 # 상세 화면 조회 처리
 1. 처리 프로세스
 	1) 리스트 화면에서 특정한 row를 클릭시, 상세화면 이동
 	2) 상세화면에서 글번호, 상위글번호, 제목, 작성자,
 		조회수, 내용, 첨부파일 출력을 확인할 수 있고,
-	3) 기능버튼으로 답글, 수정, 삭제, 메인페이지 이동을 처리할 수 있다.
+	3) 기능버튼으로 답글, 수정, 삭제, 메인페이지이동을 처리할 수 있다.
 2. 개발 순서
 	1) DB 처리
-		상세조회 sql : select * from board where no = #{no}
-		VO  확인
+		상세조회 sql : 
+			select * from board where no  = #{no}
+		VO 확인
 		dao/mapper 처리
 			public Board getBoard(int no);
 	2) service
-	-----------------------------------------
+	--------------------------------------------
 	3) controller
-		@GetMapping/boardDetail
-		@RequestParam("no") int no
+		@GetMapping(/boardDetail
+			@RequestParam("no") int no
 			d.addAttribute("board",service.getBoard(no));
 	4) view(a01_boardList.jsp)
-			tr oncilck="goDetail(${board.no})"
-				주의) js 넘기는 데이터 유형에 따라서 문자열형이면
-					반드시 '' 사이로 처리하여야 한다.
-					ex) "goDetail('${board.writer}')"
-			function goDetail(no)
-				location.href="${path}/boardDetail?no="+no
-				
-	    view(a04_boardDetail.jsp)
-		name="no"			value="${board.no}" 
-		name="refno"		value="" ==> value="0"
-		숫자형 VO의 property는 아에 없던지 있으면
-		빈드시 숫자형으로 초기값을 선언하여야 한다.
-		그렇지 않으면 controller 요청 처리가 아에 되지 않는다. 404발생
-			void setRefno(int refno) int refno = ""
-		name="refno"		value="${board.refno}"
-		글번호	답글번호
+		tr ondblclick="goDetail(${board.no)"
+			주의) js 넘기는 데이터 유형에 따라서 문자열형이면
+				반드시 ''사이로 처리하여야 한다.
+				ex) "goDetail('${board.writer')"
+		function goDetail(no)
+			location.href="${path}/boardDetail?no="+no
+	    ----------------------------------------------
+	    	
+	   view(a04_boardDetail.jsp)
+		name="no"	value="${board.no}"
+		name="refno" value="" ==> value="0"	
+		숫자형 VO의 property는 아에 없든지 있으면
+		반드시 숫자형으로 초기값을 선언하여야 한다.
+		그렇지 않으면 controller 요청 처리가 아에 되지 않는다.
+		404발생.
+			void setRefno(int refno)  int refno = ""
+		name="refno" value="${board.refno}"	
+		글번호   답글번호
 		제목
-		작성자	조회수
-		등록일	수정일
+		작성자   조회수
+		등록일   수정일
 		내용
-		첨부파일
-		name="subject"		value="${board.subject}" 
-		name="witer"		value="${board.witer}" 
-		name="readcnt"		value="${board.readcnt}" 
-		name="content"		value="${board.content}" 
-		name="report"		value="${board.report}" 
+		첨부파일		
+		name="subject" value="${board.subject}"
+		name="writer" value="${board.writer}"
+		name="readcnt" value="${board.readcnt}"
+		name="content" value="${board.content}"
+		//name="report" value="${board.report}"
 		id="reBtn"
 		id="uptBtn"
 		id="delBtn"
 		id="mainBtn"
 		$("#uptBtn").click(function(){
-			// 각 기능 버튼마다 요청 action이 다른 경우
+			// 각 기능 버튼마다 요청 action이 다른 경우 
 			// 처리할 내용..
-			#("form").attr("action","${path}/updateBoard");
+			$("form").attr("action","${path}/updateBoard");
 		})
 	5) 조회수 카운트업
 		sql
@@ -251,67 +290,73 @@
 		service
 			public Board detailBoard()
 				dao.readCntUp();
+				 	 	
 # 수정 처리(첨부파일X)
 1. 프로세스
-	1) 수정할 내용 변경 수정버튼 클릭  
-	2) 권한 점검 -  로그인한 회원만 작성한 글만 수정 가능
+	1) 수정할 내용 변경 수정버튼 클릭 
+	2) 권한 점검 - 로그인한 회원만 작성한 글 수정 가능
 	3) 수정 처리 프로세스 수정성공 알람 뜨고, 수정 내용 확인
-		메인 화면 이동 처리 여부 확인
+		메인화면 이동 처리 여부 확인
 2. 개발순서
-	1) js에서 session id 가져오기 
-		ex) var sessId = "${mem.id}"
-	2) 수정 버튼 클릭시, 위 sessId와 현재 작성자 비교하여
+	1) js에서 session id 가져오기
+		 ex) var sessId = "${mem.id}"
+	2) 수정 버튼 클릭시, 위	sessId와 현재 작성자 비교하여
 		같지 않으면 수정권한이 없다고 처리
 	3) 데이터 베이스 처리
+		sql
 		update board
 			set subject=#{subject},
-			     content=#{content},
-			     uptdte = sysdate
+			    content=#{content},
+			    uptdte = sysdate
 			where no = #{no}
 		dao/mapper
 			public int updateBoard(Board upt);
 	4) service
-		public String updateBoard(Board upt){
-			dao.updateBoard(upt)>0?"수정성공":"수정되지않음";
-		}
+			public String updateBoard(Board upt){
+				dao.updateBoard(upt)>0?"수정성공":"수정되지 않았습니다"
+			}
+		
 	5) controller
 		updateBoard
-		public String updateBoard(Board upt, Model d){
-			d.addAttribute("msg",service.updateBoard(upt));
+		public String updateBoard(Board upt,Model d){
+			d.addAttribute("msg", service.updateBoard(upt));
 			d.addAttribute("board",service.getBoard(upt.getNo()));
-			return "a04_boardDetail";
-		}
+			
+			return "a04_boardDetail"
+		}  
+		-------------------------------------	
 	6) view(a04_boardDetail.jsp)
 		$("#uptBtn").click(function(){
 			if(confirm("수정하시겠습니까?")){
-				$("form").attr("action","${path}/updateBoard")
+				$("form").attr("action","${path}/boardUpdate");
 				$("form").submit();
+			}
 		})
-	
 		var msg = "${msg}"
 		if(msg!=""){
 			alert(msg)
-			if(msg=="수정	성공"){
-				if(confirm("메인화면 이동하시겠습니까?")){
-					location.fref="${path}/a01_boardList"
+			if(msg=="수정성공"){
+				if(confirm("메인화면이동하시겠습니까?")){
+					location.href="${path}/a01_boardList"
 				}
 			}
 		}
 		var sessId = "${mem.id}"
-		if(!sessId==$("#writer").val()){
-			$("#uptBtn").hide()		
-			$("#delBtn").hide()		
+		if(sessId!=$("#writer").val()){
+			$("#uptBtn").hide()
+			$("#delBtn").hide()
 		}
-# 삭제 처리	
+# 삭제 처리
 1. 개발 순서
 	1) sql
 		delete from board where no = #{no}
 	2) mapper/dao
 		public int deleteBoard(int no);
+		delete from board where no = #{no}
 	3) service
 		public String deleteBoard(int no){
-			return dao.deleteBoard(no)>0?"삭제성공":"삭제실패";
-		}	
+			return dao.deleteBoard(no)>0?"삭제성공":"삭제되지 않음";
+		}
 	4) controller
 		deleteBoard
 		public String deleteBoard(@RequestParam("no") String no)
@@ -319,118 +364,212 @@
 		$("#delBtn").click(function(){
 			if(confirm("삭제하시겠습니까?")){
 				location.href=
-					"${path}/deleteBoard?no="+$("#no").val();
+				"${path}/deleteBoard?no="+$("#no").val();
 			}
-		})
+		})			
 # 답글 처리
 1. 프로세스
 	1) 상세화면에서 답글을 클릭
-	2) 등록화면이동되면서
-		제목에 기존글에 RE:@@@가 붙는다.
-		내용도 기존글 내용을 포함해서
-			=== 상위글 ===
+	2) 등록화면이동되면서 
+		제목에 기존글에 RE:@@@ 가 붙는다.
+		내용도 기존글 내용을 포함해서 
+			=== 상위글 ====
 		입력하게 처리한다.
-	3) 등록처리하면, 등록프로세스가 처리되어 조회화면에 
+	3) 등록처리하면, 등록프로세스가 처리되어 조회화면에
 		계층적으로 처리가 된다.
 2. 개발순서
 	1) 상세화면에서 답글 클릭시
 		no의 값이 refno에 할당되게 처리한다.
-		subject의 값은 "RE:" 가 붙어서 처리된다.
-		content는 내용은 \n\n\n\n\n\n====이전글====\n+이전글내용
+		subject의 값은 "RE:"가 붙어서 처리된다.
+		content는 내용은 \n\n\n\n\n\n=====이전글=====\n+이전글내용
 		을 포함하여 js로 처리한다.
 	2) 요청값으로 글등록에 전송이 된다.
 		$("form").submit() 처리
 	3) 글등록 화면에 답글을 위한 데이터가 처리된 상황에서
 		글을 등록한다.
-	4) 등록 처리시, 답글이 위 규칙에 의해 DB에 등록된다.
-	
+	4) 등록 처리시, 답글이 위 규칙에 의해 DB에 등록 된다.
+		
 	5) 등록과 답글처리에 대한 로직 처리
-		- 글등록 초기화면(DB 처리X)
+		- 글등록 초기화면(DB처리X)
 			refno가 0
 			subject가 없음
-		- 답글달기 초기화면(DB 처리X)
-			refno가 있음
+		- 답글달기 초기화면(DB처리X)
+			refno가 0이 아님
 			subject가 RE 있음
 		- 글내용 등록시 조건(DB 처리)
+			일반글 등록
 			refno가 0
-			subject가 있음.
+			subject가 있음
 			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+			답글 등록
+			refno가 0>0
+			subject가 있음
+# 계층형 sql 적용된 리스트 화면 처리
+1. 하나의 테이블에 컬럼단위로 계층적으로 연관관계가 있는 구조에서
+	오라클 sql을 통해 계층적으로 데이터를 리스트 되게 처리하는
+	것을 계층적 sql이라고 한다.
+2. 주요속성
+	rownum : 글번호-데이터베이스 sql 결과를 기준으로 numbering처리
+	level : 계층적 sql의 계층 level을 표현한다. 최상위가
+		1, 하위계층인 경우 2, 하위의 하위인 경우 3...
+	start with 컬럼명=데이터(조건)
+		최상위 node의 조건을 지정할 때, 사용한다. 
+	connect by prior 하위 = 상위
+		상/하위 계층관계를 설정하는 부분이다.
+	order siblings by 컬럼 desc
+		상/하위 계층관계에서 정렬방식을 계층이 적용되는 상황에서
+		처리하게 할 때 사용된다.
+3. 답변형 게시판을 sql
+	select rownum cnt, level, b.*
+	from board b
+	where 1=1
+	and subject like '%'||''||'%'
+	and writer like '%'||''||'%'
+	start with refno = 0
+	connect by prior no = refno
+	order siblings by no desc;
+4. 처리내용
+	1) 리스트 화면에서 최근글을 상위에 로딩되면서, 해당 글들의
+		답변글을 계층적으로 리스트되게 처리한다.
+	2) 번호는 고유번호와 상관없이 1부터 numbering 리스트되어
+		출력한다.(추후 페이지처리시 기준이 되는 속성)
+	3) 답변글을 레별에 따라서 간격을 처리하여, 하위글임을 표시한다.
+5. 개발순서
+	1) sql 작성
+	2) sql 결과에 따른 vo 속성 추가
+		cnt, level
+	3) mapper에 sql 처리
+	4) 화면단
+		- 번호컬럼 항목을 cnt로 변경, 제목항목은 왼쪽 정렬처리
+		- level 속성으로 반복문을 이용하여 공백간격설정으로
+			계층레벨에 따른 출력 처리..
+# 등록 첨부파일 처리
+1. 프로세스
+	1) 게시판 등록에 파일을 첨부하면, 첨부파일이 추가가 되고,
+	2) 게시물 상세화면에서 다운로드할 수 있다.
+2. 개발순서
+	1) upload view 설정
+	2) 업로드/다운로드 경로 설정
+	3) vo 속성 추가
+		파일업로드를 위하여 MultipartFile[] report설정
+		DB 처리를 위하여 fname 속성 설정
+	3) DB처리(파일정보 저장)
+		DB테이블
+		insert sql
+		
+		
+		dao/mapper
+		
+		INSERT INTO BOARDFILE values(#{no},
+			#{fname},'',#{info}, sysdate,sysdate,'')
+		
+		public int insertBoardFile(BoardFile ins);
+		
+				
+		
+	4) service단 처리
+		파일업로드 경로에 파일업로드 처리
+		업로드된 파일정보 저장 처리..
+	5) 화면단, fileupload를 위해 form 속성
+		<input type="file" 객체 vo의 속성 report로 설정
+# 상세화면에서 첨부파일확인 및 다운로드 처리
+1. 프로세스
+	1) 상세화면 클릭시, 게시물에 대한 정보와 함께 첨부된 파일
+		리스트를 확인할 수 있다.
+	2) 다운로드해서 확인할 파일 클릭시, 다운로드가 되어, 로컬에서
+		확인 및 활용할 수 있다.
+2. 개발 순서
+	1) 다운로드 view 등록 
+	2) 다운로드 controller 추가:파일명으로 다운로드 처리되게 처리 
+	3) DB 처리
+		해당 게시물 번호로 다운로드 할 파일 정보를 가져온다.
+		sql 작성
+		dao/mapper작성
+		public List<String> getFnames(int no);
+	4) service 단에서
+		게시물 상세정보리스트에서 파일정보를 처리할 수 있게
+		Board ==> String fnames[] 추가.
+		파일정보로 fnames 할당.
+	5) 화면단
+		<c:forEach var="fname" items="${fnames}"
+			onclick="download('${fname}') ${fname}
+		function download(fname)
+			location.href="${path}/download?fname="+fname
+		
+# 게시판 페이징 처리
+1. 게시판뿐만 아니라 업무 데이터 리스트는 페이징 처리가 반드시 필요로 한다.
+2. 대량의 데이터를 출력하는 부담과 함께 데이터를 효과적으로 접근하게
+	해주는 것이 페이지 처리라고 할 수 있다.
+3. 페이징 처리는 특정한 데이터 건수를 범위를 지정하여 페이징으로 
+	각, 화면별로 데이터를 나타내기 떄문에 DB부화를 줄여준다.
+4. 기본 알고리즘
+	1) 페이징 처리는 데이터를 한번에 보여줄 건수가 지정되면
+		전체건수/한번에 보여중 데이터 건수로 나누어 페이지가 하단에 나타난다.
+	2) 그럼 만약 한번에 보여줄 데이터 건수가 5건이고, 전체 데이터가
+		100건 이라면 첫번째 페이지는 1~5데이터,
+		두번째 페이지는 6~10번 데이터, 세번째 페이지에서는
+		11~15번 데이터를 화면에 보여주는 로직이다.
+	3) 이를 위해 3번 페이지를 클릭시 , 위에서 필요로 하는 알고리즘을
+		만들어 11~15까지 데이터를 sql로 처리하여 가져오면 된다. 
+	4) 필요로 하는 속성
+		전체데이터 건수
+		한번에 보여줄 데이터 건수
+		전체 페이지수
+		특정페이지가 보여줄 시작번호와 마지막번호.
+5. 주요 기능 처리
+	1) 서비스단에서 요청된 페이지번호에 따라 해당 페이지에서 보여줄
+		데이터 리스트를 전달한다.
+	2) 화면단에서 시작번호에 마지막번호에 해당하는 데이터리스트가
+		출력되고,
+	3) 하단에 좌우화살표와 함께 block 으로 된 페이지 번호가 리스트 된다.
+	4) 이 번호를 클릭시, 원하는 데이터 시작/마지막 번호에 의해 데이터 리스트가 된다.
+6. 개발 순서
+	0) 위 속성에 의해서 조회요청 VO만들기..
+	1) service 화면단에서 요청 처리할 내용/DB로 가져올 내용/화면단에
+		출력할 내용을 구분해서 VO에 설정한다.
+		DB처리 내용
+			전체 데이터 건수 dao/mapper 설정
+				<select id="getTot" parameterType="boardsch">
+					select count(*)
+					from board
+					where 1=1
+					and subject like '%'||#{subject}||'%'
+					and writer like '%'||#{writer}||'%'
+				</select>
+			
+				public int getTot(BoardSch sch);
+				
+			시작번호와 마지막번호를 받은 리스트 데이터
+		화면단 요청처리
+			한 화면에서 한번에 보여줄 데이터 건수
+			클릭한 현재 페이지 번호
+		알고리즘에 의해 처리할 내용
+			전체페이지수:전체데이터/한화면에 보여줄 데이터 건수
+			특정번호 클릭시 시작번호와 마지막번호 
+	2) 화면(jsp)
+		forEach 구문에 의한 데이터리스트
+		하단에 시작 페이지와 마지막 페이지 번호 리스트
+		
+		
+			
+		
+		
+		
+					
+		 
+		
+		
 
 		
+				
+
+			
+	
+
+
+			 		
+		
+		
+	
+
+

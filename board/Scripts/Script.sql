@@ -1,6 +1,4 @@
-CREATE TABLE member01
-AS SELECT * FROM MEMBER02 m;
-SELECT *FROM member01;
+SELECT * FROM MEMBEr01;
 CREATE TABLE board(
 	NO NUMBER PRIMARY KEY,
 	refno NUMBER,
@@ -9,7 +7,7 @@ CREATE TABLE board(
 	writer varchar2(100),
 	readcnt NUMBER,
 	regdte DATE,
-	uptdte DATE
+	uptdte date
 );
 CREATE TABLE boardfile(
 	NO NUMBER,
@@ -21,14 +19,14 @@ CREATE TABLE boardfile(
 	auth varchar2(100)
 );
 CREATE SEQUENCE board_seq;
--- 		페이징 처리를 위한 전체 데이터 건수 기록
-SELECT COUNT(*)
+
+--		페이징 처리를 위한 전체 데이터 건수 가져오기
+SELECT count(*)
 FROM board
+
+
 WHERE subject LIKE '%'||''||'%'
 AND writer LIKE '%'||''||'%';
-
-SELECT * FROM BOARD b ;
-
 --		기본 계층적 조회
 SELECT *
 FROM (
@@ -36,7 +34,7 @@ FROM (
 	FROM board b
 	WHERE subject LIKE '%'||''||'%'
 	AND writer LIKE '%'||''||'%'
-	START WITH refno=0
+	start with refno = 0
 	CONNECT BY PRIOR NO = refno
 	ORDER siblings BY NO DESC )
 WHERE cnt BETWEEN 1 AND 10;
@@ -56,29 +54,79 @@ WHERE id = 'himan'
 AND pass = '7777';
 --		게시물 등록
 SELECT * FROM board;
-INSERT INTO board VALUES(1,0,'첫번째글','내용','himan',0,sysdate,sysdate);
+INSERT INTO board VALUES(1,0,'첫번째글','내용',
+'himan',0, sysdate, sysdate);
 --		게시물 첨부파일 정보 등록
-SELECT * FROM boardfile;
-INSERT INTO boardfile VALUES(1,'a01.txt','','첫번째글',sysdate,sysdate,'관리자');
+SELECT * FROM BOARDFILE;
+INSERT INTO BOARDFILE values(1,'a01.txt','','첫번째글',
+	sysdate,sysdate,'관리자');
+
+
 --		게시물 조회수 수정
-UPDATE board 
-	SET readcnt = readcnt + 1
-where NO = 1;
+UPDATE board
+	SET readcnt = readcnt+1
+WHERE NO = 1;
 --		게시물 수정
 UPDATE board
 	SET subject = '첫번째글수정',
-			content = '내용수정',
-			uptdte = sysdate
+		content = '내용수정',
+		uptdte = sysdate
 WHERE NO = 1;
 --		게시물 첨부파일 정보 수정
 UPDATE boardfile
 	SET fname='a01.txt',
-		   info = '첫번째글',
-		   uptdte = sysdate
-WHERE NO = 1;
+	    info = '첫번째글',
+	    uptdte = sysdate
+WHERE NO = 1;	
+SELECT * FROM boardfile;
 --		게시물 삭제
 DELETE FROM board
 WHERE NO = 0;
---		게시물 첨부파일 정보 삭제
+--		게시물 첨부파일 정보삭제
 DELETE FROM boardfile
 WHERE NO = 0;
+/*
+private int no;
+private int refno;
+private String subject;
+private String content;
+private String writer;
+private int readcnt;
+private Date regdte; 
+private Date uptdte; 
+ **/
+
+   	   select *
+   	   from board
+   	   where subject like '%'||''||'%'
+   	   and writer  like '%'||''||'%';
+
+SELECT * FROM board;
+
+	select rownum cnt, level, b.*
+	from board b
+	where 1=1
+	and subject like '%'||''||'%'
+	and writer like '%'||''||'%'
+	start with refno = 0
+	connect by prior no = refno
+	order siblings by no DESC
+;
+SELECT * FROM boardfile;
+INSERT INTO BOARDFILE values(1,'a01.txt','','첫번째글',
+	sysdate,sysdate,'관리자');
+INSERT INTO BOARDFILE values(#{no},#{fname},'',#{info}
+	sysdate,sysdate,'');
+/*
+private int no;
+private String fname;
+private String directory;
+private String info;
+private Date regdte;
+private Date uptdte;
+private String auth;
+ */
+SELECT * FROM dept;
+
+
+

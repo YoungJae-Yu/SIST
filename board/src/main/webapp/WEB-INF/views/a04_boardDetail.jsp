@@ -60,16 +60,17 @@ body {
 		if(sessId!=$("#writer").val()){
 			$("#uptBtn").hide()
 			$("#delBtn").hide()
-		}		 
+		}	
 		$("#reBtn").click(function(){
-		    if(confirm("답글을 처리하겠습니까?")){
-		       $("#refno").val($("#no").val())
-		       $("#subject").val("RE:"+$("#subject").val())
-		       $("#content").val("\n\n\n\n===이전글===\n"+$("#content").val())
-		       $("form").attr("action", "${path}/boardInsert")
-		       $("form").submit();
-		    }
-		 })
+			if(confirm("답글을 처리하시겠습니까?")){
+				$("#refno").val($("#no").val())
+				$("#subject").val("RE:"+$("#subject").val())
+				$("#content").val("\n\n\n\n"+
+						"=== 이전글 ===\n"+$("#content").val())
+				$("form").attr("action","${path}/boardInsertFrm")
+				$("form").submit()
+			}
+		})
 		$("#uptBtn").click(function(){
 			if(confirm("수정하시겠습니까?")){
 				$("form").attr("action","${path}/boardUpdate");
@@ -83,22 +84,21 @@ body {
 			}
 		})		
 		var msg = "${msg}"
-		if (msg != "") {
-			
-			if(msg.indexOf("수정")!=-1){
-				if (confirm(msg+"\n 조회화면으로 이동 하시겠습니까?")) {
-					location.href = "${path}/boardList"
-				}
-			}
-			
-			if(msg.indexOf("삭제")!=-1){
-				alert(msg+"\n 조회화면으로 이동 합니다.")
+		if(msg.indexOf("수정")!=-1){
+			if (confirm(msg+"\n 조회화면으로 이동 하시겠습니까?")) {
 				location.href = "${path}/boardList"
-			}	
+			}
 		}
+		if(msg.indexOf("삭제")!=-1){
+			alert(msg+"\n 조회화면으로 이동 합니다.")
+			location.href = "${path}/boardList"
+		}	
 		$("#goMain").click(function() {
 			location.href = "${path}/boardList"
 		})
+<%-- 
+		
+		--%>
 	});
 </script>
 </head>
@@ -125,7 +125,7 @@ body {
 							id="no"  required>
 					</div>
 					<div class="col-md-6 mb-3">
-						<label for="refno">답글번호</label> 
+						<label for="refno">상위글번호</label> 
 							<input name="refno" type="text"
 							value="${board.refno}" readonly class="form-control  ckValid"
 							id="refno"  required>		
@@ -177,6 +177,13 @@ body {
 					<div class="invalid-feedback">내용를 입력해주세요.</div>
 				</div>
 				<div class="mb-3">
+					<label for="subject">첨부파일</label> 
+					<c:forEach var="fname" items= "${board.fnames}">
+					   <input onclick="download('${fname}')" type="text" 
+					   value="${fname}" class="form-control">
+					</c:forEach>
+				</div>	
+				<div class="mb-3">
 					<div class="custom-file">
 						<input type="file" name="report" class="custom-file-input"
 							multiple="multiple" id="file01"> <label
@@ -188,6 +195,11 @@ body {
 					$(".custom-file-input").on("change", function() {
 						$(this).next(".custom-file-label").text($(this).val())
 					})
+					function download(fname){
+						if(confirm(fname+" 다운로드 하시겠습니까?")){
+							location.fref="${path}/download?fname="+fname
+						}
+					}
 				</script>
 				<div class="mb-4"></div>
 				<button id="reBtn" class="btn btn-primary btn-lg btn-block"

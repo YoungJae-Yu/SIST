@@ -41,42 +41,35 @@
 				location.href="${path}/logout";
 		})	
 	});
-		function goDetail(no){
-			if(confirm("상세화면이동")){
-				location.href="${path}/boardDetail?no="+no
-			}
-		}
 </script>
 </head>
 
 <body>
 <div class="container">
-<div class="jumbotron text-center">
-  <h2 data-toggle="modal" data-target="#exampleModalCenter"></h2>
-  <h2>답변형 게시판 리스트</h2>
-  <br><br><br>
-  <p align="right">${mem.name}님 로그인 중</p>
-  <p align="right">
-  	<button id="logout" class="btn btn-success" 
-  		type="button">로그아웃</button></p>
-
-</div>
+	<div class="jumbotron text-center" style="padding:35px 5px 0px 5px;">
+	  <h2 data-toggle="modal" data-target="#exampleModalCenter"></h2>
+	  <h2>답변형 게시판</h2><br>
+	  <p align="right">${mem.name}님 로그인 중
+	  					<button id="logout" class="btn btn-primary" 
+	  					type="button">로그아웃</button></p>
+	
+	</div>
 
 	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input name="subject" class="form-control mr-sm-2" placeholder="제목" />
+	    <input name="subject" value="${param.subject}" class="form-control mr-sm-2" placeholder="제목" />
 	    
-	    <input name="writer" class="form-control mr-sm-2" placeholder="내용" />
-	    <button class="btn btn-info" type="submit">Search</button>
-	    <button  class="btn btn-success" id="regBtn" type="button">등록화면</button>
+	    <input name="writer" value="${param.writer}"  class="form-control mr-sm-2" placeholder="내용" />
+	    <button class="btn btn-info  mr-sm-2" type="submit">Search</button>
+	    <button  class="btn btn-success  mr-sm-2" id="regBtn" type="button">등록화면</button>
  	</nav>
 	</form>
 	<script type="text/javascript">
 		$("#regBtn").click(function(){
-			if(confirm("등록화면 이동합니다.")){
-				location.href="${path}/boardInsert"
+			//if(confirm("등록화면 이동합니다.")){
+			location.href="${path}/boardInsertFrm"
 				
-			}
+			//}
 		})
 	</script>
    <table class="table table-hover table-striped">
@@ -86,7 +79,6 @@
    	<col width="15%">
    	<col width="10%">
     <thead>
-    
       <tr class="table-success text-center">
         <th>번호</th>
         <th>제목</th>
@@ -95,46 +87,33 @@
         <th>조회수</th>
       </tr>
     </thead>	
-    <tbody>
+    <tbody><!-- 10:05~ -->
     	<c:forEach var="board" items="${boardList}">
-    	<tr onclick="goDetail(${board.no})"><td>${board.no}</td>
-    		<td>${board.subject}</td>
+    	<tr ondblclick="detail(${board.no})">
+    		<td>${board.cnt}</td>
+    		<td class="text-left">
+    			<c:if test="${board.level>1}">
+    				<c:forEach begin="2" 
+    				    end="${board.level}">
+    					&nbsp;&nbsp;&nbsp;
+    				</c:forEach>
+    			</c:if>
+    		
+    		
+    			${board.subject}</td>
     		<td>${board.writer }</td>
     		<td><fmt:formatDate value="${board.regdte}"/></td>
     		<td>${board.readcnt}</td></tr>
     	</c:forEach>
-    	
     </tbody>
-	</table>    
-    
-</div>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">타이틀</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-		<form id="frm02" class="form"  method="post">
-	     <div class="row">
-	      <div class="col">
-	        <input type="text" class="form-control" placeholder="사원명 입력" name="ename">
-	      </div>
-	      <div class="col">
-	        <input type="text" class="form-control" placeholder="직책명 입력" name="job">
-	      </div>
-	     </div>
-	    </form> 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
+	</table>     
+	<script type="text/javascript">
+		function detail(no){
+			//if(confirm("상세화면이동")){
+			location.href="${path}/boardDetail?no="+no
+			//}
+		}
+	</script>   
 </div>
 </body>
 </html>
