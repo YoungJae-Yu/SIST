@@ -45,12 +45,15 @@
 1. 사용할 data json형식을 확인하여, DB 테이블 구성
    groupId: 999,
    title: '긴일정',
-   start: '2023-08-07',
-   end: '2023-08-10'
+   start: '2023-08-07', 시작일/시간
+   end: '2023-08-10' 종료일/시간
+   borderColor: 테두리색상(X)
+   backgroundColor: 배경색상
+   textColor: 글자색상
+   allDay 종일여부
+   content: 내용 - 추가 속성...
+   
    url: 'http://google.com/',
-
-
-
 		- 사용할 주요 sql 작성
 			전체 리스트
 			등록 
@@ -59,6 +62,44 @@
 		- VO 작성 : 리스트, 등록, 수정, 삭제 시 사용되는 데이터를
 			바탕으로 VO 클래스 선언
 		- dao/mapper 선언	
+2. controller를 통해 
+	1) 기본 json데이터 list 출력 처리
+# front단 처리(js 기능 이벤트 핸들러/ajax 처리)
+1. 등록 시
+	1) 모달창을 통해
+		일정#
+		시작일#
+		종료일#
+		내용
+		배경색상#
+		글자색상#
+		종일여부#
+		입력되게 처리(#-내부API에서 있는 내용)
+		입력 후, AJAX로 controller 호출
+		dao/mapper/service 처리
+
+2. 특정일정 클릭 시, 상세내용 확인
+	1) 수정 시
+	2) 삭제 시
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
