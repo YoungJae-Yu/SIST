@@ -43,7 +43,19 @@
       	<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
       </context:component-scan>
       <bean class="backendWeb.a01_dao.A04_PreparedDao"/>
-      
+      <!-- 
+      1. java로 핸들러 클래스가 가능하게 mapping/adapter 선언.
+       -->
+      <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+      <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+      <mvc:default-servlet-handler/>
+		<!-- 
+		2. java핸들러 클래스 선언 및 client에서 호출 url지정..
+		-->    
+		<websocket:handlers>
+			<websocket:mapping handler="chatHandler" path="/chat-ws.do"/>
+		</websocket:handlers>
+
     	<context:property-placeholder 
 		location="classpath:resource/a01_config,classpath:resource/a02_config"/>
 		<!-- container안에서도 접근, java소스로도 접근 가능.. key/val -->

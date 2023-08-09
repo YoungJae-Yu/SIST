@@ -44,15 +44,16 @@
 # backend단 처리(DB처리)
 1. 사용할 data json형식을 확인하여, DB 테이블 구성
    groupId: 999,
+   id: 일정고유내용..
    title: '긴일정',
    start: '2023-08-07', 시작일/시간
    end: '2023-08-10' 종료일/시간
    borderColor: 테두리색상(X)
-   backgroundColor: 배경색상
+   #backgroundColor: 배경색상(X)
    textColor: 글자색상
    allDay 종일여부
+   writer : 작성 - 추가 속성
    content: 내용 - 추가 속성...
-   
    url: 'http://google.com/',
 		- 사용할 주요 sql 작성
 			전체 리스트
@@ -82,11 +83,39 @@
 	1) 수정 시
 	2) 삭제 시
 	
+# 등록처리
+1. 기본 title 및 버튼 정리
+	1) 타이틀 : 일정등록
+	2) button은 등록버튼과 close버튼만 보이게 처리
+2. 등록시, 매개변수로 가져오는 기본 데이터 확인 및 화면에 출력 처리..
+3. 데이터 입력에 대한 vo로 할당될 수 있게 name="속성" 처리
+4. 등록버튼 클릭시, ajax 처리..
 	
-	
-	
-	
-	
+
+# 수정/삭제
+1. DB 처리
+	1) sql
+		update calendar
+			set title=#{title},
+				  start1=#{start},
+				  end1=#{end},
+				  writer=#{writer},
+				  content=#{content},
+				  backgroundColor=#{backgroundColor},
+				  textColor=#{textColor},
+				  allDay=#{allDay},
+				  url=#{urlLink}
+		where id=#{id}
+		
+		delete from calendar where id=#{id}
+	2) vo
+	3) dao
+		public int uptCalendar(Calendar upt);	
+		public int delCalendar(int id);
+	4) controller
+		calendarUpdate.do
+		calendarDelete.do
+		
 	
 	
 	
