@@ -550,13 +550,134 @@
 		forEach 구문에 의한 데이터리스트
 		하단에 시작 페이지와 마지막 페이지 번호 리스트
 		
+# 페이지 처리
+1. SERVICE단
+
+	1)	전체 데이터 건수
+		sch.setCount(dao.getTot(sch));
+	2)	한페이지에 보여줄 데이터 건수
+		// 초기데이터로 요청값이 없더라도 5건수 보이게 처리
+		if(sch.getPageSize()==0) sch.setPageSize(5);
+    3)  총페이지수 count/pageSize
+		/*
+		한번에 보여줄 데이터 건수가 5
+		총데이터 20건  ==> 4
+		총데이터 23건  ==> 5
+		20/5 ==> 4.0
+		22/5 ==> 4.2
+		 * 
+		 * */
+		// sch.getCount()/sch.getPageSize()
+		// 정수/정수*1.0
+		// 정수/(double)정수
+		// Math.ceil(정수/(double)정수)
+		int pageCnt = (int)Math.ceil(sch.getCount()/(double)sch.getPageSize());
+		sch.setPageCount(pageCnt);
 		
-			
+		
+	4) 클릭한 현재 페이지 번호
+		현재페이지번호는 화면단에서 요청값으로 전달.
+		초기에는 0이므로 첫페이지번호인 1로 설정.
+		if( sch.getCurPage()==0 ) sch.setCurPage(1);
+	5) 시작번호와 마지막 번호
+		하단에 [1]을 클릭시, 나타날 데이터
+		1 시작번호
+		2
+		3
+		4
+		5 마지막번호
+		[1][2][3][4][5]	
+		6
+		7
+		8
+		9
+		10
+		[1][2][3][4][5]
+		
+		[3] 11 12 13 14 15
+		[4] 16 17 18 19 20
+		[5] 21 22 23 
+		시작번호
+		1 6 11 16 21
+		==> (현재클릭한페이지번호-1 * 한페이지당데이터 건수) +1
+		==> (현재클릭한번호 * 한번에보일페이지 수)-
+				(한페이지당데이터 건수-1)
+		마지막번호
+		5 10 15 20 21
+			현재클릭한번호 * 한번에보일페이지수
+		한번에 보여줄 데이터가 3건, 페이지별로 	
+		시작번호:1 5 7 10 13
+		마지막번호:3 6 9 12 15	
 		
 		
+	private int start; // 현재 페이지 시작번호
+	
+		sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1)
+	private int end;	// 현재 페이지 마지막번호
+	마지막번호 : 현재클릭한번호 * 한번에보일페이지 수..
+		sch.setEnd(sch.getCurPage()*sch.getPageSize())
 		
-					
-		 
+//		//3.페이징블럭처리2단계
+//		private int blockSize; // 한번에 보여줄 block의 크기
+//		private int startBlock;	// block시작번호
+//		private int endBlock; // block마지막번호
+
+
+2. 화면단
+	1) 요청값처리 : 
+		한번에보일데이터건수 - pageSize
+			<input type="hidden"name="pageSize" value="5">
+		클릭한현재페이지번호 - curPage
+			<input type="hidden"name="curPage" value="1">
+	2) 하단에 리스트할 페이지 리스트
+		pageCount
+		
+	3) 이벤트 처리 함수
+		function goPage(page){
+			$("[name=curPage]").val(page)
+		}						
+		<c:forEach var="cnt" begin="1" 
+			end="${sch.pageCount}">
+			<span onclick="goPage(${cnt})">[${cnt}]
+		
+# 하단 페이징 블럭 처리
+1. 나열된 페이지 리스트가 데이터 건수가 많을 때, 적절한 범위내에서
+	블력을 처리하여 이전/이후로 이동하여 많은 페이지가 리스트 되지
+	않더라도 효과적으로 페이지 처리하는 것을 말한다.
+2 기본 처리 내용
+	1) 페이지번호 앞/뒤에 이전/이후가 있어서, 지정된 페이지 블럭의
+	범위가 넓을 때, 다음 페이지 번호가 나오게 하는 것을 말한다.
+	2) 블럭의 크기가 5정도일 때
+	3) 즉, 첫번째 블럭
+		이전 [1][2][3][4][5] 이후
+	4) 이후를 클릭시 두번째 블럭
+		이전 [6][7][8][9][10] 이후
+	5) 다시 이후를 클릭시 세번째 블럭
+		이전 [11][12][13][14][15] 이후
+	6) 이전 클릭시, 두번째 블럭이 출력되는 형태이다..
+		이전 [6][7][8][9][10] 이후
+3. 개발 내용
+	1) service단 
+		블럭사이즈 : 5
+		현재블럭번호? 클릭한 현재페이지를 기준으로 로직에 의해
+			블럭번호가 도출.. 
+			1  2  3  4  5 ==> 1		올림처리(현재번호/블럭사이즈)
+			6  7  8  9  10 ==> 2
+			11 12 13 14 15 ==> 3
+		
+		블럭 번호에 따라서 나타날 블럭시작번호/블럭마지막번호
+		vo 설정 및 처리 ==> 위 페이지 start/end와 비슷
+	2) 화면단(jsp)
+		<c:forEach begin="${sch.startBlock}"
+						end="${sch.endBlock}"
+		이전 클릭시 : onclick = "goPage(${sch.startBlock-1})"
+		이후 클릭시 : onclick = "goPage(${sch.endBlock+1})"
+
+
+
+
+
+			 
 		
 		
 

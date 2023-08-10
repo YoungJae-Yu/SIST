@@ -13,6 +13,8 @@ import com.web.board.vo.Member;
 public interface BoardDao {
 	public int getTot(BoardSch sch);
 	
+	
+	
 	public List<Board> boardList(BoardSch sch);
 	public Member login(Member mem);
 	public int getNo();

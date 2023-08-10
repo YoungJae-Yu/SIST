@@ -13,14 +13,17 @@
 
 	<select id="boardList" resultType="board" 
 		parameterType="boardsch">
-		select rownum cnt, level, b.*
-		from board b
-		where 1=1
-		and subject like '%'||#{subject}||'%'
-		and writer like '%'||#{writer}||'%'
-		start with refno = 0
-		connect by prior no = refno
-		order siblings by no DESC		
+		select *
+		from(
+			select rownum cnt, level, b.*
+			from board b
+			where 1=1
+			and subject like '%'||#{subject}||'%'
+			and writer like '%'||#{writer}||'%'
+			start with refno = 0
+			connect by prior no = refno
+			order siblings by no DESC )
+		where cnt between #{start} and #{end}	
 	</select>
 	<!-- 
 	public Member login(Member mem);

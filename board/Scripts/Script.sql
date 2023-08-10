@@ -128,5 +128,16 @@ private String auth;
  */
 SELECT * FROM dept;
 
+select *
+from(
+	select rownum cnt, level, b.*
+	from board b
+	where 1=1
+	and subject like '%'||''||'%'
+	and writer like '%'||''||'%'
+	start with refno = 0
+	connect by prior no = refno
+	order siblings by no DESC )
+WHERE cnt between 1 and 5;
 
 

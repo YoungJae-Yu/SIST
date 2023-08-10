@@ -50,6 +50,4 @@ public class A01_Controller {
 		d.addAttribute("empList", service.empList(sch));
 		return "a01_exp/a06_empList";
 	}
-	
-	
 }

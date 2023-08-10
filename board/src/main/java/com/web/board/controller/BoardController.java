@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,7 @@ public class BoardController {
 	private BoardService service;
 	// http://localhost:5050/boardList
 	@RequestMapping("boardList")
-	public String boardList(BoardSch sch, Model d) {
+	public String boardList(@ModelAttribute("sch") BoardSch sch, Model d) {
 		d.addAttribute("boardList", service.boardList(sch));
 		return "a01_boardList";
 	}
@@ -89,12 +90,12 @@ public class BoardController {
 		d.addAttribute("msg", service.deleteBoard(no));
 		return "a04_boardDetail"; 
 	}	
-	// download.do?fname=파일명
+	// download.do?fname="+
 	@RequestMapping("download.do")
-	public String download(@RequestParam("fname") String fname, Model d) {
-		d.addAttribute("downloadFile",fname);
-		System.out.println("호출!!");
+	public String download(@RequestParam("fname") 
+			String fname, Model d) {
+		d.addAttribute("downloadFile", fname);
+		System.out.println("호출!!!!");
 		return "downloadViewer";
-	}
-	
+	}	
 }

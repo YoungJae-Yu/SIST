@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+    <div id="chat">
+        <ul id="messages"></ul>
+        <input id="messageInput" autocomplete="off">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <script>
+        var socket = new SockJS('/chat');
+        var stompClient = Stomp.over(socket);
+
+        stompClient.connect({}, function () {
+            stompClient.subscribe('/topic/messages', function (message) {
+                var msg = message.body;
+                var messages = document.getElementById('messages');
+                var li = document.createElement('li');
+                li.appendChild(document.createTextNode(msg));
+                messages.appendChild(li);
+            });
+        });
+
+        function sendMessage() {
+            var message = document.getElementById('messageInput').value;
+            stompClient.send("/app/send", {}, message);
+            document.getElementById('messageInput').value = '';
+        }
+    </script>
+</body>
+</html>
