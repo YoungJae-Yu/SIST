@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/springweb/a00_com/bootstrap.min.css" >
+<style>
+	td{text-align:center;}
+</style>
+<script src="/springweb/a00_com/jquery.min.js"></script>
+<script src="/springweb/a00_com/bootstrap.min.js"></script>
+<script src="/springweb/a00_com/vue.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var vm = new Vue({
+			el:".container",
+			data:{msg:"css를 객체로 처리",
+						cssOb:{
+							bc:"yellow",
+							bd:"solid 1px gray",
+							w:200,
+							h:100
+						},
+						cssOb2:{
+							bc:"red",
+							bd:"solid 1px black",
+							w:100,
+							h:200
+						}
+					}
+		})
+		// ex) h3하단에 모델에 cssObj로 선언한 css속성
+		//		글자색, 글자크기, 배경색상을 선언하고,
+		// 		style로 inline으로 모델로 지정한 속성을 호출하세요..
+	});
+</script>
+</head>
+<body>
+
+<div class="container">
+	<div class="jumbotron text-center">
+	  <h2 :style="{backgroundColor:cssOb.bc,
+	  		border:cssOb.bd,
+	  		width:cssOb.w+'px',
+	  		heigth:cssOb.h+'px'
+	  		}">{{msg}}</h2>
+	  	<h3 :style="{backgroundColor:cssOb2.bc,
+	  		border:cssOb2.bd,
+	  		width:cssOb2.w+'px',
+	  		heigth:cssOb2.h+'px'
+	  		}">{{msg}}</h3>
+	</div>
+	<form id="frm01" class="form-inline"  method="post">
+  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	    <input class="form-control mr-sm-2" placeholder="제목" />
+	    <input class="form-control mr-sm-2" placeholder="내용" />
+	    <button class="btn btn-info" type="submit">Search</button>
+ 	</nav>
+	</form>
+   <table class="table table-hover table-striped">
+   	<col width="10%">
+   	<col width="50%">
+   	<col width="15%">
+   	<col width="15%">
+   	<col width="10%">
+    <thead>
+    
+      <tr class="table-success text-center">
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회</th>
+      </tr>
+    </thead>	
+    <tbody>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+	</table>       
+</div>
+</body>
+</html>

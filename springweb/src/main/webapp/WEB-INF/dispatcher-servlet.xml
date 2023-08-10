@@ -137,7 +137,23 @@
 	
 	return "WEB-INF\\views\\...\\...jsp";
 	-->
-	
+	<!-- 
+	1. 다국어 코드 등록을 위한 설정 위치 지정
+	 -->
+	 <bean id="messageSource" 
+	 	class="org.springframework.context.support.ResourceBundleMessageSource">
+	 	<property name="basenames">
+	 		<list>
+	 			<value>message.msg</value>
+	 			<!-- 패키지명 기준으로 message패키지의 msg 파일 설정 -->
+	 		</list>
+	 	</property>
+	 </bean>
+	 <!-- 2. 언어 변환 처리를 위한 객체 등록 -->
+	 <bean id="LocaleResolver" 
+	 	class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+	 
+	 </bean>
 	
 </beans>   
 
