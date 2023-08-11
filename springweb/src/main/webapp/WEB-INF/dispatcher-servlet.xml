@@ -46,8 +46,6 @@
       <!-- 
       1. java로 핸들러 클래스가 가능하게 mapping/adapter 선언.
        -->
-      <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
-      <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
       <mvc:default-servlet-handler/>
 		<!-- 
 		2. java핸들러 클래스 선언 및 client에서 호출 url지정..

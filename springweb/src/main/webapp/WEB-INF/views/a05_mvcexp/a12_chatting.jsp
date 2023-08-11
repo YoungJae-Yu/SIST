@@ -30,13 +30,21 @@
 	type="text/javascript"></script>
 
 <script type="text/javascript">
-	 window.addEventListener("resize",function(){
-		 $("#chatMessageArea>div").width(
-				 $("#chatArea").width()-20)
-	 })
+	window.addEventListener("resize",function(){
+		$("#chatMessageArea>div").width(
+				$("#chatArea").width()-20)
+	})
+	
+
 	// 소켓서버접속 변수
 	var wsocket;
+	// 접속한사용자 변수
+	var members = []
 	$(document).ready(function() {
+		
+		
+		$("#msg").attr("readOnly",true)
+		//alert("접속 활성화")
 		
 		$("#id").focus() // 화면 로딩시 아이디를 입력하게..
 		// 아이디를 입력하면 enter입력시 접속/접속시는 
@@ -50,10 +58,11 @@
 			}
 			
 		})
+		conUsers();
+		
 		$("#enterBtn").click(function(){
 			if(conn()){
 				$("#id").attr("readOnly",true)
-				$("#msg").focus()
 			}
 		})
 		$("#msg").keyup(function(){
@@ -65,6 +74,29 @@
 		$("#sndBtn").click(function(){
 			sendMsg();
 		})
+		$("#exitBtn").click(function(){
+			if($("#id").val()!=""){
+				if(confirm("접속을 종료하겠습니까?")){
+					// 
+					//alert("종료처리 프로세스진행..~~")
+					wsocket.send($("#id").val()+":연결을 종료하였습니다.")
+					wsocket.close() // afterConnectionClosed 핸들러에 연동
+					// 대화내용 삭제
+					$("#chatMessageArea").text("")
+					// 등록자 아이디 내용 삭제
+					$("#id").val("").focus()
+					// 등록자 아이디 활성화
+					$("#id").attr("readOnly",false)
+					// 접속종료시 msg 부분 비활성화
+					$("#msg").attr("readOnly",true)
+					
+					
+					
+				}
+			}else{
+				alert("접속되지 않았습니다!")
+			}
+		})
 	});
 	// <!-- msg  sndBtn-->
 	// 메시지 전송 함수..
@@ -73,48 +105,71 @@
 		$("#msg").val("").focus()
 	}	
 	function conn(){
+
 		var idVal = $("#id").val()
-		if(idVal==""){
-			alert("접속할 아이디를 입력하세요")
+		if(idVal.length<5 || idVal.length >12 ){
+			alert("접속할 아이디는 5~12 입력하여야 합니다.")
 			return false
+		}else{
+			var isNotValid=false;
+			$(members).each(function(idx, mem){
+				console.log(idVal+":"+mem)
+				if(idVal==mem){
+					isNotValid=true;
+				}
+			})
+			if(isNotValid){
+				alert("동일한 접속자 아이디가 있습니다.")
+				$("#id").val("").focus()
+				return false;
+			}
+			if(confirm(idVal+"님 채팅방 접속합니다")){
+				$("#msg").attr("readOnly",false)
+				wsocket = new WebSocket(
+						"ws:localhost:8080/${path}/chat-ws.do")
+				// 서버의 접속 핸들러 처리하는 메서드..
+				wsocket.onopen = function(evt){
+					console.log(evt)
+					// 서버의 메시지 핸들러 메서드 호출..
+	
+					wsocket.send(idVal+":접속하셨습니다.");
+					
+					
+				}
+				// 서버에서 오는 메시지 받는 처리
+				wsocket.onmessage=function(evt){
+					// evt.data : 서버에서 오는 메시지는 메시지 창에서 
+					// 출력 처리..
+					revMsg(evt.data)
+					
+				}
+				return true;
+			}	
 		}
-		if(confirm(idVal+"님 채팅방 접속합니다")){
-			wsocket = new WebSocket(
-					"ws:192.168.0.79:7080/${path}/chat-ws.do")
-			// 서버의 접속 핸들러 처리하는 메서드..
-			wsocket.onopen = function(evt){
-				console.log(evt)
-				// 서버의 메시지 핸들러 메서드 호출..
-				wsocket.send(idVal+"님 접속하셨습니다.");
-				
-			}
-			// 서버에서 오는 메시지 받는 처리
-			wsocket.onmessage=function(evt){
-				// evt.data : 서버에서 오는 메시지는 메시지 창에서 
-				// 출력 처리..
-				revMsg(evt.data)
-				
-			}
-			return true;
-		}		
 	}
+	
 	var mx = 0
 	function revMsg(msg){
 		// 보내는 메시지는 오른쪽
-		// 받는 메시지는 왼쪽 정렬 처리..
+		// 받는 메시지 왼쪽 정렬 처리..
 		// 사용자아이디:메시지내용
 		var alignOpt = "left"
 		var msgArr = msg.split(":")
 		var sndId = msgArr[0]
-		if($("#id").val()==sndId){
-			alignOpt = "right"			
+		if(msgArr[1]=="접속하셨습니다."||
+		   msgArr[1]=="연결을 종료하였습니다."		
+		   ){
+			conUsers();
 		}
-		
-		
+	
+		if($("#id").val()==sndId){
+			alignOpt = "right"
+			msg =msgArr[1]
+		}
 		// 메시지 객체 생성..
 		var msgObj = $("<div></div>"
 				).text(msg).attr("align",alignOpt
-				).css("width",$("#chatArea").width()-20)
+				).css("width",$("#chatArea").width())
 				
 		$("#chatMessageArea").append(msgObj)
 		// 스크롤링 처리
@@ -125,11 +180,34 @@
 		mx+=height+20
 		$("#chatArea").scrollTop(mx)
 	}
+	function conUsers(){
+		// 접속자들 ajax로 확인
+		$.ajax({
+			url:"${path}/getChatMem.do",
+			dataType:"json",
+			success:function(mlist){
+				console.log(mlist)
+				members = mlist
+				var add=""
+				mlist.forEach(function(member){
+					console.log(member)
+					add+="<button class='btn btn-outline-primary'>"+
+							member+"</button>"
+				})
+				$(".chatGroup").html(add)
+				
+				
+			},
+			error:function(err){
+				console.log(err)
+			}
+		})
+	}
 </script>
 </head>
 <body>
 	<div class="jumbotron text-center" style="padding: 35px 5px 10px 5px;">
-		<h2>웹 소켓을 통한 채팅(영재)</h2>
+		<h2>웹 소켙을 통한 채팅</h2>
 	</div>
 	<div class="container">
 		<div class="input-group mb-3">	
@@ -141,6 +219,15 @@
 			<input id="enterBtn" value="채팅방입장"  type="button" class="btn btn-info" />
 			<input id="exitBtn" value="채팅방나가기"  type="button" class="btn btn-success" />
 		</div>	
+		<div class="input-group mb-3">	
+			<div class="input-group-prepend ">
+				<span class="input-group-text  justify-content-center">접속자</span>
+			</div>
+			<div class="input-group-append chatGroup">
+				
+			</div>
+		</div>		
+		
 		<div class="input-group mb-3">	
 			<div class="input-group-prepend ">
 				<span class="input-group-text  justify-content-center">메시지</span>
