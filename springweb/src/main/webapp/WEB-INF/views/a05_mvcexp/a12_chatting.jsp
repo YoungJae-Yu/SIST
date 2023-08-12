@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css">
 <style type="text/css">
 	.input-group-text{width:100%;background-color:linen;
-		color:black;font-weight:bolder;}
+		color:black;font-weight:bolder;} 
 	.input-group-prepend{width:20%;}
 	#chatArea{
 		width:80%;height:200px;overflow-y:auto;text-align:left;
