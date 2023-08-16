@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<body>
+	<div id="show">
+		<h2 align="center">{{msg}}</h2>
+		<p align="center">
+		물건명:<input v-model="pname"/><br>
+		가격:<input v-model="price"/><br>
+		갯수:<input v-model="cnt"/><br>
+		</p>
+		<p v-show="pname!=''" align="center" v-html="showAll"></p>
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"computed 속성", pname:"",price:0,cnt:0},
+		computed:{
+			showAll:function(){
+				var show ="<h3 align='center'>구매정보</h3>물건명:"+this.pname
+				+", 가격:"+this.price+","
+				show+=", 갯수:"+this.cnt+", 총계"+(this.price*this.cnt)+""
+				return show;
+			}
+		}
+	});
+</script>
+</html>

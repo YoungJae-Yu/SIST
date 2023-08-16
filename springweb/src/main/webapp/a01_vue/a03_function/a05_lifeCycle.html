@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<body>
+	<div id="show">
+		<h2 align="center">{{msg}}</h2>
+		<p v-if="!gameOver">맞출 숫자를 1~100까지 임의로 입력:</p>
+		<input v-model.number="userGuess" 
+			v-if="!gameOver" type="number">
+		<button @click="checkGuess" v-if="!gameOver">
+			확인</button>
+		<p v-if="gameOver">게임이 종료되었습니다.!!
+			정답번호는 {{correctNumber}}</p>	
+		<h3>{{hitMsg}}</h3>
+		
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"숫자 맞추기 게임(라이프사이클)",
+			userGuess:"",
+			correctNumber:Math.floor(Math.random()*100)+1,
+			gameOver:false,
+			hitMsg:""
+		},
+		methods:{
+			checkGuess:function(){
+				if(this.userGuess == this.correctNumber){
+					this.gameOver = true
+					this.hitMsg="정답!! ^^"
+				}
+				if(this.userGuess > this.correctNumber){
+					this.hitMsg="입력값이 보다 크네요"
+				}
+				if(this.userGuess < this.correctNumber){
+					this.hitMsg="입력값이 보다 작습니다"
+				}
+			}
+		},
+		created:function(){ // 생성될 때..
+			console.log("생성될 때 ; 사용자의 추측:"+this.userGuess)
+		},
+		beforedUpdate:function(){
+			console.log("수정직전 때 ; 사용자의 추측:"+this.userGuess)
+		},
+		updated:function(){
+			console.log("수정되었을 때 ; 사용자의 추측:"+this.userGuess)
+		},
+		destory:function(){
+			console.log("사라질 때 destory")
+		}
+	});
+	/*
+	ex) 위 내용 기준으로 홀짝 게임을 만들어 보세요.
+	created 를 이용해서 화면이 로딩될 때, 메시지(모델데이터) 
+		홀짝게임 시작입니다. 출력,  초기 랜덤 변수 선언(구슬의 갯수1~6)
+	updated를 상대팀이 입력한 구슬의 갯수를 출력 정답/오답표시
+		버튼을 클릭하지 않더라도 처리가능..
+	
+	
+	*/
+	
+	
+	/*
+# 뷰에서 지원하는 라이프사이클 관련 메서드
+1. vue에서는 컴포넌트의 생성, 업데이터 및 소멸과 같은 단계를
+	나타내는 중요개념인 라이프사이클이라는 개념이 있고,
+	이 라이프사이클 관련하여 메서드를 지원하고 있다.
+	
+	
+	*/
+</script>
+</html>

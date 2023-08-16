@@ -60,8 +60,8 @@ public class ChatHandler extends TextWebSocketHandler{
 		//  3 : 딸기
 		//  2 : 오렌지
 		
+		// 전역변수에, web socket session 고유 id와 함께 접속자 등록.
 		if(msgArry[1].trim().equals("접속하셨습니다.")) {
-			// 전역변수에, web socket session 고유 id와 함께 접속자 등록.
 			ids.put(session.getId(), msgArry[0]);
 		}	
 		System.out.println(session.getId()+"님이 보낸메시지:"+message.getPayload());

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	td{txt-align:center;}
+	.score{border:solid 1px black;}
+	.warning{background-color:orange;color:purple;}
+	.warnimage{width:18px;height:18px;top:5px;
+		position:relative;}
+	
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<body>
+	<div id="show">
+	
+		<h2 align="center">{{msg}}</h2>
+		<p align="center">
+	    <input
+	    	v-model.number="score" 
+	    	v-bind:class="info" 
+	    	placeholder="점수를 입력(1~100까지 입력)" />
+	    	 <!--info: {warning:true} -->
+	    <img src="images/error.png" 
+	    	class="warnimage" v-show="info.warning"/><br>
+	    <h5 align="center">{{errMsg}}</h5>
+	    </p>			
+	</div>
+</body>
+<script>
+var vm = new Vue({
+	el:"#show",
+	data:{msg:"입력에 따른 클래스 적용", score:0,errMsg:''},
+	computed:{
+		info:function(){
+			// 특정 클래스가 적용되지 않음
+			// this.score : 모델데이터 접근
+			var warn = true
+			this.errMsg="입력 정상범위는 숫자로 1~100입니다."
+			if(this.score>=1 && this.score<=100){
+				this.errMsg="정상입력입니다."
+				warn = false
+			}
+			console.log({warning:warn})
+			
+			return {warning:warn}
+		}
+	}
+})
+</script>
+</html>

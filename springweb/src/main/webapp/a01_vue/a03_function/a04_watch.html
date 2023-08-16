@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<body>
+	<div id="show">
+		<h2 align="center">{{msg}}</h2>
+		<p align="center">
+   <input type="number" v-model="krw" placeholder="KRW" />원<br>
+    USD: {{ usd }}달러<br>   
+    JPY: {{ jpy }}엔<br></p>		
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"환율계산",
+			krw: 0,
+	        usd: 0,
+	        jpy: 0
+	      },
+	    watch: {
+	       krw: function(newVal) {
+	          const usdExRate = 0.00075; // 예: 1 KRW = 0.00075 USD
+	          const jpyExRate = 0.10870; // 예: 1 KRW = 0.10870 JPY
+	          this.usd = newVal * usdExRate;
+	          this.jpy = newVal * jpyExRate;
+	      }
+	    }
+	});
+</script>
+</html>

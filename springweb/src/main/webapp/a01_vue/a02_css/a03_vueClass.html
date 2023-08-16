@@ -26,16 +26,64 @@
 	$(document).ready(function(){
 		var vm = new Vue({
 			el:".container",
-			data:{msg:"method 처리"}
+			data:{msg:"클래스 처리", ck01:"",ck02:"",
+					ck1:"",	
+					ck2:"",	
+					ck3:""
+			}
 		})
 	});
 </script>
 </head>
 <body>
-
+<style>
+	.cls01{color:red;}
+	.cls02{background-color:yellow;}
+	
+</style>
 <div class="container">
 	<div class="jumbotron text-center">
 	  <h2 >{{msg}}</h2>
+	  <h3 class="cls01 cls02">일반 css 클래스 처리</h3>
+	  <h3 :class="{cls01:true,cls02:true}">vue에서 css 클래스 처리</h3>
+	  <h3 :class="{cls01:true,cls02:false}">vue에서 css 클래스 처리</h3>
+	  <h3 :class="{cls01:ck01,cls02:ck02}">vue에서 css 클래스 처리(v-model로 연동)</h3>
+	글자색상:<select v-model="ck01">
+					<option value="true">적용</option>
+					<option value="">미적용</option>
+				</select><br>
+	배경색상:<select v-model="ck02">
+					<option value="true">적용</option>
+					<option value="">미적용</option>
+				</select><br>
+	<!--  date:{msg:"클래스 처리", ck01:"", ck02:""} -->	
+	<!-- ex) 클래스1 보더굵기/색상/타입 -->		
+	<!-- ex) 클래스2 보더굵기/색상/타입 글자크기 -->		
+	<!-- ex) 클래스3 보더굵기/색상/타입 글자색상 -->		
+	<!-- 위 select 옵션으로 클래스1, 클래스2, 클래스3 적용유무로
+		선택하여 처리하게 하세요. -->
+<style>
+	.cls1{border:solid 1px;}
+	.cls2{border-color:red;font-size:20px;}
+	.cls3{border-width:5px;color:red;}
+</style>
+	  <h3 :class="{cls1:ck1}">테두리 적용 cls1 예제</h3>
+	  <h3 :class="{cls2:ck2}">테두리 적용 cls2 예제</h3>
+	  <h3 :class="{cls3:ck3}">테두리 적용 cls3 예제</h3>
+	태두리스타일:<select v-model="ck1">
+					<option value="true">적용</option>
+					<option value="">미적용</option>
+				</select><br>
+	테두리색상:<select v-model="ck2">
+					<option value="true">적용</option>
+					<option value="">미적용</option>
+				</select><br>
+	테두리굵기:<select v-model="ck3">
+					<option value="true">적용</option>
+					<option value="">미적용</option>
+				</select><br>
+		
+	
 	</div>
 	<form id="frm01" class="form-inline"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">

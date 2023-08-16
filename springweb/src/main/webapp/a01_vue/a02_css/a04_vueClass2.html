@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/springweb/a00_com/bootstrap.min.css" >
+<style>
+	.td{text-align:center;}
+	.tr{background-color:aqua;color:purple;}
+	.th{border:sandybrown dashed 1px;}
+	
+	.set1{background-color:aqua;color:purple;}
+	.set2{text-align:center;width:120px;}
+	.set3{border:sandybrown dashed 1px;}
+</style>
+<script src="/springweb/a00_com/jquery.min.js"></script>
+<script src="/springweb/a00_com/bootstrap.min.js"></script>
+<script src="/springweb/a00_com/vue.js"></script>
+<script type="text/javascript">
+/*
+# 클래스 객체로 적용하기
+1. vue는 클래스와 클래스 적용여부를 모두다 선언하고,
+2. 양방향 처리를 통해서 클래스의 적용여부를 처리할 수 있다.
+3. checkbox의 체크 여부를 통한 예제 처리
+	1) 클래스 선언
+	2) 모델데이터 선언
+	3) 화면단에 선언 : 대상 요소, 양방향 input 데이터 v-model 처리
+	
+ */
+	$(document).ready(function(){
+		var vm = new Vue({
+			el:".container",
+			data:{msg:"객체 클래스 선언",
+				mystyle:{set1:false,set2:false,set3:false},
+				myTable:{td:false,tr:false,th:false}
+			}
+		})
+	});
+	/*
+	ex) 테이블 관련 속성을 클래스 3개로 선언하고, 모델 데이터로
+	 		myTable로 클래스 3개의 적용여부 선언
+	 		클래스를 대상 객체로 지정하여
+	 		checkbox의 선택여부에 따라 클래스 3개의 속성 적용여부를
+	 		처리하세요...
+	*/
+</script>
+</head>
+<body>
+
+<div class="container">
+	<div class="jumbotron text-center">
+	  <h2 >{{msg}}</h2>
+	  <button v-bind:class="mystyle">버튼1</button>
+	  <p>
+	  	<input type="checkbox" v-model="mystyle.set1" value="true">set1클래스 적용
+	  	<input type="checkbox" v-model="mystyle.set2" value="true">set2클래스 적용
+	  	<input type="checkbox" v-model="mystyle.set3" value="true">set3클래스 적용
+	  </p>
+	</div>
+	<form id="frm01" class="form-inline"  method="post">
+  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	    <input class="form-control mr-sm-2" placeholder="제목" />
+	    <input class="form-control mr-sm-2" placeholder="내용" />
+	    <button class="btn btn-info" type="submit">Search</button>
+ 	</nav>
+	</form>
+	  	<input type="checkbox" v-model="myTable.td" value="true">td적용
+	  	<input type="checkbox" v-model="myTable.tr" value="true">tr적용
+	  	<input type="checkbox" v-model="myTable.th" value="true">th적용
+   <table class="table table-hover table-striped" v-bind:class="myTable">
+   	<col width="10%">
+   	<col width="50%">
+   	<col width="15%">
+   	<col width="15%">
+   	<col width="10%">
+    <thead>
+    
+      <tr class="table-success text-center" >
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회</th>
+      </tr>
+    </thead>	
+    <tbody>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+	</table>       
+</div>
+</body>
+</html>

@@ -48,8 +48,39 @@
 	3) 화면단 처리
 		- 접속자 리스트 나올 수 있는 항목 추가..
 		- 초기 항목에 할당 list를 ajax로 가져오게 처리..
+# 현재 채팅자 처리
+1. 처리 프로세스
+	1) 화면로딩 시, 현재 채팅서버에 접속자를 확인 할 수 있다.
+	2) 채팅 접속시,  현재 채팅서버 접속자 아이디와 같은 이름을 접속 불가능 유효성 처리
+	
+2. 	기능별 처리 내용 
+	1) 핸들러(ChatHandler.java)
+		채팅자 정보를 socket고유 id, 접속자 아이디를 key/value형식의
+		map Field 선언(Map<String, String> ids)
+		
+		메시지를 받았을 때, 처리하는 메서드에서 id와 접속자아이디를 추가입력처리
+			접속자아이디명:전송할메시지 서버단에 전송..
+			msgArry {접속자아이디명,전송할메시지}
+		if(msgArry[1].trim().equals("접속하셨습니다."))
+			ids.put(session.getId(), msgArry[0]);
 			
-			
+		접속 종료시는 삭제 처리 : ids.remove(session.getId())
+		
+		현재접속자 아이디들을 Map ==> List<String>형식을 변환하여
+		가지고 잇는 메서드 선언..
+		public List<String> getIds()
+				
+	2) 화면단(a12_chatting.jsp)
+		접속자아이디명:전송할메시지	서버단에 전송..
+		1) 접속자 리스트 표현
+			ajax로 controller를 통해 가져와서 화면에 출력..
+			- 초기
+		
+	3) 컨트롤단(실시간 채팅인원 가져오기 - A09_ChattingController.java)		
+		getChatMem.do
+			핸들러에 있는 public List<String> getIds()를
+			호출해서, 화면단에서 ajax를 접속자 리스트를
+			호출했을 때, 리스트 배열형식으로 전달..
 			
 			
 			

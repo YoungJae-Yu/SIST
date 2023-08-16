@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.isPass{background-color:yellow;}
+	.isNotPass{background-color:red;}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<body>
+	<div id="show">
+		<h2 align="center">{{msg}}</h2>
+		<h3 align="center" :class="ckscore">{{msg2}}</h3>
+		<p align="center">
+			<input type="text" v-model="score" />
+		</p>
+		
+	</div>
+</body>
+<script>
+/*
+// ex) a06_vueClassExp.html
+//     점수를 입력해서 70이상이면 합격 그 이하면 불합격 표시를 하되
+//     msg가 표시하는 곳에 배경색상이 노랑색/빨강색으로 배경이 처리되게
+//     하세요..
+//     1. 클래스정의
+//     2. Vue객체 정의 모델 및 computed 속성 
+//     3. 화면 처리.. 
+		<h3 :class="ckscore">{{msg2}}</h3>
+		<input type="text" v-model="score" />
+ */
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"입력값 클래스 적용!!", msg2:"", score:0},
+		computed:{
+			ckscore:function(){
+				this.msg2="불합격입니다."
+				// 클래스명1:true, 클래스명2:false
+				// 클래스1은 적용, 클래스2는 미적용
+				var result = {isPass:false,isNotPass:true}
+				if(this.score>=70){
+					this.msg2="합격입니다."
+						result = {isPass:true,isNotPass:false}
+				}
+				return result;
+			}
+		}
+	});
+</script>
+</html>
