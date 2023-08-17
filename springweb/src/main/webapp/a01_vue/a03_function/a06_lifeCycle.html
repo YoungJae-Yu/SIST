@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<body>
+	<div id="show">
+		<h2>{{msg}}</h2>
+		<h3>{{shMsg}}</h3>
+		<select v-model="choice" >
+			<option value="">홀/짝 선택</option>
+			<option value="1">홀</option>
+			<option value="0">짝</option>
+		</select>
+		<h4 v-show="endGame">게임이 종료 되었습니다!</h4>
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"구슬 게임", shMsg:"", cnt:0, choice:"",
+							endGame:false},
+		created:function(){
+			this.shMsg = "홀짝게임 시작입니다!!(선택하세요)"
+			this.cnt=Math.floor(Math.random()*6)+1
+		},
+		updated:function(){
+			if(this.cnt%2==1&&this.choice==1){
+				this.shMsg = "승! 홀이네요! 구슬의 갯수:"+this.cnt
+				this.endGame = true
+			}else if(this.cnt%2==0&&this.choice==0){
+				this.shMsg = "승! 짝이네요! 구슬의 갯수:"+this.cnt
+				this.endGame = true
+			}else{
+				this.shMsg = "패! 다시 하세요"
+			}
+			console.log("출력메시지:"+this.shMsg)
+			console.log("종료여부:"+this.endGame)
+			console.log("임의index:"+this.cnt%2)
+			console.log("선택index:"+this.choice)
+		}
+	});
+</script>
+</html>
