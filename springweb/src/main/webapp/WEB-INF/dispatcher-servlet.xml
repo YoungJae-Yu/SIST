@@ -31,155 +31,138 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd   
       ">
-      <!-- 
-      @Controller/@Service/@Repository 클래스 ==> 객체
-      A04_PreparedDao ==> 클래스
-      컨테이너(메모리 수영장)
-      empList01.do 위 객체들의 메서드중에 찾기 시작.
-       -->
       <context:component-scan base-package="springweb">
-      	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-      	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-      	<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+         <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
       </context:component-scan>
-      <bean class="backendWeb.a01_dao.A04_PreparedDao"/>
-      <!-- 
-      1. java로 핸들러 클래스가 가능하게 mapping/adapter 선언.
+ 
+      <!-- # 웹소켓 통신을 위한 선언 
+      1. java로 핸들러 클라스가 가능하게 mapper/adapter 선언
        -->
       <mvc:default-servlet-handler/>
-		<!-- 
-		2. java핸들러 클래스 선언 및 client에서 호출 url지정..
-		-->    
-		<websocket:handlers>
-			<websocket:mapping handler="chatHandler" path="/chat-ws.do"/>
-		</websocket:handlers>
+         <!-- 
+         2. java핸들러 클래스 선언 및 client에서 호출 url 지정..
+          -->
+      <websocket:handlers>
+         <websocket:mapping handler="chatHandler"
+            path="/chat-ws.do"/>
+      </websocket:handlers>
+      
+      <context:property-placeholder 
+      location="classpath:resource/a01_config,classpath:resource/a02_config"/>
+      
+      <!-- container안에서도 접근, java소스로도 접근 가능.. key/val -->
+      
+      
+      <bean class="backendWeb.a01_dao.A04_PreparedDao"></bean>
+      <!-- 
+      # DB연결
+      1. DBCP(Database Connection Pool)을 이용해서 DB연결 처리 ..  
+         destroy-method="close" 종료시 bean객체에서 사용하는
+         메서드 정의  
+       -->
+       <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+       destroy-method="close">     
+       <property name="driverClassName"
+             value="oracle.jdbc.driver.OracleDriver"/>
+          <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+          <property name="username" value="scott"/>        
+          <property name="password" value="tiger"/>        
+       </bean>
+     <!-- 
+     # mybatis 연동처리...
+     1. 위 연결 정보 설정
+     2. mybatis 공통 xml 연동 처리
+     3. mybatis를 통해 만들어질 실제 객체가 바라보는
+        dao interface위치설정    
+        1) 여러 패키지에 있는 dao를 호출하려면 아래와같이 설정한다.
+            value="패키지1명; 패키지2명" 
+      -->
+     <bean id="sqlSessionFactory" 
+     class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation"
+           value="classpath:resource/mybatis.Spring.xml"/>
+     </bean>
+     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+      <property name="basePackage" value="springweb.a05_mvcexp.a03_dao"/>
+   </bean>
+   <!-- 
+   # jsp뷰가 default인데, 이 뷰뿐만 아니라 선언된 뷰를 사용할려면 
+   두가지 뷰가 특정 규칙에 의해서 우선 순위가 설정이 되어야 한다.
+   1. 우선 jsp뷰를 제외한 bean으로 선언할 뷰 
+   2. 두번째 우선순위로 jsp 뷰 선언..
+    -->
+    <bean id="btnViewResolver"
+       class ="org.springframework.web.servlet.view.BeanNameViewResolver">
+       <property name="order" value="0"></property>   
+    </bean>
+    
+    
+    
+    
+    
+    <!-- 추가되는 뷰가 적기 때문에 우선순위를 지정. 
+       return "파일업로드 view" ==> container에서 명식적으로 선언하여 
+          처리하는 뷰 
+    -->
+    <!-- 파일업로드 뷰 추가... 
+    컨트롤러에 요청값으로 MultiPartFile이 파일업로드 객체로 사용할 수 있게 해준다. -->
+    <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    </bean>
+    <!-- json 뷰 추가 -->
+    <bean id="jsonView"
+       class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+       <property name="contentType" value="text/html;charset=utf-8"/>       
+    </bean> 
 
-    	<context:property-placeholder 
-		location="classpath:resource/a01_config,classpath:resource/a02_config"/>
-		<!-- container안에서도 접근, java소스로도 접근 가능.. key/val -->
-	<!-- 
-	# DB연결처리
-	1. DBCP(Database Connection Pool)을 이용해서 DB연결 처리..
-		 	destroy-method="close" 종료시 bean객체에서 사용하는
-		 	
-		 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" 
-			value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="${jdbc.url}"/>
-		<property name="username" value="${jdbc.user}"/>	
-		<property name="password" value="${jdbc.pass}"/>	
-	</bean> 
-	<!--
-	# mybatis연동처리..
-	1. 위 연결 정보 설정
-	2. mybatis 공통 xml 연동 처리
-	3. mybatis 를 통해 만들어질 실제 객체가 바라보는 
-		dao interface위치 설정
-		1) 여러 패키지에 있는 dao를 호출하려면 아래와 같이 설정한다.
-			value = "패키지1명;패키지2명"
-	 -->
-	<bean id="sqlSessionFactory" 
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation" 
-			value="classpath:resource/mybatis.Spring.xml"/>	
-	</bean> 
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" 
-			value="springweb.a05_mvcexp.a03_dao"/>
-	</bean>
-	<!-- 
-	# jsp뷰 default인데, 이 뷰뿐만 아니라 선언된 뷰를 사용하려면
-	두가지 뷰가 특정 규칙에 의해서 우선 순위가 설정이 되어야 한다. 
-	1. 우선 jsp뷰를 제외한 bean으로 선언할 뷰
-	2. 두번째 우선순위로 jsp뷰 선언..
-	
-	ex) 파랑구슬(2), 빨강구슬(8)
-	 -->
-	<bean id="btnViewResolver" 
-	class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<property name="order" value="0"/>
-	</bean>
-	<!--  추가되는 뷰가 적기 때문에 우선순위를 지정. 
-	return "파일업로드 view" ==> container에서 명시적으로 선언하여 
-		처리하는 뷰
-	-->
-	<!-- 파일업로드 뷰 추가.. 
-	컨트롤러에 요청값으로 MultipartFile이 파일업로드 객체로 사용할 수 있게 해준다 -->
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
-	
-	<!-- json 뷰 추가 -->
-	<bean id="jsonView"
-		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
-		<property name="contentType" value="text/html;charset=utf-8"></property>
-	</bean>
-	<!-- 
-		@Component("이름")
-		@Bean("이름")
-		로 클래스를 선언하여 컨테이너 등록도 가능하다.
-		1. 일반적으로 사용자 정의 클래스의 경우 클래스의 선언과
-			함께 위 형식으로 등록하고
-		2. framwork(lib의 jar)에 있는 객체인 경우 컨테이너에서
-			선언하여 등록한다.
-		ex) 뷰리졸버를 호출할 때, 컨트롤러의 메서드 마지막에
-			return "뷰"를 형식으로 지정할 수 있다.
-	 -->
-	
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="1"/>
-	</bean>	 
-	<!-- 그 외는 화면을 처리하는 viewer(jsp)로 우선순위를 뒤로 지정 
-	
-	return "WEB-INF\\views\\...\\...jsp";
-	-->
-	<!-- 
-	1. 다국어 코드 등록을 위한 설정 위치 지정
-	 -->
-	 <bean id="messageSource" 
-	 	class="org.springframework.context.support.ResourceBundleMessageSource">
-	 	<property name="basenames">
-	 		<list>
-	 			<value>message.msg</value>
-	 			<!-- 패키지명 기준으로 message패키지의 msg 파일 설정 -->
-	 		</list>
-	 	</property>
-	 </bean>
-	 <!-- 2. 언어 변환 처리를 위한 객체 등록 -->
-	 <bean id="LocaleResolver" 
-	 	class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-	 
-	 </bean>
-	
-</beans>   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       <property name="order" value="1"></property>
+    </bean>
+    <!--그 외는 화면을 처리하는 viewer(jsp)로 우선순위를 뒤로 지정
+    return"WEB-INF\\views\\a05_mvcexp\\a02_memberList.jsp";
+     -->
+     <!-- 
+     1. 다국어 코드 등록을 위한 설정 위치 지정     
+      -->
+      <bean id="messageSource" 
+            class="org.springframework.context.support.ResourceBundleMessageSource">
+               <property name="basenames">
+               <list>
+                  <value>message.msg</value>
+                  <!-- 패키지명 기준으로 message패키지의 msg파일 설정 -->
+               </list>
+               </property>
+      </bean>
+     <!-- 
+     2. 언어 변환 처리를 위한 객체 등록
+      -->
+     <bean id="localeResolver" 
+        class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
+     <!-- 
+     # 메일 발송 서버접속 객체 선언
+      --> 
+     <bean id="mailSender" class=
+   "org.springframework.mail.javamail.JavaMailSenderImpl">
+   		<property name="host" value="smtp.gmail.com"/>
+   		<property name="port" value="587"/>
+   		<property name="username" value="ssangyoung5555@gmail.com"/>
+   		<property name="password" value="vytxyzxlmyldjkst"/>
+   		<property name="javaMailProperties">
+   			<props>
+   				<prop key="mail.smtp.starttls.enable">true</prop>
+   				<prop key="mail.smtp.auth">true</prop>
+   				<prop key="mail.transport.protocol">smtp</prop>
+   				<prop key="mail.debug">true</prop>
+   				<prop key="mail.smtp.ssl.true">smtp.gmail.com</prop>
+   				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+   			</props>
+   		</property>	
+   	
+     </bean> 
+      
+    
+</beans>      

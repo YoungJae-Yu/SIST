@@ -197,9 +197,62 @@ vi webapps/manager/META-INF/context.xml
 :wq
 종료
 vi context.xml
-# 관리자 메뉴를 통한 프로젝트 빌드하기.
-1. ec2 서버 톰켓 관지라 권한 변경
+# 관리자 메뉴를 통한 프로젝트 빌드 하기.
+1. ec2 서버 톰캣 관리자 권한 변경
+	1) vi conf/tomcat-users.xml
+	2) <role rolename="manager-gui"/>
+	   <user username="admin" password="admin" 
+	   		roles="manager-gui"/>
+	3) esc :명령모드
+	   :wq 저장후 종료
+	4) cd bin
+	   ./shutdown.sh
+	   ./startup.sh
+	5) 톰캣화면에 Manager App로 들어가서 admin/admin으로 
+		들어가는지 확인한다.
+putty 다운로드 미치 설치
+파일질라 다운로드 및 설치..
 
 heidiSQL 다운로드 및 설치..
-파일질라 다운로드 및 설치
+
+# 외부 툴을 이용해서 AWS 서버 접속 및 파일업로드/다운로드 처리
+1. putty : telnet서비스를 지원하는 툴.
+	원격으로 aws서버에 접속해서 명령 처리를 할 수 있다.
+	session
+		host: 
+		ec2-user@ec2-54-180-150-56.ap-northeast-2.compute.amazonaws.com
+		계정@사이트주소
+	Connection
+		SSH
+			Auth
+				Credential
+					private key file for authentication
+					브라우저에 보안키 선택
+					
+	비번은 보안키로 접속(보안키 저장 위치 확인)	
+	
+2. 파일질라 : sftp를 통해서 원격 aws 서버에 접속해서 파일을 업로드
+	다운로드 처리할 수 있다.
+	파일==>사이트관리자
+	프로토콜 : sftp
+	호스트 : ec2-54-180-150-56.ap-northeast-2.compute.amazonaws.com
+	사용자 : ec2-user
+	키파일 : ec2에서 발급받은 보안 ppk 파일
+	접속
+	파일 업로드/다운로드 연습.
+	
+
+# 스프링 부트 프로젝트 로딩 하기.
+1. 스프링 부트 프로젝트를 생성하여, jar파일로 필드한 후.
+2. local에서 실행해서 확인 후,
+3. 파일질라를 통해서 @@.jar를 파일을 통해서 원격으로 접속해서 파일업로드
+	후, 실행. 외부에서 확인하기..
+	
+	
+
+
+
+
+
+
 
