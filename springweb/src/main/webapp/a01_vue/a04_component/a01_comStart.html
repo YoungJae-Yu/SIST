@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<body>
+	<div id="show">
+		<h2 align="center">{{msg}}</h2>
+		<hello-comp></hello-comp>
+		<person></person>
+		<person-var></person-var>
+		<product></product>
+	</div>
+</body>
+<!-- 
+	1. 템플릿선언, id값을 Vue.component에 활용
+		템플릿에서 사용할 모델데이터 directive형식으로 선언.
+		{{}}
+	2. 컴포넌트
+		Vue.component("컴포넌트명", ==> 화면 호출할 내용, 주의(대문자사용)
+			{속성들..}
+		속성 : template:"선택자규칙#템플릿명",
+		data:function(){
+			return {} : 컴포넌트안에서 사용할 모델데이터 선언
+				주의) Vue와 달리 function 속성 : 속성값 형식으로 사용된다.
+		}
+	3. 화면단 호출
+		<컴포넌트명></컴포넌트명>
+	ex) 컴포넌트명 product, template 명 tmpproduct
+			컴포넌트모델데이터 물건명/가격/갯수 선언
+ -->
+<template id="temp01">
+	<div>
+		<h1>컴포넌트 변수 사용</h1>
+		<h2>{{name}}</h2>
+		<h2>{{age}}</h2>
+		<h2>{{loc}}</h2>
+	</div>
+</template>
+<template id="tmpproduct">
+	<div>
+		<h1>물건 정보(예제)</h1>
+		<h2>{{pname}}</h2>
+		<h2>{{price}}</h2>
+		<h2>{{cnt}}</h2>
+	</div>
+</template>
+<script>
+	// 컴포넌트 1단계
+	Vue.component("hello-comp", {template:"<div>안녕하세요 컴포넌트1단계</div>"})
+	Vue.component("person", {template:"<div><h1>유영재</h1><h1>만25세</h1><h1>서울</h1></div>"})
+	Vue.component("person-var", {
+			template:"#temp01",
+			data:function(){
+				return {name:"홍길동", age:25, loc:"서울"}
+			}
+		})
+	Vue.component("product", {
+			template:"#tmpproduct",
+			data:function(){
+				return {pname:"바나나", price:2500, cnt:5}
+			}
+		})
+	// ex) 템플릿으로 <div>안에 h1이름, 나이, 사는 곳을 선언하여
+	// 		person 이라는 컴포넌트명으로 출력하세요
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"컴포넌트 시작!!"}
+	});
+	/*
+	#컴포넌트란?
+	1. VUE  컴포넌트는 작고 독립적인 코드 블럭을 조합하여, 효율적으로 화면을
+	구성하는것을 말한다. 레고 블럭을 조립하듯 컴포넌트를 조직하여 화면 구성을 효율적으로 할 수 있다.
+	2. 컴포넌트는 조합하여 전체 애플리케이션을 작성할 수 있다.
+	3. 컴포넌트간의 데이터는 1단계로 계층형으로
+		1) props속성을 통해 부모 컴포넌트는 자식 컴포넌트에 데이터를 전달한다.
+		2) event속성을 통해 이벤트와 이벤트에서 발생한 데이터를 자식 컴포넌트에서
+			부모 컴포넌트로 전달한다.
+	4. 컴포넌트의 기본 형식
+		1) Vue.component("요소이름정의",{속성1:속성값,})
+	*/
+</script>
+</html>
