@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<template id="rainbowTmp">
+	<h2  align="center" :style="{backgroundColor:color}">{{color}}</h2>
+</template>
+<template id="memberTmp">
+	<h3 align="center">등록한 이름은 {{name}} 입니다.</h3>
+</template>
+<script type="text/javascript">
+	Vue.component("rainbow",{
+		template:"#rainbowTmp",
+		props:['color']
+	})
+	Vue.component("person",{
+		template:"#memberTmp",
+		props:['name']
+	})
+	// ex) <person name="홍길동"></person>
+	// ex) <person name="김길동"></person>
+	//     ==> h3로 등록한 이름은 @@@ 입니다. 표현되게 처리..
+</script>
+<body>
+	<div id="show">
+		<h2 align="center">{{msg}}</h2>
+		<person v-for="name in names" :name="name"></person>
+		<!-- 
+		v-for="(단위데이터, index) in 배열모델데이터"
+		v-bind:속성="모델데이터"
+		:속성="모델데이터"
+		 -->
+		<rainbow v-for="color in colors" 
+					:color="color"></rainbow>
+	</div>
+</body>
+<script>
+/*
+cf) 컴포넌트는 Vue를 최상위로 하여 하위 계층구조로 Component를
+	선언하여 사용할 수 있다.
+	그래서, 상위에 있는 Vue의 모델 데이터를 이용해서 컴포넌트는 
+	반복문 또는 조건문에서도 활용할 수 있다.
+
+ */
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"컴포넌트의 속성전달 props!!",
+			  colors:["red",'orange','yellow','green',
+					'blue','navy','purple'],
+			  names:['홍길동','김길동','신길동','오길동','마길동']
+		}
+		
+	});
+</script>
+</html>

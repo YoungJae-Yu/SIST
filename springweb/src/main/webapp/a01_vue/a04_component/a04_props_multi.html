@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+<template id="personTmp">
+	<!-- 주의 컴포넌트는 최상위가 하나의 요소객체로 되어 있어야 한다. 
+		아래 h2, h3, h3 요소태그는 최상위인 div로 묶어주어야 한다.
+	-->
+	<div>
+		<h2 align="center">{{name}} 정보</h2>
+		<h3 align="center">나이:{{age}}</h3>
+		<h3 align="center">사는곳:{{loc}}</h3>
+	</div>
+</template>
+<template id="buyTmp">
+	<div>
+		<h2 align="center">{{name}} 구매 정보</h2>
+		<h3 align="center">단가:{{price}} 원</h3>
+		<h3 align="center">구매갯수:{{cnt}} EA</h3>
+		<h3 align="center">총비용:{{price*cnt}} 원</h3>
+	</div>
+</template>
+<script type="text/javascript">
+	Vue.component("product",{
+		template:"#buyTmp",
+		props:{
+			name:{type:String},
+			price:{type:Number},
+			cnt:{type:Number}
+		}
+	})
+	Vue.component("person",{
+		template:"#personTmp",
+		props:{
+			name:{type:String},
+			age:{type:Number},
+			loc:{type:String}
+		}
+	})
+</script>
+</head>
+<body>
+	<div id="show">
+		<h2 align="center">{{msg}}</h2>
+		<person name="홍길동" age="25" loc="서울"></person>
+		<person name="김길동" age="27" loc="부산"></person>
+		<person name="신길동" age="28" loc="제중"></person>
+		<product name="사과" price="2000" cnt="5"></product>
+		<product name="바나나" price="4000" cnt="3"></product>
+		<product name="딸기" price="12000" cnt="2"></product>
+	</div>
+	<!-- 
+	ex) product로 물건 구매 정보에 대하여 물건명 가격 갯수 총계
+		가 출력되게 처리하세요. 
+	 -->
+</body>
+<script>
+/*
+# 컴포넌트의 2가지 이상 속성을 type에 따라 전달 하기..
+1. <person name="홍길동" age="25" loc="서울"></person>
+	과 같이 2가지 이상의 속성을 지정할 때, props 속성을 정의 하는
+	방법을 말한다.
+2. 기본형식
+	props:{ 속성1명:{type:전달할 데이터 유형},
+		    속성2명:{type:전달할 데이터 유형},
+		    속성3명:{type:전달할 데이터 유형},
+          }
+3. 처리 순서
+	1) body의 컴포넌트 예제 
+		<person name="홍길동" age="25" loc="서울"></person>
+	2) template 선언
+		<div>
+			<h2 align="center">{{name}} 정보</h2>
+			<h3 align="center">나이:{{age}}</h3>
+			<h3 align="center">사는곳:{{loc}}</h3>
+		</div>
+	3) component
+		Vue.component("person",{
+			template:"#personTmp",
+			props:{
+				name:{type:String},
+				age:{type:Number},
+				loc:{type:String}
+			}
+		})
+ */
+
+
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"데이터유형에 따라 두가지 이상의 속성 설정 컴포넌트"}
+	});
+</script>
+</html>

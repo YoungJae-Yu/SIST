@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<template id="rainbowTmp">
+	<h2 :style="{backgroundColor:color}">{{color}}</h2>
+</template>
+<template id="memberTmp">
+	<h3 align="center">등록한 이름은 {{name}}입니다.</h3>
+</template>
+<script type="text/javascript">
+	Vue.component("rainbow",{
+		template:"#rainbowTmp",
+		props:['color']
+	})
+	Vue.component("person",{
+		template:"#memberTmp",
+		props:['name']
+	})
+	// ex) <person name="홍길동"></person>
+	//     ==> h3로 등록한 이름은 @@@ 입니다. 표현되게 처리..
+</script>
+<body>
+	<div id="show">
+		<h2 align="center">{{msg}}</h2>
+		<rainbow color="red"></rainbow>
+		<rainbow color="orange"></rainbow>
+		<rainbow color="yellow"></rainbow>
+		<rainbow color="green"></rainbow>
+		<rainbow color="blue"></rainbow>
+		<rainbow color="navy"></rainbow>
+		<rainbow color="purple"></rainbow>
+		<person name="김길동"></person>
+		<person name="홍길동"></person>
+		<person name="신길동"></person>
+	</div>
+</body>
+<script>
+	
+
+
+/*
+# 컴포넌트의 다양한 속성을 통해 다른 데이터 처리
+1. 컴포넌트의 동일한 컴포넌트이지만, 다른 데이터를 통해서
+	출력하는 것을 처리할 수 있는 데, 이것을 props라는 속성을
+	통해서 가능하다.
+2. 기본 형식
+	1) 컴포넌트 속성
+	prop:['속성명']
+	2) 화면단처리
+		<컴포넌트명 속성명="전달데이터"
+	3) 템플릿트
+		{{속성명}}
+		각 화면별로 전달된 속성명에의해 directive형식으로
+		출력할 수 있다.
+3. 처리 순서
+	1) 구현할 내용  선언
+		<rainbow color="red"></rainbow>
+		<rainbow color="orange"></rainbow>
+		<rainbow color="yello"></rainbow>
+		속성에 따른 색테이프만들기(h2)
+	2) template
+		<h2 :style="{backgroundColor:color}">{{color}}</h2> 
+			==> color : 전달해온 속성을 지정
+	3) component 선언
+		Vue.component("rainbow",{
+			template:"#rainbowTmp",
+			props:['color']
+		})
+cf) 컴포넌트는 Vue를 최상위로 하여 하위 계층구조로 Component를
+	선언하여 사용할 수 있다.
+	그래서, 상위에 있는 Vue의 모델 데이터를 이용해서 컴포넌트는
+	반복문 또는 조건문에서도 활용할 수 있다.
+
+ */
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"컴포넌트의 속성전달 props!!"}
+	});
+</script>
+</html>
