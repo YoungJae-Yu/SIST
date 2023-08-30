@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<template id="schformtmp">
+	<form>
+		이름:<input type="text" v-model="name" size="10"/>
+	</form>
+</template>
+<template id="listtmp">
+	<table border>
+		<tr><th>사원번호</th><th>사원명</th><th>부서번호</th></tr>
+		<tr v-for="emp in list" >
+			<td>{{emp.empno}}</td>
+			<td>{{emp.ename}}</td>
+			<td>{{emp.deptno}}</td>
+		</tr>
+	</table>
+</template>
+
+
+<script type="text/javascript">
+	Vue.component("schformcomp",{
+		template:"#schformtmp",
+		props:['name']
+	})
+	Vue.component("listcomp",{
+		template:"#listtmp",
+		props:{
+			list:{type:Array}
+		}
+	})
+</script>
+<template id="schlisttmp">
+	<div>
+		<schformcomp :name = "sch"></schformcomp>
+		<listcomp :list = "datalist"></listcomp>
+	</div>
+</template>
+
+<script type="text/javascript">
+	Vue.component("schlistcomp",{
+		template:"#schlisttmp",
+		props:{
+			sch:{type:String},
+			datalist:{type:Array}
+		}
+	})
+</script>
+<body>
+	<div id="show">
+		<h2>{{msg}}</h2>
+		<schlistcomp :sch="name" :datalist="list" ></schlistcomp>
+		<!-- list와 name은 vue에 가져온 데이터
+			 sch, datalist : 컴포넌트의 props로 사용할 속성
+		 -->
+	</div>
+</body>
+<script>
+/*
+# 여러가지 속성의 유형
+1. 상위 컴포넌트의 속성으로 하위에 있는 template에 데이터 전송할 때,
+	여러가지 유형으로 다중의 데이터를 전달 할 수 있다.
+2. props:{
+	  속성:{type:유형,default:속성없을때, 기본데이터}
+   }
+3. type으로 설정 가능한 유형들
+	1) String : 문자열 데이터
+	2) Number : 숫자형 데이터
+	3) Array : 배열형 데이터
+		ex) 객체형 배열의 list로 데이터를 넘길 때, 주로 활용된다.
+4. 처리 구조
+	1) 최상위 Vue, 모델데이터 - 데이터 list, 검색하는 데이터 name
+	2) 차상위
+		schlistcomp : 컴포넌트명
+			<schlistcomp :datalist="list" :sch="name">
+		schlisttmp : 템플릿트명
+	3) 하위 
+		- schformcomp : 검색하는 컴포넌트
+			<schformcomp :sch="name"></schformcomp>
+		  schformtmp : 검색하는 템플릿
+		  props:['sch']
+		- listcomp : 데이터리스트 컴포넌트
+			<listcomp :list = "list"></listcomp>
+		  listtmp : 데이터리스트 템플릿
+		  props:{
+			  list:{type:Array}
+		  }
+		  	
+		  
+		
+
+ */
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"계층구조컴포넌트!",name:'홍길동',
+			  list:[
+				  {empno:7788,ename:"홍길동",deptno:10},
+				  {empno:7789,ename:"김길동",deptno:20},
+				  {empno:7790,ename:"신길동",deptno:30}
+			  ]}
+	});
+</script>
+</html>

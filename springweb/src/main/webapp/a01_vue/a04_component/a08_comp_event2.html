@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+<template id="buy-tmp1">
+	<div>
+		<input v-model="name" 
+			@keyup.13="clickEvent" /><button v-on:click="clickEvent">구매</button>
+	</div>
+</template>
+<template id="buy-tmp2">
+	<div>
+	   물건명:<input v-model="nameVal" /> 
+	   가격:<input v-model="priceVal"  /> 
+	   <button v-on:click="buying">구매</button></h2>
+	</div>
+</template>
+<script type="text/javascript">
+Vue.component("product1",{
+	template:"#buy-tmp1",
+	data:function(){
+		return {name:""}
+	},
+	methods:{
+		clickEvent:function(){
+			this.$emit("btnclick", this.name);
+			this.name=""
+		}
+	}
+});
+Vue.component("product2",{
+	template:"#buy-tmp2",
+	props:['name','price'],
+	data:function(){
+		return {nameVal:this.name,priceVal:this.price}
+	},
+	methods:{
+		buying:function(){
+			this.$emit("buyclick", this.nameVal, this.priceVal);
+		}
+	}
+});	
+</script>
+</head>
+<body>
+	<div id="show">
+		<h2>{{msg}}</h2>
+ 		<h3>구매물건들1:{{name}}</h3>
+ 		<product1 @btnclick="parentClick"></product1>
+		<h3>구매물건들2:{{pnames}}</h3>	
+		<h3>총계:{{tot}}</h3>	
+ 		<product2 v-for="prod in plist" 
+ 			:name="prod.name" :price="prod.price" 
+			@buyclick="calClick"></product2> 				
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"구매처리!!",
+			  name:"",
+			  pnames:"",
+			  tot:0,
+			  plist:[
+					{name:"사과",price:2000},
+					{name:"바나나",price:4000},
+					{name:"딸기",price:12000}
+			  ]
+		},
+		methods:{
+			parentClick:function(param1){
+				this.name += param1+" ";
+				
+			},
+			calClick:function(name, price){
+				this.pnames+=name+" "	
+				this.tot+=Number(price)	
+			}			
+		}
+	});
+</script>
+</html>

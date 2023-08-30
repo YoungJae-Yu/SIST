@@ -20,7 +20,29 @@ public class ChatHandler extends TextWebSocketHandler{
 	// socket server에서 제공하는 고유 id : 0, 1,2,....a,b...
 	// 입력한 himan 같이 저장...
 	private Map<String, String> ids = new ConcurrentHashMap();
-
+	private List<String> chIds= new ArrayList<String>();
+	public String setMembers(List<String> members) {
+		// String[]  List<String>
+		//System.out.println("크기:"+members.size());
+		//System.out.println("# 클라이언트에서 온 대화자 #");
+		//for(String m:members) {
+		//	System.out.println(m+",");
+		//}
+		System.out.println("=================");
+		chIds = new ArrayList<String>();
+		for(String key:ids.keySet()) {
+			String val = ids.get(key);
+			for(String mem:members) {
+				
+				//System.out.println(mem+":"+val);
+				if(val.equals(mem)) {
+					System.out.println("!!!메시지 보낼 key:"+key+":"+val);
+					chIds.add(key);
+				}
+			}
+		}
+		return "접속자:"+chIds.size();
+	}
 	// 접속시
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -29,6 +51,7 @@ public class ChatHandler extends TextWebSocketHandler{
 		System.out.println(session.getId()+"님 접속했습니다.");
 		// 접속한 사용자 id와 session을 누적해서 추가 처리.
 		users.put(session.getId(),session);
+		chIds.add(session.getId());
 	}
 	// 메시지 전달(특정한 접속자가 보낸 메시지를 socket서버에 접속한 
 	// 모든 사용자에게 전송)
@@ -59,14 +82,23 @@ public class ChatHandler extends TextWebSocketHandler{
 		//  2 : 바나나 (x)
 		//  3 : 딸기
 		//  2 : 오렌지
-		
-		// 전역변수에, web socket session 고유 id와 함께 접속자 등록.
+		// 
 		if(msgArry[1].trim().equals("접속하셨습니다.")) {
+			// 전역변수에, web socket session 고유 id와 함께 접속자 등록.
 			ids.put(session.getId(), msgArry[0]);
+			System.out.println("현재 접속자수:"+getIds().size());
 		}	
 		System.out.println(session.getId()+"님이 보낸메시지:"+message.getPayload());
 		for(WebSocketSession ws:users.values()) {
-			ws.sendMessage(message);
+			//System.out.println("# 메시지 전송 #");
+			for(String id:chIds) {
+				
+				if(id.equals(ws.getId())) {
+					System.out.println("# 메시지가 보내지는 경우 #");
+					System.out.println(id+":"+ws.getId());
+					ws.sendMessage(message);
+				}
+			}
 		}		
 	}
 	// 종료시
@@ -99,6 +131,7 @@ public class ChatHandler extends TextWebSocketHandler{
 			// ids.get(id)와 연결되어 있는 값
 			idList.add(ids.get(id));
 		}
+		System.out.println("접속자 인원:"+idList.size());
 		return idList;
 		// 현재 접속중인 아이디를 List로 가져온다.
 	}

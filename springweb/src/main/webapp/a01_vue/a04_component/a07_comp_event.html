@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+<template id="child-tmp">
+	<div style="background-color:yellow">
+		<h2>하위 컴포넌트</h2>
+		이름입력:<input v-model="name"/>
+		<button v-on:click="clickEvent">클릭(이벤트)</button>
+	</div>
+</template>
+
+
+
+<script type="text/javascript">
+	Vue.component("child-comp",{
+		template:"#child-tmp",
+		data:function(){
+			return {name:""}
+		},
+		methods:{
+			clickEvent:function(){
+				//var name=prompt("이벤트 호출, 이름입력:","")
+				// 입력된 입력을 모델데이터에 할당처리..
+				// body에 <child-comp></child-comp> 선언
+				this.$emit("btnclick", this.name)
+				// 상위컴포넌트 @btnclick="상위이벤트핸들러함수"
+				
+			}
+		}
+	})
+</script>
+</head>
+<body>
+	<div id="show">
+		<h2 >{{msg}}</h2>
+		<h3>이름:{{name}}</h3>
+		<child-comp @btnclick="parentClick"></child-comp>
+		<child-comp @btnclick="parentClick"></child-comp>
+		<child-comp @btnclick="parentClick"></child-comp>
+	</div>
+</body>
+<script>
+	// <product> 컴포넌트를 통해
+	//   1단계 [   ] [구매]
+	//   2단계 
+	// 		물건명  가격  [구매]가 출력되고, 클릭시,
+	//      상단에 구매한 물건리스트와  총비용을 출력하세요..
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"컴포넌트 이벤트 발산 연습",name:""},
+		methods:{
+			parentClick:function(param1){
+				alert("하위에서 전달해 온 이름:"+param1)
+				// 현재 모델 데이터 name에 할당.
+				this.name += param1+" "
+			}
+		}
+	});
+/*
+# 컴포넌트간 데이터 전달1 : 이벤트 발산
+1. 컴포넌트간 데이터 흐름 처리에 대한 이해
+	1) 상위 컴포넌트 ==> 하위 컴포넌트
+		props 속성을 통해서 전달
+	2) 하위 컴포넌트 ==> 상위 컴포넌트
+		- 이벤트 발산(emit)을 통해서 처리
+		- 처리 순서
+			하위 컴포넌트의 템플릿
+				v-on:이벤트명 = "해당컴포넌트이벤트핸들러함수"
+				
+				이벤트핸들러함수:function(){
+					// 이벤트 발산 처리.
+					$.emit("이벤트명",전달할데이터1, 전달할데이터2)
+				} 
+			상위 컴포넌트의 템플릿
+				v-on:이벤트명 = "상위이벤트정의된함수"
+				상위이벤트핸들러함수:function(매개변수1, 매개변수2){
+					매개변수1, 매개변수2:하위에서 넘겨온 데이터
+				}
+				
+# 개발 순서
+1. 하위컴포넌트 템플릿
+	@이벤트명="이벤트핸들러함수"
+2. 하위컴포넌트선언
+    이벤트핸들러함수:function(){
+    	this.$emit("상위이벤트명", 전달할데이터1, 전달데이터2...)
+    }
+3. 상위컴포넌트 템플릿
+	<컴포넌트명 @상위이벤트명="상위이벤트핸들러함수">
+4. 상위컴포넌트선언
+	상위이벤트핸들러함수:function(매개변수1, 매개변수2...){
+		상위에서 처리할 내용...
+	}
+				
+				
+				
+				
+				
+		
+
+ 
+ */
+</script>
+</html>

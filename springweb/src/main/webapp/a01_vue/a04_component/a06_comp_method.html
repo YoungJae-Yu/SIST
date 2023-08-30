@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<template id="tmp01">
+	<div>
+		<h2>{{name}}</h2>
+		<h2>{{nowTs}}</h2>
+		<button v-on:click="timeclick">현재시간 출력</button>
+	</div>
+</template>
+<template id="tmp02">
+	<div>
+		<h2>{{title}}</h2>
+		<h2>{{count}}</h2>
+		<button @click="countclick">카운트업!(클릭)</button>
+	</div>
+</template>
+<script type="text/javascript">
+	Vue.component("countup",{
+		template:"#tmp02",
+		data:function(){
+			return {title:"카운트업",count:0}
+		},
+		methods:{
+			countclick:function(){
+				this.count = Number(this.count)+1
+			}
+		}
+	})
+
+
+	Vue.component("time-comp",{
+		template:"#tmp01",
+		data:function(){
+			return {name:"홍길동",nowTs:""}
+		},
+		methods:{
+			timeclick:function(){
+				// 현재시간/날짜를 모델데이터 nowTs에 할당.
+				this.nowTs = (new Date()).toLocaleString()
+			}
+		}
+	})
+
+	// ex) <countup></countup>
+	//       카운트업
+	//         1   ==> 모델데이터
+	//       <button> ==> 버튼클릭시 마다, 모델데이터 count를 증가
+	
+</script>
+<body>
+	<div id="show">
+		<h2>{{msg}}</h2>
+		<countup></countup>
+		<countup></countup>
+		<countup></countup>
+		<time-comp></time-comp>
+		<time-comp></time-comp>
+		<time-comp></time-comp>
+	</div>
+</body>
+<script>
+/*
+# 컴포넌트의 모델데이터와 메서드 활용
+1. 컴포넌트의 모델 데이터는 매번 만들어진 객체가 리턴되기 때문에
+	data속성에 함수형을 선언하고, return 값으로 데이터로 선언하여
+	사용한다. cf) 바로 vue와 같이 data속성에 객체형 json을 쓰지 않는다.
+	ex) data:function(){
+			return {모델속성:모델값}
+	    }
+2. 컴포넌트에서도 이벤트에 의해 핸들러 함수를 선언하여 처리할 수 있다.
+	1) methods:{함수명:function(){}}
+	2) template에서
+		<요소  v-on:이벤트명="함수명"
+ 
+ */
+
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"시작!!"}
+	});
+</script>
+</html>
